@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Portal sign-in</title></head>
+<body><main><h1>Portal sign-in</h1>
+<form id="partial" onsubmit="event.preventDefault()">
+ <h2>Use selected characters</h2>
+ <p>Enter the requested characters from your memorable word.</p>
+ <label for="c2">Second character</label>
+ <input id="c2" type="password" maxlength="1" autocomplete="current-password">
+ <label for="c5">Fifth character</label>
+ <input id="c5" type="password" maxlength="1" autocomplete="current-password">
+ <button>Sign in</button>
+</form>
+<section aria-labelledby="alternative">
+ <h2 id="alternative">Or use your full password with a password manager</h2>
+ <form onsubmit="event.preventDefault()">
+  <label for="user">User name</label><input id="user" autocomplete="username">
+  <label for="password">Password</label>
+  <input id="password" type="password" autocomplete="current-password">
+  <button>Sign in with full password</button>
+ </form>
+</section></main></body></html>

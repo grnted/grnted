@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Office hours (a toggle in a card element)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Office hours (a toggle in a card element)</h1>
+<hours-card id="card" style="display:block;border:1px solid #595959;padding:8px 12px"></hours-card>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+customElements.define('hours-card', class extends HTMLElement {
+  connectedCallback() {
+    var root = this.attachShadow({ mode: 'open' });
+    root.innerHTML = '<p id="toggle" style="cursor:pointer;color:#0b4fb3;text-decoration:underline">Show office hours</p><p id="hours" hidden>8 am to 4 pm, Monday to Friday.</p>';
+    root.getElementById('toggle').addEventListener('click', function () { var h = root.getElementById('hours'); h.hidden = !h.hidden; });
+  }
+});
+</script>
+</body>
+</html>

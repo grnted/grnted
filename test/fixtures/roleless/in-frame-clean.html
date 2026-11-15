@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Events</title><style>body{font:16px/1.5 sans-serif;color:#1a1a1a;background:#fff;margin:24px}iframe{display:block;width:100%;max-width:36rem;height:12rem;border:1px solid #767676}</style></head><body><main><h1>Events</h1><p>Choose a day in the calendar to see what is on.</p>
+<iframe id="calendar-frame" title="Event calendar" src="/frame-buttons.html"></iframe>
+<!-- A frame too small to hold a control a person can use, and one that is not shown: nothing to look into. -->
+<iframe title="Counter" src="/frame-days.html" style="width:40px;height:20px"></iframe>
+<iframe title="Hidden calendar" src="/frame-days.html" style="display:none"></iframe>
+<!-- Frames the page keeps from assistive technology or from the pointer (a decoration, a preview): not offered as controls. -->
+<iframe title="Decorative calendar" src="/frame-days.html" aria-hidden="true" tabindex="-1"></iframe>
+<div inert><iframe title="Calendar behind the dialog" src="/frame-days.html"></iframe></div>
+<iframe title="Calendar preview" src="/frame-days.html" style="pointer-events:none"></iframe>
+</main></body></html>

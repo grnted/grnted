@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: reflow patterns that are not failures</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; overflow-x: hidden; }
+  main { padding: 1rem; max-width: 60rem; margin: 0 auto; }
+  .skip { position: absolute; left: -9999px; top: 0; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  /* A closed off-canvas menu: moved past the right edge with a transform; the page cannot scroll there. */
+  #drawer { position: fixed; top: 0; right: 0; width: 18rem; height: 100%; padding: 1rem; background: #f4f4f4; transform: translateX(100%); }
+  /* A carousel built on scroll snapping: each slide fits the screen. */
+  .slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; }
+  .slides > div { flex: 0 0 100%; scroll-snap-align: start; padding: 0.5rem; border: 1px solid #767676; }
+  /* A row of short links that scrolls sideways on its own. */
+  .chips { display: flex; gap: 0.5rem; overflow-x: auto; white-space: nowrap; padding: 0.25rem 0; }
+  .chips a { color: #0645ad; }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; min-width: 40rem; }
+  th, td { border: 1px solid #767676; padding: 0.25rem 0.5rem; text-align: left; }
+  .toolbar { display: flex; gap: 0.25rem; width: 36rem; }
+  .diagram { display: block; }
+  /* A closed bottom sheet moved below the screen, and a small fixed button that fits. */
+  #sheet { position: fixed; left: 0; right: 0; bottom: 0; padding: 1rem; background: #fff; transform: translateY(100%); }
+  #to-top { position: fixed; right: 0.5rem; bottom: 0.5rem; }
+  /* A consent banner fixed to the bottom that fits the screen at any size. */
+  #notice { position: fixed; left: 0; right: 0; bottom: 3rem; padding: 0.25rem 0.5rem; background: #fff; border: 1px solid #767676; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<nav id="drawer" aria-label="Site menu"><ul><li><a href="#a">District news and announcements</a></li><li><a href="#b">School board meeting schedule</a></li></ul></nav>
+<main id="main">
+  <h1>Patterns that reflow</h1>
+  <p>Every pattern on this page is allowed at 320 pixels wide.<span class="sr-only"> Screen reader note.</span></p>
+  <div class="slides" aria-roledescription="carousel">
+    <div><p>First slide: the art show opens on Monday in the library.</p></div>
+    <div><p>Second slide: the band concert is on Thursday at seven.</p></div>
+    <div><p>Third slide: picture day is moved to next Wednesday.</p></div>
+  </div>
+  <nav class="chips" aria-label="Topics"><a href="#1">Athletics</a><a href="#2">Calendar</a><a href="#3">Departments</a><a href="#4">Enrollment</a><a href="#5">Nutrition</a><a href="#6">Transportation</a></nav>
+  <div class="table-wrap">
+    <table>
+      <caption>Bell schedule</caption>
+      <thead><tr><th scope="col">Period</th><th scope="col">Start</th><th scope="col">End</th><th scope="col">Room</th></tr></thead>
+      <tbody><tr><td>First period</td><td>8:00 am</td><td>8:50 am</td><td>Science wing room 104</td></tr></tbody>
+    </table>
+  </div>
+  <div class="toolbar" role="toolbar" aria-label="Text formatting"><button type="button">Bold text</button><button type="button">Italic text</button><button type="button">Underline text</button><button type="button">Strike through</button></div>
+  <svg class="diagram" width="600" height="80" role="img" aria-label="Diagram of the campus"><rect width="600" height="80" fill="#eee"/><text x="10" y="40">Main building, gym, library and the bus loop</text></svg>
+  <p>Text after the diagram wraps normally on a narrow screen.</p>
+  <p>More text that a fixed notice covers while the page is scrolled to the top; it scrolls out from under it.</p>
+</main>
+<div id="sheet"><p>Share this page with a friend by email or by copying its address. The sheet opens from the bottom of the screen.</p></div>
+<div id="notice"><p>We use cookies. <a href="#privacy">Privacy</a></p></div>
+<a id="to-top" href="#main">Top</a>
+</body>
+</html>

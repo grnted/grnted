@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a focus loop, then a link with no focus indicator</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  #widget { border: 1px solid #333; padding: 8px; margin: 12px 0; display: inline-block; }
+  /* Planted failure (2.4.7), behind the loop: the last link shows nothing when focused. */
+  #top-link:focus { outline: none; box-shadow: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Follow an order</h1>
+  <a href="/one.html">Requests</a> <a href="/two.html">Fees</a> <a href="/three.html">Hours</a>
+  <!-- Planted failure (2.1.2): Tab and Shift+Tab cycle between the field and the button; Esc does nothing. -->
+  <div id="widget" role="group" aria-label="Request tracker">
+    <label for="num">Order number</label> <input id="num">
+    <button type="button" id="look">Look up</button>
+  </div>
+  <p><a href="/after.html">After the tracker</a></p>
+</main>
+<footer><a href="/contact.html">Contact</a> <a id="top-link" href="#top">Back to top</a></footer>
+<script>
+  var w = document.getElementById('widget');
+  w.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { e.preventDefault(); return; }
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    var b = Array.prototype.slice.call(w.querySelectorAll('input, button'));
+    var i = b.indexOf(document.activeElement);
+    b[(i + (e.shiftKey ? b.length - 1 : 1)) % b.length].focus();
+  });
+</script>
+</body>
+</html>

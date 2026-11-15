@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a form around the whole page</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  fieldset { margin: 12px 0; }
+  label, input, button { display: block; margin: 4px 0; }
+</style>
+</head>
+<body>
+<form id="page" action="/post" method="post">
+<header><a href="/">Home</a> <label for="q">Search</label><input id="q" type="search" tabindex="1"></header>
+<nav><a href="/a.html">Services</a> <a href="/b.html">News</a></nav>
+<main><h1>Welcome</h1><p><a href="/c.html">Pay a bill</a></p><fieldset><legend>Sign up</legend><label for="em">Email</label><input id="em"></fieldset></main>
+</form>
+</body>
+</html>

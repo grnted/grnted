@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Synth</title></head>
+<body><main>
+<h1>Synth</h1>
+<p>A looping Web Audio bed with a 300 ms rest about 1 s in. No control.</p>
+</main>
+<script>
+  var ctx = new AudioContext(), osc = ctx.createOscillator(), gain = ctx.createGain();
+  gain.gain.value = 0.2; osc.connect(gain); gain.connect(ctx.destination);
+  osc.start();
+  gain.gain.setValueAtTime(0.2, 0); gain.gain.setValueAtTime(0, 1.0); gain.gain.setValueAtTime(0.2, 1.3);
+
+</script>
+</body>
+</html>

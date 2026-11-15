@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Library</title>
+<style>
+  .notice { border: 1px solid #555; padding: 1rem; font: 16px sans-serif; }
+  .notice.later { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; }
+  .tip { display: none; }
+  .tip.shown { display: block; }
+</style>
+</head>
+<body><main id="main">
+<h1>Library</h1>
+<p>Opening hours and events.</p>
+<div id="cookies" class="notice"><p>We use session cookies that expire when you close the browser.</p></div>
+<div id="about" class="tip"><p>About cookies: we use session cookies that expire when you close the browser.</p></div>
+</main>
+<script>
+  // Not a time limit: a cookie notice a timer moves to the bottom of the screen (its class changes), and a
+  // second one a timer shows. Both say session cookies "expire when you close the browser".
+  setTimeout(function () { document.getElementById('cookies').classList.add('later'); }, 15000);
+  setTimeout(function () { document.getElementById('about').classList.add('shown'); }, 15500);
+</script>
+</body>
+</html>

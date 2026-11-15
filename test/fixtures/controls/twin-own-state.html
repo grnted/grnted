@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plot plan</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+button { font: inherit; padding: 6px 12px; }
+.tile { display: inline-block; padding: 8px 14px; border: 2px solid #1d4d3f; border-radius: 4px; background: #e7f2ee; cursor: pointer; }
+.tile:focus { outline: 3px solid #0b57d0; outline-offset: 2px; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header><a href="/">Marsh Lane Allotments</a> <a href="/about.html">About</a> <span class="tile" role="switch" tabindex="0" id="planbtn" aria-checked="false">Email me the rota</span></header>
+<main>
+<h1>Plot plan</h1>
+<!-- Fails 2.1.1: the tile only changes its own state (pressed or not) and answers the pointer only. The switch in the header changes its own state with the keyboard; that is another control's state, not the same function. -->
+<p><span class="tile" role="button" tabindex="0" id="tile" aria-pressed="false">Keep my plot</span></p>
+<p id="hint"></p>
+
+<p id="other"></p>
+</main>
+<footer><a href="/contact.html">Contact</a></footer>
+<script>
+var tile = document.getElementById('tile');
+function flip() { tile.setAttribute('aria-pressed', tile.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); }
+document.getElementById('tile').addEventListener('pointerup', flip);
+var sw = document.getElementById('planbtn');
+function turn() { sw.setAttribute('aria-checked', sw.getAttribute('aria-checked') === 'true' ? 'false' : 'true'); }
+sw.addEventListener('click', turn);
+sw.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); turn(); } });
+</script>
+</body>
+</html>

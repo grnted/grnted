@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<audio id="music" src="tone.wav" autoplay loop></audio>
+<p>Background music, played through an equaliser.</p>
+</main>
+<script>
+var a = document.getElementById('music'), ctx = new AudioContext(), src = ctx.createMediaElementSource(a), eq = ctx.createBiquadFilter(); src.connect(eq); eq.connect(ctx.destination);
+</script>
+</body>
+</html>

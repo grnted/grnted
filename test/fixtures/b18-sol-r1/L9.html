@@ -1,0 +1,18 @@
+<!doctype html><html lang="en">
+<meta charset="utf-8"><title>Widget appearance</title>
+<style>
+body{font:16px Arial;background:white;color:#111}
+html[data-theme=dark] body{background:#111;color:white}
+</style>
+<button id="night" type="button">Night layer</button>
+<svg width="160" height="80" aria-hidden="true">
+  <rect id="layer" width="160" height="80" fill="white"/>
+</svg>
+<p>The diagram layer does not change the page theme.</p>
+<script>
+for(let i=0;i<201;i++) localStorage.setItem('fixture:'+i,String(i));
+document.getElementById('night').onclick=()=>{
+  const layer=document.getElementById('layer');
+  layer.setAttribute('fill',layer.getAttribute('fill')==='white'?'black':'white');
+};
+</script></html>

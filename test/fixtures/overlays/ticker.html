@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A news ticker that never stops, and a floating widget</title>
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; color: #111; background: #fff; }
+main { padding: 8px; }
+p { margin: 0 0 12px; }
+.ticker { height: 24px; overflow: hidden; background: #eee; }
+.quick a { display: block; padding: 4px 8px; }
+/* Over the first-screen links at 320 px and on a phone (as the page opens). */
+.widget { position: fixed; left: 0; top: 60px; z-index: 1000; }
+.widget button { display: block; width: 300px; height: 40px; border: 0; background: #ff00ff; color: #000; font: 16px sans-serif; }
+</style>
+</head>
+<body>
+<div class="ticker" id="ticker"></div>
+<nav class="quick" aria-label="Quick links"><a href="/a">Calendar</a><a href="/b">Registration</a><a href="/c">Lunch menu</a></nav>
+<main><h1>Welcome</h1>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+</main>
+<script>
+  // The page never stands still: a ticker item comes and goes every 150 ms.
+  const ticker = document.getElementById('ticker');
+  let n = 0;
+  setInterval(() => {
+    ticker.replaceChildren(Object.assign(document.createElement('span'), { textContent: `Headline ${++n}` }));
+    if (n % 2) ticker.appendChild(document.createElement('i'));
+  }, 150);
+  // ?widget=stable: a widget there from the start. moving: one that keeps sliding sideways (never at
+  // the same place twice). late: one that arrives `late` ms after the page loaded.
+  const q = new URLSearchParams(location.search);
+  const mode = q.get('widget') ?? 'stable';
+  const add = () => {
+    const w = document.createElement('div');
+    w.className = 'widget';
+    w.innerHTML = '<button type="button" aria-label="Chat with us">Chat with us</button>';
+    document.body.appendChild(w);
+    if (mode === 'moving') {
+      const step = () => { w.style.left = `${Math.round(performance.now() / 4) % 120}px`; requestAnimationFrame(step); };
+      step();
+    }
+  };
+  if (mode === 'late') addEventListener('load', () => setTimeout(add, Number(q.get('late') ?? 3500)));
+  else add();
+</script>
+</body>
+</html>

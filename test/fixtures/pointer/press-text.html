@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a press that changes text</title></head>
+<body><main><h1>Cart</h1>
+<p><button type="button" id="save">Save the draft</button> <span id="status">Not saved</span></p>
+</main>
+<script>
+  document.getElementById('save').addEventListener('mousedown', function () { document.getElementById('status').textContent = 'Saved'; });
+</script>
+</body>
+</html>

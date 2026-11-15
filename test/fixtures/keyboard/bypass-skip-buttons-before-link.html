@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: two skip-named buttons ahead of a working skip link</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .topbar a { margin-right: 12px; }</style></head>
+<body>
+<!-- No failure (2.4.1): the skip link (third stop) works; the buttons before it are an animation's controls, never pressed. -->
+<button type="button" id="intro" onclick="new Image().src = '/clicked-skip-intro.png'">Skip intro</button>
+<button type="button" id="anim" onclick="new Image().src = '/clicked-skip-animation.png'">Skip animation</button>
+<a href="#content" id="skip">Skip to main content</a>
+<div class="topbar"><a href="/a.html">A</a><a href="/b.html">B</a><a href="/c.html">C</a><a href="/d.html">D</a></div>
+<div id="content"><p>Unity succeeds division and division follows unity, one bound to be replaced by the other in time.</p><p><a href="/f.html">Chapter two</a></p></div>
+</body>
+</html>

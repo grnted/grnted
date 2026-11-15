@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Opening hours (a card that opens on click only, with a tooltip)</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; } #card { position: relative; display: inline-block; padding: 8px 12px; border: 1px solid #595959; cursor: pointer; } .tip { position: absolute; left: 0; top: 100%; padding: 4px 8px; background: #ffffff; border: 1px solid #1a1a1a; color: #1a1a1a; white-space: nowrap; }</style></head>
+<body><main>
+<h1>Opening hours</h1>
+<div id="card" data-tip="Click to see the hours">Main library</div>
+<div id="hours" hidden><p>8 am to 6 pm, Monday to Saturday.</p></div>
+<p style="margin-top:6rem"><a href="about.html">About the library</a></p>
+</main>
+<script>
+// A card that takes no focus and opens its hours on a click only (keyboard users cannot open it), with a tooltip shown
+// a quarter second after the pointer comes and hidden half a second after it leaves.
+(function () {
+  var el = document.getElementById('card'), tip = null, st = 0, ht = 0;
+  el.addEventListener('click', function () { var h = document.getElementById('hours'); h.hidden = !h.hidden; });
+  el.addEventListener('mouseenter', function () { clearTimeout(ht); if (!tip) { clearTimeout(st); st = setTimeout(function () { tip = document.createElement('div'); tip.className = 'tip'; tip.textContent = el.getAttribute('data-tip'); el.appendChild(tip); }, 250); } });
+  el.addEventListener('mouseleave', function () { clearTimeout(st); clearTimeout(ht); ht = setTimeout(function () { if (tip) { tip.remove(); tip = null; } }, 500); });
+})();
+</script>
+</body>
+</html>

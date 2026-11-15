@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account</title></head>
+<body><main id="main">
+<h1>Account</h1>
+<p>Your account summary.</p>
+</main>
+<script>
+  // A 15 s time limit shown as a warning in the page, with no way to extend it. 15 s, not the 2.5 s of the
+  // spec: the motion test runs timers of up to 20 s early, and the probes before it never take 15 s, so the
+  // timer is still pending when it runs it (the test checks that it did).
+  setTimeout(function () {
+    var p = document.createElement('p');
+    p.setAttribute('role', 'alert');
+    p.textContent = 'Your session has expired. Sign in again to continue.';
+    document.getElementById('main').appendChild(p);
+  }, 15000);
+</script>
+</body>
+</html>

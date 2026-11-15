@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Ferry times</title>
+<style>#board { font: 24px sans-serif; padding: .5rem; border: 1px solid #333; width: 420px; }</style></head>
+<body><main>
+<h1>Ferry times</h1>
+<p>The ferry to the island runs from the old quay.</p>
+<!-- Planted failure (2.2.2): eleven seconds after the page opens the times start to update by themselves every
+     4.5 seconds, and nothing pauses, stops or hides them. -->
+<div id="board">Next ferry: 12 min</div>
+</main>
+<script>
+  (function () {
+    var n = 0, board = document.getElementById('board');
+    setTimeout(function () {
+      setInterval(function () { n++; board.textContent = 'Next ferry: ' + (12 - n % 6) + ' min'; }, 4500);
+    }, 11000);
+  })();
+</script>
+</body>
+</html>

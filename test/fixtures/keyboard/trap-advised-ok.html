@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a widget that says how to leave it</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<main>
+<h1>Seat picker</h1>
+<p><a href="/help.html">Help</a></p>
+<!-- Clean (2.1.2): the page says how to leave the widget (Alt+Q), and that key works. -->
+<div id="picker">
+  <p>Use Alt+Q to leave the seat picker.</p>
+  <button type="button" id="a">Seat 1A</button> <button type="button" id="b">Seat 1B</button>
+</div>
+<p><a href="/next.html">Continue</a></p>
+</main>
+<script>
+var held = true;
+document.getElementById('a').addEventListener('blur', function () { if (held) setTimeout(function () { if (held) document.getElementById('b').focus(); }, 20); });
+document.getElementById('b').addEventListener('blur', function () { if (held) setTimeout(function () { if (held) document.getElementById('a').focus(); }, 20); });
+document.addEventListener('keydown', function (e) {
+  if (e.altKey && (e.key === 'q' || e.code === 'KeyQ')) { held = false; document.querySelector("a[href=\"/next.html\"]").focus(); }
+});
+</script>
+</body>
+</html>

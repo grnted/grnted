@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Nested player frame</title></head>
+<body>
+<!-- Added by the fake player once it plays (Task 4.8 tests): a video that turns its sound on. -->
+<script>
+  const v = document.createElement('video');
+  document.body.append(v);
+  v.muted = false;
+  v.volume = 1;
+  fetch('/report-nested?muted=' + v.muted).catch(() => {});
+</script>
+</body>
+</html>

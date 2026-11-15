@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plot rents</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+button { font: inherit; padding: 6px 12px; }
+#tips { position: fixed; left: 8px; top: 96px; width: 420px; height: 220px; padding: 12px; background: #fff; border: 2px solid #1c1c1c; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header><a href="/">Marsh Lane Allotments</a> <a href="/about.html">About</a></header>
+<main>
+<h1>Plot rents</h1>
+<!-- Fails 2.4.11: the same panel, and nothing takes it away again: the focused button stays entirely hidden. -->
+<p><button id="tip" type="button" aria-expanded="false" aria-controls="tips">Rent tips</button></p>
+<div id="tips" hidden><p>A half plot costs half the rent. Rent is due in the first week of March.</p></div>
+<p>Rents pay for water, the skip and the hedge.</p>
+</main>
+<footer><a href="/contact.html">Contact</a></footer>
+<script>
+var tip = document.getElementById('tip'), tips = document.getElementById('tips');
+function set(open) { tips.hidden = !open; tip.setAttribute('aria-expanded', String(open)); }
+tip.addEventListener('click', function () { set(true); });
+</script>
+</body>
+</html>

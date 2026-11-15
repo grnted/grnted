@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Council news</title>
+<style>#ticker { font: 20px sans-serif; padding: .5rem; border: 1px solid #333; width: 600px; } #panel { display: none; border: 1px solid #333; padding: 1rem; margin-top: .5rem; width: 300px; } #panel.open { display: block; }</style></head>
+<body><main>
+<h1>Council news</h1>
+<p>Latest notices from the council, updated as they come in.</p>
+<div id="ticker">Road works on Main Street this week.</div>
+<!-- Planted failure (2.2.2): the settings panel opens, but its pause button does nothing. -->
+<button type="button" id="open">News settings</button>
+<div id="panel" role="group" aria-label="News settings">
+  <button type="button" id="pause">Pause updates</button>
+  <button type="button" id="close">Done</button>
+</div>
+</main>
+<script>
+  (function () {
+    var items = ['Road works on Main Street this week.', 'The pool reopens on Saturday.', 'Recycling day moves to Tuesday.'], i = 0;
+    var timer = setInterval(function () { i = (i + 1) % items.length; document.getElementById('ticker').textContent = items[i]; }, 1000);
+    document.getElementById('open').addEventListener('click', function () { document.getElementById('panel').classList.add('open'); });
+    document.getElementById('close').addEventListener('click', function () { document.getElementById('panel').classList.remove('open'); });
+    document.getElementById('pause').addEventListener('click', function () { document.getElementById('pause').textContent = 'Pause updates'; });
+  })();
+</script>
+</body>
+</html>

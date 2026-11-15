@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A failing text, then a place where the page stops answering</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .box { padding: 12px 16px; margin: 0 0 12px; background: linear-gradient(90deg, #dddddd, #bbbbbb); }
+  .spacer { height: 2400px; }
+  p { margin: 0; }
+</style>
+</head>
+<body>
+<main>
+  <div class="box"><p id="t-stall-fail" style="color:#ffffff">White text on a pale gradient fades into it.</p></div>
+  <div class="spacer"></div>
+  <div class="box"><p id="t-stall-late" style="color:#111111">Dark text far down the page.</p></div>
+</main>
+<script>
+  // Once the page is scrolled down to the second text it stops answering for 30 s (a heavy script).
+  let stalled = false;
+  addEventListener('scroll', () => {
+    if (stalled || scrollY < 1500) return;
+    stalled = true;
+    const q = new URLSearchParams(location.search);
+    // ?nav=1: the page also tries to go elsewhere (the guard holds it); ?css=1: it also asks for a
+    // stylesheet the site refuses (429).
+    if (q.get('nav')) location.href = '/text.html';
+    if (q.get('css')) {
+      // The stylesheet request goes out and is answered while the page keeps nearly no time for the
+      // test: 1.5 s of work at a time, with a gap between for the browser's own tasks.
+      document.head.appendChild(Object.assign(document.createElement('link'), { rel: 'stylesheet', href: '/refused.css' }));
+      const stop = Date.now() + 30000;
+      const work = () => { const t = Date.now() + 1500; while (Date.now() < t) { /* busy */ } if (Date.now() < stop) setTimeout(work, 0); };
+      setTimeout(work, 0);
+      return;
+    }
+    const until = Date.now() + 30000;
+    while (Date.now() < until) { /* busy */ }
+  });
+</script>
+</body>
+</html>

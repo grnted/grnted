@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer gestures: handlers on the document only</title>
+<style>body{font:16px/1.5 sans-serif;margin:20px}.car{position:relative;width:600px;height:200px;overflow:hidden;border:1px solid #333}.track{display:flex;width:1800px;height:200px}.slide{width:600px;height:200px;flex:none;display:flex;align-items:center;justify-content:center;font-size:28px}.s1{background:#fde}.s2{background:#dfe}.s3{background:#def}.sortlist{list-style:none;padding:0;width:400px}.sortlist li{border:1px solid #333;margin:4px 0;padding:0;background:#f8f8f8;position:relative;height:40px}.sortlist li span{position:absolute;left:8px;top:8px}.sortlist li button{position:absolute;inset:0;width:100%;height:100%;opacity:.15}</style>
+</head>
+<body><main><h1>Swipe handled by the document</h1>
+<div class="car" id="car"><div class="track" id="t"><div class="slide s1">One</div><div class="slide s2">Two</div><div class="slide s3">Three</div></div></div>
+</main>
+<script>
+  var n = 0, sx = null, t = document.getElementById('t');
+  document.addEventListener('pointerdown', function (e) { if (e.target.closest('#car')) sx = e.clientX; });
+  document.addEventListener('pointermove', function () {});
+  document.addEventListener('pointerup', function (e) { if (sx !== null && e.clientX - sx < -50) { n = Math.min(2, n + 1); t.style.transform = 'translateX(' + (-600 * n) + 'px)'; } sx = null; });
+</script>
+</body>
+</html>

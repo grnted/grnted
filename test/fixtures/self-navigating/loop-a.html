@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>main{min-height:3000px}</style><title>Loop A</title></head>
+<body><main><h1>Loop A</h1><p>Sends you to loop B.</p></main>
+<!-- A redirect loop by script: A → B → A → … 200 ms after each load. -->
+<script>addEventListener('load', function () { setTimeout(function () { location.replace('/loop-b.html'); }, 200); });</script>
+</body>
+</html>

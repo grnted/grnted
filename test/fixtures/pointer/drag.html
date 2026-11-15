@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dragging movements: planted failures</title>
+<style>
+body{font:16px/1.5 sans-serif;margin:20px}
+.car{position:relative;width:600px;height:200px;overflow:hidden;border:1px solid #333}
+.track{display:flex;width:1800px;height:200px}
+.slide{width:600px;height:200px;flex:none;display:flex;align-items:center;justify-content:center;font-size:28px}
+.s1{background:#fde}.s2{background:#dfe}.s3{background:#def}
+.zoombox{position:relative;width:500px;height:300px;overflow:hidden;border:1px solid #333}
+.zoombox img,.zoombox .pic{display:block;width:500px;height:300px;transform-origin:50% 50%;background:repeating-linear-gradient(90deg,#fc9 0 25px,#c96 25px 50px)}
+.map{position:relative;width:600px;height:300px;overflow:hidden;border:1px solid #333}
+.map-inner{position:absolute;left:0;top:0;width:1200px;height:600px;background:repeating-linear-gradient(45deg,#cde 0 20px,#9ab 20px 40px)}
+.sortlist{list-style:none;padding:0;width:400px}
+.sortlist li{border:1px solid #333;margin:4px 0;padding:8px;background:#f8f8f8}
+.slider{position:relative;width:300px;height:12px;background:#ccc;margin:20px 0}
+.thumb{position:absolute;top:-6px;width:24px;height:24px;background:#036;border-radius:50%}
+</style>
+</head>
+<body><main><h1>Dragging</h1>
+<h2>Bus routes map</h2>
+<div class="map" id="map-only"><div class="map-inner" id="mi"></div></div>
+<h2>Your schedule</h2>
+<ul class="sortlist" id="sort-only">
+  <li draggable="true">Math</li><li draggable="true">Reading</li><li draggable="true">Science</li>
+</ul>
+<h2>Font size</h2>
+<div class="slider" id="track-a"><div class="thumb" id="slider-only" role="slider" tabindex="0" aria-label="Font size" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" style="left:48px"></div></div>
+<h2>Brightness</h2>
+<div><div class="slider" id="track-b"><div class="thumb" id="slider-ok" role="slider" tabindex="0" aria-label="Brightness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="left:138px"></div></div>
+<button type="button" id="dec">Decrease</button> <button type="button" id="inc">Increase</button></div>
+<h2>Contrast</h2>
+<div class="slider" id="track-c"><div class="thumb" id="slider-click" role="slider" tabindex="0" aria-label="Contrast" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10" style="left:28px"></div></div>
+</main>
+<script>
+  var $ = function (id) { return document.getElementById(id); };
+  // Map panned by dragging only.
+  var mx = 0, my = 0, drag = null;
+  $('map-only').addEventListener('pointerdown', function (e) { drag = { x: e.clientX - mx, y: e.clientY - my }; });
+  $('map-only').addEventListener('pointermove', function (e) { if (drag) { mx = e.clientX - drag.x; my = e.clientY - drag.y; $('mi').style.transform = 'translate(' + mx + 'px,' + my + 'px)'; } });
+  $('map-only').addEventListener('pointerup', function () { drag = null; });
+  // Sortable by drag and drop only.
+  var dragged = null;
+  $('sort-only').addEventListener('dragstart', function (e) { dragged = e.target.closest('li'); });
+  $('sort-only').addEventListener('dragover', function (e) { e.preventDefault(); });
+  $('sort-only').addEventListener('drop', function (e) { e.preventDefault(); var li = e.target.closest('li'); if (dragged && li && li !== dragged) li.after(dragged); dragged = null; });
+  // Sliders: the thumb follows a drag; only the second has buttons.
+  function slider(thumb, track) {
+    var on = false;
+    var setX = function (x) { var r = track.getBoundingClientRect(); var v = Math.max(0, Math.min(100, Math.round((x - r.left) / r.width * 100))); thumb.style.left = (v * 2.76) + 'px'; thumb.setAttribute('aria-valuenow', v); };
+    thumb.addEventListener('pointerdown', function () { on = true; });
+    document.addEventListener('pointermove', function (e) { if (on) setX(e.clientX); });
+    document.addEventListener('pointerup', function () { on = false; });
+    return function (d) { var v = +thumb.getAttribute('aria-valuenow') + d; v = Math.max(0, Math.min(100, v)); thumb.style.left = (v * 2.76) + 'px'; thumb.setAttribute('aria-valuenow', v); };
+  }
+  slider($('slider-only'), $('track-a'));
+  var step = slider($('slider-ok'), $('track-b'));
+  // A slider whose track moves the thumb on click.
+  var stepC = slider($('slider-click'), $('track-c'));
+  $('track-c').addEventListener('click', function (e) { var r = this.getBoundingClientRect(); stepC(Math.round((e.clientX - r.left) / r.width * 100) - +$('slider-click').getAttribute('aria-valuenow')); });
+  $('dec').addEventListener('click', function () { step(-10); });
+  $('inc').addEventListener('click', function () { step(10); });
+</script>
+</body>
+</html>

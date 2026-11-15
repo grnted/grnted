@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dismiss fixture</title>
+<style>body { margin: 0; font: 16px/1.5 sans-serif; } main { padding: 16px; height: 1600px; }
+#box { position: fixed; left: 0; right: 0; bottom: 0; height: 40vh; padding: 16px; background: #1b1b1b; color: #fff; }</style></head>
+<body>
+<!-- One box, closed in a different way per ?mode= (test/integration/dismiss.test.ts). -->
+<main><h1>Page</h1><p><a href="/a">A link</a> <button type="button" id="page-btn">Page button</button></p></main>
+<div id="box" role="region" aria-label="Notice"><p>We use cookies.</p><span id="slot"></span></div>
+<script>
+var mode = new URLSearchParams(location.search).get('mode') || 'button';
+var box = document.getElementById('box'), slot = document.getElementById('slot');
+var html = {
+  button: '<button type="button" id="x">Accept</button>',
+  link: '<a href="#" id="x">Close</a>',
+  space: '<span role="button" tabindex="0" id="x">Dismiss</span>',
+  broken: '<button type="button" id="x">Close</button>',
+  mouse: '<span id="x" style="cursor:pointer">Close</span>',
+  returns: '<button type="button" id="x">Close</button>',
+  js: '<a href="javascript:void(0)" id="x">Close</a>',
+  submit: '<form action="/consent" method="post"><button id="x">Accept</button></form>',
+  request: '<button type="button" id="x">Accept</button>',
+  push: '<button type="button" id="x">Close</button>',
+  unnamed: '<button type="button" id="x">Learn more</button>',
+  // Grok round 1 (2026-11-07): Enter on a text field sends its form.
+  textfield: '<form action="/account/close" method="post"><input tabindex="0" aria-label="Close" id="x"></form>',
+  replace: '<button type="button" id="x">Close</button>',
+  scrollback: '<button type="button" id="x">Close</button>',
+  wrapper: '<button type="button" id="x">Close</button>',
+  late: '<button type="button" id="x">Close</button>',
+  get: '<button type="button" id="x">Accept</button>',
+  shadow: '<span id="x"></span>',
+  hash: '<a href="#" id="x">Close</a>',
+  pushsame: '<button type="button" id="x">Close</button>',
+  // Grok round 2 (2026-11-07).
+  absreplace: '<button type="button" id="x">Close</button>',
+  penone: '<button type="button" id="x">Close</button>',
+  headerunder: '<button type="button" id="x">Close</button>',
+  late2: '<button type="button" id="x">Close</button>',
+}[mode];
+slot.outerHTML = html;
+var x = document.getElementById('x');
+var close = function () { box.remove(); };
+if (mode === 'button' || mode === 'mouse') x.addEventListener('click', close);
+if (mode === 'link' || mode === 'js') x.addEventListener('click', function (e) { e.preventDefault(); close(); });
+if (mode === 'space') x.addEventListener('keydown', function (e) { if (e.key === ' ') { e.preventDefault(); close(); } });
+if (mode === 'returns') x.addEventListener('click', function () { box.hidden = true; setTimeout(function () { box.hidden = false; }, 700); });
+if (mode === 'request') x.addEventListener('click', function () { fetch('/consent', { method: 'POST', body: 'yes' }).catch(function () {}); close(); });
+if (mode === 'push') x.addEventListener('click', function () { history.pushState({}, '', '/closed'); close(); });
+if (mode === 'unnamed') x.addEventListener('click', close);
+if (mode === 'textfield') x.form.addEventListener('submit', function (e) { e.preventDefault(); close(); });
+if (mode === 'replace') x.addEventListener('click', function () {
+  close();
+  var b = document.createElement('div');
+  b.style.cssText = 'position:fixed;inset:0;background:#222;color:#fff;padding:16px';
+  b.textContent = 'Subscribe to our newsletter!';
+  document.body.appendChild(b);
+});
+// Closing scrolls to the top; scrolling down again brings the box back.
+if (mode === 'scrollback') x.addEventListener('click', function () {
+  box.hidden = true;
+  window.scrollTo(0, 0);
+  addEventListener('scroll', function () { if (scrollY > 100) box.hidden = false; });
+});
+if (mode === 'hash') x.addEventListener('click', close);
+if (mode === 'wrapper') {
+  box.innerHTML += '<p id="still" style="visibility:visible">Still here.</p>';
+  x.addEventListener('click', function () { box.style.visibility = 'hidden'; });
+}
+if (mode === 'late') x.addEventListener('click', function () { box.hidden = true; setTimeout(function () { box.hidden = false; }, 1000); });
+if (mode === 'get') x.addEventListener('click', function () { fetch('/api/consent?accept=1').catch(function () {}); close(); });
+if (mode === 'shadow') {
+  var root = x.attachShadow({ mode: 'open' });
+  root.innerHTML = '<button type="button" id="sx">Close</button>';
+  root.getElementById('sx').addEventListener('click', close);
+}
+if (mode === 'absreplace' || mode === 'penone') x.addEventListener('click', function () {
+  close();
+  var b = document.createElement('div');
+  b.style.cssText = mode === 'absreplace' ? 'position:absolute;left:0;top:' + scrollY + 'px;width:100%;height:100vh;background:#fff' : 'position:fixed;inset:0;background:#fff;pointer-events:none';
+  b.textContent = 'Still here';
+  document.body.appendChild(b);
+});
+if (mode === 'headerunder') {
+  var h = document.createElement('div');
+  h.style.cssText = 'position:fixed;left:0;right:0;bottom:0;height:30vh;background:#0b3d91;color:#fff';
+  h.textContent = 'Site footer bar';
+  document.body.insertBefore(h, box);
+  x.addEventListener('click', close);
+}
+if (mode === 'late2') x.addEventListener('click', function () { box.hidden = true; setTimeout(function () { box.hidden = false; }, 2000); });
+if (mode === 'pushsame') x.addEventListener('click', function () { history.pushState({ closed: 1 }, '', location.href); close(); });
+document.getElementById('page-btn').focus();
+</script>
+</body>
+</html>

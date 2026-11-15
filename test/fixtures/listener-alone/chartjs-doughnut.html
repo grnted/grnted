@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Budget by fund</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Budget by fund</h1>
+<p>The adopted budget by fund, in millions of dollars. The table below the chart gives the same numbers.</p>
+<div class="chart" style="width:360px"><canvas id="funds" role="img" aria-label="Doughnut chart: budget by fund: general 41, capital 18, debt service 9 million dollars"></canvas></div>
+<table>
+<caption>Budget by fund</caption>
+<thead><tr><th scope="col">Fund</th><th scope="col">Millions</th></tr></thead>
+<tbody><tr><td>General</td><td>41</td></tr><tr><td>Capital</td><td>18</td></tr><tr><td>Debt service</td><td>9</td></tr></tbody>
+</table>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script src="vendor/chartjs/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('funds'), {
+  type: 'doughnut',
+  data: { labels: ['General', 'Capital', 'Debt service'], datasets: [{ data: [41, 18, 9] }] },
+});
+</script>
+</body>
+</html>

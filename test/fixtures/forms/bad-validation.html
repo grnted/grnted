@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Request a call (bad validation)</title>
+<style>.bad { border: 2px solid rgb(220, 0, 0); } .msg { color: rgb(200, 0, 0); }</style></head>
+<body>
+<main>
+<h1>Request a call</h1>
+<form id="call" action="/call" method="post" novalidate>
+  <p><label for="fullname">Your name</label><br><input id="fullname" name="fullname" autocomplete="name"></p>
+  <p><label for="phone">Phone</label><br><input id="phone" name="phone" type="tel" autocomplete="tel"></p>
+  <p><label for="mail">Email</label><br><input id="mail" name="mail" type="email" autocomplete="email"></p>
+  <button type="submit">Request</button>
+</form>
+</main>
+<script>
+  const form = document.getElementById('call');
+  const after = (field, text) => {
+    let div = field.parentElement.querySelector('.msg');
+    if (!div) { div = document.createElement('div'); div.className = 'msg'; field.after(div); }
+    div.textContent = text;
+  };
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('fullname');
+    const phone = document.getElementById('phone');
+    const mail = document.getElementById('mail');
+    let ok = true;
+    // Colour only: the name field turns red, no text.
+    if (!name.value.trim()) { name.classList.add('bad'); ok = false; } else name.classList.remove('bad');
+    // A message next to the field, not tied to it and not naming it.
+    if (!phone.value.trim()) { after(phone, 'This field is required.'); ok = false; } else after(phone, '');
+    // A generic message after a wrong format.
+    if (mail.value && !mail.value.includes('@')) { after(mail, 'Invalid'); ok = false; } else after(mail, '');
+    if (ok) fetch('/call', { method: 'POST', body: new FormData(form) });
+  });
+</script>
+</body>
+</html>

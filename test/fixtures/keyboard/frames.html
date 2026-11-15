@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: frames</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } iframe { width: 600px; height: 80px; border: 1px solid #999; } a.bare:focus { outline: none; }</style>
+</head>
+<body>
+<main>
+  <h1>Frames</h1>
+  <p><a href="/before.html">Before the frames</a></p>
+  <!-- Clean control: Tab moves through the frames' links and out again (not a trap). -->
+  <iframe src="/frame-inner.html" title="Inner page"></iframe>
+  <iframe srcdoc="<p><a href='/x.html'>Frame link</a></p>" title="Inline frame"></iframe>
+  <!-- Planted failure (2.4.7) after the frames: proves the traversal gets past them. -->
+  <p><a class="bare" id="after-frames" href="/after.html">After the frames</a></p>
+</main>
+</body>
+</html>

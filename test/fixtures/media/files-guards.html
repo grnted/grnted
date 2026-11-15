@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Notices with players of the page's own</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>.now { background: #ffe9a8; }</style></head>
+<body>
+<main>
+<h1>Notices with players of the page's own</h1>
+<section><h2>A settings button beside the video</h2>
+<div class="player"><video id="menu" controls preload="metadata" width="640" height="360" src="/files/speech-plain.webm?menu"></video><div class="bar"><button type="button" aria-label="Settings">&#9881;</button></div></div>
+</section>
+<section><h2>A button with no name beside the video</h2>
+<div class="player"><video id="icon" controls preload="metadata" width="640" height="360" src="/files/speech-plain.webm?icon"></video><div class="bar"><button type="button" class="tool"><svg width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="6"></circle></svg></button></div></div>
+</section>
+<section><h2>The words, marked as they are spoken</h2>
+<video id="follows" controls preload="metadata" width="640" height="360" src="/files/speech-plain.webm?follows"></video>
+<p class="line">The council meets on the first Tuesday of each month.</p>
+<p class="line">Agendas are posted three days before each meeting.</p>
+<p class="line">Public comment begins at six thirty in the evening.</p>
+</section>
+<section><h2>The words, drawn over the picture</h2>
+<div style="position:relative;width:640px"><video id="drawn" controls preload="metadata" width="640" height="360" src="/files/speech-plain.webm?drawn"></video></div>
+</section>
+</main>
+<script>
+// The page draws what is said onto a canvas it lays over the picture once the video plays (no text in the page).
+(function () {
+  var v = document.getElementById('drawn');
+  var c = null;
+  v.addEventListener('play', function () {
+    if (c) return;
+    c = document.createElement('canvas');
+    c.width = 640;
+    c.height = 60;
+    c.style.cssText = 'position:absolute;left:0;top:250px;pointer-events:none';
+    v.parentNode.appendChild(c);
+    var g = c.getContext('2d');
+    g.fillStyle = 'rgba(0,0,0,.75)';
+    g.fillRect(0, 0, 640, 60);
+  });
+})();
+</script>
+<script>
+// The page marks the sentence that is being spoken (a class on its line), from a list of times it keeps itself.
+(function () {
+  var v = document.getElementById('follows');
+  var lines = v.parentNode.querySelectorAll('.line');
+  var starts = [0.3, 3.71, 7.04];
+  v.addEventListener('timeupdate', function () {
+    for (var i = 0; i < lines.length; i++) lines[i].classList.toggle('now', v.currentTime >= starts[i] && (i + 1 === starts.length || v.currentTime < starts[i + 1]));
+  });
+})();
+</script>
+</body>
+</html>

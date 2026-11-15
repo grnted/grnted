@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a "Skip intro" button that does nothing, on a page with a main landmark</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } nav a { margin-right: 12px; }</style></head>
+<body>
+<!-- No failure (2.4.1): the main landmark and heading bypass the navigation; a skip-named button that does something else is no broken skip link. -->
+<button type="button" id="intro">Skip intro</button>
+<nav aria-label="Main"><a href="/a.html">A</a><a href="/b.html">B</a><a href="/c.html">C</a></nav>
+<main><h1>Welcome</h1><p>The intro animation plays once on your first visit; this button was meant to stop it.</p></main>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 1: a transparent field in the Tab order</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<!-- 3.3.2 failure: transparent until focused, but people reach it by Tab. -->
+<style>input:focus { opacity: 1 !important; }</style>
+<input style="opacity:0" placeholder="Email">
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opening hours | Riverbend Library</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+  header, main, footer { padding: 16px 24px; }
+  nav ul { list-style: none; display: flex; gap: 16px; padding: 0; margin: 0; }
+  a { color: #0b4f9c; }
+  table { border-collapse: collapse; }
+  th, td { border: 1px solid #555; padding: 4px 8px; text-align: left; }
+  label { display: block; margin-top: 8px; }
+  button { margin-top: 8px; padding: 6px 12px; }
+  .icon { width: 20px; height: 20px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<header>
+  <a href="/">Riverbend Library</a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="/visit.html">Visit</a></li>
+      <li><a href="/events.html">Events</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+<h1>Opening hours</h1>
+<p>The library is open six days a week. <a href="/holidays.html">Holiday closures</a> are listed separately.</p>
+<h2>This week</h2>
+<table>
+  <caption>Opening hours this week</caption>
+  <thead><tr><th scope="col">Day</th><th scope="col">Opens</th><th scope="col">Closes</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Monday</th><td>9:00</td><td>17:00</td></tr>
+    <tr><th scope="row">Tuesday</th><td>9:00</td><td>20:00</td></tr>
+    <tr><th scope="row">Saturday</th><td>10:00</td><td>14:00</td></tr>
+  </tbody>
+</table>
+<h2>Get reminders</h2>
+<form action="/subscribe" method="post" aria-label="Reminders">
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" autocomplete="email" required>
+  <label><input type="checkbox" name="weekly" checked> Weekly summary</label>
+  <button type="submit">Subscribe</button>
+</form>
+<button type="button" id="more-btn" aria-expanded="false" aria-controls="more">More services</button>
+<ul id="more" hidden><li><a href="/printing.html">Printing</a></li><li><a href="/rooms.html">Meeting rooms</a></li></ul>
+<script>
+document.getElementById('more-btn').addEventListener('click', (e) => {
+  const open = e.currentTarget.getAttribute('aria-expanded') === 'true';
+  e.currentTarget.setAttribute('aria-expanded', String(!open));
+  document.getElementById('more').hidden = open;
+});
+</script>
+<h3>Questions</h3>
+<p>Call us or <a href="/contact.html">write to us</a>.</p>
+<button type="button" aria-label="Print this page"><svg class="icon" aria-hidden="true" viewBox="0 0 20 20"><rect width="20" height="20"/></svg></button>
+<div role="status"></div>
+</main>
+<footer><p>Riverbend Library, 12 Mill Street</p></footer>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu button</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+a { color: #0b57d0; }
+.menu-toggle { font: inherit; padding: 8px 14px; background: #1a1a1a; color: #fff; border: 0; cursor: pointer; }
+.menu-toggle:focus-visible { outline: 3px solid #0b57d0; outline-offset: 2px; }
+.menu-list { list-style: none; margin: 0; padding: 8px 0; }
+.menu-list a { display: block; padding: 6px 14px; }
+.closed { display: none; }
+</style></head>
+<body>
+<header>
+  <nav aria-label="Main">
+    <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-menu">Menu</button>
+    <ul class="menu-list closed" id="site-menu">
+      <li><a href="/menu-button.html#about">About us</a></li>
+      <li><a href="/menu-button.html#programs">Programs</a></li>
+      <li><a href="/menu-button.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <h1>Menu button</h1>
+  <p>The main menu opens from a real button, with the same delegated listener.</p>
+  <div class="card" style="cursor: pointer; padding: 12px; border: 1px solid #767676;">
+    <h2>News</h2>
+    <p>School board meeting on Tuesday.</p>
+  </div>
+</main>
+<footer><p>Fixture site</p></footer>
+<script>
+  document.addEventListener('click', function (e) {
+    // An analytics listener that reacts to every click and changes nothing on the page.
+    window.__clicks = (window.__clicks || 0) + 1;
+    var t = e.target.closest && e.target.closest('.menu-toggle');
+    if (!t) return;
+    var list = document.getElementById('site-menu');
+    var open = list.classList.toggle('closed') === false;
+    t.setAttribute('aria-expanded', String(open));
+  });
+</script>
+</body></html>

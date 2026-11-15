@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Script flashing further down</title>
+<style>
+  body { margin: 0; font: 16px sans-serif; }
+  h1, p { margin: 1rem; }
+  .flash { position: absolute; left: 100px; top: 2000px; width: 500px; height: 500px; background: #000; }
+</style></head>
+<body><main>
+<h1>Script flashing further down</h1>
+<p>Synthetic test pattern: a script swaps the colour 8 times a second (no CSS animation).</p><div style="height: 2600px"></div>
+<div class="flash" id="flash" role="img" aria-label="Test pattern"></div>
+</main>
+<script>
+  var f = document.getElementById('flash'), on = false;
+  setInterval(function () { on = !on; f.style.background = on ? '#fff' : '#000'; }, 62);
+</script>
+</body>
+</html>

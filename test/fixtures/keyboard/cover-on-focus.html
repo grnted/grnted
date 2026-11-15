@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a panel that opens on focus and covers the control</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  .slot { position: relative; min-height: 170px; padding: 24px; background: #eef1e9; margin: 24px 0; }
+  .help { position: absolute; left: 0; top: 0; width: 100%; height: 140px; padding: 16px; box-sizing: border-box; background: #fff; border: 2px solid #234; z-index: 60; }
+  [hidden] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Your orders</h1>
+  <a href="/before.html">All holds</a>
+  <div class="slot"><button type="button" id="pause">Hold my order</button><aside id="help" class="help" hidden><strong>Chat with us</strong><p>Stuck on this order?</p></aside></div>
+  <a href="/after.html">Pickup places</a>
+</main>
+<script>
+document.getElementById('pause').addEventListener('focus', function () { document.getElementById('help').hidden = false; });
+</script>
+</body>
+</html>

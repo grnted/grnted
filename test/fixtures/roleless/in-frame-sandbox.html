@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Events</title><style>body{font:16px/1.5 sans-serif;color:#1a1a1a;background:#fff;margin:24px}iframe{display:block;width:100%;max-width:36rem;height:12rem;border:1px solid #767676}</style></head><body><main><h1>Events</h1><p>Choose a day in the calendar to see what is on.</p>
+<!-- Sol review of batch 17, S7: sandboxed frames (scripts allowed, no allow-same-origin) have no window.frameElement,
+     so a frame asked about itself cannot see that the page hides it. Kept from assistive technology or the pointer
+     around them, they are not offered as controls: clean. -->
+<iframe title="Decorative calendar" src="/frame-days.html" sandbox="allow-scripts" aria-hidden="true" tabindex="-1"></iframe>
+<div inert><iframe title="Calendar behind the dialog" src="/frame-days.html" sandbox="allow-scripts"></iframe></div>
+<iframe title="Calendar preview" src="/frame-days.html" sandbox="allow-scripts" style="pointer-events:none"></iframe>
+</main></body></html>

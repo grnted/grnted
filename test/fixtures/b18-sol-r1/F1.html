@@ -1,0 +1,12 @@
+<!doctype html><html lang="en">
+<meta charset="utf-8"><title>Nested component theme</title>
+<outer-note></outer-note>
+<script>
+let root = document.querySelector('outer-note').attachShadow({mode:'open'});
+root.innerHTML = '<inner-note></inner-note>';
+root = root.querySelector('inner-note').attachShadow({mode:'open'});
+root.innerHTML = `<style>
+:host{display:block}p{font:16px Arial;color:#111;background:white;padding:20px}
+@media(prefers-color-scheme:dark){p{color:#333;background:#111}}
+</style><p>Bring your collection receipt when returning hired equipment.</p>`;
+</script></html>

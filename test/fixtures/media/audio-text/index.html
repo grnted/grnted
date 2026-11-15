@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sounds of the harbour</title>
+<style>body { font: 16px/1.5 Arial, Helvetica, sans-serif; color: #222; background: #fff; margin: 0 24px; }</style>
+</head>
+<body>
+<main>
+<h1>Sounds of the harbour</h1>
+
+<!-- A sound clip whose text alternative sits next to it, labelled as one (G158): not a failure. -->
+<section>
+  <h2>Fog signal</h2>
+  <audio controls preload="none" src="/labelled.wav"></audio>
+  <p>Text alternative: one long low blast, a pause of two seconds, then two short blasts. The pattern repeats every minute.</p>
+</section>
+
+<section>
+  <h2>Ferry bell</h2>
+  <audio controls preload="none" src="/described.wav"></audio>
+  <p>Audio description: a brass bell rings four times. Nobody speaks.</p>
+</section>
+
+<!-- The page's own name for the block says what it is. -->
+<section>
+  <h2>Harbour master's welcome</h2>
+  <audio controls preload="none" src="/named.mp3"></audio>
+  <div class="clip-transcript"><p>Welcome to the harbour. The visitor dock is on the east side, past the blue crane. Tie up at any marked berth and report to the office within the hour.</p></div>
+</section>
+
+<!-- Tied to the player with aria-describedby. -->
+<section>
+  <h2>Lock gates</h2>
+  <audio controls preload="none" src="/tied.mp3" aria-describedby="gates-text"></audio>
+  <p id="gates-text">A horn sounds twice before the gates open, and once when they are fully shut.</p>
+</section>
+
+<!-- Text that describes the sounds, with no label: the test cannot tell whether it is the alternative. -->
+<section>
+  <h2>Buoy</h2>
+  <audio controls preload="none" src="/sounds.wav"></audio>
+  <p>A slow clanging tone, about one strike every three seconds, with no speech.</p>
+</section>
+
+<!-- Look-alikes that are still failures: a caption that says what the clip is, and nothing at all. -->
+<section>
+  <h2>Weekly notice to mariners</h2>
+  <audio controls preload="none" src="/caption-only.mp3"></audio>
+  <p class="clip-caption">Harbour office &bull; weekly notice &bull; audio edition</p>
+</section>
+
+<section>
+  <h2>Tide report</h2>
+  <audio controls preload="none" src="/nothing.mp3"></audio>
+</section>
+<!-- The page gives the recording's words as text and says so: an alternative, whatever it is called. -->
+<section>
+  <h2>Mayor's welcome</h2>
+  <audio controls preload="none" src="/said.mp3"></audio>
+  <p>This recording says the following: Welcome to the new town hall. The doors open at nine each weekday, the front desk is on your left, and the lift to the council chamber is straight ahead past the stairs.</p>
+</section>
+
+<!-- The audio is another way to get text that is on the page (WCAG: a media alternative for text). -->
+<section>
+  <h2>Winter parking notice</h2>
+  <p>From the first of December cars may not be left on Mill Road overnight. Snow ploughs need the whole width of the road between ten at night and six in the morning, and cars left there will be moved to the yard behind the depot at the owner's cost.</p>
+  <p>You can also listen to this notice.</p>
+  <audio controls preload="none" src="/fortext.mp3"></audio>
+</section>
+<section>
+  <h2>Statement on the bridge works</h2>
+  <p>The bridge on Ferry Lane closes to cars for six weeks from Monday. People on foot and on bicycles can cross on the east side at all times, and a free shuttle bus runs every twenty minutes from the market square to the far bank.</p>
+  <p><a href="/statement.mp3">Get the statement as MP3</a></p>
+</section>
+
+<!-- An audio player right beside a video with no sound track: it may be that video's audio alternative. -->
+<section>
+  <h2>How to fold the map</h2>
+  <video controls preload="auto" width="320" height="180" src="/fold.webm"></video>
+  <audio controls preload="none" src="/beside.mp3"></audio>
+</section>
+
+<!-- The same, with a video that does not load: whether it has sound cannot be read, so nothing is decided. -->
+<section>
+  <h2>How to tie the knot</h2>
+  <video controls preload="auto" width="320" height="180" src="/not-there.webm"></video>
+  <audio controls preload="none" src="/beside-unknown.mp3"></audio>
+</section>
+
+<!-- Look-alikes that still fail: a line about the recording that gives none of its words, an invitation to
+     listen with no text of it on the page, and a player in the same part of the page as a video but not right beside it. -->
+<section>
+  <h2>March meeting</h2>
+  <audio controls preload="none" src="/about-only.mp3"></audio>
+  <p>This recording was made at the March meeting in the main hall.</p>
+</section>
+<section>
+  <h2>A word from the chair</h2>
+  <p>Listen to the chair's message.</p>
+  <audio controls preload="none" src="/invite-only.mp3"></audio>
+</section>
+<!-- Text nobody can see is no alternative and no text to stand in for: hidden with no way to show it. -->
+<section>
+  <h2>Ferry timetable change</h2>
+  <p style="display:none">From Monday the first ferry leaves the east quay at half past six and the last one returns at ten at night. On Sundays the service starts an hour later, and there is no sailing on the first of January or on the day of the harbour race.</p>
+  <p>You can also listen to this notice.</p>
+  <audio controls preload="none" src="/hidden-text.mp3"></audio>
+</section>
+<section>
+  <h2>Lifeboat open day</h2>
+  <audio controls preload="none" src="/hidden-said.mp3"></audio>
+  <p hidden>This recording says the following: The lifeboat station is open to visitors on the last Saturday of each month. Tours start on the hour from ten until three, and children must be with an adult at all times.</p>
+</section>
+<!-- The browser's own disclosure is a way to show it: the words of the recording inside a details element count. -->
+<section>
+  <h2>Tide warning</h2>
+  <audio controls preload="none" src="/in-details.mp3"></audio>
+  <details><summary>What the warning says</summary><p>This recording says the following: Spring tides this week will cover the lower car park from two hours before high water. Move your car to the upper level, and do not walk on the sea wall while the red flag is flying.</p></details>
+</section>
+<section>
+  <h2>Choir evening</h2>
+  <video controls preload="auto" width="320" height="180" src="/choir.webm"></video>
+  <p>The spring concert in the old chapel, filmed from the gallery by the youth group.</p>
+  <audio controls preload="none" src="/after-text.mp3"></audio>
+</section>
+<!-- Right beside a video that has sound too: it may be an audio track for that video (an audio description, another language). -->
+<section>
+  <h2>Harbour race</h2>
+  <video controls preload="auto" width="320" height="180" src="/choir.webm"></video>
+  <audio controls preload="none" src="/beside-sound.mp3"></audio>
+</section>
+</main>
+</body>
+</html>

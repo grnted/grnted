@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Parks</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+main { padding: 16px 24px; }
+iframe { width: 560px; height: 300px; border: 1px solid #888; }
+</style>
+</head>
+<body>
+<main>
+<h1>Parks</h1>
+<p>Find a park near you.</p>
+<iframe id="script-frame" title="Map placeholder" src="javascript:void(0)"></iframe>
+<div id="slot"></div>
+<script>setTimeout(function () {
+  // Helper frames the page puts in after it loaded (the request guard does not let them load): one with no size, one hidden.
+  document.getElementById('slot').innerHTML = '<iframe id="tracker" src="/frame-click-inner.html" style="width:0;height:0;border:0"></iframe><iframe id="helper" src="/frame-click-inner.html" style="display:none"></iframe>';
+}, 600);</script>
+<p><a href="/parks.html">All parks</a> <a href="/contact.html">Contact the parks office</a></p>
+</main>
+</body>
+</html>

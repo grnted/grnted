@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Carousel that pauses while focus is inside it</title><style>
+  .carousel { position: relative; width: 600px; height: 240px; overflow: hidden; border: 1px solid #333; }
+  .slide { position: absolute; inset: 0; padding: 2rem; font: 24px sans-serif; opacity: 0; transition: opacity .4s; background: #eef; }
+  .slide.active { opacity: 1; }
+</style></head>
+<body><main>
+<h1>News</h1>
+<div class="carousel" id="hero">
+  <div class="slide active"><a href="#enrolment">Enrolment opens on Monday for all grades.</a></div>
+  <div class="slide"><a href="#library">The library has new opening hours this term.</a></div>
+</div>
+</main>
+<script>
+  var slides = document.querySelectorAll("#hero .slide"), i = 0, paused = false;
+  function next() { if (paused) return; slides[i].classList.remove("active"); i = (i + 1) % slides.length; slides[i].classList.add("active"); }
+  setInterval(next, 3000);
+  var hero = document.getElementById('hero');
+  hero.addEventListener('focusin', function () { paused = true; });
+  hero.addEventListener('focusout', function () { paused = false; });
+</script>
+</body>
+</html>

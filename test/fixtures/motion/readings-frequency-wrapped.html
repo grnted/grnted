@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Greenhouse readings</title>
+<style>#reading { font: 22px sans-serif; padding: .5rem; border: 1px solid #333; width: 400px; }</style></head>
+<body><main>
+<h1>Greenhouse readings</h1>
+<p>Temperature in the seedling house, read from the sensor by the door.</p>
+<!-- Not decided, never failed (2.2.2): the reading updates by itself, and a control sets how often it does, which
+     WCAG 2.2.2 allows for content that updates by itself. The select sits INSIDE its label, with no space between
+     the label's words and the first option: the label's text runs straight into the option's ("…intervalEvery…"). -->
+<div id="reading">18.2 °C</div>
+<p><label>Refresh interval<select id="pace"><option value="2">Every 2 seconds</option><option value="300">Every 5 minutes</option><option value="0">Only when I ask</option></select></label></p>
+</main>
+<script>
+  (function () {
+    var n = 0, timer = null;
+    function tick() { n++; document.getElementById('reading').textContent = (18 + (n % 5) / 10).toFixed(1) + ' °C'; }
+    function set(s) { clearInterval(timer); if (s > 0) timer = setInterval(tick, s * 1000); }
+    set(2);
+    document.getElementById('pace').addEventListener('change', function (e) { set(Number(e.target.value)); });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Leaky form (every channel)</title></head>
+<body>
+<main>
+<h1>Members</h1>
+<form id="leaky" action="/leaky" method="post">
+  <p><label for="lk-name">Name</label><br><input id="lk-name" name="name" autocomplete="name"></p>
+  <p><label for="lk-pw">Password</label><br><input id="lk-pw" name="pw" type="password" autocomplete="current-password"></p>
+  <button type="submit">Sign in</button>
+</form>
+<div id="box">Box</div>
+</main>
+<script>
+  // Test fixture: references saved at load, before any test code runs in the page.
+  const savedFetch = window.fetch;
+  const savedSend = XMLHttpRequest.prototype.send;
+  const savedRequestSubmit = HTMLFormElement.prototype.requestSubmit;
+  const form = document.getElementById('leaky');
+  let n = 0;
+  const leak = (value) => {
+    const v = encodeURIComponent(value);
+    const k = n++;
+    new Image().src = '/leak/img/' + v + '-' + k + '.png';                       // value in an image path
+    const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = '/leak/css/' + v + '-' + k + '.css';
+    document.head.appendChild(link);                                            // value in a stylesheet path
+    document.getElementById('box').style.backgroundImage = 'url(/leak/bg/' + v + '-' + k + '.png)'; // CSS url() path
+    const worker = new Worker(URL.createObjectURL(new Blob(
+      ['try { importScripts(' + JSON.stringify(location.origin + '/leak/worker/' + v + '-' + k + '.js') + '); } catch (e) {}'], { type: 'text/javascript' })));
+    setTimeout(() => worker.terminate(), 500);                                  // value in a worker importScripts path
+    const x = new XMLHttpRequest(); x.open('GET', location.href); x.setRequestHeader('X-Draft', value); savedSend.call(x); // header, page URL, saved send
+    savedFetch(location.href, { headers: { 'X-Saved-Fetch': value } }).catch(() => {});       // header, page URL, saved fetch
+    document.cookie = 'draft=' + v + '; path=/';
+    new Image().src = '/static/icon-' + k + '.png';                             // cookie on a query-less static file
+    setTimeout(() => { new Image().src = '/late.gif?v=' + v; }, 0);              // a timer after the handler
+  };
+  document.addEventListener('input', (e) => leak(e.target.value), true);
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    new Image().src = '/leak/submit/' + encodeURIComponent(document.getElementById('lk-name').value) + '.png';
+  });
+  // A saved requestSubmit: changing the name submits the form through it.
+  document.getElementById('lk-name').addEventListener('change', () => savedRequestSubmit.call(form));
+</script>
+</body>
+</html>

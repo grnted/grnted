@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: consent dialog closed by its buttons</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  #dialog { position: fixed; bottom: 24px; left: 24px; width: 420px; background: #fff; padding: 16px; border: 2px solid #333; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Welcome</h1>
+  <p><a href="/one.html">First link</a></p>
+  <p><a href="/two.html">Second link</a></p>
+</main>
+<!-- Clean control (2.1.2): focus is held in the dialog and Esc does nothing, but "Accept all" closes it. -->
+<div id="dialog" role="dialog" aria-modal="true" aria-label="Cookie settings">
+  <p>We use cookies.</p>
+  <button type="button" id="settings">Settings</button>
+  <button type="button" id="accept">Accept all</button>
+</div>
+<script>
+  var d = document.getElementById('dialog');
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab' || !d.isConnected || !d.contains(document.activeElement)) return;
+    e.preventDefault();
+    var f = Array.prototype.slice.call(d.querySelectorAll('button'));
+    var i = f.indexOf(document.activeElement);
+    f[(i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus();
+  });
+  document.getElementById('accept').addEventListener('click', function () { d.remove(); });
+</script>
+</body>
+</html>

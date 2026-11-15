@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A very large page</title>
+<style>body { margin: 0; font: 14px/1.4 Arial, sans-serif; background: #fff url(dark.svg) repeat-x 0 0 / 10px 2px; } img { width: 8px; height: 8px; }</style></head>
+<body><main id="m"><h1>Archive</h1></main>
+<script>
+// 40 chains of 150 nested boxes with words at every level (6000 elements), 400 images and 300 icon
+// links: the searches stay linear.
+for (let c = 0; c < 40; c++) {
+  let at = document.getElementById('m');
+  for (let i = 0; i < 150; i++) { const d = document.createElement('div'); d.append('Item ' + c + '.' + i); at.appendChild(d); at = d; }
+}
+const box = document.createElement('div');
+for (let i = 0; i < 400; i++) { const im = document.createElement('img'); im.src = 'icon.svg'; im.alt = ''; box.appendChild(im); }
+for (let i = 0; i < 300; i++) { const a = document.createElement('a'); a.href = '#i' + i; a.setAttribute('aria-label', 'Item ' + i); a.innerHTML = '<svg width="16" height="16" aria-hidden="true"><rect width="16" height="16" fill="#000"/></svg>'; box.appendChild(a); }
+document.getElementById('m').appendChild(box);
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Tour</title></head>
+<body><main>
+<h1>Tour</h1>
+<section aria-label="Gallery" id="gallery">
+  <p id="slide" style="font: 24px sans-serif; padding: 2rem; border: 1px solid #333; width: 500px">Slide 1 of 4: the new library.</p>
+  <button type="button" id="prev">Previous</button> <button type="button" id="next">Next</button>
+</section>
+</main>
+<script>
+  var n = 0, slides = ['the new library', 'the sports hall', 'the science lab', 'the garden'], tiltOn = true, ready = true;
+  function show(d) { n = (n + d + slides.length) % slides.length; document.getElementById('slide').textContent = 'Slide ' + (n + 1) + ' of 4: ' + slides[n] + '.'; }
+  document.getElementById('prev').addEventListener('click', function () { show(-1); });
+  document.getElementById('next').addEventListener('click', function () { show(1); });
+  window.addEventListener('deviceorientation', function (e) {
+    if (!tiltOn) return;
+    if (ready && e.gamma > 25) { show(1); ready = false; } else if (ready && e.gamma < -25) { show(-1); ready = false; } else if (Math.abs(e.gamma) < 10) ready = true;
+  });
+</script>
+</body>
+</html>

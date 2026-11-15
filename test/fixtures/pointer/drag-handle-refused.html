@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dragging: a drop point on a Remove button</title>
+<style>body{font:16px/1.5 sans-serif;margin:20px}.car{position:relative;width:600px;height:200px;overflow:hidden;border:1px solid #333}.track{display:flex;width:1800px;height:200px}.slide{width:600px;height:200px;flex:none;display:flex;align-items:center;justify-content:center;font-size:28px}.s1{background:#fde}.s2{background:#dfe}.s3{background:#def}.sortlist{list-style:none;padding:0;width:400px}.sortlist li{border:1px solid #333;margin:4px 0;background:#f8f8f8;position:relative;height:48px}.grip{position:absolute;left:4px;top:4px;width:30px;height:20px;cursor:grab;background:#ccc}.sortlist li button{position:absolute;left:0;right:0;bottom:0;height:30px;width:100%}</style>
+</head>
+<body><main><h1>Playlist</h1>
+<ul class="sortlist" id="pl">
+  <li><span class="grip" aria-hidden="true"></span><button type="button">Remove</button></li>
+  <li><span class="grip" aria-hidden="true"></span><button type="button">Remove</button></li>
+  <li><span class="grip" aria-hidden="true"></span><button type="button">Remove</button></li>
+</ul>
+</main>
+<script>
+  var dragging = null;
+  document.querySelectorAll('.grip').forEach(function (g) { g.addEventListener('pointerdown', function () { dragging = g.closest('li'); }); });
+  document.addEventListener('pointerup', function (e) {
+    if (!dragging) return;
+    var over = document.elementFromPoint(e.clientX, e.clientY), li = over && over.closest('li');
+    if (over && over.tagName === 'BUTTON') { li.remove(); location.href = '/removed'; }
+    else if (li && li !== dragging) li.after(dragging);
+    dragging = null;
+  });
+</script>
+</body>
+</html>

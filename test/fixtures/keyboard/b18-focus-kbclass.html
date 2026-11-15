@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Focus fixture: a script that shows focus only after a key press (look-alike)</title>
+<style>
+  body { font: 16px/1.5 Arial, sans-serif; margin: 24px; color: #222; background: #fff; }
+  a, button { outline: none; }
+  .kb-focus { box-shadow: 0 0 0 3px #0b4fb3; }
+</style>
+<script>
+  let keyboard = false;
+  addEventListener('keydown', () => { keyboard = true; }, true);
+  addEventListener('pointerdown', () => { keyboard = false; }, true);
+  addEventListener('focusin', (e) => { if (keyboard) e.target.classList.add('kb-focus'); }, true);
+  addEventListener('focusout', (e) => { e.target.classList.remove('kb-focus'); }, true);
+</script>
+</head>
+<body>
+<main>
+  <h1>Pay a bill</h1>
+  <p><a id="kb-1" href="/pay.html">Pay online</a></p>
+  <p><button id="kb-2" type="button">Set up autopay</button></p>
+</main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Office hours (a button role)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Office hours (a button role)</h1>
+<p>The district office is in the Civic Center, room 210.</p>
+<div id="hours-toggle" role="button">Show office hours</div>
+<p id="hours" hidden>8 am to 4 pm, Monday to Friday.</p>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+document.getElementById('hours-toggle').addEventListener('click', function () { var h = document.getElementById('hours'); h.hidden = !h.hidden; });
+</script>
+</body>
+</html>

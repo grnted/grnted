@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Ask for a service</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; }</style></head>
+<body>
+<main><h1>Ask for a service</h1>
+<div id="app" aria-busy="true"><p>Loading…</p></div>
+</main>
+<script>
+  setTimeout(() => {
+    const app = document.getElementById('app');
+    app.innerHTML = '<form id="req"><label for="place">Location (required)</label><input id="place" required>'
+      + '<label for="what">What do you need? (required)</label><textarea id="what" required></textarea>'
+      + '<button type="submit">Send request</button><p class="status"></p></form>';
+    app.removeAttribute('aria-busy');
+    document.getElementById('req').addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.querySelector('.status').textContent = 'Thanks, your request was received.';
+    });
+  }, 1500);
+</script>
+</body></html>

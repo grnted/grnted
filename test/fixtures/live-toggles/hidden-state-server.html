@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Saved pages</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button{font:inherit;padding:6px 12px}.mark{margin-left:.6rem;font-weight:bold}button.on{background:#0b4fb3;color:#fff}</style></head><body><main><h1>Saved pages</h1><p>Keep the pages you come back to in a list on your account. The list is stored with your account, so it follows you to another computer.</p>
+<!-- Look-alike: the press shows a hidden mark at once, asks the server to store the choice, and tells its state
+     (aria-pressed) when the server has answered. A test that never sends the request never sees the state told. -->
+<div class="row"><button id="save" type="button" aria-pressed="false">Keep this page in my saved list</button><span id="save-mark" class="mark" aria-hidden="true"></span></div>
+
+<!-- Look-alike: the same, with a button that itself looks switched on at once. -->
+<div class="row"><button id="pin" type="button" aria-pressed="false">Pin this page to the top of my list</button></div>
+</main>
+<script>
+  document.getElementById('save').addEventListener('click', async function () {
+    var m = document.getElementById('save-mark'); var on = !m.textContent; m.textContent = on ? '✓ Saved' : '';
+    try { await fetch('/api/saved', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ on: on }) }); this.setAttribute('aria-pressed', String(on)); } catch (e) { /* no answer: the mark alone */ }
+  });
+  document.getElementById('pin').addEventListener('click', async function () {
+    var on = !this.classList.contains('on'); this.classList.toggle('on', on);
+    try { await fetch('/api/pinned', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ on: on }) }); this.setAttribute('aria-pressed', String(on)); } catch (e) { /* no answer: the look alone */ }
+  });
+</script>
+</body></html>

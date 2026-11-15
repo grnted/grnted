@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Notes</title></head>
+<body><main>
+<h1>Notes</h1>
+<style>
+  /* The common styled switch: the native check box has no size; the label shows a slider. */
+  .switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .switch { display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
+  .slider { display: inline-block; width: 40px; height: 22px; border-radius: 11px; background: #2b6; }
+</style>
+<section aria-label="Note" id="box">
+  <p id="note" style="font: 20px sans-serif; padding: 1rem; border: 1px solid #333; width: 500px">Meeting moved to Thursday at 6 pm.</p>
+  <p><button type="button" id="undo">Undo</button></p>
+  <p><label class="switch"><input type="checkbox" id="on" checked><span class="slider"></span>Shake to undo</label></p>
+</section>
+</main>
+<script>
+  var undo = function () { document.getElementById('note').textContent = 'Meeting on Wednesday at 6 pm.'; };
+  var last = 0;
+  addEventListener('devicemotion', function (e) {
+    if (!document.getElementById('on').checked) return;
+    var a = e.accelerationIncludingGravity || e.acceleration || {};
+    if (Math.abs(a.x || 0) + Math.abs(a.y || 0) > 15 && Date.now() - last > 300) { last = Date.now(); undo(); }
+  });
+  document.getElementById('undo').addEventListener('click', undo);
+</script>
+</body>
+</html>

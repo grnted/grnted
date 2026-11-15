@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Sign in (CAPTCHA)</title></head>
+<body>
+<main>
+<h1>Member log in</h1>
+<form action="/login" method="post">
+  <p><label for="email">Email</label><br><input id="email" name="email" type="email" autocomplete="username" required></p>
+  <p><label for="password">Password</label><br><input id="password" name="password" type="password" autocomplete="current-password" required></p>
+  <p><img src="images/captcha.svg" alt="CAPTCHA image" width="120" height="40"><br>
+  <label for="captcha">Type the characters you see in the image</label><br><input id="captcha" name="captcha_code" required>
+  <a href="captcha-audio.mp3">Listen to an audio version</a></p>
+  <button type="submit">Log in</button>
+</form>
+</main>
+</body>
+</html>

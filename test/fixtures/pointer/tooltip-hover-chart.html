@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Spending by fund (a chart with a hover tooltip)</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; } #chart { position: relative; width: 600px; height: 260px; } .tip { position: absolute; padding: 4px 8px; background: #ffffff; border: 1px solid #333333; color: #1a1a1a; pointer-events: none; }</style></head>
+<body><main>
+<h1>Spending by fund</h1>
+<p>General 41, roads 18 and parks 9 million dollars.</p>
+<div id="chart" role="img" aria-label="Column chart: spending by fund">
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="240" viewBox="0 0 600 240"><rect width="600" height="240" fill="#ffffff"/><g class="series"><rect x="60" y="35" width="120" height="205" fill="#2c6fbb"/><rect x="240" y="150" width="120" height="90" fill="#2c6fbb"/><rect x="420" y="195" width="120" height="45" fill="#2c6fbb"/></g></svg>
+</div>
+<p><a href="about.html">About these numbers</a></p>
+</main>
+<script>
+// What a charting library does by default: the tooltip follows the pointer (shown on move, faded in by a timer), hides
+// some time after the pointer leaves, and the container listens for presses (to start a zoom, here a no-op).
+var chart = document.getElementById('chart'), tip = null, hideT = 0, fadeT = 0;
+function show(x) {
+  clearTimeout(hideT);
+  if (!tip) {
+    tip = document.createElement('div'); tip.className = 'tip'; tip.style.opacity = '0'; chart.appendChild(tip);
+    var o = 0; (function fade() { o = Math.min(1, o + 0.25); tip.style.opacity = String(o); if (o < 1) fadeT = setTimeout(fade, 50); })();
+  }
+  var i = Math.max(0, Math.min(2, Math.floor((x - 30) / 180)));
+  tip.textContent = ['General: 41 million', 'Roads: 18 million', 'Parks: 9 million'][i];
+  tip.style.left = Math.min(480, x) + 'px'; tip.style.top = '10px';
+}
+chart.addEventListener('mousemove', function (e) { show(e.offsetX); });
+chart.addEventListener('mouseleave', function () { clearTimeout(hideT); hideT = setTimeout(function () { if (tip) { tip.remove(); tip = null; } }, 500); });
+chart.addEventListener('mousedown', function () {});
+</script>
+</body>
+</html>

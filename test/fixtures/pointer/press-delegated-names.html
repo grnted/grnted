@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a document handler and a Delete button</title></head>
+<body><main><h1>Items</h1>
+<p><button type="button" class="act">Delete</button> <button type="button" class="act">Show</button></p><p id="o">Two items.</p>
+</main>
+<script>document.addEventListener('mousedown', function (e) { if (e.target.closest && e.target.closest('.act')) document.getElementById('o').textContent = e.target.textContent + ' pressed'; });</script>
+</body>
+</html>

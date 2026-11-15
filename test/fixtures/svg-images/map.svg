@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#eef3e8"/>
+  <image href="/svg-subresource.png" x="0" y="0" width="40" height="40"/>
+  <path d="M20 280 L380 20" stroke="#c62828" stroke-width="8"/>
+  <text x="200" y="40" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#111">North gate closed</text>
+</svg>

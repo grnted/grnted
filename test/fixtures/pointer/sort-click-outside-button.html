@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Reserve a shelter</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 0; padding: 16px 24px; } ol li { padding: 8px; margin: 4px 0; border: 1px solid #555; background: #f4f4f4; cursor: grab; width: 240px; } li.picked { background: #dde8ff; } li:focus { outline: 3px solid #0b57d0; }</style>
+</head>
+<body><header><a href="/">Riverbend Township</a> <a href="/about.html">About</a></header>
+<main><h1>Reserve a shelter</h1>
+<p><a href="/parks.html">All parks</a></p>
+<p>Shelters can be reserved from April 1 through October 31. Each reservation covers the shelter and its tables for a four-hour block; the lawns around it stay open to everyone.</p>
+<section><h2>Rank your shelter choices</h2><p>Drag the shelter names into your preferred order, or click a shelter and then the one it should follow.</p><ol id="shelters"><li draggable="true">Cedar Bend</li><li draggable="true">Wren Meadow</li><li draggable="true">Larch Grove</li></ol></section>
+<h2>Rules for shelter use</h2>
+<p>Groups of more than sixty people need a special event permit. Amplified sound is allowed until 8 p.m. with the volume kept at a level that does not carry past the shelter lawn.</p>
+<p>Please leave the tables and grills clean. Recycling and trash bins are next to every shelter, and the parks crew empties them each morning during the season.</p>
+<p>Alcohol is not allowed in any city park. Pets are welcome on a leash of six feet or shorter, and owners must pick up after them.</p>
+<p><button type="button" id="alpha">Put them in alphabetical order</button></p>
+<p>We confirm reservations by letter within five business days. The parks office answers questions on weekdays from 8:30 a.m. to 4:30 p.m.</p>
+</main>
+<footer><a href="/contact.html">Contact</a></footer>
+<script>
+var dragged = null, picked = null, list = document.getElementById('shelters');
+list.addEventListener('dragstart', function (e) { dragged = e.target.closest('li'); });
+list.addEventListener('dragover', function (e) { e.preventDefault(); });
+list.addEventListener('drop', function (e) { e.preventDefault(); var li = e.target.closest('li'); if (dragged && li && li !== dragged) li.after(dragged); dragged = null; });
+// Click one shelter, then the one it should follow (a single-pointer way that takes no keyboard).
+[].forEach.call(list.children, function (li) { li.addEventListener('click', function () { if (!picked) { picked = li; li.classList.add('picked'); return; } if (li !== picked) li.after(picked); picked.classList.remove('picked'); picked = null; }); });
+document.getElementById('alpha').addEventListener('click', function () { [].slice.call(list.children).sort(function (a, b) { return a.textContent < b.textContent ? -1 : 1; }).forEach(function (x) { list.append(x); }); });
+</script>
+</body>
+</html>

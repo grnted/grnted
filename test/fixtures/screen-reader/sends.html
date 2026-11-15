@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact us | Riverbend Library</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+  header, main, footer { padding: 16px 24px; }
+  nav ul { list-style: none; display: flex; gap: 16px; padding: 0; margin: 0; }
+  a { color: #0b4f9c; }
+  table { border-collapse: collapse; }
+  th, td { border: 1px solid #555; padding: 4px 8px; text-align: left; }
+  label { display: block; margin-top: 8px; }
+  button { margin-top: 8px; padding: 6px 12px; }
+  .icon { width: 20px; height: 20px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<header>
+  <a href="/">Riverbend Library</a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="/visit.html">Visit</a></li>
+      <li><a href="/events.html">Events</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+<h1>Contact us</h1>
+<button type="button" id="hours-btn" aria-expanded="false" aria-controls="hours">Opening hours</button>
+<div id="hours" hidden><p>Monday to Saturday, 9:00 to 17:00.</p></div>
+<script>
+document.getElementById('hours-btn').addEventListener('click', (e) => {
+  fetch('/track?menu=1', { method: 'POST', body: 'opened' }).catch(() => {});
+  new Image().src = '/pixel.gif?menu=1';
+  const open = e.currentTarget.getAttribute('aria-expanded') === 'true';
+  e.currentTarget.setAttribute('aria-expanded', String(!open));
+  document.getElementById('hours').hidden = open;
+});
+</script>
+<form action="/send" method="post" aria-label="Contact">
+  <label for="msg">Message</label>
+  <input id="msg" name="msg">
+  <button type="submit">Send</button>
+</form>
+</main>
+<footer><p>Riverbend Library, 12 Mill Street</p></footer>
+</body>
+</html>

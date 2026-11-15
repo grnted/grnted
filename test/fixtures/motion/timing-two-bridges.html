@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Dashboard</title></head>
+<body><main>
+<h1>Dashboard</h1>
+<div id="app"><p>Loading…</p></div>
+</main>
+<script>
+  // Two 800 ms bridges between a timer the test runs early and the time limit (Grok review round 2).
+  setTimeout(() => {
+    setTimeout(() => {
+      setTimeout(() => {
+        setTimeout(() => location.reload(), 60000);
+      }, 800);
+    }, 800);
+  }, 2000);
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A placeholder a timer changes every second for 6 s</title>
+<style>
+  .card { width: 600px; padding: 16px; background: #fff; border: 1px solid #555; }
+  #skeleton { width: 300px; height: 80px; background: #d0d7de; }
+  #skeleton.dim { background: #e5e9ee; }
+</style></head>
+<body><main>
+<h1>Account</h1>
+<div class="card"><div id="skeleton"></div><p>Your account summary.</p></div>
+<p>Other content next to the card.</p>
+</main>
+<script>
+  (function () {
+    var el = document.getElementById('skeleton'), t0 = Date.now();
+    var timer = setInterval(function () {
+      el.classList.toggle('dim');
+      if (Date.now() - t0 >= 5900) { el.style.display = 'none'; clearInterval(timer); window.__simDone = true; }
+    }, 1000);
+  })();
+</script>
+</body>
+</html>

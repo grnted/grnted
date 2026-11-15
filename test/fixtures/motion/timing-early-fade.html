@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Quiz</title>
+<style>
+  .warn { opacity: 0; animation: reveal 0.5s linear 1s forwards; font: 18px sans-serif; }
+  @keyframes reveal { to { opacity: 1; } }
+</style>
+</head>
+<body><main id="main">
+<h1>Quiz</h1>
+<form id="quiz" onsubmit="return false"><label>Answer <input name="answer"></label> <button>Send</button></form>
+</main>
+<script>
+  // A 15 s time limit (round 2, Sol 3): the quiz's controls are disabled and an expiry warning is added,
+  // which a CSS animation keeps at opacity 0 for 1 s before fading it in.
+  setTimeout(function () {
+    document.querySelectorAll('#quiz input, #quiz button').forEach(function (c) { c.disabled = true; });
+    var p = document.createElement('p');
+    p.className = 'warn';
+    p.textContent = 'Time is up: your session has expired.';
+    document.getElementById('main').appendChild(p);
+  }, 15000);
+</script>
+</body>
+</html>

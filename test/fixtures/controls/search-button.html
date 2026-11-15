@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Grower directory</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+.ctl { display: inline-block; padding: 8px 14px; border: 2px solid #1d4d3f; border-radius: 4px; background: #e7f2ee; cursor: pointer; }
+.ctl:focus { outline: 3px solid #0b57d0; outline-offset: 2px; }
+.note { min-height: 1.5em; margin: 8px 0; }
+[hidden] { display: none !important; }
+
+</style>
+</head>
+<body>
+<header><a href="/">Riverbend Township</a> <a href="/about.html">About</a></header>
+<main>
+<h1>Grower directory</h1>
+<form id="find"><label for="who">Grower or plot number</label> <input id="who" name="who"> <button type="submit">Find growers</button></form>
+<p id="count">5 staff members</p>
+<ul id="people"><li>Ana Ruiz, clerk</li><li>Bo Chen, engineer</li><li>Dee Park, planner</li><li>Eli Moss, treasurer</li><li>Fay Odum, recorder</li></ul>
+</main>
+<footer><a href="/contact.html">Contact</a> <a href="/privacy.html">Privacy</a></footer>
+<script>
+var who = document.getElementById('who');
+var run = function () {
+  var n = 0, v = who.value.toLowerCase();
+  [].forEach.call(document.querySelectorAll('#people li'), function (li) { var on = li.textContent.toLowerCase().indexOf(v) >= 0; li.hidden = !on; if (on) n++; });
+  document.getElementById('count').textContent = n + ' growers match your search.';
+};
+document.getElementById('find').addEventListener('submit', function (e) { e.preventDefault(); run(); });
+</script>
+</body>
+</html>

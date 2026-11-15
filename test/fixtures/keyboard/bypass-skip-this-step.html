@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a type=button "Skip this step" on a page with nothing to bypass the blocks</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .topbar a { margin-right: 12px; }</style></head>
+<body>
+<!-- Planted failure (2.4.1): no skip link, main landmark or headings. The wizard's "Skip this step" names no destination: never pressed. -->
+<button type="button" id="step" onclick="new Image().src = '/clicked-skip-this-step.png'">Skip this step</button>
+<div class="topbar"><a href="/a.html">A</a><a href="/b.html">B</a><a href="/c.html">C</a></div>
+<div class="content"><p>Tell us how we did: the survey takes two minutes and every answer is optional.</p></div>
+</body>
+</html>

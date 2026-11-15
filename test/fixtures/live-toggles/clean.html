@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Trail conditions</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button,[role=button]{font:inherit;padding:6px 12px}.on{background:#135;color:#fff}[role=button]{display:inline-block;border:1px solid #666;cursor:pointer}</style></head><body><main><h1>Trail conditions</h1><p>Check a trail before you set out. Conditions are updated each morning by the ranger station.</p>
+<!-- Toggles that keep their state. -->
+<div><button id="save" type="button" aria-pressed="false">Add Ridge Loop to my list</button> <span id="save-mark" aria-hidden="true"></span></div>
+<h2><button id="more" type="button" aria-expanded="false" aria-controls="more-panel">Ridge Loop closures</button></h2>
+<div id="more-panel" hidden><p>The north gate is closed on weekdays until the bridge is repaired.</p></div>
+
+<!-- A button with no state attribute whose name says the state: "Show…" becomes "Hide…". -->
+<button id="named" type="button">Show what to bring</button>
+<div id="named-panel" hidden><p>Water, sturdy shoes, a hat and a charged phone.</p></div>
+
+<!-- A button that reveals a block once and leaves it (not a toggle). -->
+<button id="once" type="button">Load older reports</button>
+<div id="once-panel" hidden><p>Last month: two fallen trees were cleared from the creek path.</p></div>
+</main>
+<script>
+  document.getElementById('save').addEventListener('click', function () { var b = this; var on = b.getAttribute('aria-pressed') === 'true'; b.setAttribute('aria-pressed', String(!on)); document.getElementById('save-mark').textContent = on ? '' : 'On my list'; });
+  document.getElementById('more').addEventListener('click', function () { var p = document.getElementById('more-panel'); p.hidden = !p.hidden; this.setAttribute('aria-expanded', String(!p.hidden)); });
+  document.getElementById('named').addEventListener('click', function () { var p = document.getElementById('named-panel'); p.hidden = !p.hidden; this.textContent = p.hidden ? 'Show what to bring' : 'Hide what to bring'; });
+  document.getElementById('once').addEventListener('click', function () { document.getElementById('once-panel').hidden = false; });
+</script>
+</body></html>

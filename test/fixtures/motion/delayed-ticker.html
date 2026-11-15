@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Market notice</title>
+<style>.strip { width: 600px; height: 60px; overflow: hidden; border: 1px solid #333; } .strip p { margin: 0; padding: 16px; white-space: nowrap; font: 20px sans-serif; } .strip p.go { animation: slide 9s linear infinite; } @keyframes slide { from { transform: translateX(600px); } to { transform: translateX(-100%); } }</style></head>
+<body><main>
+<h1>Saturday market</h1>
+<p>The market is open from eight until one on the square.</p>
+<!-- Planted failure (2.2.2): the notice is still when the page opens; six seconds later a timer starts an
+     endless scroll, and nothing pauses, stops or hides it. -->
+<div class="strip"><p id="note">Stalls on the east side move to the car park this week.</p></div>
+</main>
+<script>setTimeout(function () { document.getElementById('note').classList.add('go'); }, 6000);</script>
+</body>
+</html>

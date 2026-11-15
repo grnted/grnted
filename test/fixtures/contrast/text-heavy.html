@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Many texts on backgrounds, down a long page</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  section { min-height: 880px; }
+  .box { padding: 12px 16px; margin: 0 0 12px; }
+  .pale { background: linear-gradient(90deg, #dddddd, #bbbbbb); }
+  iframe { width: 300px; height: 60px; border: 0; }
+  p { margin: 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>Many texts on backgrounds</h1>
+<!-- Frames of the page itself: Playwright's screenshot calls into every frame, each a round trip. -->
+<iframe title="News" srcdoc="<p>News</p>"></iframe>
+<iframe title="Events" srcdoc="<p>Events</p>"></iframe>
+<iframe title="Alerts" srcdoc="<p>Alerts</p>"></iframe>
+<section>
+<h2>Section 1</h2>
+  <div class="box pale"><p id="h1" style="color:#111111">Section 1, text 1: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h2" style="color:#111111">Section 1, text 2: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h3" style="color:#111111">Section 1, text 3: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h4" style="color:#111111">Section 1, text 4: dark text on a pale gradient reads well.</p></div>
+</section>
+<section>
+<h2>Section 2</h2>
+  <div class="box pale"><p id="h5" style="color:#111111">Section 2, text 1: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h6" style="color:#111111">Section 2, text 2: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h7" style="color:#ffffff">Section 2, text 3: white text on a pale gradient fades into it.</p></div>
+  <div class="box pale"><p id="h8" style="color:#111111">Section 2, text 4: dark text on a pale gradient reads well.</p></div>
+</section>
+<section>
+<h2>Section 3</h2>
+  <div class="box pale"><p id="h9" style="color:#111111">Section 3, text 1: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h10" style="color:#111111">Section 3, text 2: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h11" style="color:#111111">Section 3, text 3: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h12" style="color:#111111">Section 3, text 4: dark text on a pale gradient reads well.</p></div>
+</section>
+<section>
+<h2>Section 4</h2>
+  <div class="box pale"><p id="h13" style="color:#111111">Section 4, text 1: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h14" style="color:#111111">Section 4, text 2: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h15" style="color:#111111">Section 4, text 3: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h16" style="color:#111111">Section 4, text 4: dark text on a pale gradient reads well.</p></div>
+</section>
+<section>
+<h2>Section 5</h2>
+  <div class="box pale"><p id="h17" style="color:#111111">Section 5, text 1: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h18" style="color:#111111">Section 5, text 2: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h19" style="color:#111111">Section 5, text 3: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h20" style="color:#111111">Section 5, text 4: dark text on a pale gradient reads well.</p></div>
+</section>
+<section>
+<h2>Section 6</h2>
+  <div class="box pale"><p id="h21" style="color:#111111">Section 6, text 1: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h22" style="color:#111111">Section 6, text 2: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h23" style="color:#111111">Section 6, text 3: dark text on a pale gradient reads well.</p></div>
+  <div class="box pale"><p id="h24" style="color:#ffffff">Section 6, text 4: white text on a pale gradient fades into it.</p></div>
+</section>
+</main>
+</body>
+</html>

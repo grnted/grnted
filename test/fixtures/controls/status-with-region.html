@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Watering rota</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+.note { min-height: 1.5em; margin: 8px 0; }
+button { font: inherit; padding: 6px 12px; }
+</style>
+</head>
+<body>
+<header><a href="/">Marsh Lane Allotments</a> <a href="/about.html">About</a></header>
+<main>
+<h1>Watering rota</h1>
+<p>Each plot takes one evening a week in dry spells.</p>
+<!-- Fails: the press adds a role="status" element that already holds the message. A status region has to be in the page before its text changes for the change to be announced. -->
+<p><button id="keep" type="button">Keep my evening</button></p>
+<div id="spot"></div>
+</main>
+<footer><a href="/contact.html">Contact</a></footer>
+<script>
+document.getElementById('keep').addEventListener('click', function () {
+  var spot = document.getElementById('spot');
+  spot.textContent = '';
+  var s = document.createElement('p'); s.className = 'note'; s.setAttribute('role', 'status'); s.textContent = 'Your evening is saved.'; spot.appendChild(s);
+});
+</script>
+</body>
+</html>

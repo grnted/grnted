@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Trail conditions</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button,[role=button]{font:inherit;padding:6px 12px}.on{background:#135;color:#fff}[role=button]{display:inline-block;border:1px solid #666;cursor:pointer}</style></head><body><main><h1>Trail conditions</h1><p>Check a trail before you set out. Conditions are updated each morning by the ranger station.</p>
+<!-- A role="button" that shows and hides the block it controls and never says whether it is open. -->
+<div id="dates" role="button" tabindex="0" aria-controls="dates-panel">Guided walk dates</div>
+<div id="dates-panel" hidden><p>Guided walks leave the ranger station at nine on the first Saturday of each month.</p></div>
+
+<!-- A plain button with the block right after it, the same. -->
+<button id="gear" type="button">What to bring</button>
+<div id="gear-panel" hidden><p>Water, sturdy shoes, a hat and a charged phone.</p></div>
+</main>
+<script>
+  var d = document.getElementById('dates');
+  var flip = function (id) { return function () { var p = document.getElementById(id); p.hidden = !p.hidden; }; };
+  d.addEventListener('click', flip('dates-panel'));
+  d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip('dates-panel')(); } });
+  document.getElementById('gear').addEventListener('click', flip('gear-panel'));
+</script>
+</body></html>

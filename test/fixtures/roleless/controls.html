@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Book a room</title>
+<style>
+  body { font: 16px/1.5 Arial, sans-serif; color: #222; margin: 24px; }
+  .tile, .chip, .close, .day, .more, .pic { cursor: pointer; }
+  .tile { display: inline-block; padding: 10px 16px; background: #135; color: #fff; }
+  .day { display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; border: 1px solid #999; }
+</style>
+</head>
+<body>
+<main>
+<h1>Book a room</h1>
+<p>Choose a room and a day. We will confirm by email within one working day.</p>
+
+<!-- Controls made of plain elements by script, with no role (F59): each fails 4.1.2. -->
+<div id="by-listener" class="tile">Check availability</div>
+<div id="by-attribute" class="tile" onclick="document.getElementById('out').textContent = 'Room B'">Choose room B</div>
+<span id="focusable" class="chip" tabindex="0">Show filters</span>
+<span id="close" class="close" onclick="this.parentElement.hidden = true">×</span>
+<a id="no-href" class="more">Show all rooms</a>
+<table><tr><td id="day" class="day">14</td></tr></table>
+<p id="out" role="status"></p>
+</main>
+<script>
+  document.getElementById('by-listener').addEventListener('click', function () { document.getElementById('out').textContent = 'Three rooms are free.'; });
+  var chip = document.getElementById('focusable');
+  chip.addEventListener('click', function () { document.getElementById('out').textContent = 'Filters shown.'; });
+  chip.addEventListener('keydown', function (e) { if (e.key === 'Enter') chip.click(); });
+  document.getElementById('no-href').addEventListener('click', function () { document.getElementById('out').textContent = 'All rooms.'; });
+  document.getElementById('day').addEventListener('click', function () { document.getElementById('out').textContent = 'The 14th.'; });
+</script>
+</body>
+</html>

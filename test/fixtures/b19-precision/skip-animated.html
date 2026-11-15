@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>City services</title><style>body{font:16px/1.5 Arial,sans-serif;color:#1b1b1b;background:#fff;margin:0 16px}.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;background:#fff;padding:4px}nav a{display:inline-block;margin:4px 8px}#content{min-height:1600px}</style></head><body>
+<div id="skips"><a class="skip" href="#content">Skip to main content</a></div>
+<div class="topnav"><a href="/a">Services</a> <a href="/b">Departments</a> <a href="/c">Council</a> <a href="/d">News</a> <a href="/e">Events</a> <a href="/f">Jobs</a> <a href="/g">Contact</a></div>
+<div id="content"><p>City services: water, permits, parks and recreation.</p><p><a href="/pay">Pay a bill</a> or <a href="/report">report a problem</a>.</p></div>
+<script>
+// The pattern a CMS uses: the link's own fragment navigation is stopped, the page scrolls in an animation and moves
+// focus to the content at the end of it.
+document.querySelector('.skip').addEventListener('click', function (e) {
+  e.preventDefault();
+  var t = document.getElementById('content');
+  t.setAttribute('tabindex', '-1');
+  var y0 = scrollY, y1 = t.getBoundingClientRect().top + scrollY, t0 = performance.now();
+  (function step(now) { var k = Math.min(1, (now - t0) / 300); scrollTo(0, y0 + (y1 - y0) * k); if (k < 1) requestAnimationFrame(step); else t.focus({ preventScroll: true }); })(t0);
+});
+</script></body></html>

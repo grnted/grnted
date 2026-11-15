@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Notice under a menu bar</title><meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; }
+header { position: sticky; top: 0; z-index: 5; background: #fff; border-bottom: 1px solid #767676; padding: 8px 24px; }
+header details { display: inline-block; position: relative; margin-right: 16px; }
+/* The menus' lists hang far below the bar; closed, they are not shown, but they have boxes. */
+header details > div { position: absolute; left: 0; top: 32px; width: 220px; height: 700px; background: #214f45; color: #fff; }
+main { padding: 0 24px; }
+section { position: relative; }
+video { max-width: 100%; height: auto; display: block; }
+.badge { position: absolute; left: 8px; top: 290px; background: #e8eee7; padding: 2px 8px; }
+</style></head>
+<body>
+<header><nav aria-label="Primary"><details><summary>Board</summary><div>Agendas, minutes and the calendar</div></details><details><summary>Services</summary><div>Roads, parks and waste</div></details><details><summary>Records</summary><div>Requests, fees and tracking</div></details></nav></header>
+<main>
+<h1>Notice under a menu bar</h1>
+<section><h2>Watch the notice</h2>
+<!-- No width or height: the element is as large as its poster (640 by 200) until it plays, then as large as the video (640 by 360). -->
+<video id="grows" controls preload="metadata" poster="/files/poster-wide.svg" src="/files/speech-plain.webm?grows"></video>
+<span class="badge">New this week</span>
+<p>The clerk posts each notice the same day. Ask at the front desk for a printed copy.</p>
+</section>
+<section><h2>Offices</h2><p>City hall is open on weekdays from eight thirty to four thirty.</p></section>
+<section><h2>More</h2><p>The council meets on the first Tuesday of each month. Agendas are posted three days before each meeting.</p><p>Public comment begins at six thirty in the evening.</p></section>
+</main>
+</body>
+</html>

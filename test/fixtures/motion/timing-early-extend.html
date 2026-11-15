@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account</title></head>
+<body><main id="main">
+<h1>Account</h1>
+<p>Your account summary.</p>
+<div id="warn" hidden role="alertdialog" aria-labelledby="wt" style="position: fixed; inset: 20% 25%; background: #fff; border: 2px solid #333; padding: 2rem; font: 18px sans-serif">
+  <p id="wt">Your session will expire in 2 minutes.</p>
+  <button type="button" id="stay">Stay signed in</button>
+</div>
+</main>
+<script>
+  // A warning after 15 s with a control that extends the time (Extend); sign-out two minutes later.
+  var warn, out;
+  function arm() {
+    clearTimeout(warn); clearTimeout(out);
+    document.getElementById('warn').hidden = true;
+    warn = setTimeout(function () { document.getElementById('warn').hidden = false; }, 15000);
+    out = setTimeout(function () { location.href = 'logged-out.html'; }, 135000);
+  }
+  arm();
+  document.getElementById('stay').addEventListener('click', arm);
+</script>
+</body>
+</html>

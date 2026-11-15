@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Volunteer sign-up (two steps)</title></head>
+<body>
+<main>
+<h1>Volunteer sign-up</h1>
+<form id="volunteer" action="/volunteer" method="post">
+  <fieldset id="step1"><legend>Step 1: About you</legend>
+    <p><label for="v-name">Full name *</label><br><input id="v-name" name="v-name" autocomplete="name" required></p>
+    <p><label for="v-email">Email *</label><br><input id="v-email" name="email" type="email" autocomplete="email" required></p>
+    <button type="button" id="next">Next</button>
+  </fieldset>
+  <fieldset id="step2" hidden><legend>Step 2: How to reach you</legend>
+    <p><label for="v-email2">Email *</label><br><input id="v-email2" name="contact-email" type="email" autocomplete="email" required></p>
+    <p><label for="v-phone">Phone</label><br><input id="v-phone" name="phone" type="tel" autocomplete="tel"></p>
+    <button type="submit">Sign up</button>
+  </fieldset>
+</form>
+</main>
+<script>
+  document.getElementById('next').addEventListener('click', () => {
+    const step1 = document.getElementById('step1');
+    if (![...step1.querySelectorAll('input')].every((i) => i.checkValidity())) return;
+    step1.hidden = true;
+    document.getElementById('step2').hidden = false;
+    document.getElementById('v-email2').focus();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a frame loaded on focus</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Shop</h1>
+  <!-- Clean control (3.2.1): focusing this link loads a frame whose address looks like an action; the
+       guard blocks that frame document, which is not a change of context. -->
+  <p><a href="/products.html" id="products">Products</a></p>
+  <div id="slot"></div>
+  <p><a href="/end.html">The end</a></p>
+</main>
+<script>
+  document.getElementById('products').addEventListener('focus', function () {
+    var old = document.getElementById('cart');
+    if (old) old.remove();
+    var f = document.createElement('iframe');
+    f.id = 'cart'; f.title = 'Cart'; f.src = '/cart/widget.html'; f.width = 300; f.height = 60;
+    document.getElementById('slot').appendChild(f);
+  });
+</script>
+</body>
+</html>

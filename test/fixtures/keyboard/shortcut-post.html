@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: single-key shortcut that posts</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Story</h1>
+  <p>A story you can like.</p>
+  <p id="likes">0 likes</p>
+</main>
+<!-- Not testable (2.1.4): pressing "l" posts a like; the page changes only when the server answers. -->
+<script>
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'l' || e.ctrlKey || e.metaKey || e.altKey) return;
+    fetch('/api/like', { method: 'POST' }).then(function (r) { return r.text(); }).then(function () {
+      document.getElementById('likes').textContent = '1 like';
+    }, function () {});
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: smooth scrolling and a header that covers focus</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 0; background: #fff; }
+  header { position: fixed; top: 0; left: 0; right: 0; height: 61px; background: #fff; border-bottom: 2px solid #333; z-index: 5; padding: 0 24px; }
+  main { padding: 80px 24px 24px; }
+  main a { display: block; height: 24px; margin: 16px 0; }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+<header><p><a href="/home.html">Site name</a></p></header>
+<main>
+  <h1>Accessibility</h1>
+  <!-- Planted failure (2.4.11): smooth scrolling and no scroll padding: Shift+Tab scrolls links up under the fixed header, where they stay. -->
+  <a href="/item-1.html">Item 1</a>
+  <a href="/item-2.html">Item 2</a>
+  <a href="/item-3.html">Item 3</a>
+  <a href="/item-4.html">Item 4</a>
+  <a href="/item-5.html">Item 5</a>
+  <a href="/item-6.html">Item 6</a>
+  <a href="/item-7.html">Item 7</a>
+  <a href="/item-8.html">Item 8</a>
+  <a href="/item-9.html">Item 9</a>
+  <a href="/item-10.html">Item 10</a>
+  <a href="/item-11.html">Item 11</a>
+  <a href="/item-12.html">Item 12</a>
+  <a href="/item-13.html">Item 13</a>
+  <a href="/item-14.html">Item 14</a>
+  <a href="/item-15.html">Item 15</a>
+  <a href="/item-16.html">Item 16</a>
+  <a href="/item-17.html">Item 17</a>
+  <a href="/item-18.html">Item 18</a>
+  <a href="/item-19.html">Item 19</a>
+  <a href="/item-20.html">Item 20</a>
+  <a href="/item-21.html">Item 21</a>
+  <a href="/item-22.html">Item 22</a>
+  <a href="/item-23.html">Item 23</a>
+  <a href="/item-24.html">Item 24</a>
+  <a href="/item-25.html">Item 25</a>
+  <a href="/item-26.html">Item 26</a>
+  <a href="/item-27.html">Item 27</a>
+  <a href="/item-28.html">Item 28</a>
+  <a href="/item-29.html">Item 29</a>
+  <a href="/item-30.html">Item 30</a>
+  <a href="/item-31.html">Item 31</a>
+  <a href="/item-32.html">Item 32</a>
+  <a href="/item-33.html">Item 33</a>
+  <a href="/item-34.html">Item 34</a>
+  <a href="/item-35.html">Item 35</a>
+  <a href="/item-36.html">Item 36</a>
+  <a href="/item-37.html">Item 37</a>
+  <a href="/item-38.html">Item 38</a>
+  <a href="/item-39.html">Item 39</a>
+  <a href="/item-40.html">Item 40</a>
+</main>
+</body>
+</html>

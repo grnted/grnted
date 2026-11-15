@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Request lookup</title>
+<style>permit-reference{display:block;padding:1rem}</style></head>
+<body><main><h1>Request lookup</h1><permit-reference id="record-host"></permit-reference></main>
+<script>
+customElements.define('permit-reference', class extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({mode:'open'}).innerHTML =
+      '<input aria-label="Request reference" autocomplete="off">';
+  }
+});
+</script></body></html>

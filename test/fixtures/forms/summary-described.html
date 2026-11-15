@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Request a call (summary alert and field errors)</title>
+<style>.error { color: #b00020; } [aria-invalid="true"] { border: 2px solid #b00020; }</style></head>
+<body>
+<main>
+<h1>Request a call</h1>
+<form id="call" action="/call" method="post" novalidate>
+  <div id="summary" role="alert"></div>
+  <p><label for="cname">Your name (required)</label><br>
+  <input id="cname" name="cname" autocomplete="name" aria-describedby="cname-error" required>
+  <span id="cname-error" class="error"></span></p>
+  <p><label for="cphone">Phone (required)</label><br>
+  <input id="cphone" name="cphone" type="tel" autocomplete="tel" aria-describedby="cphone-error" required>
+  <span id="cphone-error" class="error"></span></p>
+  <button type="submit">Request a call</button>
+</form>
+</main>
+<script>
+  // The page-level alert only points to the fields; each field's own error is tied to it.
+  const form = document.getElementById('call');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let bad = 0;
+    for (const [id, text, format] of [['cname', 'Enter your name', null], ['cphone', 'Enter your phone number', ['Enter a phone number using digits, like 555 0100', /^[0-9 +().-]{7,}$/]]]) {
+      const f = document.getElementById(id);
+      const v = f.value.trim();
+      const why = !v ? text : format && !format[1].test(v) ? format[0] : '';
+      const ok = !why;
+      document.getElementById(id + '-error').textContent = why;
+      if (ok) f.removeAttribute('aria-invalid'); else { f.setAttribute('aria-invalid', 'true'); bad++; }
+    }
+    document.getElementById('summary').textContent = bad ? 'Please fix the details below.' : '';
+  });
+</script>
+</body>
+</html>

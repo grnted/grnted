@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get a reminder | Riverbend Library</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+  header, main, footer { padding: 16px 24px; }
+  nav ul { list-style: none; display: flex; gap: 16px; padding: 0; margin: 0; }
+  a { color: #0b4f9c; }
+  table { border-collapse: collapse; }
+  th, td { border: 1px solid #555; padding: 4px 8px; text-align: left; }
+  label { display: block; margin-top: 8px; }
+  button { margin-top: 8px; padding: 6px 12px; }
+  .icon { width: 20px; height: 20px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<header>
+  <a href="/">Riverbend Library</a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="/visit.html">Visit</a></li>
+      <li><a href="/events.html">Events</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+<h1>Get a reminder</h1>
+<p id="form-err" role="alert"></p>
+<form action="/remind" method="post" novalidate aria-label="Reminder">
+  <label for="site">Website address</label>
+  <input id="site" name="site" type="url" aria-describedby="site-err">
+  <p id="site-err"></p>
+  <label for="mail">Email address</label>
+  <input id="mail" name="mail" type="email" aria-describedby="mail-note mail-err">
+  <p id="mail-note">We only use it for the reminder.</p>
+  <p id="mail-err"></p>
+  <button type="submit">Send</button>
+</form>
+<script>
+document.querySelector('form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const site = document.getElementById('site'), mail = document.getElementById('mail');
+  document.getElementById('site-err').textContent = 'Enter a full website address, like https://example.org';
+  site.setAttribute('aria-invalid', 'true');
+  document.getElementById('mail-err').textContent = 'Enter an email address, like you@example.org.';
+  mail.setAttribute('aria-invalid', 'true');
+  document.getElementById('form-err').textContent = 'Please fix the details below.';
+  site.focus();
+});
+</script>
+</main>
+</body>
+</html>

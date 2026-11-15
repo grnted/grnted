@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: dialog whose buttons only look like closing</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } #dialog { position: fixed; top: 24px; right: 24px; width: 360px; background: #fff; padding: 16px; border: 2px solid #333; }</style>
+</head>
+<body>
+<main><h1>Account</h1><p><a href="/one.html">First link</a></p></main>
+<!-- Not testable (2.1.2), and none pressed (each would request /pressed): the names only start like a dismissive one. -->
+<div id="dialog" role="dialog" aria-modal="true" aria-label="Account">
+  <button type="button" onclick="ping('close-account')">Close account</button>
+  <button type="button" onclick="ping('cancel-sub')">Cancel subscription</button>
+  <button type="button" onclick="ping('close-delete')">Close and delete</button>
+</div>
+<script>
+  var d = document.getElementById('dialog');
+  var ping = function (x) { new Image().src = '/pressed?' + x; };
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab' || !d.isConnected) return;
+    e.preventDefault();
+    var f = Array.prototype.slice.call(d.querySelectorAll('button'));
+    var i = f.indexOf(document.activeElement);
+    f[i < 0 ? 0 : (i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus();
+  });
+</script>
+</body>
+</html>

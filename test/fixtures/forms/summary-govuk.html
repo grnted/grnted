@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Apply for a permit (GOV.UK error summary)</title>
+<style>.error { color: #b00020; } [aria-invalid="true"] { border: 2px solid #b00020; }</style></head>
+<body>
+<main>
+<h1>Apply for a permit</h1>
+<form id="permit" action="/permit" method="post" novalidate>
+  <div id="error-summary" tabindex="-1" hidden><h2>There is a problem</h2><ul id="error-list"></ul></div>
+  <div id="pname-group"><label for="pname">Full name</label>
+  <p id="pname-error" class="error" hidden></p>
+  <input id="pname" name="pname" autocomplete="name" aria-describedby="pname-error" required></div>
+  <div id="pemail-group"><label for="pemail">Email address</label>
+  <p id="pemail-error" class="error" hidden></p>
+  <input id="pemail" name="pemail" type="email" autocomplete="email" aria-describedby="pemail-error" required></div>
+  <button type="submit">Continue</button>
+</form>
+</main>
+<script>
+  // The GOV.UK pattern: a summary at the top, focused, linking to each field; each field's error tied to it.
+  const form = document.getElementById('permit');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const list = document.getElementById('error-list');
+    list.textContent = '';
+    for (const [id, empty, format] of [['pname', 'Enter your full name', null], ['pemail', 'Enter your email address', ['Enter an email address in the correct format, like name@example.com', /^[^@\s]+@[^@\s]+\.[^@\s]+$/]]]) {
+      const f = document.getElementById(id);
+      const err = document.getElementById(id + '-error');
+      const v = f.value.trim();
+      const text = !v ? empty : format && !format[1].test(v) ? format[0] : '';
+      if (!text) { err.hidden = true; f.removeAttribute('aria-invalid'); continue; }
+      err.textContent = 'Error: ' + text; err.hidden = false; f.setAttribute('aria-invalid', 'true');
+      const li = document.createElement('li'); const a = document.createElement('a');
+      a.href = '#' + id; a.textContent = text; li.appendChild(a); list.appendChild(li);
+    }
+    const box = document.getElementById('error-summary');
+    box.hidden = !list.children.length;
+    if (!box.hidden) box.focus();
+  });
+</script>
+</body>
+</html>

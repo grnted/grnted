@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Background writes: buttons that save</title></head>
+<body>
+<main>
+  <h1>Your settings</h1>
+  <p><button type="button" id="save">Save now</button> <button type="button" id="later">Save in a moment</button> <button type="button" id="plain">Show more</button></p>
+  <p id="more" hidden>More settings.</p>
+</main>
+<script>
+  (function () {
+    // The page's analytics beacon (Google Analytics) on load and every 2 s.
+    function ping() { try { navigator.sendBeacon('https://www.google-analytics.com/g/collect?t=' + Date.now(), 'v=2'); } catch (e) {} }
+    ping();
+    setInterval(ping, 2000);
+    // A click that saves at once, and one that saves after awaiting something: both are the click's own writes.
+    document.getElementById('save').addEventListener('click', function () { fetch('/api/settings', { method: 'POST', body: 'a=1' }).catch(function () {}); });
+    document.getElementById('later').addEventListener('click', function () {
+      setTimeout(function () { var x = new XMLHttpRequest(); x.open('POST', '/api/settings/later'); x.send('b=2'); }, 300);
+    });
+    document.getElementById('plain').addEventListener('click', function () { document.getElementById('more').hidden = false; });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<audio id="music" src="tone.wav" autoplay loop></audio>
+<p>A sound effect library, loaded but not connected.</p>
+</main>
+<script>
+var a = document.getElementById('music'), ctx = new AudioContext(); ctx.createMediaElementSource(a);
+</script>
+</body>
+</html>

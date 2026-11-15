@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Library</title></head>
+<body><main id="main">
+<h1>Library</h1>
+<p>Opening hours and events.</p>
+<h2 id="hours">Hours</h2>
+<p>Monday to Friday, 9 am to 6 pm.</p>
+</main>
+<script>
+  // Harmless timers (no time limit): a notice, a tip added after a promise, and a 0 ms timer that
+  // only moves to a section of this page.
+  setTimeout(function () {
+    var p = document.createElement('p');
+    p.setAttribute('role', 'status');
+    p.textContent = 'New: the library is open until 8 pm on Thursdays.';
+    document.getElementById('main').appendChild(p);
+  }, 15000);
+  setTimeout(async function () {
+    await Promise.resolve();
+    var p = document.createElement('p');
+    p.textContent = 'Tip: library cards are free.';
+    document.getElementById('main').appendChild(p);
+  }, 15500);
+  setTimeout(function () { setTimeout(function () { location.hash = 'hours'; }, 0); }, 16000);
+</script>
+</body>
+</html>

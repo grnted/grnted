@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Comment on the plan</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Comment on the plan</h1>
+<form id="f" action="/comment" method="get"><label>Your comment <textarea name="c" rows="4" cols="40"></textarea></label> <button>Send comment</button></form>
+<p id="saved" role="status"></p>
+</main>
+<script>
+  // A draft saved every minute: the page handles its own submit event and sends nothing away.
+  var f = document.getElementById('f'), auto = false;
+  f.addEventListener('submit', function (e) { if (auto) { e.preventDefault(); auto = false; document.getElementById('saved').textContent = 'Draft saved.'; } });
+  setInterval(function () { auto = true; f.requestSubmit(); }, 60 * 1000);
+</script>
+</body>
+</html>

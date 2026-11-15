@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: focus opens a dialog</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  #plain:focus { outline: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Pruning advice</h1>
+  <a href="/before.html">All subjects</a>
+  <label for="subject">Subject</label>
+  <select id="subject"><option>Pick a topic</option><option>Animals</option></select>
+  <dialog id="guide" aria-labelledby="guide-title"><h2 id="guide-title">Begin the walkthrough</h2><button type="button" id="back">Return to the page</button></dialog>
+  <p><a href="/after.html">Planting calendars</a> <a id="plain" class="quiet" href="/plain.html">Book a tutor</a></p>
+</main>
+<script>
+var opened = false;
+document.getElementById('subject').addEventListener('focus', function () { if (!opened) { opened = true; document.getElementById('guide').showModal(); } });
+document.getElementById('back').addEventListener('click', function () { document.getElementById('guide').close(); });
+</script>
+</body>
+</html>

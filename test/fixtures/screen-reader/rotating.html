@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Rotating notices - Riverbend School</title></head>
+<body>
+<!-- Synthetic page: a notice that rewrites its text every 500 ms (a carousel without carousel markup), a live
+     region, and static text. The screen-reader pass must take the listener's screenshot at the moment it reads the
+     tree, so what is heard and what is shown are the same notice. -->
+<main>
+  <h1>Events</h1>
+  <p id="slides">Notice 1: picture day is May 1.</p>
+  <div aria-live="polite" id="status">3 events this week</div>
+  <p>Our school calendar lists every event.</p>
+</main>
+<script>(function(){var n=1,s=document.getElementById('slides');setInterval(function(){n=n%3+1;s.textContent='Notice '+n+': '+['picture day is May 1.','the book fair starts May 4.','the spring concert is May 15.'][n-1];},500);})();</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Board meetings (button roles under one listener)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+.month { padding: 6px 12px; border: 1px solid #595959; }
+</style>
+</head>
+<body>
+<main>
+<h1>Board meetings (button roles under one listener)</h1>
+<p>Choose a month to see the board's meeting date.</p>
+<ul id="months" style="list-style:none;padding:0;display:flex;gap:8px"><li role="button" class="month">March</li><li role="Button" class="month">April</li><li role="button" class="month">May</li></ul>
+<p id="out">No month chosen.</p>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+document.getElementById('months').addEventListener('click', function (e) { var m = e.target.closest('.month'); if (m) document.getElementById('out').textContent = m.textContent + ': the board meets on the second Tuesday.'; });
+</script>
+</body>
+</html>

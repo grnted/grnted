@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Permit request</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .bad { border: 2px solid #b00020; } .err { color: #a00000; } .toast { position: fixed; right: 12px; bottom: 12px; background: #223; color: #fff; padding: 8px 12px; } .hidden { display: none; }</style></head>
+<body>
+<main><h1>Permit request</h1>
+<form id="p" novalidate>
+<label for="nm">Your name</label><input id="nm">
+<label for="em">Email address</label><input id="em" type="email"><span class="hint">For example: name@example.com</span>
+<p><button type="submit">Apply</button></p><p id="done" role="status"></p></form>
+</main>
+
+<script>
+
+document.getElementById('p').addEventListener('submit', (e) => { e.preventDefault(); let all = true;
+  for (const id of ['nm', 'em']) { const f = document.getElementById(id); const v = f.value.trim();
+    const ok = v !== '' && (id !== 'em' || v.indexOf('@') > 0); f.classList.toggle('bad', !ok); all = all && ok; }
+  document.getElementById('done').textContent = all ? 'Application received.' : ''; });
+</script>
+</body></html>

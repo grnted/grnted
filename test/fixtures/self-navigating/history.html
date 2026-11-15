@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tabs</title></head>
+<body>
+<main>
+<h1>Tabs</h1>
+<p>Each tab changes the address without loading another page. <a href="/history-help.html">Help with tabs</a></p>
+</main>
+<!-- Same document throughout: pushState 300 ms after load, then a fragment 200 ms later. -->
+<script>addEventListener('load', function () {
+  setTimeout(function () { history.pushState({ tab: 2 }, '', '/history.html?tab=2'); }, 300);
+  setTimeout(function () { location.hash = '#part-2'; }, 500);
+});</script>
+</body>
+</html>

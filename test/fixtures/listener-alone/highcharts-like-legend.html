@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Budget by fund, with a legend</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Budget by fund, with a legend</h1>
+<p>The adopted budget by fund, in millions of dollars. The table below the chart gives the same numbers.</p>
+<div id="budget" class="chart hc-container" style="height:360px;position:relative;overflow:hidden"><svg class="hc-root" xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Column chart: budget by fund"><rect width="640" height="360" fill="#ffffff"/><text x="320" y="24" text-anchor="middle" font-size="18" fill="#333333">Budget by fund</text><g class="hc-axis"><text x="52" y="300" text-anchor="end" font-size="12" fill="#333333">0</text><text x="52" y="230" text-anchor="end" font-size="12" fill="#333333">10</text><text x="52" y="160" text-anchor="end" font-size="12" fill="#333333">20</text><text x="52" y="90" text-anchor="end" font-size="12" fill="#333333">30</text></g><g class="hc-series"><rect x="100" y="13" width="120" height="287" fill="#2caffe"/><rect x="270" y="174" width="120" height="126" fill="#2caffe"/><rect x="440" y="237" width="120" height="63" fill="#2caffe"/></g><g class="hc-labels"><text x="160" y="320" text-anchor="middle" font-size="12" fill="#333333">General</text><text x="330" y="320" text-anchor="middle" font-size="12" fill="#333333">Capital</text><text x="500" y="320" text-anchor="middle" font-size="12" fill="#333333">Debt service</text></g><g class="hc-legend-item" id="legend-millions"><rect x="286" y="338" width="12" height="12" fill="#2caffe"/><text x="304" y="349" font-size="12" fill="#333333" style="cursor:pointer">Millions</text></g><text id="credits" x="630" y="355" text-anchor="end" font-size="10" fill="#666666" style="cursor:pointer">Chart library</text></svg></div>
+<p id="credit-note" hidden>Drawn with the district's chart library.</p>
+<table>
+<caption>Budget by fund</caption>
+<thead><tr><th scope="col">Fund</th><th scope="col">Millions</th></tr></thead>
+<tbody><tr><td>General</td><td>41</td></tr><tr><td>Capital</td><td>18</td></tr><tr><td>Debt service</td><td>9</td></tr></tbody>
+</table>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+// What Highcharts 11.4.8 puts on a default chart: handler properties and listeners on the container,
+// hover listeners on the series group, release listeners on the document.
+var box = document.getElementById('budget');
+var noop = function () {};
+box.onclick = noop; box.onmousedown = noop; box.onmousemove = noop;
+['mouseenter', 'mouseleave', 'touchstart', 'touchmove'].forEach(function (t) { box.addEventListener(t, noop, { passive: true }); });
+['mouseup', 'touchend'].forEach(function (t) { document.addEventListener(t, noop, { passive: true }); });
+var series = box.querySelector('.hc-series');
+['mouseover', 'mouseout', 'touchstart'].forEach(function (t) { series.addEventListener(t, noop, { passive: true }); });
+
+// The legend entry and the credits line: each has its own click listener, and its text shows a pointer cursor.
+var item = document.getElementById('legend-millions');
+item.addEventListener('mouseover', noop); item.addEventListener('mouseout', noop);
+item.addEventListener('click', function () { series.style.display = series.style.display === 'none' ? '' : 'none'; });
+document.getElementById('credits').addEventListener('click', function () { document.getElementById('credit-note').hidden = false; });
+</script>
+</body>
+</html>

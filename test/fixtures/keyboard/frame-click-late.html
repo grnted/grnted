@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Library events</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+main { padding: 16px 24px; }
+.day { display: inline-block; width: 40px; padding: 6px; border: 1px solid #555; cursor: pointer; text-align: center; }
+iframe { width: 560px; height: 220px; border: 1px solid #888; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+<h1>Library events</h1>
+<p>Choose a day in the calendar to see its events.</p>
+<div id="slot"></div>
+<script>setTimeout(function () { document.getElementById('slot').innerHTML = '<iframe id="calendar-frame" title="Event calendar" src="/frame-click-inner.html"></iframe>'; }, 600);</script>
+<p><a href="/events.html">All events</a> <a href="/hours.html">Opening hours</a></p>
+</main>
+</body>
+</html>

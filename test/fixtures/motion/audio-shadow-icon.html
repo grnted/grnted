@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<div class="player"><site-player></site-player>
+<button type="button" class="snd-toggle" id="snd"><svg width="24" height="24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/></svg></button></div>
+</main>
+<script>
+customElements.define('site-player', class extends HTMLElement { constructor() { super(); var r = this.attachShadow({ mode: 'open' }); r.innerHTML = '<audio src="tone.wav" autoplay loop></audio>'; window.__music = r.querySelector('audio'); } });
+document.getElementById('snd').addEventListener('click', function () { var a = window.__music; a.paused ? a.play() : a.pause(); });
+</script>
+</body>
+</html>

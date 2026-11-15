@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Reserve a shelter</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 0; padding: 16px 24px; } ol li { padding: 8px; margin: 4px 0; border: 1px solid #555; background: #f4f4f4; cursor: grab; width: 240px; } li:focus { outline: 3px solid #0b57d0; }</style>
+</head>
+<body><header><a href="/">Riverbend Township</a> <a href="/about.html">About</a></header>
+<main><h1>Reserve a shelter</h1>
+<p><a href="/parks.html">All parks</a></p>
+<section><h2>Rank your shelter choices</h2><p>Drag the shelter names into your preferred order, or choose your first choice below.</p><ol id="shelters"><li draggable="true">Cedar Bend</li><li draggable="true">Wren Meadow</li><li draggable="true">Larch Grove</li></ol><p><label for="first">First choice</label> <select id="first"><option>Cedar Bend</option><option>Wren Meadow</option><option>Larch Grove</option></select></p></section>
+</main>
+<footer><a href="/contact.html">Contact</a></footer>
+<script>
+var dragged = null, list = document.getElementById('shelters');
+list.addEventListener('dragstart', function (e) { dragged = e.target.closest('li'); });
+list.addEventListener('dragover', function (e) { e.preventDefault(); });
+list.addEventListener('drop', function (e) { e.preventDefault(); var li = e.target.closest('li'); if (dragged && li && li !== dragged) li.after(dragged); dragged = null; });
+document.getElementById('first').addEventListener('change', function (e) { var li = [].find.call(list.children, function (x) { return x.textContent === e.target.value; }); if (li) list.prepend(li); });
+</script>
+</body>
+</html>

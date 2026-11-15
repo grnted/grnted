@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Lighthouse open day</title>
+<style>body { font: 18px sans-serif; margin: 0; padding: 16px; } .lamp { width: 720px; height: 240px; background: #fff; border: 1px solid #333; margin: 16px 0; } .lamp.on { animation: blink .25s steps(1, end) infinite; } @keyframes blink { 0% { background: #000; } 50% { background: #fff; } 100% { background: #fff; } } </style></head>
+<body><main>
+<h1>Lighthouse open day</h1>
+<p>The lighthouse on the point is open to visitors on the first Sunday of each month.</p>
+<!-- Six timers, 2.5 s apart, each change a line of text at the top; a seventh starts the lamp blinking at 19 s. More timers that change the screen than the test films. -->
+<p id="line">The first tour boards soon.</p><div id="lamp" class="lamp"></div><p>The climb is 112 steps. The keeper shows the lamp room at eleven and at two.</p>
+</main>
+<script>var lamp = document.getElementById('lamp'); var line = document.getElementById("line"); setTimeout(function () { line.textContent = 'Tour 1 is boarding.'; }, 4000); setTimeout(function () { line.textContent = 'Tour 2 is boarding.'; }, 6500); setTimeout(function () { line.textContent = 'Tour 3 is boarding.'; }, 9000); setTimeout(function () { line.textContent = 'Tour 4 is boarding.'; }, 11500); setTimeout(function () { line.textContent = 'Tour 5 is boarding.'; }, 14000); setTimeout(function () { line.textContent = 'Tour 6 is boarding.'; }, 16500); setTimeout(function () { lamp.classList.add('on'); }, 19000);</script>
+</body>
+</html>

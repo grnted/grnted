@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 2: a language list in a form with other fields</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<!-- 3.3.2 failure: in a form with a name field, a select showing "English" does not say what it asks. -->
+<form action="/apply" method="post"><p><label for="nm">Your name</label> <input id="nm" name="nm"></p>
+<p><select name="lang"><option>English</option><option>Spanish</option><option>French</option><option>German</option></select></p><button type="submit">Apply</button></form>
+</body>
+</html>

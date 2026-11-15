@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: things opened by focus</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Menus</h1>
+  <!-- Focusing these opens a menu, a details element and a dialog; the walk must leave them as it found them. -->
+  <p><a href="/menu.html" id="menu" aria-expanded="false" aria-controls="menu-list">Menu</a></p>
+  <ul id="menu-list" hidden><li><a href="/m1.html">Item</a></li></ul>
+  <details id="more"><summary>More</summary><p>Hidden text.</p></details>
+  <p><a href="/info.html" id="info">Info</a></p>
+  <dialog id="dlg"><p>Info dialog</p></dialog>
+  <dialog id="keep" open><p>Open from the start</p></dialog>
+  <p><a href="/end.html">The end</a></p>
+</main>
+<script>
+  var menu = document.getElementById('menu');
+  menu.addEventListener('focus', function () { menu.setAttribute('aria-expanded', 'true'); document.getElementById('menu-list').hidden = false; });
+  // The menu ignores Esc. A dialog open from the start closes on Esc: the walk must not press it.
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') document.getElementById('keep').open = false;
+  });
+  document.getElementById('info').addEventListener('focus', function () {
+    document.getElementById('more').open = true;
+    var d = document.getElementById('dlg'); if (!d.open) d.show();
+  });
+</script>
+</body>
+</html>

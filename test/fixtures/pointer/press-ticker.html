@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a page that changes by itself</title></head>
+<body><main><h1>Notices</h1>
+<p id="n1">Notice one: early release on Friday.</p><p id="n2" hidden>Notice two: picture day on Monday.</p>
+<p><button type="button" id="ripple" style="width:220px">Show the lunch menu</button></p>
+<div id="menu" hidden>Pizza.</div>
+<p><button type="button" id="other" style="width:220px">Show the bus routes</button></p>
+<div id="routes" hidden>Route 4.</div>
+</main>
+<script>
+  // A notice that changes every second, by itself.
+  setInterval(function () { var a = document.getElementById('n1'), b = document.getElementById('n2'); a.hidden = !a.hidden; b.hidden = !b.hidden; }, 1000);
+  // Feedback on press; the actions on click.
+  ['ripple', 'other'].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener('mousedown', function () { el.style.boxShadow = '0 0 0 3px #036'; });
+    el.addEventListener('click', function () { document.getElementById(id === 'ripple' ? 'menu' : 'routes').hidden = false; });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ridership by month</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Ridership by month</h1>
+<p>Monthly boardings for the first half of the year. The table below the chart gives the same numbers.</p>
+<div id="ridership" class="chart" style="height:360px" role="img" aria-label="Line chart: monthly boardings, January to June, rising from 81,000 to 97,000"></div>
+<table>
+<caption>Boardings by month</caption>
+<thead><tr><th scope="col">Month</th><th scope="col">Boardings</th></tr></thead>
+<tbody><tr><td>January</td><td>81,000</td></tr><tr><td>February</td><td>84,500</td></tr><tr><td>March</td><td>88,200</td></tr><tr><td>April</td><td>90,100</td></tr><tr><td>May</td><td>94,300</td></tr><tr><td>June</td><td>97,000</td></tr></tbody>
+</table>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script src="vendor/echarts/echarts.simple.min.js"></script>
+<script>
+echarts.init(document.getElementById('ridership')).setOption({
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  series: [{ type: 'line', data: [81000, 84500, 88200, 90100, 94300, 97000] }],
+});
+</script>
+</body>
+</html>

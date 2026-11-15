@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Shelter booking</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Shelter booking</h1>
+<form id="f" action="/book" method="get"><p><label>What is the gathering for? <input id="what" name="what"></label></p><p><button>Book</button></p></form>
+<p id="msg" role="alert"></p>
+</main>
+<script>
+  // Fifteen minutes after typing starts the form is switched off for good.
+  var t, what = document.getElementById('what');
+  what.addEventListener('input', function () { if (!t) t = setTimeout(function () { what.disabled = true; document.getElementById('msg').textContent = 'Your session timed out. Load the page again to start over.'; }, 15 * 60 * 1000); });
+</script>
+</body>
+</html>

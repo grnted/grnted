@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Phone view home</title>
+<style>
+  body { margin: 0; font: 16px/1.5 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 16px; }
+  /* Planted failures (Task 5.10), all on screen at the top:
+     an image with no alt text at both widths (green, 120×90);
+     a link with no name at desktop width only (magenta, 200×60, hidden on a phone);
+     a button with no name at phone width only (blue, 160×50, hidden on a desktop). */
+  img.both { display: block; width: 120px; height: 90px; }
+  a.desk { display: block; width: 200px; height: 60px; margin-top: 16px; background: #ff00ff; }
+  button.mob { display: none; width: 160px; height: 50px; margin-top: 16px; background: #0000ff; border: 0; }
+  @media (max-width: 600px) {
+    a.desk { display: none; }
+    button.mob { display: block; }
+  }
+</style></head>
+<body><main>
+<h1>Phone view home</h1>
+<img class="both" src="/pic.svg">
+<a class="desk" href="/"></a>
+<button class="mob" type="button"></button>
+<p>The page has three planted problems near the top.</p>
+</main></body>
+</html>

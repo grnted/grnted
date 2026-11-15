@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Alert settings</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button{font:inherit;padding:6px 12px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style></head><body><main><h1>Alert settings</h1>
+<!-- An icon-only button named through aria-labelledby. Its name changes with its state ("Mute alerts" / "Unmute
+     alerts"): the button pattern's other way to say the state, in place of aria-pressed. -->
+<button id="mute" type="button" aria-labelledby="mute-name" aria-controls="muted"><svg aria-hidden="true" width="16" height="16"><circle cx="8" cy="8" r="6"/></svg></button>
+<span id="mute-name" class="sr">Mute alerts</span>
+<p id="muted" hidden>Alerts are muted on this device until you turn them on again.</p>
+
+<!-- The same with the name in a title attribute. -->
+<button id="legend" type="button" title="Show the map legend" aria-controls="legend-box"><svg aria-hidden="true" width="16" height="16"><rect width="12" height="12" x="2" y="2"/></svg></button>
+<div id="legend-box" hidden><p>Blue lines are bus routes; green areas are parks.</p></div>
+
+<!-- Look-alike that still fails: named through aria-labelledby, and the name stays the same while the block shows and hides. -->
+<button id="hours" type="button" aria-labelledby="hours-name" aria-controls="hours-box"><svg aria-hidden="true" width="16" height="16"><circle cx="8" cy="8" r="6"/></svg></button>
+<span id="hours-name" class="sr">Holiday hours</span>
+<div id="hours-box" hidden><p>The office closes at noon on the day before each public holiday.</p></div>
+</main>
+<script>
+  document.getElementById('mute').addEventListener('click', function () {
+    var p = document.getElementById('muted'); p.hidden = !p.hidden;
+    document.getElementById('mute-name').textContent = p.hidden ? 'Mute alerts' : 'Unmute alerts';
+  });
+  document.getElementById('legend').addEventListener('click', function () {
+    var p = document.getElementById('legend-box'); p.hidden = !p.hidden;
+    this.title = p.hidden ? 'Show the map legend' : 'Hide the map legend';
+  });
+  document.getElementById('hours').addEventListener('click', function () { var p = document.getElementById('hours-box'); p.hidden = !p.hidden; });
+</script>
+</body></html>

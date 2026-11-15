@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 1: a field that takes focus back 300 ms after Tab</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<main><h1>Code</h1><p><a href="/help.html">Help</a></p>
+<!-- 2.1.2 failure: leaving the field, a timer puts focus back in it 300 ms later. -->
+<p><label for="trap">Your code</label> <input id="trap" type="text" autocomplete="off"></p>
+<p><a href="/next.html">Next step</a> <a href="/other.html">Other</a></p></main>
+<script>document.getElementById('trap').addEventListener('blur', function (e) { var t = e.target; setTimeout(function () { t.focus(); }, 300); });</script>
+</body>
+</html>

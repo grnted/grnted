@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our live stream</title>
+<style>body { font: 16px/1.5 Arial, Helvetica, sans-serif; color: #222; background: #fff; margin: 0 24px; } iframe { border: 0; }</style>
+</head>
+<body>
+<main>
+<h1>Our live stream</h1>
+<section>
+  <h2>Live from the gym</h2>
+  <canvas id="c" width="160" height="90"></canvas>
+  <video id="v" controls muted width="320" height="180"></video>
+</section>
+<script>
+  // A live stream with no captions track: a canvas stream stands in for it (endless, no file).
+  const c = document.getElementById('c');
+  const g = c.getContext('2d');
+  let t = 0;
+  setInterval(() => { t++; g.fillStyle = 'hsl(' + (t * 20 % 360) + ' 60% 40%)'; g.fillRect(0, 0, 160, 90); }, 100);
+  const v = document.getElementById('v');
+  v.srcObject = c.captureStream(10);
+  v.play().catch(() => {});
+</script>
+</main>
+</body>
+</html>

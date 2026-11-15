@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: an ordinary page with 42 focus stops</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 0; color: #222; background: #fff; }
+  header, main, footer { padding: 16px 24px; }
+  nav a { margin-right: 12px; }
+  a { color: #0645ad; }
+  ul.list { columns: 2; }
+  button.ring { font: inherit; padding: 4px 10px; border: 1px solid #555; background: #fff; color: #111; margin: 4px; }
+  button.ring:focus { outline: none; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #1a4fa0; }
+  a.cta { display: inline-block; margin: 8px 8px 8px 0; }
+  a.cta:focus { outline: 3px solid #1a1a1a; outline-offset: 2px; }
+  label { display: block; margin: 8px 0; }
+</style>
+</head>
+<body>
+<header>
+  <nav aria-label="Site">
+    <a href="/home.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/news.html">News</a>
+    <a href="/events.html">Events</a>
+    <a href="/services.html">Services</a>
+    <a href="/people.html">People</a>
+    <a href="/jobs.html">Jobs</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+<main>
+  <h1>A page with many links</h1>
+  <h2>Topics</h2>
+  <ul class="list">
+    <li><a href="/topic-1.html">Topic 1</a></li>
+    <li><a href="/topic-2.html">Topic 2</a></li>
+    <li><a href="/topic-3.html">Topic 3</a></li>
+    <li><a href="/topic-4.html">Topic 4</a></li>
+    <li><a href="/topic-5.html">Topic 5</a></li>
+    <li><a href="/topic-6.html">Topic 6</a></li>
+    <li><a href="/topic-7.html">Topic 7</a></li>
+    <li><a href="/topic-8.html">Topic 8</a></li>
+    <li><a href="/topic-9.html">Topic 9</a></li>
+    <li><a href="/topic-10.html">Topic 10</a></li>
+    <li><a href="/topic-11.html">Topic 11</a></li>
+    <li><a href="/topic-12.html">Topic 12</a></li>
+    <li><a href="/topic-13.html">Topic 13</a></li>
+    <li><a href="/topic-14.html">Topic 14</a></li>
+    <li><a href="/topic-15.html">Topic 15</a></li>
+    <li><a href="/topic-16.html">Topic 16</a></li>
+    <li><a href="/topic-17.html">Topic 17</a></li>
+    <li><a href="/topic-18.html">Topic 18</a></li>
+    <li><a href="/topic-19.html">Topic 19</a></li>
+    <li><a href="/topic-20.html">Topic 20</a></li>
+  </ul>
+  <h2>Actions</h2>
+  <p>
+    <button class="ring" type="button">Save</button>
+    <button class="ring" type="button">Share</button>
+    <button class="ring" type="button">Print</button>
+    <button class="ring" type="button">Follow</button>
+  </p>
+  <p>
+    <a class="cta" href="/start.html">Get started</a>
+    <a class="cta" href="/guide.html">Read the guide</a>
+    <a class="cta" href="/faq.html">Questions</a>
+  </p>
+  <h2>Find</h2>
+  <form action="/search" method="get" onsubmit="return false">
+    <label>Search <input name="q" type="search"></label>
+    <label>Section
+      <select name="s"><option>All</option><option>News</option></select>
+    </label>
+    <label><input type="checkbox" name="exact"> Exact words</label>
+  </form>
+</main>
+<footer>
+  <a href="/privacy.html">Privacy</a>
+  <a href="/terms.html">Terms</a>
+  <a href="/accessibility.html">Accessibility</a>
+  <a href="/sitemap.html">Site map</a>
+</footer>
+</body>
+</html>

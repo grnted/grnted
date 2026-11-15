@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Newsletter</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .invalid { border: 2px solid #b00020; } .toast { position: fixed; bottom: 12px; right: 12px; background: #223; color: #fff; padding: 8px 12px; }</style></head>
+<body>
+<header><nav aria-label="Main"><a href="/">Home</a> <a href="/services">Services</a></nav></header>
+<main>
+<h1>Newsletter</h1>
+<p>Join the newsletter.</p>
+<form id="news-form">
+  <label for="nm">Your name</label><input id="nm" name="nm" required>
+  <label for="em">Email</label><input id="em" name="em" type="email" required>
+  <button type="submit">Join</button>
+  <p id="msg"></p>
+</form>
+</main>
+<footer><p>City offices, 1 Civic Walk</p></footer>
+<script>
+  document.getElementById('news-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    fetch('/aw-join', { method: 'POST', body: new FormData(e.target) }).then(() => { document.getElementById('msg').textContent = 'Thanks, you are subscribed.'; }, () => { document.getElementById('msg').textContent = 'Thanks, you are subscribed.'; });
+  });
+</script>
+</body></html>

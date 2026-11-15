@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Request a brochure (silent check)</title></head>
+<body>
+<main>
+<h1>Request a brochure</h1>
+<form id="brochure" action="/brochure" method="post">
+  <p><label for="sc-name">Name *</label><br><input id="sc-name" name="name" autocomplete="name" required></p>
+  <p><label for="sc-email">Email *</label><br><input id="sc-email" name="email" type="email" autocomplete="email" required></p>
+  <button type="button" id="send">Send request</button>
+</form>
+</main>
+<script>
+  // Checks the fields but tells nobody what is wrong.
+  document.getElementById('send').addEventListener('click', () => {
+    const form = document.getElementById('brochure');
+    if (!form.checkValidity()) return;
+    fetch('/brochure', { method: 'POST', body: new FormData(form) });
+  });
+</script>
+</body>
+</html>

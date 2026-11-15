@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account</title></head>
+<body><main id="main">
+<h1>Account</h1>
+<p>Your account summary.</p>
+</main>
+<script>
+  // A 15 s time limit whose warning comes from an 800 ms timer the 15 s timer sets (round 2, Sol 5).
+  setTimeout(function () {
+    setTimeout(function () {
+      var p = document.createElement('p');
+      p.setAttribute('role', 'alert');
+      p.textContent = 'Your session has expired. Sign in again to continue.';
+      document.getElementById('main').appendChild(p);
+    }, 800);
+  }, 15000);
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: named for an action</title></head>
+<body><main><h1>Account</h1>
+<div id="account"><p>Your account settings.</p><p><button id="del" type="button">Delete account</button></p></div>
+</main>
+<script>
+  window.__pressed = 0;
+  document.getElementById('del').addEventListener('mousedown', function () { window.__pressed++; document.getElementById('account').hidden = true; });
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<audio id="music" src="tone.wav" autoplay loop></audio>
+<button type="button" id="mute">Mute music</button>
+</main>
+<script>
+  document.getElementById('mute').addEventListener('click', function () {
+    fetch('/api/preferences/sound', { method: 'POST', body: 'off' }).then(function () { document.getElementById('music').muted = true; });
+  });
+</script>
+</body>
+</html>

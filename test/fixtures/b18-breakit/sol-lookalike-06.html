@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Local request</title></head>
+<body><main><h1>Local request</h1>
+<form id="request">
+ <label for="topic">Topic *</label><input id="topic" required>
+ <button>Send request</button>
+</form>
+<div id="answer"></div></main>
+<script>
+document.getElementById('request').addEventListener('submit', e => {
+  e.preventDefault();
+  const region = document.createElement('p');
+  region.setAttribute('role','status');
+  document.getElementById('answer').replaceChildren(region);
+  setTimeout(() => { region.textContent = 'Your request was saved.'; }, 200);
+});
+</script></body></html>

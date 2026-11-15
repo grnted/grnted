@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Event booking (labels, clean)</title>
+<style>.req::after { content: " *"; color: #b00020; }</style></head>
+<body>
+<main>
+<h1>Book a room</h1>
+<p>Fields marked * are required.</p>
+<form action="/book" method="post">
+  <p><label for="g-fullname" class="req">Full name</label><br><input id="g-fullname" name="fullname" autocomplete="name" required></p>
+  <p><label for="g-email">Email *</label><br><input id="g-email" name="email" type="email" autocomplete="email" required></p>
+  <table><tr><td>Room (required)</td><td><select name="room" aria-label="Room" required><option value="">Choose</option><option value="a">Room A</option></select></td></tr></table>
+  <p><input type="checkbox" name="news" id="news-box"> Send me news</p>
+  <button type="submit">Book</button>
+</form>
+</main>
+</body>
+</html>

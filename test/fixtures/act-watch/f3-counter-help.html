@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Comment</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .bad { border: 2px solid #b00020; } .err { color: #a00000; } .toast { position: fixed; right: 12px; bottom: 12px; background: #223; color: #fff; padding: 8px 12px; } .hidden { display: none; }</style></head>
+<body>
+<main><h1>Comment</h1>
+<form id="c"><label for="who">Your name</label><input id="who" required>
+<label for="t">Topic</label><select id="t" required><option value="">Choose</option><option value="p">Parks</option></select><p id="thelp"></p>
+<label for="m">Comment</label><textarea id="m" required></textarea><p id="count">500 characters remaining</p>
+<p><button type="submit">Send comment</button></p></form>
+</main>
+
+<script>
+
+const m = document.getElementById('m');
+m.addEventListener('input', () => { document.getElementById('count').textContent = (500 - m.value.length) + ' characters remaining'; });
+document.getElementById('t').addEventListener('change', () => { document.getElementById('thelp').textContent = 'Parks comments are read by the parks board.'; });
+document.getElementById('c').addEventListener('submit', (e) => { e.preventDefault(); });
+</script>
+</body></html>

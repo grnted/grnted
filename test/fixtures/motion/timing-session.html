@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account overview</title></head>
+<body><main>
+<h1>Account overview</h1>
+<p>Your recent activity.</p>
+<div id="warn" hidden style="position: fixed; inset: 20% 25%; background: #fff; border: 2px solid #333; padding: 2rem; font: 18px sans-serif">
+  <p>Your session will expire in 2 minutes because you have been inactive.</p>
+  <button type="button" id="stay">Stay signed in</button> <button type="button" id="out">Log out now</button>
+</div>
+</main>
+<script>
+  var warn, end;
+  function schedule() {
+    warn = setTimeout(function () { document.getElementById('warn').hidden = false; }, 15 * 60 * 1000);
+    end = setTimeout(function () { location.href = 'logged-out.html'; }, 17 * 60 * 1000);
+  }
+  schedule();
+  document.getElementById('stay').addEventListener('click', function () { clearTimeout(warn); clearTimeout(end); document.getElementById('warn').hidden = true; schedule(); });
+</script>
+</body>
+</html>

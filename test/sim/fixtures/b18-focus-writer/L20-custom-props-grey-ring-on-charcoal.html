@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Pay My Bill | Granite Bay Public Utility District</title>
+<meta name="description" content="Pay My Bill">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:1rem;line-height:1.55;background:#ffffff;color:#1f2933}
+button,input,select,textarea{font:inherit}
+img,svg{max-width:100%}
+.site-header{background:#ffffff;color:#2b2b2b;border-bottom:1px solid #dddddd}
+.site-header .inner,.site-footer .inner{max-width:68rem;margin:0 auto;padding:1rem 1.25rem}
+.site-header .inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:inline-flex;align-items:center;gap:.6rem;color:#2b2b2b;text-decoration:none;font-weight:700;font-size:1.2rem}
+.brand svg{flex:none}
+.site-nav ul{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;list-style:none;margin:0;padding:0}
+.site-nav a{color:#2b2b2b;text-decoration:none;font-weight:600;padding:.25rem .1rem}
+.site-nav a:hover{text-decoration:underline}
+main{display:block;max-width:68rem;margin:0 auto;padding:2rem 1.25rem 3rem}
+main:focus{outline:none}
+h1{font-size:2rem;line-height:1.2;margin:.25rem 0 1rem}
+h2{font-size:1.35rem;line-height:1.3;margin:2rem 0 .75rem}
+h3{font-size:1.1rem;margin:1.25rem 0 .5rem}
+a{color:#1d5f8a}
+.lead{font-size:1.15rem;max-width:44rem}
+.notice{background:rgba(0,0,0,.035);border-left:4px solid #55606e;padding:.85rem 1rem;margin:1.25rem 0;max-width:46rem}
+.news{list-style:none;margin:0;padding:0;max-width:46rem}
+.news li{padding:.65rem 0;border-bottom:1px solid rgba(0,0,0,.12)}
+.news .meta{display:block;font-size:.875rem;opacity:.85}
+.link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.5rem 1.5rem;list-style:none;margin:0;padding:0}
+.link-grid li{padding:.35rem 0}
+.site-footer{background:#2b2b2b;color:#ffffff;margin-top:2rem;}
+.site-footer a{color:#ffffff}
+.footer-links{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;list-style:none;margin:.75rem 0;padding:0}
+.small{font-size:.875rem}
+/* site-wide keyboard focus style */
+:where(a[href],button,input,select,textarea,summary):focus-visible{outline:3px solid #1a1a1a;outline-offset:2px}
+:where(.site-footer) :where(a[href],button,input,select):focus-visible{outline-color:#ffffff}
+:where(.on-dark) :where(a[href],button,input,select):focus-visible{outline-color:#ffffff}
+/* page components */
+:root{--brand-900:#2b2b2b;--brand-on:#ffffff;--focus-ring-color:#c9c9c9;--focus-ring-width:2px;--focus-ring-offset:0px}
+.c-button{display:inline-block;padding:.85rem 1.5rem;border:0;border-radius:3px;font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer}
+.c-button--primary{background:var(--brand-900);color:var(--brand-on)}
+.c-button:focus{outline:none}
+.c-button:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring-color);outline-offset:var(--focus-ring-offset)}
+.c-form label{display:block;font-weight:700;margin:.75rem 0 .3rem}
+.c-form input{width:min(100%,20rem);padding:.6rem .75rem;border:1px solid #6b6b6b;border-radius:3px}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="#"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><path d="M18 3c6 8 10 13 10 19a10 10 0 0 1-20 0c0-6 4-11 10-19z" fill="currentColor"/></svg><span>Granite Bay Public Utility District</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="#pay-my-bill">Pay My Bill</a></li>
+        <li><a href="#start-or-stop-service">Start or Stop Service</a></li>
+        <li><a href="#outages">Outages</a></li>
+        <li><a href="#rebates">Rebates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+<h1>Pay my bill</h1>
+<p class="lead">Pay your electric and water bill without signing in. Payments post the next business day.</p>
+<form class="c-form" action="#" onsubmit="return false">
+  <label for="acct">Account number</label>
+  <input id="acct" inputmode="numeric" autocomplete="off">
+  <label for="zip">Service ZIP code</label>
+  <input id="zip" inputmode="numeric" autocomplete="postal-code">
+  <p><button type="submit" class="c-button c-button--primary" id="pay-bill">Pay my bill</button></p>
+</form>
+<section aria-labelledby="util-news-h">
+  <h2 id="util-news-h">Customer news</h2>
+  <ul class="news">
+    <li><a href="#rates">Proposed 2027 rates: public hearing December 8</a><span class="meta">November 5, 2026</span></li>
+    <li><a href="#flush">Hydrant flushing in the north service area</a><span class="meta">October 29, 2026</span></li>
+  </ul>
+</section>
+<section aria-labelledby="util-help-h">
+  <h2 id="util-help-h">Help with your account</h2>
+  <ul class="link-grid">
+    <li><a href="#autopay">Set up AutoPay</a></li>
+    <li><a href="#assist">Bill payment assistance</a></li>
+    <li><a href="#move">Moving? Transfer service</a></li>
+    <li><a href="#leak">Check for a leak</a></li>
+  </ul>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p><strong>Granite Bay Public Utility District</strong><br>18 Depot Street<br>Phone: 555-0153</p>
+    <ul class="footer-links">
+      <li><a href="#contact">Contact us</a></li>
+      <li><a href="#accessibility">Accessibility</a></li>
+      <li><a href="#records-request">Public records requests</a></li>
+      <li><a href="#privacy">Privacy policy</a></li>
+    </ul>
+    <p class="small">&copy; 2026 Granite Bay Public Utility District</p>
+  </div>
+</footer>
+</body>
+</html>

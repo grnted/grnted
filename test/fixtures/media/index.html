@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riverside Media Library</title>
+<!-- Media fixture (Plan 3, Task 7). Synthetic media only (scripts/gen-media-fixtures.mjs):
+     a video with a captions track, a video without one, an autoplaying video with sound and no
+     controls, YouTube and Vimeo players, audio without a transcript, audio with one, and a link to
+     an audio file. The player iframes use srcdoc, so the browser never loads the third-party
+     address in src (the collector reads src). /tour.webm, /intro.webm and /episode.wav are test
+     routes to the same files. -->
+<style>body { font: 16px/1.5 Arial, Helvetica, sans-serif; color: #222; background: #fff; margin: 0 24px; } iframe { border: 1px solid #888; }</style>
+</head>
+<body>
+<main>
+<h1>Media library</h1>
+<p><a href="/lessons.html">Lessons</a></p>
+<section aria-labelledby="welcome">
+  <h2 id="welcome">Welcome video</h2>
+  <video controls width="320" height="180" src="/clip.webm"><track kind="captions" src="/clip.vtt" srclang="en" label="English"></video>
+</section>
+<section aria-labelledby="tour">
+  <h2 id="tour">Building tour</h2>
+  <video controls width="320" height="180" src="/tour.webm"></video>
+</section>
+<section aria-labelledby="intro">
+  <h2 id="intro">Introduction</h2>
+  <video autoplay width="320" height="180" src="/intro.webm"></video>
+</section>
+<section aria-labelledby="board">
+  <h2 id="board">Board meeting</h2>
+  <iframe title="Board meeting video" width="320" height="180" src="https://www.youtube-nocookie.com/embed/aBcDeFgHiJ0?rel=0" srcdoc="<p>Video player</p>"></iframe>
+  <iframe title="Science fair video" width="320" height="180" src="https://player.vimeo.com/video/123456789" srcdoc="<p>Video player</p>"></iframe>
+  <p><a href="https://youtu.be/zYxWvUtSrQ0">Last month's board meeting on YouTube</a></p>
+</section>
+<section aria-labelledby="bell">
+  <h2 id="bell">The new school bell</h2>
+  <audio controls src="/tone.wav"></audio>
+</section>
+<section aria-labelledby="podcast">
+  <h2 id="podcast">Podcast episode 1</h2>
+  <audio controls src="/episode.wav"></audio>
+  <p>Transcript: a bell rings once.</p>
+</section>
+<section aria-labelledby="minutes">
+  <h2 id="minutes">Meeting minutes</h2>
+  <p><a href="/minutes.mp3">Listen to the meeting minutes (MP3)</a></p>
+</section>
+</main>
+</body>
+</html>

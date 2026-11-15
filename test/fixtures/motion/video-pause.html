@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Background video with a pause button</title></head>
+<body><main>
+<h1>Our campus</h1>
+<div class="hero">
+  <video id="bg" src="clip.webm" autoplay muted loop playsinline width="480" height="270"></video>
+  <button type="button" id="pause" aria-label="Pause background video">❚❚</button>
+</div>
+<p>Other content next to the video.</p>
+</main>
+<script>
+  document.getElementById('pause').addEventListener('click', function () { var v = document.getElementById('bg'); if (v.paused) v.play(); else v.pause(); });
+</script>
+</body>
+</html>

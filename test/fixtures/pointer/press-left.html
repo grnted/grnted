@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a press that leaves the page changed</title><style>#list{position:absolute;left:20px;top:70px;width:300px;height:200px;background:#fff;border:1px solid #333;margin:0}</style></head>
+<body><main><h1>Grades</h1>
+<p><button type="button" id="open" aria-haspopup="listbox">Choose a grade</button></p>
+<ul id="list" role="listbox" hidden><li role="option">Grade 1</li><li role="option">Grade 2</li></ul>
+<p style="margin-top:40px"><button type="button" id="next">Show the timetable</button></p>
+</main>
+<script>
+  document.getElementById('open').addEventListener('mousedown', function () { document.getElementById('list').hidden = false; });
+  document.getElementById('next').addEventListener('mousedown', function () { this.style.outline = '2px solid'; });
+</script>
+</body>
+</html>

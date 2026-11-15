@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tall link</title>
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; color: #111; background: #fff; }
+#page { position: relative; height: 2000px; }
+h1 { margin: 0; padding: 8px; font-size: 20px; }
+#tile { position: absolute; top: 600px; left: 10px; width: 290px; height: 400px; display: block; background: #e8eef7; color: #036; }
+.chat { position: fixed; right: 6px; bottom: 6px; width: 60px; height: 60px; border: 0; background: #0050c8; color: #fff; z-index: 10; }
+.side { position: fixed; top: 0; right: 0; width: 40px; height: 100%; background: #333; z-index: 9; }
+</style>
+</head>
+<body>
+<!-- A link 400 px tall (taller than the 320×256 screen, so it is never seen whole there). A fixed
+     chat button covers its right corners while they pass the bottom of the screen; scrolling moves
+     each corner clear of it. ?side=1 adds a fixed panel down the whole right edge, so its right
+     corners are covered wherever the page is scrolled. -->
+<div id="page"><h1>Programs</h1><p>Find a program for your family below.</p>
+<a id="tile" href="/programs">After-school programs: sign up for fall, winter or spring sessions.</a></div>
+<button class="chat" type="button" aria-label="Chat with us">?</button>
+<script>
+if (new URLSearchParams(location.search).get('side')) {
+  var s = document.createElement('div');
+  s.className = 'side';
+  s.setAttribute('aria-label', 'Quick links panel');
+  document.body.appendChild(s);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Winter service (a counted line in a pointer-cursor block)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Winter service (a counted line in a pointer-cursor block)</h1>
+<section id="card" style="cursor:pointer"><h2>Winter service begins November 23</h2><p id="line">Routes 12 and 24 run every 20 minutes on weekdays.</p></section>
+<div id="promo" onclick="void 0">Weekend service is unchanged this winter.</div>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+window.dataLayer = [];
+document.getElementById('line').addEventListener('click', function () { window.dataLayer.push({ event: 'line_click' }); });
+</script>
+</body>
+</html>

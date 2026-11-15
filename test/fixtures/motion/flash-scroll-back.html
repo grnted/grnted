@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A page that scrolls itself back to the top</title>
+<style>
+  body { margin: 0; font: 16px sans-serif; }
+  h1, p { margin: 1rem; }
+  .flash { position: absolute; left: 100px; top: 2400px; width: 600px; height: 400px; background: #000; animation: flash 0.125s steps(1, end) infinite; }
+  @keyframes flash { 0% { background: #000; } 50% { background: #fff; } }
+</style></head>
+<body><main>
+<h1>A page that scrolls itself back to the top</h1>
+<p>Synthetic test pattern: a script puts the window back at the top whenever it moves.</p>
+<div style="height: 4000px"></div>
+<div class="flash" id="flasher" role="img" aria-label="Test pattern"></div>
+</main>
+<script>
+addEventListener('scroll', function () { if (scrollY > 0) window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); });
+</script>
+</body>
+</html>

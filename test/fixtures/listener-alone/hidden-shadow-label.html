@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Budget (a chart whose label element is hidden)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Budget (a chart whose label element is hidden)</h1>
+<div id="chart" style="position:relative;width:480px;height:120px;cursor:pointer">
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="120" viewBox="0 0 480 120"><rect width="480" height="120" fill="#dbe8f7"/></svg>
+<chart-label id="label" style="position:absolute;left:10px;top:10px;visibility:hidden"></chart-label>
+</div>
+<p>Spending by fund this year: general 41, roads 18, parks 9 million dollars.</p>
+<script>
+customElements.define('chart-label', class extends HTMLElement {
+  connectedCallback() { if (!this.shadowRoot) this.attachShadow({ mode: 'open' }).textContent = 'Spending by fund'; }
+});
+document.getElementById('chart').addEventListener('click', function () {});
+</script>
+<p><a href="/index.html">All reports</a></p>
+</main>
+</body>
+</html>

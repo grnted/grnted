@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: a resize handler that hangs</title>
+<style>body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; } main { padding: 1rem; }</style>
+</head>
+<body>
+<main>
+  <h1>Busy page</h1>
+  <p>Its resize handler keeps the page busy for five seconds.</p>
+</main>
+<script>
+  window.addEventListener('resize', function () { var end = Date.now() + 5000; while (Date.now() < end) { /* busy */ } });
+</script>
+</body>
+</html>

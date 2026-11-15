@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Park map (pans only by dragging, with a tooltip)</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; } #map { position: relative; width: 480px; height: 240px; overflow: hidden; border: 1px solid #595959; } #layer { position: absolute; left: 0; top: 0; width: 1440px; height: 240px; background: repeating-linear-gradient(90deg, #dbe8f7 0 60px, #0b4fb3 60px 120px); } .tip { position: absolute; padding: 4px 8px; background: #ffffff; border: 1px solid #1a1a1a; color: #1a1a1a; pointer-events: none; }</style></head>
+<body><main>
+<h1>Park map</h1>
+<p>The park has three trails: north, river and ridge.</p>
+<div id="map"><div id="layer"></div></div>
+<p style="margin-top:6rem"><a href="about.html">About the park</a></p>
+</main>
+<script>
+// A map that pans only by dragging (no buttons), and a tooltip that follows the pointer, shown a quarter second after
+// it comes and hidden half a second after it leaves.
+(function () {
+  var map = document.getElementById('map'), layer = document.getElementById('layer'), x = 0, down = null, tip = null, st = 0, ht = 0, last = 0;
+  function place() { if (tip) { tip.style.left = Math.min(380, last) + 'px'; tip.style.top = '8px'; } }
+  map.addEventListener('mousedown', function (e) { down = { x: e.clientX, start: x }; e.preventDefault(); });
+  document.addEventListener('mousemove', function (e) { if (!down) return; x = Math.max(-960, Math.min(0, down.start + e.clientX - down.x)); layer.style.left = x + 'px'; });
+  document.addEventListener('mouseup', function () { down = null; });
+  map.addEventListener('mousemove', function (e) {
+    last = e.clientX - map.getBoundingClientRect().left; clearTimeout(ht);
+    if (!tip) { clearTimeout(st); st = setTimeout(function () { tip = document.createElement('div'); tip.className = 'tip'; tip.textContent = 'River trail'; map.appendChild(tip); place(); }, 250); } else place();
+  });
+  map.addEventListener('mouseleave', function () { clearTimeout(st); clearTimeout(ht); ht = setTimeout(function () { if (tip) { tip.remove(); tip = null; } }, 500); });
+})();
+</script>
+</body>
+</html>

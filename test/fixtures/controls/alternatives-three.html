@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plot plan</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+button { font: inherit; padding: 6px 12px; }
+.tile { display: inline-block; padding: 8px 14px; border: 2px solid #1d4d3f; border-radius: 4px; background: #e7f2ee; cursor: pointer; }
+.tile:focus { outline: 3px solid #0b57d0; outline-offset: 2px; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header><a href="/">Marsh Lane Allotments</a> <a href="/about.html">About</a> <button type="button" class="pl" id="b1">Plan</button> <button type="button" class="pl" id="b2">Plan</button> <button type="button" class="pl" id="b3">Plan</button></header>
+<main>
+<h1>Plot plan</h1>
+<!-- Not testable (review r2, finding 1): the tile answers the pointer only. Three buttons have its name; the first two do nothing, the third shows and hides the same plan with the keyboard. The test tries two of them: with one left untried it cannot say that no other control does the same. -->
+<p><span class="tile" role="button" tabindex="0" id="tile">Plan</span></p>
+<p id="hint"></p>
+<div id="plan" hidden><p>Plots 1 to 14 run along the hedge; 15 to 30 face the gate.</p></div>
+<p id="other"></p>
+</main>
+<footer><a href="/contact.html">Contact</a></footer>
+<script>
+var plan = document.getElementById('plan');
+function flip() { plan.hidden = !plan.hidden; }
+document.getElementById('tile').addEventListener('pointerup', flip);
+var idle = 0;
+document.getElementById('b1').addEventListener('click', function () { idle++; });
+document.getElementById('b2').addEventListener('click', function () { idle++; });
+document.getElementById('b3').addEventListener('click', flip);
+</script>
+</body>
+</html>

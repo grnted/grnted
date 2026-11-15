@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a skip link to the content, with nothing to focus after it (ACT cf77f2)</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<!-- No failure (2.4.1): the skip link moves the focus starting point to #main, which holds no link. -->
+<a href="#main" id="skip">Skip to main content</a>
+<a href="/chapter2.html">Read Chapter 2</a>
+<aside id="about-book"><p>The Romance of the Three Kingdoms is a 14th century historical novel.</p></aside>
+<div id="main"><p>Unity succeeds division and division follows unity. One is bound to be replaced by the other after a long span of time.</p></div>
+</body>
+</html>

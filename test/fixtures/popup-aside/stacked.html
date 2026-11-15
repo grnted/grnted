@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two pop-ups</title>
+<style>
+body { margin: 0; font: 16px/1.5 Arial, sans-serif; color: #222; background: #fff; }
+main { padding: 24px; }
+/* Sol popup-r4, 1: a lower dialog with passing white-on-black text and a black-bordered field, under an upper
+   dialog whose white backdrop at 80% dims it. Both close with their own Close button. */
+#lower { position: fixed; top: 40px; left: 40px; width: 520px; padding: 20px; background: #000; color: #fff; z-index: 10; }
+#lower p { margin: 0 0 12px; color: #fff; background: #000; }
+#lower input { border: 2px solid #000000; background: #fff; padding: 6px; font: inherit; }
+#upper-bg { position: fixed; inset: 0; background: #ffffff; opacity: 0.8; z-index: 20; }
+#upper { position: fixed; top: 200px; left: 50%; transform: translateX(-50%); width: 360px; padding: 20px; background: #fff; border: 2px solid #222; z-index: 21; }
+#upper p { margin: 0 0 12px; color: #222; }
+</style>
+</head>
+<body>
+<main id="main">
+  <h1>Town news</h1>
+  <p>The town hall is open on weekdays from eight to five. Permits and licences are handled at the front desk.</p>
+</main>
+<div id="lower" role="dialog" aria-label="Newsletter">
+  <p id="low-text">Get the town newsletter every month.</p>
+  <label>Email <input id="low-field" type="email"></label>
+  <button type="button" id="low-close" style="background:#fff;color:#000">Close</button>
+</div>
+<div id="upper-bg"></div>
+<div id="upper" role="dialog" aria-modal="true" aria-label="Cookies">
+  <p id="up-text">We use cookies to remember your settings.</p>
+  <button type="button" id="up-close">Close</button>
+</div>
+<script>
+document.getElementById('up-close').addEventListener('click', () => { document.getElementById('upper').remove(); document.getElementById('upper-bg').remove(); });
+document.getElementById('low-close').addEventListener('click', () => document.getElementById('lower').remove());
+document.getElementById('up-close').focus();
+</script>
+</body>
+</html>

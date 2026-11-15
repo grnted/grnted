@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Surplus auction: lot 14</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Surplus auction: lot 14</h1>
+<p>Bidding on this lot closes at the time shown. The highest bid when it closes wins.</p>
+<form action="/bid" method="get"><label>Your bid in dollars <input name="bid" inputmode="numeric"></label> <button>Place bid</button></form>
+</main>
+<script>
+  // The lot closes for everyone at the same moment: the page goes to the result.
+  setTimeout(function () { location.href = 'static.html'; }, 10 * 60 * 1000);
+</script>
+</body>
+</html>

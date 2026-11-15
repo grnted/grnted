@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Popup fixture</title></head>
+<body>
+<main id="main"><h1>Popup fixture</h1>
+<p>Every control below would open a new window. None of the addresses under /pop/ may reach the server.</p>
+<p>
+  <button type="button" id="open">window.open</button>
+  <button type="button" id="open-timer">window.open from a timer</button>
+  <button type="button" id="open-docopen">document.open with three arguments</button>
+  <button type="button" id="open-saved">window.open saved before the page ran</button>
+  <button type="button" id="open-blank-frame">window.open of a new about:blank frame</button>
+  <button type="button" id="open-self">window.open in this window</button>
+  <button type="button" id="detached">Click a link that is not in the page</button>
+  <button type="button" id="noncancel">A click the page cannot cancel</button>
+  <button type="button" id="submit-call">form.submit() into a new window</button>
+  <button type="button" id="detached-ok">Click a same-page link that is not in the page</button>
+  <button type="button" id="noncancel-ok">A same-page link clicked with a click the page cannot cancel</button>
+  <button type="button" id="windowless">Click a new-window link in a document with no window</button>
+  <button type="button" id="tamper">Break preventDefault and toLowerCase</button>
+</p>
+<p>
+  <a id="blank" href="/pop/blank" target="_blank">New window</a> ·
+  <a id="blank-upper" href="/pop/blank-upper" target="_BLANK">New window (upper case)</a> ·
+  <a id="blank-nc" href="/pop/noncancel" target="_blank">New window (non-cancelable click)</a> ·
+  <a id="named" href="/pop/named" target="promo">Named window</a> ·
+  <a id="plain" href="/pop/plain">Plain link</a> ·
+  <a id="late-link" href="/pop/late-link">Link that becomes a new-window link when clicked</a> ·
+  <a id="tampered" href="/pop/tampered" target="_blank">New window (after tampering)</a> ·
+  <a id="late-base" href="/pop/late-base">Link whose click adds a base element that opens new windows</a> ·
+  <a id="frag" href="#end">Skip to the end</a>
+</p>
+<p><svg width="160" height="24" role="img" aria-label="SVG link"><a id="svg" href="/pop/svg" target="_blank"><text x="0" y="18">SVG link</text></a></svg></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" usemap="#map" width="60" height="30" alt="Image map" style="background:#ccc">
+<map name="map"><area id="area" shape="rect" coords="0,0,60,30" href="/pop/area" target="_blank" alt="Area link"></map></p>
+<form id="fget" method="get" action="/pop/form-get" target="_blank"><label>Q <input name="q" value="a"></label> <button id="fget-b">Go (GET, new window)</button></form>
+<form id="fpost" method="post" action="/pop/form-post" target="_blank"><label>Q <input name="q" value="a"></label> <button id="fpost-b">Go (POST, new window)</button></form>
+<form id="fsub" action="/pop/formtarget"><label>Q <input name="q" value="a"></label> <button id="fsub-b" formtarget="_blank">Go (formtarget)</button></form>
+<form id="flate" action="/pop/late-form" onsubmit="window.open('', 'popupWin'); this.target = 'popupWin';"><label>Q <input name="q" value="a"></label> <button id="flate-b">Go (target set on submit)</button></form>
+<form id="flate-attr" action="/pop/late-form-attr"><label>Q <input name="q" value="a"></label> <button id="flate-attr-b">Go (target set by setAttribute on click)</button></form>
+<form id="fimplicit" action="/pop/implicit"><label>Implicit <input id="fimplicit-i" name="q" value="a"></label></form>
+<form id="fdialog" method="dialog" target="_blank"><button id="fdialog-b">Close (dialog form)</button></form>
+<p><object data="/popups-frame.html?obj" type="text/html" width="200" height="40" aria-label="Object frame"></object></p>
+<p><iframe id="kid" name="kid" src="/popups-frame.html" title="Same-origin frame" width="300" height="60"></iframe>
+<a id="to-kid" href="/popups-frame.html?via=link" target="kid">Load the frame by name</a></p>
+<div id="host"></div>
+<div id="host-closed"></div>
+<div id="host-declarative"><template shadowrootmode="open"><form id="dform" action="/pop/declarative" target="_blank"><button id="db">Go (declarative shadow form)</button></form></template></div>
+<p id="end">The end.</p>
+</main>
+<script>
+  var saved = window.open;
+  window.__onload = window.open('/pop/onload');
+  var on = function (id, fn) { document.getElementById(id).addEventListener('click', fn); };
+  on('open', function () { window.__openResult = window.open('/pop/open'); });
+  on('open-timer', function () { setTimeout(function () { window.open('/pop/timer'); }, 50); });
+  on('open-docopen', function () { document.open('/pop/docopen', '_blank', ''); });
+  on('open-saved', function () { saved.call(window, '/pop/saved'); });
+  on('open-blank-frame', function () { var f = document.createElement('iframe'); document.body.appendChild(f); f.contentWindow.open('/pop/blank-frame'); });
+  on('open-self', function () { window.__selfResult = window.open('#end', '_self'); });
+  on('detached', function () { var a = document.createElement('a'); a.href = '/pop/detached'; a.target = '_blank'; a.click(); });
+  on('noncancel', function () { document.getElementById('blank-nc').dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+  on('detached-ok', function () { var a = document.createElement('a'); a.href = '#detached-ok'; a.click(); });
+  on('noncancel-ok', function () { document.getElementById('frag').dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+  on('windowless', function () {
+    var d = document.implementation.createHTMLDocument('x');
+    d.body.innerHTML = '<a href="/pop/windowless" target="_blank">x</a>';
+    d.body.firstChild.click();
+  });
+  on('submit-call', function () { HTMLFormElement.prototype.submit.call(document.getElementById('fpost')); });
+  on('tamper', function () {
+    Event.prototype.preventDefault = function () {};
+    String.prototype.toLowerCase = function () { return '_self'; };
+    Element.prototype.getAttribute = function () { return '_self'; };
+  });
+  document.getElementById('late-link').addEventListener('click', function () { this.target = '_blank'; });
+  document.getElementById('flate-attr-b').addEventListener('click', function () { this.form.setAttribute('target', '_blank'); });
+  // A form in a shadow root: its submit event never reaches the window.
+  var root = document.getElementById('host').attachShadow({ mode: 'open' });
+  root.innerHTML = '<form id="sform" action="/pop/shadow-form" target="_blank"><button id="sb">Go (shadow form)</button></form>' +
+    '<form id="simplicit" action="/pop/shadow-implicit" target="_blank"><input id="si" name="q" value="a" aria-label="Shadow form without a button"></form>';
+  // A link in a closed shadow root: the window's listener cannot see it on the event's path.
+  var closedRoot = document.getElementById('host-closed').attachShadow({ mode: 'closed' });
+  closedRoot.innerHTML = '<a id="closed" href="/pop/closed" target="_blank">Link in a closed shadow root</a>';
+  window.__closedLink = closedRoot.getElementById('closed');
+  // Inserting a base element is not an attribute change: only the browser's own click sees it in time.
+  document.getElementById('late-base').addEventListener('click', function () {
+    document.head.insertAdjacentHTML('beforeend', '<base id="late-base-el" target="_blank">');
+    setTimeout(function () { document.getElementById('late-base-el').remove(); }, 0);
+  });
+  // A frame of another origin and a data: frame that open windows as they load.
+  var xo = document.createElement('iframe');
+  xo.title = 'Cross-origin frame';
+  xo.src = 'http://localhost:' + location.port + '/popups-frame.html?xo';
+  document.body.appendChild(xo);
+  var dataFrame = document.createElement('iframe');
+  dataFrame.title = 'Data frame';
+  dataFrame.src = 'data:text/html,<script>window.open(' + JSON.stringify(location.origin + '/pop/data') + ')<\/script>';
+  document.body.appendChild(dataFrame);
+</script>
+</body>
+</html>

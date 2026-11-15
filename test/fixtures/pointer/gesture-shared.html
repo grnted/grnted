@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer gestures: two carousels, one handler</title>
+<style>body{font:16px/1.5 sans-serif;margin:20px}.car{position:relative;width:600px;height:200px;overflow:hidden;border:1px solid #333}.track{display:flex;width:1800px;height:200px}.slide{width:600px;height:200px;flex:none;display:flex;align-items:center;justify-content:center;font-size:28px}.s1{background:#fde}.s2{background:#dfe}.s3{background:#def}.sortlist{list-style:none;padding:0;width:400px}.sortlist li{border:1px solid #333;margin:4px 0;background:#f8f8f8;position:relative;height:48px}.grip{position:absolute;left:4px;top:4px;width:30px;height:20px;cursor:grab;background:#ccc}.sortlist li button{position:absolute;left:0;right:0;bottom:0;height:30px;width:100%}</style>
+</head>
+<body><main><h1>Two carousels</h1>
+<div class="car" id="c1" aria-label="Events"><div class="track"><div class="slide s1">A</div><div class="slide s2">B</div><div class="slide s3">C</div></div></div>
+<p><button type="button" id="p1">Previous</button> <button type="button" id="n1">Next</button></p>
+<h2 style="margin-top:120px">Staff</h2>
+<div class="car" id="c2" aria-label="Staff"><div class="track"><div class="slide s1">X</div><div class="slide s2">Y</div><div class="slide s3">Z</div></div></div>
+</main>
+<script>
+  // One swipe handler shared by both carousels; only the first has buttons.
+  var start = null, sx = 0;
+  var down = function (e) { start = this; sx = e.clientX; };
+  var up = function (e) { if (start !== this) return; var t = this.querySelector('.track'), n = +(this.dataset.n || 0); if (e.clientX - sx < -50) { n = Math.min(2, n + 1); this.dataset.n = n; t.style.transform = 'translateX(' + (-600 * n) + 'px)'; } start = null; };
+  ['c1', 'c2'].forEach(function (id) { var c = document.getElementById(id); c.addEventListener('pointerdown', down); c.addEventListener('pointerup', up); });
+  var go = function (d) { var c = document.getElementById('c1'), n = Math.max(0, Math.min(2, +(c.dataset.n || 0) + d)); c.dataset.n = n; c.querySelector('.track').style.transform = 'translateX(' + (-600 * n) + 'px)'; };
+  document.getElementById('p1').addEventListener('click', function () { go(-1); });
+  document.getElementById('n1').addEventListener('click', function () { go(1); });
+</script>
+</body>
+</html>

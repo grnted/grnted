@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: the page's own window capture listeners</title></head>
+<body><main><h1>Capture</h1>
+<p><button type="button" id="cap">Load more</button></p>
+</main>
+<script>
+  // Registered before any test code: stops every other listener and leaves the page on any click,
+  // submit or drag start (the guard would hold the navigation, and the test could not be measured).
+  ['click', 'auxclick', 'submit', 'dragstart'].forEach(function (t) {
+    window.addEventListener(t, function (e) { e.stopImmediatePropagation(); location.href = '/x-' + t; }, true);
+  });
+  document.getElementById('cap').addEventListener('mousedown', function () { this.style.outline = '2px solid #036'; });
+</script>
+</body>
+</html>

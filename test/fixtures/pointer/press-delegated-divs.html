@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a document handler and no buttons</title></head>
+<body><main><h1>Cards</h1>
+<div class="card" style="padding:8px;border:1px solid">Science fair</div><div class="card" style="padding:8px;border:1px solid">Book week</div><p id="o">No card open.</p>
+</main>
+<script>document.addEventListener('mousedown', function (e) { var c = e.target.closest && e.target.closest('.card'); if (c) document.getElementById('o').textContent = c.textContent + ' open'; });</script>
+</body>
+</html>

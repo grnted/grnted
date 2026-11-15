@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a loop that moves focus at once, with a named key out</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<main>
+<h1>Colour mixer</h1>
+<p><a href="/guide.html">Mixing guide</a></p>
+<!-- Clean: the two buttons hand focus to each other the moment one loses it, and the page names the key that
+     lets focus go (Ctrl+M: it switches the loop off and puts focus on the link after it). Every stop of the
+     page can be reached, so nothing here is "not testable". -->
+<p>Press Ctrl+M to leave the mixer.</p>
+<button type="button" id="warm">Warmer</button> <button type="button" id="cool">Cooler</button>
+<p><a id="after" href="/swatches.html">Saved swatches</a></p>
+</main>
+<script>
+var looping = false;
+var warm = document.getElementById('warm'), cool = document.getElementById('cool');
+function out(e) { if (e.ctrlKey && (e.key === 'm' || e.code === 'KeyM')) { looping = false; document.getElementById('after').focus(); } }
+warm.addEventListener('focus', function () { looping = true; });
+cool.addEventListener('focus', function () { looping = true; });
+warm.addEventListener('blur', function () { if (looping) cool.focus(); });
+cool.addEventListener('blur', function () { if (looping) warm.focus(); });
+warm.addEventListener('keydown', out);
+cool.addEventListener('keydown', out);
+</script>
+</body>
+</html>

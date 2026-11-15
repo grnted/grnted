@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Allotment waiting list (two steps, with a review of earlier answers)</title></head>
+<body>
+<main>
+<h1>Allotment waiting list</h1>
+<!-- Step two asks to confirm the e-mail address. The first answer is on the page, inside a closed "Review earlier
+     answers" disclosure, where it can be selected and copied: available to select (Understanding 3.3.7). -->
+<form id="allotment" action="/allotment" method="post">
+  <fieldset id="a1"><legend>Step 1: About you</legend>
+    <p><label for="a-name">Full name *</label><br><input id="a-name" name="a-name" autocomplete="name" required></p>
+    <p><label for="a-email">Email *</label><br><input id="a-email" name="email" type="email" autocomplete="email" required></p>
+    <button type="button" id="a-next">Next</button>
+  </fieldset>
+  <fieldset id="a2" hidden><legend>Step 2: Confirm</legend>
+    <details id="a-review"><summary>Review earlier answers</summary><p>Name: <span id="r-name"></span></p><p>Email: <span id="r-email"></span></p></details>
+    <p><label for="a-email2">Confirm email *</label><br><input id="a-email2" name="confirm-email" type="email" autocomplete="off" required></p>
+    <button type="submit">Join the list</button>
+  </fieldset>
+</form>
+</main>
+<script>
+  document.getElementById('a-next').addEventListener('click', () => {
+    const one = document.getElementById('a1');
+    if (![...one.querySelectorAll('input')].every((i) => i.checkValidity())) return;
+    document.getElementById('r-name').textContent = document.getElementById('a-name').value;
+    document.getElementById('r-email').textContent = document.getElementById('a-email').value;
+    one.remove();
+    document.getElementById('a2').hidden = false;
+    document.getElementById('a-email2').focus();
+  });
+</script>
+</body>
+</html>

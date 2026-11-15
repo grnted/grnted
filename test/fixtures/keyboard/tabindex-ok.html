@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: harmless tabindex and two columns</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  .cols { display: flex; gap: 32px; }
+  .cols > * { flex: 1; }
+  .tall { height: 1200px; }
+</style>
+</head>
+<body>
+<!-- Clean control (2.4.3): tabindex="1" on the search box at the top keeps the visual order. -->
+<header><label for="q">Search</label> <input id="q" type="search" tabindex="1"> <a href="/a.html">Home</a></header>
+<!-- Clean control (2.4.3): the main column, then the sidebar beside it, starts again at its top. -->
+<div class="cols">
+  <main><h1>Story</h1><p><a href="/s1.html">First</a></p><div class="tall"></div><p><a href="/s2.html">Last in the story</a></p></main>
+  <aside><h2>Related</h2><p><a href="/r1.html">Related one</a></p><p><a href="/r2.html">Related two</a></p></aside>
+</div>
+</body>
+</html>

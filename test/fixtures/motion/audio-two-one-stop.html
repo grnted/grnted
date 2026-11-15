@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Two background sounds, one Stop button</title></head>
+<body><main>
+<h1>Welcome</h1>
+<audio id="a1" src="tone.wav" autoplay loop></audio>
+<audio id="a2" src="tone.wav" autoplay loop></audio>
+<p><button type="button" id="stop-sound">Stop sound</button></p>
+</main>
+<script>
+document.getElementById('stop-sound').addEventListener('click', function () { document.getElementById('a1').pause(); document.getElementById('a2').pause(); });
+</script>
+</body>
+</html>

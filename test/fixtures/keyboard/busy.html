@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: many kinds of controls</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 0; color: #222; background: #fff; }
+  header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #999; padding: 8px 24px; z-index: 2; }
+  html { scroll-padding-top: 80px; }
+  main { padding: 16px 24px; columns: 3; }
+  main a { display: inline-block; margin: 6px 0; padding: 2px 4px; }
+  /* Clean control (2.4.7, worst case for time): 40 kinds of links whose only focus indicator is a
+     background colour, so every one is measured by pixels. */
+  main a:focus { outline: none; background: #ffdd00; }
+</style>
+</head>
+<body>
+<header><a href="#main">Skip to main content</a> <a href="/home.html">Home</a> <a href="/about.html">About</a></header>
+<main id="main"><h1>Directory</h1></main>
+<script>
+  var main = document.getElementById('main');
+  for (var i = 1; i <= 120; i++) {
+    var p = document.createElement('p');
+    var a = document.createElement('a');
+    a.href = '/entry/' + i + '.html';
+    a.className = 'kind-' + (i % 40);
+    a.textContent = 'Entry ' + i;
+    p.appendChild(a);
+    main.appendChild(p);
+  }
+</script>
+</body>
+</html>

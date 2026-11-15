@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Frame cap named inner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Frame cap named inner</h1>
+<p id="nm-a">Route 12 times</p>
+<h2 id="nm-b">Route 24 times</h2>
+<blockquote id="nm-c">Route 31 times</blockquote>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+window.dataLayer = []; ['nm-a', 'nm-b', 'nm-c'].forEach(function (id) { document.getElementById(id).addEventListener('click', function () { window.dataLayer.push({ event: id }); }); });
+</script>
+</body>
+</html>

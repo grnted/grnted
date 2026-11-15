@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a skip-named submit button inside a form</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .topbar a { margin-right: 12px; }</style></head>
+<body>
+<!-- Planted failure (2.4.1): the only skip-named control would send its form, so it is never pressed and is no skip control; no main landmark, no headings. -->
+<form action="/survey" method="post"><button id="skip-step">Skip this step</button></form>
+<div class="topbar"><a href="/a.html">A</a><a href="/b.html">B</a><a href="/c.html">C</a></div>
+<div class="content"><p>Tell us how we did: the survey takes two minutes and every answer is optional.</p></div>
+</body>
+</html>

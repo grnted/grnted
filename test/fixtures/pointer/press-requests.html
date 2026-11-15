@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: handlers that send requests</title></head>
+<body><main><h1>Requests from press handlers</h1>
+<p><span role="button" tabindex="0" id="submit-down">Search for cats</span></p>
+<form id="f" method="get" action="/search"><input type="hidden" name="q" value="cats"></form>
+<p><button type="button" id="cap">Load more</button></p>
+<p><button type="button" id="get-down">Show the menu</button></p>
+<div id="menu" hidden>Lunch menu.</div>
+<p><button type="button" id="up-doc">Toggle item 3</button></p>
+</main>
+<script>
+  var $ = function (id) { return document.getElementById(id); };
+  // The page's own click listener on window, capture phase, registered before any test code: it stops
+  // every other listener and sends a request for each click.
+  window.addEventListener('click', function (e) { e.stopImmediatePropagation(); fetch('/api/x-click').catch(function () {}); }, true);
+  window.addEventListener('submit', function (e) { e.stopImmediatePropagation(); fetch('/api/x-submit').catch(function () {}); }, true);
+  window.addEventListener('dragstart', function (e) { e.stopImmediatePropagation(); fetch('/api/x-drag').catch(function () {}); }, true);
+  // A GET that changes state, and an image, sent on the down event; the content changes too.
+  $('get-down').addEventListener('mousedown', function () {
+    fetch('/api/session/end').catch(function () {});
+    new Image().src = '/api/pixel?down=1';
+    $('menu').hidden = false;
+  });
+  // The action on the up event, wherever the pointer is (pointer capture).
+  $('up-doc').addEventListener('pointerdown', function (e) { try { this.setPointerCapture(e.pointerId); } catch (x) {} });
+  $('up-doc').addEventListener('pointerup', function () { fetch('/api/items/3/toggle').catch(function () {}); this.textContent = 'Item 3 toggled'; });
+  document.addEventListener('mouseup', function () { new Image().src = '/api/pixel?up=1'; });
+  // A form sent by script from the down event.
+  $('submit-down').addEventListener('mousedown', function () { $('f').submit(); });
+  $('cap').addEventListener('mousedown', function () { this.dataset.pressed = '1'; });
+</script>
+</body>
+</html>

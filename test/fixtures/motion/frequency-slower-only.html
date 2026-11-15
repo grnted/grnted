@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Platform board</title>
+<style>#board { font: 24px sans-serif; padding: .5rem; border: 1px solid #333; width: 420px; }</style></head>
+<body><main>
+<h1>Platform board</h1>
+<p>Trains toward the harbour leave from platform 2.</p>
+<!-- Not decided (2.2.2): a control for how often it updates with no setting that stops it; whether the slowest
+     setting is slow enough is not checked. -->
+<div id="board">Harbour line: 6 min</div>
+<p><label>Update frequency<select id="how"><option value="5000">Every 5 seconds</option><option value="30000">Every 30 seconds</option></select></label></p>
+</main>
+<script>
+  (function () {
+    var n = 0, timer = null, board = document.getElementById('board');
+    function tick() { n++; board.textContent = 'Harbour line: ' + (6 + n % 4) + ' min'; }
+    function set(ms) { clearInterval(timer); timer = setInterval(tick, ms); }
+    set(5000);
+    document.getElementById('how').addEventListener('change', function (e) { set(Number(e.target.value)); });
+  })();
+</script>
+</body>
+</html>

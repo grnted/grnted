@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account</title></head>
+<body><main id="main">
+<h1>Account</h1>
+<p>Your account summary.</p>
+</main>
+<script>
+  // A 15 s time limit: a warning whose word crosses an inline element (round 2, Sol 2).
+  setTimeout(function () {
+    var p = document.createElement('p');
+    p.setAttribute('role', 'alert');
+    p.innerHTML = 'Your session will ex<b>pire</b> soon.';
+    document.getElementById('main').appendChild(p);
+  }, 15000);
+</script>
+</body>
+</html>

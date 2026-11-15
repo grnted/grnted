@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Sound level</title></head>
+<body><main>
+<h1>Sound level</h1>
+<section aria-label="Level" id="level-box">
+  <p>Level: <span id="level">5</span></p>
+  <button type="button" id="down">Decrease level</button> <button type="button" id="up">Increase level</button>
+</section>
+<!-- Clean (2.5.4): Increase and Decrease buttons do what tilting does, and a check box turns tilt off. -->
+<p><label><input type="checkbox" id="tilt-off"> Turn tilt off</label></p>
+</main>
+<script>
+  var level = 5, ready = true;
+  function set(d) { level = Math.max(0, Math.min(10, level + d)); document.getElementById('level').textContent = String(level); }
+  document.getElementById('down').addEventListener('click', function () { set(-1); });
+  document.getElementById('up').addEventListener('click', function () { set(1); });
+  window.addEventListener('deviceorientation', function (e) {
+    var off = document.getElementById('tilt-off');
+    if (off && off.checked) return;
+    if (ready && e.gamma > 25) { set(1); ready = false; } else if (ready && e.gamma < -25) { set(-1); ready = false; } else if (Math.abs(e.gamma) < 10) ready = true;
+  });
+</script>
+</body>
+</html>

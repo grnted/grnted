@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promotion</title>
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; color: #111; background: #fff; }
+main { padding: 8px; max-width: 40px; }
+p { margin: 0 0 12px; }
+#promo { position: fixed; right: 0; top: 64px; width: 256px; height: 128px; box-sizing: border-box; padding: 8px; background: #6a1b9a; color: #fff; z-index: 20; font-size: 13px; }
+#promo.big { top: 0; width: 320px; height: 180px; }
+</style>
+</head>
+<body>
+<!-- A fixed promotion painting about 40% of the 320×256 screen, covering no link. Default: it holds
+     a small inner dialog with an OK button (the promotion itself is not a dialog). ?self=1: the
+     promotion IS the dialog (role dialog, its own Close button). ?grow=1 (with self=1): it grows
+     to about 70% of the screen once the page is scrolled. -->
+<main><h1>Hi</h1>
+<p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p>
+<p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p>
+<p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p><p>Text</p>
+</main>
+<div id="promo"><strong>Summer sale</strong> on school spirit wear.<div id="inner" role="dialog" aria-label="Offer"><button type="button">OK</button></div></div>
+<script>
+var q = new URLSearchParams(location.search);
+var promo = document.getElementById('promo');
+if (q.get('self')) {
+  promo.innerHTML = '<strong>Summer sale</strong> on school spirit wear. <button type="button">Close</button>';
+  promo.setAttribute('role', 'dialog');
+  promo.setAttribute('aria-label', 'Summer sale');
+}
+if (q.get('grow')) addEventListener('scroll', function () { promo.classList.toggle('big', scrollY > 200); });
+</script>
+</body>
+</html>

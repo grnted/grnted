@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Town</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } nav a { margin-right: 16px; }</style>
+</head>
+<body>
+<nav aria-label="Main"><a data-to="">Home</a> <a data-to="rates">Rates</a> <a data-to="board">Board</a></nav>
+<main id="view"></main>
+<script>
+  // One small app, four behaviours by its first path segment:
+  // /good/  sets the title on every page change;  /stale/ only when the page loads;
+  // /mixed/ on every page change except to "rates";  /loads/ lets the browser load each link;
+  // /saves/ is /good/ whose links also save a draft on the server before they change the page;
+  // /slow/ is /good/ that puts the heading in at once and the title 600 ms later;
+  // /portal/ keeps one title, the application's name, on every view;
+  // /pictures/ is /mixed/ whose views each show a picture (a request the test refuses, which changes no title).
+  var seg = location.pathname.split('/')[1];
+  var PAGES = { '': ['Welcome to the town', 'Home | Town'], rates: ['Rates and fees', 'Rates | Town'], board: ['Site wardens list', 'Board | Town'] };
+  [].forEach.call(document.querySelectorAll('nav a'), function (a) { a.href = '/' + seg + '/' + a.getAttribute('data-to'); });
+  function show(first) {
+    var key = location.pathname.split('/')[2] || '';
+    var p = PAGES[key] || ['Not found', 'Not found | Town'];
+    document.getElementById('view').innerHTML = '<h1>' + p[0] + '</h1><p>This page is about ' + p[0].toLowerCase() + '.</p>' + (seg === 'pictures' ? '<img src="/pics/' + (key || 'home') + '.svg" alt="" width="40" height="40">' : '');
+    if (seg === 'portal') { if (first) document.title = 'Town service request portal'; return; }
+    if (seg === 'slow' && !first) { setTimeout(function () { document.title = p[1]; }, 600); return; }
+    if (first || seg === 'good' || seg === 'saves' || ((seg === 'mixed' || seg === 'pictures') && key !== 'rates')) document.title = p[1];
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a');
+    if (!a || a.origin !== location.origin || seg === 'loads') return;
+    e.preventDefault();
+    if (seg === 'saves') fetch('/api/drafts/store?value=' + encodeURIComponent(location.pathname)).catch(function () {});
+    history.pushState({}, '', a.href);
+    show(false);
+  });
+  addEventListener('popstate', function () { show(false); });
+  show(true);
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>main{min-height:3000px}</style><title>Your account</title></head>
+<body>
+<main>
+<h1>Your account</h1>
+<p>Your utility bill is ready. <a href="/account-help.html">Help with your account</a></p>
+</main>
+<!-- A session time-out with no warning and no way to extend it: 1.6 s after load the page signs the visitor out. A real 2.2.1 failure. -->
+<script>addEventListener('load', function () { setTimeout(function () { location.href = '/signed-out.html'; }, 1600); });</script>
+</body>
+</html>

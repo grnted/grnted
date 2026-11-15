@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a press that hangs</title></head>
+<body><main><h1>Hang</h1><p><button id="hang" type="button">Open the gallery</button></p></main>
+<script>document.getElementById('hang').addEventListener('mousedown', function () { for (;;) {} });</script>
+</body>
+</html>

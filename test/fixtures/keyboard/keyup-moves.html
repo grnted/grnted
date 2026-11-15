@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: keyup moves focus a task later</title>
+</head>
+<body>
+<main>
+  <h1>Keyup moves focus a task later</h1>
+  <!-- When Tab lands on "Two", the page's keyup handler moves focus to "Five" in setTimeout(0), and
+       when Shift+Tab lands on "Four", to "One": a walk must measure where focus is after that. -->
+  <p><button type="button" id="b1">One</button> <button type="button" id="b2">Two</button>
+  <button type="button" id="b3">Three</button> <button type="button" id="b4">Four</button>
+  <button type="button" id="b5">Five</button> <button type="button" id="b6">Six</button></p>
+</main>
+<script>
+  document.addEventListener('keyup', function (e) {
+    if (e.key !== 'Tab' && e.key !== 'Shift') return;
+    var a = document.activeElement;
+    if (a && a.id === 'b2' && !e.shiftKey && e.key === 'Tab') setTimeout(function () { document.getElementById('b5').focus(); }, 0);
+    if (a && a.id === 'b4' && e.key === 'Shift') setTimeout(function () { document.getElementById('b1').focus(); }, 0);
+  });
+</script>
+</body>
+</html>

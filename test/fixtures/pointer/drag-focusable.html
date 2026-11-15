@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dragging movements: lists whose items take focus</title>
+<style>
+body{font:16px/1.5 sans-serif;margin:20px}
+.sortlist{list-style:none;padding:0;width:400px}
+.sortlist li{border:1px solid #333;margin:4px 0;padding:8px;background:#f8f8f8}
+</style>
+</head>
+<body>
+<a href="#content">Skip to the content</a>
+<!-- The main content is a focus target (tabindex="-1"), and its first words mention paying and cancelling: neither makes the lists in it controls "named for an action". -->
+<main id="content" tabindex="-1"><h1>Plan your visit</h1>
+<p>You can pay at the desk or cancel a booking by phone. Put the stops below in the order you want to see them.</p>
+
+<h2>Drag, or arrow keys</h2>
+<!-- Items take focus for the arrow keys; a tap or click on one does nothing: no single-pointer way. -->
+<ol class="sortlist" id="keys-only">
+  <li tabindex="0" draggable="true">Welcome table</li><li tabindex="0" draggable="true">Leaf printing</li><li tabindex="0" draggable="true">Ranger talk</li>
+</ol>
+
+<h2>Drag, or the buttons</h2>
+<ol class="sortlist" id="with-buttons">
+  <li tabindex="0" draggable="true">Pond walk <button type="button" class="up">Move up</button> <button type="button" class="down">Move down</button></li>
+  <li tabindex="0" draggable="true">Bird hide <button type="button" class="up">Move up</button> <button type="button" class="down">Move down</button></li>
+  <li tabindex="0" draggable="true">Tree trail <button type="button" class="up">Move up</button> <button type="button" class="down">Move down</button></li>
+</ol>
+
+<h2>Drag, or click one and then another</h2>
+<!-- A click picks an item up, a click on another puts it there: a single-pointer way with no dragging. -->
+<ol class="sortlist" id="click-swap">
+  <li tabindex="0" draggable="true">Bee garden</li><li tabindex="0" draggable="true">Old mill</li><li tabindex="0" draggable="true">Stone bridge</li>
+</ol>
+</main>
+<script>
+  for (var list of document.querySelectorAll('.sortlist')) (function (list) {
+    var drag = null;
+    var picked = null;
+    list.addEventListener('dragstart', function (e) { drag = e.target.closest('li'); });
+    list.addEventListener('dragover', function (e) { e.preventDefault(); });
+    list.addEventListener('drop', function (e) { e.preventDefault(); var t = e.target.closest('li'); if (drag && t && t !== drag) list.insertBefore(drag, t.nextElementSibling); drag = null; });
+    list.addEventListener('keydown', function (e) {
+      var li = e.target.closest('li');
+      if (!li || e.target !== li) return;
+      if (e.key === 'ArrowUp' && li.previousElementSibling) { list.insertBefore(li, li.previousElementSibling); li.focus(); }
+      if (e.key === 'ArrowDown' && li.nextElementSibling) { list.insertBefore(li.nextElementSibling, li); li.focus(); }
+    });
+    list.addEventListener('click', function (e) {
+      var li = e.target.closest('li');
+      if (!li) return;
+      if (e.target.classList.contains('up') && li.previousElementSibling) list.insertBefore(li, li.previousElementSibling);
+      else if (e.target.classList.contains('down') && li.nextElementSibling) list.insertBefore(li.nextElementSibling, li);
+      else if (list.id === 'click-swap') {
+        if (!picked) picked = li;
+        else { if (picked !== li) list.insertBefore(picked, li.nextElementSibling); picked = null; }
+      }
+    });
+  })(list);
+</script>
+</body>
+</html>

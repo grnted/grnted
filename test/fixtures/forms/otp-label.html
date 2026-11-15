@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Confirm (one-time code without autocomplete)</title></head>
+<body>
+<main>
+<h1>Confirm your sign-in</h1>
+<form action="/confirm-code" method="post">
+  <p><label for="ol-code">One-time code</label><br><input id="ol-code" name="c"></p>
+  <p><label for="ol-pin">PIN</label><br><input id="ol-pin" name="the_pin"></p>
+  <p><label for="ol-note">Note</label><br><input id="ol-note" name="note"></p>
+  <button type="submit">Confirm</button>
+</form>
+</main>
+<script>
+  // Test fixture: marks every field anything was ever typed into.
+  document.addEventListener('input', (e) => { e.target.dataset.typed = '1'; }, true);
+</script>
+</body>
+</html>

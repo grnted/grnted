@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Choose a pass (carousel slides with a radio role)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Choose a pass (carousel slides with a radio role)</h1>
+<p>Choose the bus pass you want.</p>
+<div class="slick-slider" role="radiogroup" aria-label="Bus passes"><div class="slick-list"><div class="slick-track"><div class="slick-slide" id="pass-day" role="radio" aria-checked="false" style="display:inline-block;width:180px;padding:8px;border:1px solid #595959">Day pass, $5</div><div class="slick-slide" id="pass-month" role="radio" aria-checked="false" style="display:inline-block;width:180px;padding:8px;border:1px solid #595959">Month pass, $60</div></div></div></div>
+<p id="out">No pass chosen.</p>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+[].forEach.call(document.querySelectorAll('.slick-slide'), function (s) { s.addEventListener('click', function () { [].forEach.call(document.querySelectorAll('.slick-slide'), function (o) { o.setAttribute('aria-checked', String(o === s)); }); document.getElementById('out').textContent = 'Chosen: ' + s.textContent + '.'; }); });
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Event calendar</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+main { padding: 16px 24px; }
+.day { display: inline-block; width: 40px; padding: 6px; border: 1px solid #555; cursor: pointer; text-align: center; }
+iframe { width: 560px; height: 220px; border: 1px solid #888; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+<div class="month"><button class="day" id="d9" type="button">9</button><button class="day" type="button">10</button><button class="day" type="button">11</button></div>
+<p id="events" hidden>Story time at 10 a.m.</p>
+<p><a href="/events.html" target="_top">All events</a> <a href="/hours.html" target="_top">Opening hours</a> <a href="/contact.html" target="_top">Contact</a> <a href="/help.html" target="_top">Help</a></p>
+</main>
+<script>
+document.querySelectorAll('.day').forEach(function (d) { d.addEventListener('click', function () { document.getElementById('events').hidden = false; }); });
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: focus trapped inside a frame</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } iframe { width: 600px; height: 80px; }</style>
+</head>
+<body>
+<main>
+  <h1>Frame</h1>
+  <p><a href="/before.html">Before the frame</a></p>
+  <!-- Not testable (traversal criteria): Tab is held inside the frame, which the test cannot follow. -->
+  <iframe title="Widget" srcdoc="<button id=a>A</button><button id=b>B</button><script>document.addEventListener('keydown',function(e){if(e.key!=='Tab')return;e.preventDefault();(document.activeElement===document.getElementById('a')?document.getElementById('b'):document.getElementById('a')).focus();});</script>"></iframe>
+  <p><a href="/after.html">After the frame</a></p>
+</main>
+</body>
+</html>

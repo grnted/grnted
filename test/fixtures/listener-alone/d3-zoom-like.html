@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Service area</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Service area</h1>
+<p>The district serves the four neighbourhoods drawn below. Their names and populations follow the drawing.</p>
+<svg id="area" xmlns="http://www.w3.org/2000/svg" width="640" height="320" viewBox="0 0 640 320" role="img" aria-label="Drawing of the service area: four neighbourhoods side by side"><rect width="640" height="320" fill="#f4f4f4"/><g id="zoomed"><rect x="20" y="40" width="140" height="240" fill="#9ecae1"/><rect x="170" y="40" width="140" height="240" fill="#6baed6"/><rect x="320" y="40" width="140" height="240" fill="#4292c6"/><rect x="470" y="40" width="150" height="240" fill="#2171b5"/></g></svg>
+<ul><li>Northfield: 4,100 people</li><li>Millbrook: 6,300 people</li><li>Eastgate: 5,200 people</li><li>Harbor: 3,800 people</li></ul>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+// What d3-zoom puts on the element it is called on: wheel, mousedown, dblclick and touch listeners.
+var svg = document.getElementById('area'), k = 1;
+var noop = function () {};
+svg.addEventListener('wheel', function (e) { e.preventDefault(); k = Math.max(1, Math.min(4, k * (e.deltaY < 0 ? 1.1 : 0.9))); document.getElementById('zoomed').setAttribute('transform', 'scale(' + k + ')'); }, { passive: false });
+svg.addEventListener('mousedown', noop);
+svg.addEventListener('dblclick', function () { k = Math.min(4, k * 2); document.getElementById('zoomed').setAttribute('transform', 'scale(' + k + ')'); });
+['touchstart', 'touchmove', 'touchend'].forEach(function (t) { svg.addEventListener(t, noop, { passive: true }); });
+</script>
+</body>
+</html>

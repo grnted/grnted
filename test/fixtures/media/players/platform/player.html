@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fake video player</title>
+<!-- A synthetic stand-in for an embedded video player (Task 4.8 tests). The tests map the real player
+     host names to this local server, so nothing reaches the platform. Its DOM mimics a player's:
+     a large play button, a control bar shown once it plays (pause, captions, settings), a link out
+     to the platform (never to be clicked), a LIVE badge and an error area. The scenario comes from
+     the video id in the address. It draws on a canvas (no media file is ever requested) and sends a
+     tracking beacon (POST) on load and on play, which the request guard stops. -->
+<style>
+  [hidden] { display: none !important; }
+  html, body { margin: 0; background: #000; color: #fff; font: 14px Arial, sans-serif; overflow: hidden; }
+  #movie_player { position: relative; width: 100vw; height: 100vh; }
+  canvas { width: 100%; height: 100%; display: block; }
+  video { position: absolute; left: 0; top: 0; width: 1px; height: 1px; }
+  .ytp-large-play-button { position: absolute; left: 50%; top: 50%; width: 68px; height: 48px; margin: -24px 0 0 -34px; background: #c00; color: #fff; border: 0; }
+  .ytp-chrome-bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 40px; background: rgba(0,0,0,.6); display: flex; gap: 6px; align-items: center; padding: 0 8px; transition: opacity .2s; }
+  .ytp-chrome-bottom.autohide { opacity: 0; }
+  .ytp-chrome-bottom button { background: #333; color: #fff; border: 0; height: 28px; }
+  .ytp-title-link { position: absolute; left: 8px; top: 8px; color: #fff; }
+  .ytp-live-badge { color: #fff; background: #c00; padding: 2px 4px; font-size: 11px; }
+  .ytp-error { position: absolute; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div id="movie_player" class="html5-video-player">
+  <canvas id="screen" width="320" height="180"></canvas>
+  <video class="video-stream html5-main-video"></video>
+  <a class="ytp-title-link" target="_blank" href="/watch?v=ID">Board meeting</a>
+  <button class="ytp-large-play-button" aria-label="Play">&#9654;</button>
+  <div class="ytp-chrome-bottom" hidden>
+    <button class="ytp-play-button" aria-label="Pause (k)">II</button>
+    <button class="ytp-live-badge" disabled style="display:none">Live</button>
+    <button class="ytp-subtitles-button" aria-label="Subtitles/closed captions (c)" style="display:none">CC</button>
+    <div class="ytp-progress-bar" role="slider" aria-label="Seek slider" aria-valuemin="0" aria-valuemax="212" aria-valuenow="0" tabindex="0"></div>
+    <span class="ytp-chapter-chip" style="display:none">Live</span>
+    <button class="ytp-settings-button" aria-label="Settings">&#9881;</button>
+    <button class="ytp-remote-button" aria-label="Play on TV">TV</button>
+    <a class="ytp-youtube-button" href="/watch?v=ID" target="_blank" aria-label="Watch on YouTube">YouTube</a>
+  </div>
+  <div class="ytp-error" hidden></div>
+</div>
+<script>
+(() => {
+  const id = location.pathname.split('/').filter(Boolean).pop();
+  const live = id === 'live_stream' || id.startsWith('live');
+  const S = {
+    captions: ['capsOn0001', 'autoCap001', 'unmute0001', 'liveCap001', 'live_stream', 'slowStart1', 'liveBadge1', 'nested0001', 'chipLive01', 'webAudio01', 'shadowAv01', 'startNoSig1', 'lateLive01'].includes(id),
+    unavailable: id === 'ccUnav0001',
+    never: id === 'never00001',
+    needsPost: id === 'needsPost1',
+    error: id === 'error00001',
+    unmute: id === 'unmute0001',
+    slow: id === 'slowStart1',
+    nested: id === 'nested0001',
+    // Live known only from the LIVE badge (disabled, as players do at the live edge): no player API, no stream.
+    badgeOnly: id === 'liveBadge1',
+    // Review round 1 scenarios.
+    lateCc: id === 'lateCc0001', // the player's data has no caption list; its captions control appears 0.8 s after it starts
+    hoverCc: id === 'hoverCc001', // its captions control shows only once the pointer is over the player (after 0.5 s)
+    chip: id === 'chipLive01', // a small chip that just says "Live" (not a live badge) in an on-demand video
+    webAudio: id === 'webAudio01', // plays its sound through Web Audio
+    shadowAv: id === 'shadowAv01', // a video in a closed shadow root that autoplays with sound
+    noData: id === 'noData0001', // never starts and has no player API; its seek bar stays hidden
+    // Review round 2: it plays, but has no player API and no seek bar, so nothing says live or on demand.
+    noSignal: id === 'startNoSig1' || id === 'lateLive01',
+    lateLive: id === 'lateLive01', // ...and its LIVE badge appears 1.4 s after it started (captions already showing)
+  };
+  if (S.lateCc) window.ytInitialPlayerResponse = { playabilityStatus: { status: 'OK' }, videoDetails: { videoId: id } };
+  const beacon = (what) => { try { navigator.sendBeacon('/youtubei/v1/log_event?alt=json', JSON.stringify({ what, id })); } catch {} };
+  beacon('load');
+  const $ = (s) => document.querySelector(s);
+  if (id === 'startNoSig1' || id === 'lateLive01') $('.ytp-progress-bar')?.remove();
+  const player = $('#movie_player');
+  const video = $('video');
+  const ctx = $('#screen').getContext('2d');
+  // The player's own API, as the real player exposes on its element.
+  if (!S.badgeOnly && !S.noData && !S.noSignal) player.getVideoData = () => ({ video_id: id, isLive: live });
+  player.getOption = (mod, opt) => (mod === 'captions' && opt === 'tracklist' && started
+    ? (id === 'autoCap001' ? [{ kind: 'asr', languageCode: 'en', displayName: 'English (auto-generated)' }] : [])
+    : undefined);
+  let started = false;
+  let t = 0;
+  const draw = () => {
+    t++;
+    ctx.fillStyle = `hsl(${(t * 37) % 360} 70% 40%)`;
+    ctx.fillRect(0, 0, 320, 180);
+    ctx.fillStyle = '#fff';
+    ctx.fillText(`frame ${t}`, 20 + (t * 7) % 240, 90);
+  };
+  draw();
+  const show = () => {
+    started = true;
+    $('.ytp-large-play-button').hidden = true;
+    const bar = $('.ytp-chrome-bottom');
+    bar.hidden = false;
+    if (S.captions) $('.ytp-subtitles-button').style.display = '';
+    if (S.lateCc) setTimeout(() => { $('.ytp-subtitles-button').style.display = ''; }, 800);
+    if (S.hoverCc) player.addEventListener('mousemove', () => setTimeout(() => { $('.ytp-subtitles-button').style.display = ''; }, 500), { once: true });
+    if (S.chip) $('.ytp-chapter-chip').style.display = '';
+    if (S.webAudio) {
+      const ac = new AudioContext();
+      const osc = ac.createOscillator();
+      osc.connect(ac.destination);
+      osc.start();
+      ac.resume().catch(() => {});
+      setTimeout(() => fetch(`/report-audio?state=${ac.state}`).catch(() => {}), 1000);
+    }
+    if (S.shadowAv) {
+      const host = document.createElement('div');
+      document.body.append(host);
+      const root = host.attachShadow({ mode: 'closed' });
+      const v = document.createElement('video');
+      v.autoplay = true;
+      v.addEventListener('playing', () => fetch(`/report-shadow?muted=${v.muted}`).catch(() => {}), { once: true });
+      root.append(v);
+      v.srcObject = $('#screen').captureStream(5);
+    }
+    if (S.unavailable) {
+      const b = $('.ytp-subtitles-button');
+      b.style.display = '';
+      b.setAttribute('aria-label', 'Subtitles/closed captions unavailable');
+      b.disabled = true;
+    }
+    if (live) $('.ytp-live-badge').style.display = '';
+    if (S.lateLive) setTimeout(() => { $('.ytp-live-badge').style.display = ''; }, 1400);
+    // Controls fade out after a moment, as players do (they still count).
+    setTimeout(() => bar.classList.add('autohide'), 1200);
+    player.addEventListener('mousemove', () => bar.classList.remove('autohide'));
+    setInterval(draw, 100);
+    if (live && !S.badgeOnly) {
+      video.srcObject = $('#screen').captureStream(10);
+      video.play().catch(() => {});
+    }
+    if (S.unmute) {
+      // A player that turns its sound on when it starts: the test must keep it muted.
+      video.muted = false;
+      video.volume = 1;
+      fetch(`/report?muted=${video.muted}`).catch(() => {});
+    }
+    if (S.nested) {
+      // A frame the player adds once it plays (as an advert would), which turns its own sound on.
+      const f = document.createElement('iframe');
+      f.src = '/nested.html';
+      f.style.cssText = 'position:absolute;width:1px;height:1px;left:0;top:0;border:0';
+      document.body.append(f);
+    }
+    beacon('play');
+    fetch(`/api/stats/watchtime?docid=${id}&st=0`).catch(() => {});
+  };
+  $('.ytp-large-play-button').addEventListener('click', async () => {
+    if (S.never || S.noData) return;
+    if (S.error) {
+      const e = $('.ytp-error');
+      e.hidden = false;
+      e.textContent = 'Video unavailable';
+      return;
+    }
+    if (S.needsPost) {
+      // Like a player that fetches its video data with a POST: the guard stops it, so it never starts.
+      try {
+        const r = await fetch('/youtubei/v1/player?key=x', { method: 'POST', body: JSON.stringify({ videoId: id }) });
+        if (r.ok) show();
+      } catch {}
+      return;
+    }
+    if (S.slow) setTimeout(show, 1500);
+    else show();
+  });
+})();
+</script>
+</body>
+</html>

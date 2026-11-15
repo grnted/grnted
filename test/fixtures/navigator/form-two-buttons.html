@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact fields next to a search button</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 0; padding: 16px 24px; color: #1a1a1a; background: #fff; }
+.field { margin-bottom: 12px; } label { display: block; }
+input, textarea { font: inherit; padding: 6px; border: 2px solid #767676; width: 280px; } .bad { border-color: #c00; }
+button { font: inherit; padding: 6px 14px; }</style></head>
+<body>
+<main>
+  <h1>Contact the office</h1>
+  <div class="contact-form" id="contact">
+    <div class="field"><label for="name">Your name (required)</label><input id="name" name="name" autocomplete="name"></div>
+    <div class="field"><label for="msg">Message (required)</label><textarea id="msg" name="msg" rows="3"></textarea></div>
+    <button type="button" class="search">Search</button>
+    <button type="button" class="send">Send message</button>
+    <p id="results" aria-live="polite"></p>
+  </div>
+</main>
+<script>
+  // Search writes a message; Send marks empty fields only with a red border (no text says which or why).
+  document.querySelector('.search').addEventListener('click', function () { document.getElementById('results').textContent = 'Nothing found. Please enter your name and your message.'; });
+  document.querySelector('.send').addEventListener('click', function () {
+    ['name', 'msg'].forEach(function (id) { var f = document.getElementById(id); f.classList.toggle('bad', !f.value.trim()); });
+  });
+</script>
+</body></html>

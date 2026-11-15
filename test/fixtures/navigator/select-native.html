@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Native select</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+main { padding: 16px 24px; }
+select { font: inherit; padding: 6px; }
+select:focus-visible { outline: 3px solid #0b57d0; outline-offset: 2px; }
+</style></head>
+<body>
+<main>
+  <h1>Native select</h1>
+  <label for="size">Shirt size</label>
+  <select id="size" name="size">
+    <option value="">Choose a size</option>
+    <option value="s">Small</option>
+    <option value="m">Medium</option>
+    <option value="l">Large</option>
+  </select>
+  <p>Orders are made to measure.</p>
+  <div class="promo" style="cursor: pointer; padding: 12px; border: 1px solid #767676; margin-top: 12px;">
+    <p>Free hemming on every order.</p>
+  </div>
+</main>
+<script>
+  // Analytics: counts clicks anywhere, changes nothing on the page.
+  document.addEventListener('click', function () { window.__clicks = (window.__clicks || 0) + 1; });
+</script>
+</body></html>

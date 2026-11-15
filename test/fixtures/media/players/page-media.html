@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page sound</title>
+<style>body { font: 16px/1.5 Arial, Helvetica, sans-serif; color: #222; background: #fff; margin: 0 24px; } iframe { border: 0; }</style>
+</head>
+<body>
+<main>
+<h1>Page sound</h1>
+<section>
+  <h2>Video</h2>
+  <iframe title="Board meeting video" width="480" height="270" src="http://www.youtube.com/embed/capsOn0001" allow="autoplay; encrypted-media"></iframe>
+</section>
+<script>
+  // The page's own media, unmuted by a script after load: the test keeps it muted.
+  setTimeout(() => {
+    const a = new Audio();
+    a.muted = false;
+    fetch('/report-page?muted=' + a.muted).catch(() => {});
+  }, 300);
+</script>
+</main>
+</body>
+</html>

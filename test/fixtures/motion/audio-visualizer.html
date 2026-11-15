@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Podcast</title></head>
+<body><main>
+<h1>Podcast</h1>
+<h2>Episode 12</h2>
+<audio id="ep" src="tone.wav" autoplay loop controls></audio>
+<canvas id="bars" width="300" height="60" aria-hidden="true"></canvas>
+</main>
+<script>
+var a = document.getElementById('ep'), ctx = new AudioContext(), src = ctx.createMediaElementSource(a), an = ctx.createAnalyser(); src.connect(an); an.connect(ctx.destination);
+</script>
+</body>
+</html>

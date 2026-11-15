@@ -1,0 +1,5 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Event calendar</title><style>body{margin:0;font:16px/1.5 sans-serif;color:#1a1a1a;background:#fff}main{padding:8px}.day{display:inline-block;min-width:44px;min-height:44px;margin:2px;border:1px solid #595959;text-align:center;cursor:pointer}</style></head><body><main><h1 style="font-size:1.1rem;margin:0 0 4px">May</h1>
+<!-- Days a script makes controls: a click handler and a pointer cursor, no role. -->
+<div class="month"><div class="day" id="d4" data-day="4">4</div><div class="day" id="d9" data-day="9">9</div><div class="day" id="d14" data-day="14">14</div></div>
+<p id="day-events">Choose a day to see its events.</p></main>
+<script>[].forEach.call(document.querySelectorAll('.day'),function(d){d.addEventListener('click',function(){document.getElementById('day-events').textContent='May '+d.getAttribute('data-day')+': book fair in the library.';});});</script></body></html>

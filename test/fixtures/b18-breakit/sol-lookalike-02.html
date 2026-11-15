@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Contact preferences</title></head>
+<body><main><h1>Contact preferences</h1>
+<form onsubmit="event.preventDefault()">
+ <section id="one">
+  <label for="work">Work email *</label>
+  <input id="work" type="email" autocomplete="work email" required>
+  <button id="next" type="button">Continue</button>
+ </section>
+ <section id="two" hidden>
+  <label for="home">Home email *</label>
+  <input id="home" type="email" autocomplete="home email" required>
+  <button>Save preferences</button>
+ </section>
+</form></main>
+<script>
+document.getElementById('next').onclick = () => {
+  document.getElementById('one').remove();
+  document.getElementById('two').hidden = false;
+};
+</script></body></html>

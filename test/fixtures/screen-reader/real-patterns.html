@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Patterns from real sites - Riverbend City</title>
+<style>
+body { font: 16px/1.5 Arial, sans-serif; margin: 0 24px; }
+.card { display: block; border: 1px solid #ccc; padding: 8px; margin: 8px 0; color: #0b4f9c; }
+.title { font-size: 22px; font-weight: bold; }
+</style>
+</head>
+<body>
+<!-- Synthetic page reproducing patterns the 2026-11-07 accuracy audit found misread (docs/accuracy-audit-2026-11-07.md). -->
+<header>
+  <p>Translate</p>
+  <select class="goog-te-combo" aria-label="Language Translate Widget"><option value="">Select Language</option><option value="es">Spanish</option></select>
+</header>
+<main>
+  <h1>Services</h1>
+  <h2><a href="/apply">Apply or file</a></h2>
+  <p>Jobs, licenses, financial assistance.</p>
+  <h2>Latest <a href="/news">news and updates</a></h2>
+  <a class="card" href="/billing"><h2 class="title">Utility Billing</h2><span>Pay your water bill online.</span></a>
+  <table>
+    <caption>Ticket prices</caption>
+    <tr><th id="c1">Adult</th><th id="c2">Front seats</th><th id="c3">Rear seats</th></tr>
+    <tr><th id="c4" headers="c1">Obelisks</th><td headers="c1 c2 c4">$20.90</td><td headers="c1 c3 c4">$18.90</td></tr>
+    <tr><th id="c5">Concession</th><td headers="c2"></td><td headers="c3"></td></tr>
+    <tr><th id="c6" headers="c5">Obelisks</th><td headers="c5 c2 c6">$15.90</td><td headers="c5 c3 c6">$12.90</td></tr>
+  </table>
+  <iframe id="frame" title="Submit an ADA concern" width="400" height="200"></iframe>
+  <iframe title="Opening hours" width="400" height="120" srcdoc="&lt;h2&gt;Opening hours&lt;/h2&gt;&lt;p&gt;Monday to Friday, 9 to 5.&lt;/p&gt;"></iframe>
+</main>
+<footer>
+  <nav aria-labelledby="useful"><div id="useful">Useful Links</div><ul><li><a href="/a">Calendar</a></li><li><a href="/b">Jobs</a></li></ul></nav>
+  <nav aria-label="Section"><ul><li><a class="active" href="/services">Home</a></li><li><a href="/x">About</a></li></ul></nav>
+</footer>
+<script>
+// A frame from another site (localhost and 127.0.0.1 are different sites): its content is not in this page's tree.
+const other = location.hostname === 'localhost' ? '127.0.0.1' : 'localhost';
+document.getElementById('frame').src = `${location.protocol}//${other}:${location.port}/form-error.html`;
+</script>
+</body>
+</html>

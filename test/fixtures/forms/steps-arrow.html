@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Compost bin (two steps, an arrow button beside the send button)</title></head>
+<body>
+<main>
+<h1>Compost bin</h1>
+<!-- Step two asks to confirm the e-mail address. The first step is taken out of the page, but step two has a
+     second button beside the one that sends it (an arrow, named in words the test has no list for): it may
+     bring the first step back, in any language. Undecided, never failed. -->
+<form id="compost" action="/compost" method="post">
+  <fieldset id="c1"><legend>About you</legend>
+    <p><label for="c-name">Full name *</label><br><input id="c-name" name="c-name" autocomplete="name" required></p>
+    <p><label for="c-email">Email *</label><br><input id="c-email" name="email" type="email" autocomplete="email" required></p>
+    <button type="button" id="c-next">Next</button>
+  </fieldset>
+  <fieldset id="c2" hidden><legend>Confirm</legend>
+    <p><label for="c-email2">Confirm email *</label><br><input id="c-email2" name="confirm-email" type="email" autocomplete="off" required></p>
+    <button type="button" id="c-before" aria-label="Go to the step before">&larr;</button> <button type="submit">Order the bin</button>
+  </fieldset>
+</form>
+</main>
+<script>
+  const form = document.getElementById('compost');
+  const one = document.getElementById('c1'); const two = document.getElementById('c2');
+  document.getElementById('c-next').addEventListener('click', () => {
+    if (![...one.querySelectorAll('input')].every((i) => i.checkValidity())) return;
+    one.remove();
+    two.hidden = false;
+    document.getElementById('c-email2').focus();
+  });
+  document.getElementById('c-before').addEventListener('click', () => { two.hidden = true; form.prepend(one); });
+</script>
+</body>
+</html>

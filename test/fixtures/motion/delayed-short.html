@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Market notice</title>
+<style>.strip { width: 600px; border: 1px solid #333; } .strip p { margin: 0; padding: 16px; font: 20px sans-serif; } .strip p.in { animation: rise 3s ease-out 1 both; } @keyframes rise { from { transform: translateY(20px); opacity: .3; } to { transform: none; opacity: 1; } } #late { font: 18px sans-serif; }</style></head>
+<body><main>
+<h1>Saturday market</h1>
+<p>The market is open from eight until one on the square.</p>
+<!-- Passes (2.2.2): six seconds after the page opens a notice comes in with a three-second movement that ends,
+     and a line of text is added once. Nothing moves or updates for more than five seconds. -->
+<div class="strip"><p id="note">Stalls on the east side move to the car park this week.</p></div>
+<p id="late"></p>
+</main>
+<script>setTimeout(function () { document.getElementById('note').classList.add('in'); document.getElementById('late').textContent = 'Parking is free until noon.'; }, 6000);</script>
+</body>
+</html>

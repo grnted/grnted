@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Start</title></head>
+<body>
+<main><h1>Start</h1><p id="state">One moment.</p></main>
+<!-- The first time, sends the visitor on to /hb-page.html at once (a new history entry); after that it is the page to go back to. -->
+<script>
+  if (!sessionStorage.getItem('hb')) {
+    sessionStorage.setItem('hb', '1');
+    addEventListener('load', function () { setTimeout(function () { location.href = '/hb-page.html'; }, 100); });
+  } else {
+    document.getElementById('state').innerHTML = 'Welcome back. <a href="/hb-start-only.html">Start over</a>';
+  }
+</script>
+</body>
+</html>

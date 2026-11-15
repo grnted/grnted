@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cards page</title>
+<style>
+  body { margin: 0; font: 16px/1.5 sans-serif; }
+  /* One small target at the top (a logo link, no visible text) and two big cards far down: they can't share one clip. */
+  a.logo { display: block; margin: 20px 24px; width: 200px; height: 60px; background: #00ffff; }
+  .spacer { height: 1800px; }
+  .cards { display: flex; gap: 40px; margin-left: 100px; }
+  a.card { display: block; width: 380px; height: 500px; background: #ffff00; color: #000; }
+</style></head>
+<body><main>
+<a class="logo" id="logo" href="/" aria-label="Home"></a>
+<h1>Cards page</h1>
+<div class="spacer"></div>
+<div class="cards">
+  <a class="card" id="card1" href="/a" aria-label="School one">North school</a>
+  <a class="card" id="card2" href="/b" aria-label="School two">South school</a>
+</div>
+<p>End of the page.</p>
+</main></body>
+</html>

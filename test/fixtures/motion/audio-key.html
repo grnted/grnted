@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<audio id="music" src="tone.wav" autoplay loop></audio>
+<p>Press M to mute the music.</p>
+</main>
+<script>
+document.addEventListener('keydown', function (e) { if (e.key === 'm') document.getElementById('music').muted = true; });
+</script>
+</body>
+</html>

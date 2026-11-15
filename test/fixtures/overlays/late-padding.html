@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Translate widget that makes room for itself late</title>
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; color: #111; background: #fff; }
+main { padding: 8px; }
+p { margin: 0 0 12px; }
+footer { padding: 8px 8px 10px; }
+/* The page makes room under its last link for the floating widget, but only once a script has
+   marked the widget as running (`?late=` ms after the page loaded): until then the widget covers
+   that link wherever the page is scrolled. */
+body.widget-active footer { padding-bottom: 60px; }
+.widget { position: fixed; right: 20px; bottom: 0; z-index: 1000; }
+.widget button { display: block; width: 134px; height: 39px; border: 0; background: #ff00ff; color: #000; font: 16px sans-serif; }
+</style>
+</head>
+<body>
+<main><h1>Welcome</h1>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age.</p>
+</main>
+<footer><a id="powered" href="/about" style="display:inline-block;margin-left:150px">Powered by a site builder</a></footer>
+<div class="widget"><button type="button" aria-label="English">English</button></div>
+<script>
+  const late = Number(new URLSearchParams(location.search).get('late') ?? 0);
+  const mark = () => document.body.classList.add('widget-active');
+  if (late) addEventListener('load', () => setTimeout(mark, late)); else mark();
+  // ?slowafter=K&slow=N: after K scroll events every scroll takes N ms (a page that gets slow, so a
+  // later sweep runs out of time). The count is kept for the test (window.__scrolls).
+  const slowAfter = Number(new URLSearchParams(location.search).get('slowafter') ?? -1);
+  const slow = Number(new URLSearchParams(location.search).get('slow') ?? 0);
+  window.__scrolls = 0;
+  addEventListener('scroll', () => {
+    window.__scrolls++;
+    if (slowAfter >= 0 && window.__scrolls > slowAfter) { const t = performance.now(); while (performance.now() - t < slow) { /* busy */ } }
+  });
+</script>
+</body>
+</html>

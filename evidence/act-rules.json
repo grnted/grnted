@@ -1,0 +1,65 @@
+{
+ "about": "W3C Accessibility Conformance Testing (ACT) rules: agreement with the published expected outcomes of the pinned test cases, per rule, as in the W3C implementation reports. Not yet submitted to the W3C.",
+ "rules": 58,
+ "testCases": 865,
+ "engineDate": "2026-11-11",
+ "rows": [
+  {
+   "tool": "Granted (core tests, engine 7dfaebac)",
+   "consistent": 33,
+   "partial": 5,
+   "listed": 38,
+   "blockedByFalsePositive": 6,
+   "notDetected": 14
+  },
+  {
+   "tool": "Granted (full tests, engine 7dfaebac)",
+   "consistent": 33,
+   "partial": 5,
+   "listed": 38,
+   "blockedByFalsePositive": 7,
+   "notDetected": 13
+  },
+  {
+   "tool": "axe-core",
+   "consistent": 23,
+   "partial": 2,
+   "listed": 25,
+   "blockedByFalsePositive": 5,
+   "notDetected": 28
+  },
+  {
+   "tool": "Siteimprove Alfa",
+   "consistent": 20,
+   "partial": 1,
+   "listed": 21,
+   "blockedByFalsePositive": 12,
+   "notDetected": 25
+  },
+  {
+   "tool": "QualWeb",
+   "consistent": 19,
+   "partial": 2,
+   "listed": 21,
+   "blockedByFalsePositive": 15,
+   "notDetected": 22
+  },
+  {
+   "tool": "IBM Equal Access",
+   "consistent": 9,
+   "partial": 0,
+   "listed": 9,
+   "blockedByFalsePositive": 22,
+   "notDetected": 27
+  },
+  {
+   "tool": "Pa11y (axe runner)",
+   "consistent": 19,
+   "partial": 1,
+   "listed": 20,
+   "blockedByFalsePositive": 11,
+   "notDetected": 27
+  }
+ ],
+ "generated": "2026-11-15"
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plot plan</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+button { font: inherit; padding: 6px 12px; }
+.tile { display: inline-block; padding: 8px 14px; border: 2px solid #1d4d3f; border-radius: 4px; background: #e7f2ee; cursor: pointer; }
+.tile:focus { outline: 3px solid #0b57d0; outline-offset: 2px; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header><a href="/">Marsh Lane Allotments</a> <a href="/about.html">About</a></header>
+<main>
+<h1>Plot plan</h1>
+<!-- Fails 2.1.1: each click shows the next tip; the click cannot be taken back, but it works again and again, and F2, the key the tile names, does nothing wherever it is tried. -->
+<p><span class="tile" role="button" tabindex="0" id="tile" aria-keyshortcuts="F2">Next growing tip</span></p>
+<p id="hint"></p>
+<p id="plan">Tip 1: water early in the day.</p>
+<p id="other"></p>
+</main>
+<footer><a href="/contact.html">Contact</a></footer>
+<script>
+var plan = document.getElementById('plan');
+var n = 1;
+var TIPS = ['water early in the day.', 'net the brassicas.', 'turn the compost.', 'sow beans in May.', 'lift the onions dry.', 'mulch before frost.', 'label every row.', 'rest one bed a year.'];
+function flip() { n++; plan.textContent = 'Tip ' + n + ': ' + TIPS[(n - 1) % TIPS.length]; }
+document.getElementById('tile').addEventListener('pointerup', flip);
+
+</script>
+</body>
+</html>

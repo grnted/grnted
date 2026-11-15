@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<audio id="music" src="tone.wav" autoplay loop></audio>
+<label for="vol">Level</label> <input type="range" id="vol" min="0" max="1" step="0.1" value="1">
+</main>
+<script>
+document.getElementById('vol').addEventListener('input', function () { document.getElementById('music').volume = Number(this.value); });
+</script>
+</body>
+</html>

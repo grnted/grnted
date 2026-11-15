@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Pay a fee</title></head>
+<body>
+<main>
+<h1>Pay the field trip fee</h1>
+<p>The fee is $25. Your card is charged when you press Pay now.</p>
+<form action="/fees" method="post">
+  <p><label for="cc-name">Name on card</label><br><input id="cc-name" name="ccname" autocomplete="cc-name" required></p>
+  <p><label for="cc-num">Card number</label><br><input id="cc-num" name="cardnumber" autocomplete="cc-number" inputmode="numeric" required></p>
+  <p><label for="cc-exp">Expiry date</label><br><input id="cc-exp" name="exp" autocomplete="cc-exp" required></p>
+  <p><label for="cc-csc">Security code</label><br><input id="cc-csc" name="cvc" autocomplete="cc-csc" required></p>
+  <button type="submit">Pay now</button>
+  <p><label for="cc-pan">PAN</label><br><input id="cc-pan" name="pan"></p>
+</form>
+</main>
+<script>
+  // Test fixture: marks every field anything was ever typed into.
+  document.addEventListener('input', (e) => { e.target.dataset.typed = '1'; }, true);
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carousel with buttons</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+main { padding: 16px 24px; }
+.carousel { width: 640px; height: 280px; overflow: hidden; position: relative; touch-action: pan-y; }
+.track { display: flex; height: 100%; transition: none; }
+.slide { flex: 0 0 640px; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #fff; }
+.s1 { background: #0b57d0; } .s2 { background: #1e7a3c; } .s3 { background: #8a1c1c; }
+.controls { margin-top: 8px; display: flex; gap: 8px; }
+button { font: inherit; padding: 6px 12px; }
+button:focus-visible { outline: 3px solid #0b57d0; outline-offset: 2px; }
+</style></head>
+<body>
+<main>
+  <h1>Carousel with buttons</h1>
+  <div class="carousel" aria-roledescription="carousel" aria-label="Highlights">
+    <div class="track" id="track">
+      <div class="slide s1" aria-roledescription="slide">Science fair winners</div>
+      <div class="slide s2" aria-roledescription="slide">New library hours</div>
+      <div class="slide s3" aria-roledescription="slide">Spring concert</div>
+    </div>
+  </div>
+  <div class="controls">
+    <button type="button" id="prev">Previous slide</button>
+    <button type="button" id="next">Next slide</button>
+  </div>
+</main>
+<script>
+  var track = document.getElementById('track'), index = 0, startX = null;
+  function go(i) { index = Math.max(0, Math.min(2, i)); track.style.transform = 'translateX(' + (-640 * index) + 'px)'; }
+  function down(x, t) { if (t.closest && t.closest('.carousel')) startX = x; }
+  function up(x) { if (startX === null) return; var dx = x - startX; startX = null; if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1)); }
+  document.addEventListener('pointerdown', function (e) { down(e.clientX, e.target); });
+  document.addEventListener('pointermove', function () {});
+  document.addEventListener('pointerup', function (e) { up(e.clientX); });
+  document.addEventListener('touchstart', function (e) { down(e.touches[0].clientX, e.target); }, { passive: true });
+  document.addEventListener('touchmove', function () {}, { passive: true });
+  document.addEventListener('touchend', function (e) { up(e.changedTouches[0].clientX); });
+  document.getElementById('prev').addEventListener('click', function () { go(index - 1); });
+  document.getElementById('next').addEventListener('click', function () { go(index + 1); });
+</script>
+</body></html>

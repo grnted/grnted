@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: seven controls under one document handler</title></head>
+<body><main><h1>Seven</h1><p>
+<button type="button" id="b1">Option 1</button>
+<button type="button" id="b2">Option 2</button>
+<button type="button" id="b3">Option 3</button>
+<button type="button" id="b4">Option 4</button>
+<button type="button" id="b5">Option 5</button>
+<button type="button" id="b6">Option 6</button>
+<button type="button" id="b7" class="reveal">Option 7</button></p><div id="panel" hidden>Panel seven.</div></main>
+<script>document.addEventListener('mousedown', function (e) { if (e.target.closest && e.target.closest('.reveal')) document.getElementById('panel').hidden = false; });</script>
+</body></html>

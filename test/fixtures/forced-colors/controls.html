@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Icon buttons and custom checkboxes</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .row { display: flex; gap: 24px; align-items: center; margin: 0 0 24px; }
+  .blue { width: 44px; height: 44px; border: 0; background: #0b4fb3; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .plain { width: 44px; height: 44px; border: 0; background: transparent; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .mask { width: 24px; height: 24px; display: inline-block; background-color: #0b4fb3; -webkit-mask: url(icon.svg) center / 20px no-repeat; mask: url(icon.svg) center / 20px no-repeat; }
+  .bg-icon { background: transparent url(icon.svg) center / 20px no-repeat; }
+  .bg-ringed { background: transparent url(ringed.svg) center / 20px no-repeat; }
+  .keep { forced-color-adjust: none; }
+  .box-fill { appearance: none; width: 22px; height: 22px; margin: 0; border: 0; background: #0b4fb3; }
+  .box-edge { appearance: none; width: 22px; height: 22px; margin: 0; border: 2px solid #595959; background: #fff; }
+  .field-fill { font: inherit; border: 0; background: #b0b0b0; padding: 8px; width: 200px; }
+  .field-edge { font: inherit; border: 2px solid #595959; background: #fff; padding: 8px; width: 200px; }
+  @media (forced-colors: active) { .fixed path { fill: ButtonText; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Controls</h1>
+<!-- Disappear in a contrast theme -->
+<div class="row">
+  <button id="c-white-svg" class="blue" aria-label="Search"><svg width="22" height="22" aria-hidden="true"><path d="M2 2h18v18H2z" fill="#ffffff"/></svg></button>
+  <button id="c-black-svg" class="plain" aria-label="Menu"><svg width="22" height="22" aria-hidden="true"><path d="M2 2h18v18H2z" fill="#000000"/></svg></button>
+  <a id="c-mask" href="#top" aria-label="Home"><span class="mask"></span></a>
+  <input id="c-box-fill" class="box-fill" type="checkbox" aria-label="Subscribe">
+  <button id="c-bg-black" class="plain bg-icon" aria-label="Print page"></button>
+  <input id="c-field-fill" class="field-fill" type="text" aria-label="Your name">
+</div>
+<!-- Stay visible in a contrast theme -->
+<div class="row">
+  <button id="ok-current" class="blue" aria-label="Close" style="color:#fff"><svg width="22" height="22" aria-hidden="true"><path d="M2 2h18v18H2z" fill="currentColor"/></svg></button>
+  <button id="ok-fixed" class="blue fixed" aria-label="Share"><svg width="22" height="22" aria-hidden="true"><path d="M2 2h18v18H2z" fill="#ffffff"/></svg></button>
+  <button id="ok-keep" class="blue keep" aria-label="Print"><svg width="22" height="22" aria-hidden="true"><path d="M2 2h18v18H2z" fill="#ffffff"/></svg></button>
+  <button id="ok-bg" class="plain bg-ringed" aria-label="Download"></button>
+  <button id="ok-img" class="plain" aria-label="Help"><img src="ringed.svg" alt="" width="20" height="20"></button>
+  <input id="ok-box-edge" class="box-edge" type="checkbox" aria-label="Remember me">
+  <input id="ok-field-edge" class="field-edge" type="text" aria-label="Your email">
+</div>
+</main>
+</body>
+</html>

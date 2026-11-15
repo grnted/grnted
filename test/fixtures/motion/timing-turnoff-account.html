@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Your account</title></head>
+<body><main>
+<h1>Your account</h1>
+<p>You are signed out after 30 seconds without activity.</p>
+<p><button type="button" id="off">Turn off automatic sign-out for this account</button></p>
+</main>
+<script>
+  var t = setTimeout(() => location.href = '/login', 30000);
+  document.getElementById('off').addEventListener('click', function () { clearTimeout(t); });
+</script>
+</body>
+</html>

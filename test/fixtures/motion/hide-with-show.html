@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Market notice</title>
+<style>.strip { width: 600px; height: 60px; overflow: hidden; border: 1px solid #333; } .strip p { margin: 0; padding: 16px; white-space: nowrap; font: 20px sans-serif; } .strip p.go { animation: slide 9s linear infinite; } @keyframes slide { from { transform: translateX(600px); } to { transform: translateX(-100%); } }</style></head>
+<body><main>
+<h1>Saturday market</h1>
+<p>The market is open from eight until one on the square.</p>
+<!-- Passes (2.2.2): Hide takes the scrolling notice away for good. A short "hidden" message goes away by a
+     timer four seconds later, and only the Show button brings the notice back. -->
+<div class="strip" id="strip"><p id="note" class="go">Stalls on the east side move to the car park this week.</p></div>
+<button type="button" id="hide">Hide notice</button>
+<button type="button" id="show" hidden>Show notice</button>
+<p id="said" role="status"></p>
+</main>
+<script>
+  (function () {
+    var strip = document.getElementById('strip'), said = document.getElementById('said'), show = document.getElementById('show');
+    document.getElementById('hide').addEventListener('click', function () {
+      strip.hidden = true; show.hidden = false; said.textContent = 'Notice hidden.';
+      setTimeout(function () { said.textContent = ''; }, 4000);
+    });
+    show.addEventListener('click', function () { strip.hidden = false; show.hidden = true; });
+  })();
+</script>
+</body>
+</html>

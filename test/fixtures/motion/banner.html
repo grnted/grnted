@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Scrolling banner without a stop control</title>
+<style>
+  .ticker { width: 700px; overflow: hidden; border: 1px solid #333; }
+  .ticker p { margin: 0; padding: 1rem; white-space: nowrap; font: 20px sans-serif; animation: scroll 8s linear infinite; }
+  @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+  .intro { animation: fadein .6s ease-out 1; }
+  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+</style></head>
+<body><main>
+<h1 class="intro">Announcements</h1>
+<div class="ticker"><p>School closes early on Wednesday for staff training. Buses leave at 1 pm.</p></div>
+<p>Other content next to the banner.</p>
+</main></body>
+</html>

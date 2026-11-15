@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Scrolling banner without a stop control, met mostly outside its box</title>
+<style>
+  /* The same ticker, 7 s into its 8 s cycle when the test first looks: the text is then mostly
+     outside its box, so its own box and the region seen changing on screen hardly overlap. */
+  .ticker { width: 700px; overflow: hidden; border: 1px solid #333; }
+  .ticker p { margin: 0; padding: 1rem; white-space: nowrap; font: 20px sans-serif; animation: scroll 8s linear infinite; animation-delay: -7s; }
+  @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+  .intro { animation: fadein .6s ease-out 1; }
+  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+</style></head>
+<body><main>
+<h1 class="intro">Announcements</h1>
+<div class="ticker"><p>School closes early on Wednesday for staff training. Buses leave at 1 pm.</p></div>
+<p>Other content next to the banner.</p>
+</main></body>
+</html>

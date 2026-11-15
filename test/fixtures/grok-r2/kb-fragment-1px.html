@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 2: focus moved to a 1 px target of an ordinary in-page link</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<main><h1>Report</h1>
+<!-- 2.4.3 failure: Tab to the first link moves focus to a 1x1 px box that only a footnote link points at (no skip link). -->
+<p><a href="#note1" id="go">See note 1</a></p>
+<p>Text of the report.</p><div id="note1" tabindex="-1" style="width:1px;height:1px;overflow:hidden"></div>
+<p><a href="/a.html">A</a> <a href="/b.html">B</a></p></main>
+<script>document.getElementById('go').addEventListener('focus', function () { document.getElementById('note1').focus(); });</script>
+</body>
+</html>

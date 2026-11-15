@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Player behind a cookie notice</title>
+<style>body { font: 16px/1.5 Arial, Helvetica, sans-serif; color: #222; background: #fff; margin: 0 24px; } iframe { border: 0; }</style>
+</head>
+<body>
+<main>
+<h1>Player behind a cookie notice</h1>
+<section>
+  <h2>Video</h2>
+  <iframe title="Video" width="480" height="270" data-src="http://www.youtube.com/embed/capsOn0001"></iframe>
+  <p>This video loads after you accept cookies.</p>
+</section>
+<div role="dialog" aria-label="Cookie consent" style="position: fixed; left: 0; right: 0; bottom: 0; background: #eee; padding: 16px">
+  <p>We use cookies to show embedded videos.</p>
+  <button type="button" id="accept">Accept all</button>
+</div>
+<script>
+  document.getElementById('accept').addEventListener('click', () => {
+    fetch('/consent-accepted').catch(() => {});
+    const f = document.querySelector('iframe');
+    f.src = f.dataset.src;
+  });
+</script>
+</main>
+</body>
+</html>

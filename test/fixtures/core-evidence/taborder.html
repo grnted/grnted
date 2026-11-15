@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Tab order</title>
+<style>body { margin: 0; font: 16px/1.5 Arial, sans-serif; } main { padding: 16px 24px; } .gap { height: 1500px; }
+#jump { background: #ff8800; color: #000; border: 0; width: 220px; height: 40px; font: inherit; }</style></head>
+<body><main>
+  <h1>Tab order</h1>
+  <p><a href="#one">First link</a> <a href="#two">Second link</a> <a href="#three">Third link</a></p>
+  <div class="gap"></div>
+  <button id="jump" tabindex="1" type="button">Jumps first</button>
+  <p><a href="#four">Last link</a></p>
+</main></body>
+</html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: names that perform an action</title></head>
+<body><main><h1>Account</h1>
+<p><button type="button" id="n1">Sign off</button> <button type="button" id="n2">Log me out</button> <button type="button" id="n3">sign-off</button></p>
+<p><button type="button" id="n4"><span aria-label="Log out">⎋</span></button> <input type="image" id="n5" alt="Pay" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" width="40" height="20"></p>
+<p><button type="button" id="n6">End session</button> <button type="button" id="n7">Close account</button> <button type="button" id="n8">Deactivate</button></p>
+<p id="signed">You are signed in.</p>
+</main>
+<script>
+  ['n1', 'n2', 'n3', 'n4', 'n5', 'n6', 'n7', 'n8'].forEach(function (id) {
+    // Pressing any of them would hide the notice (a failure the test would measure) and tell the server.
+    document.getElementById(id).addEventListener('mousedown', function () { fetch('/api/pressed-' + id).catch(function () {}); document.getElementById('signed').hidden = true; });
+  });
+</script>
+</body>
+</html>

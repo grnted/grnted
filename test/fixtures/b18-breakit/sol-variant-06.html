@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Permit application</title></head>
+<body><main><h1>Permit application</h1>
+<form onsubmit="event.preventDefault()">
+ <section id="one">
+  <label for="email">Contact email *</label>
+  <input id="email" type="email" autocomplete="email" required>
+  <div id="questions"></div>
+  <button id="next" type="button">Continue</button>
+ </section>
+ <section id="two" hidden>
+  <label for="repeat">Contact email again *</label>
+  <input id="repeat" type="email" autocomplete="email" required>
+  <button>Send application</button>
+ </section>
+</form></main>
+<script>
+document.getElementById('questions').innerHTML = Array.from({length:29}, (_,i) =>
+  '<p><label for="detail'+i+'">Project detail '+(i+1)+'</label> ' +
+  '<input id="detail'+i+'"></p>').join('');
+document.getElementById('next').onclick = () => {
+  document.getElementById('one').hidden = true;
+  document.getElementById('two').hidden = false;
+};
+</script></body></html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Seed list</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } button { font: inherit; padding: 6px 12px; }</style>
+</head>
+<body>
+<main>
+<h1>Seed list</h1>
+<p>Twelve kinds of seed are in the shed this spring.</p>
+<!-- A press here must never save a file: the button builds the list in the page and clicks a download link it
+     made itself, so no request ever passes the request guard. "Sheet" does the same from inside a frame. -->
+<p><button type="button" id="export">Export the seed list</button> <span role="button" tabindex="0" id="sheet" style="display:inline-block;padding:6px 12px;border:1px solid #333">Make a sheet of the list</span></p>
+<iframe id="helper" title="Sheet helper" srcdoc="<p>Sheet helper</p>" style="width:1px;height:1px;border:0"></iframe>
+</main>
+<script>
+  var rows = 'kind,packets\nbeans,14\npeas,9\n';
+  document.getElementById('export').addEventListener('click', function () {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([rows], { type: 'text/csv' }));
+    a.download = 'seed-list.csv';
+    a.click();
+  });
+  function sheet() {
+    var d = document.getElementById('helper').contentDocument;
+    var a = d.createElement('a');
+    a.href = URL.createObjectURL(new Blob([rows], { type: 'text/csv' }));
+    a.download = 'seed-sheet.csv';
+    d.body.appendChild(a);
+    a.click();
+  }
+  document.getElementById('sheet').addEventListener('click', sheet);
+  document.getElementById('sheet').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sheet(); } });
+</script>
+</body>
+</html>

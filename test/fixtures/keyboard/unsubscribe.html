@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a page whose address looks like an action</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Email settings</h1>
+  <a href="/before.html">Before the widget</a>
+  <!-- The address says "unsubscribe": the test must not load it again. A trap (needs a reload after the
+       escape attempts) and an "s" shortcut (needs reloads between keys). -->
+  <div id="widget" role="group" aria-label="Date picker"><button type="button">Previous month</button> <button type="button">Next month</button></div>
+  <p><a href="/after.html">After the widget</a></p>
+  <div id="slot"></div>
+</main>
+<script>
+  var w = document.getElementById('widget');
+  w.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    var b = Array.prototype.slice.call(w.querySelectorAll('button'));
+    b[(b.indexOf(document.activeElement) + 1) % b.length].focus();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 's' || document.getElementById('found')) return;
+    var p = document.createElement('p'); p.id = 'found'; p.textContent = 'Search opened'; document.getElementById('slot').appendChild(p);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Newsletter</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .bad { border: 2px solid #b00020; } .err { color: #a00000; } .toast { position: fixed; right: 12px; bottom: 12px; background: #223; color: #fff; padding: 8px 12px; } .hidden { display: none; }</style></head>
+<body>
+<main><h1>Newsletter</h1>
+<form id="n"><label for="nm">Your name</label><input id="nm" required>
+<label for="em">Email address</label><input id="em" type="email" required>
+<p><button type="submit">Join</button></p><p id="r"></p></form>
+</main>
+
+<script>
+
+window.cb = () => { document.getElementById('r').textContent = 'Thanks, you are subscribed.'; };
+document.getElementById('n').addEventListener('submit', (e) => { e.preventDefault();
+  const s = document.createElement('script'); s.src = '/aw-jsonp?callback=cb&em=' + encodeURIComponent(document.getElementById('em').value);
+  s.onerror = () => { document.getElementById('r').textContent = 'Could not connect, please try again.'; }; document.body.appendChild(s); });
+</script>
+</body></html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join the library | Riverbend Library</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+  header, main, footer { padding: 16px 24px; }
+  nav ul { list-style: none; display: flex; gap: 16px; padding: 0; margin: 0; }
+  a { color: #0b4f9c; }
+  table { border-collapse: collapse; }
+  th, td { border: 1px solid #555; padding: 4px 8px; text-align: left; }
+  label { display: block; margin-top: 8px; }
+  button { margin-top: 8px; padding: 6px 12px; }
+  .icon { width: 20px; height: 20px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<header>
+  <a href="/">Riverbend Library</a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="/visit.html">Visit</a></li>
+      <li><a href="/events.html">Events</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+<h1>Join the library</h1>
+<p>Membership is free.</p>
+<form action="/join" method="post" novalidate aria-label="Join">
+  <label for="name">Full name</label>
+  <input id="name" name="name">
+  <button type="submit">Join</button>
+</form>
+<script>
+document.querySelector('form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = document.getElementById('name');
+  if (!name.value && !document.querySelector('.error')) {
+    const p = document.createElement('p');
+    p.className = 'error';
+    p.style.color = '#b00020';
+    p.textContent = 'This cannot be empty';
+    name.after(p);
+  }
+});
+</script>
+</main>
+<footer><p>Riverbend Library, 12 Mill Street</p></footer>
+</body>
+</html>

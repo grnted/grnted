@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a dialog on a timer</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+
+</style>
+</head>
+<body>
+<main>
+  <h1>Garden notes</h1>
+  <a href="/a.html">One</a> <a href="/b.html">Two</a> <a href="/c.html">Three</a> <a href="/d.html">Four</a> <a href="/e.html">Five</a> <a href="/f.html">Six</a>
+  <a href="/g.html">Seven</a> <a href="/h.html">Eight</a> <a href="/i.html">Nine</a> <a href="/j.html">Ten</a> <a href="/k.html">Eleven</a> <a href="/l.html">Twelve</a>
+  <dialog id="news" aria-label="Newsletter"><p>Get the newsletter.</p><button type="button" id="no">No thanks</button></dialog>
+</main>
+<script>
+setTimeout(function () { document.getElementById('news').showModal(); }, 1600);
+document.getElementById('no').addEventListener('click', function () { document.getElementById('news').close(); });
+</script>
+</body>
+</html>

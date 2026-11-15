@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Background writes: a hover that adds to the bag</title>
+<style>body{margin:0;font:1rem/1.4 sans-serif;color:#1a1a1a;background:#fff} main{padding:1rem} #tip{position:absolute;background:#1a1a1a;color:#fff;padding:.5rem} #tip[hidden]{display:none}</style></head>
+<body><main><h1>School store</h1><p><button type="button" id="hoodie">Hoodie</button></p><div id="tip" hidden></div><p>Pick up orders at the front office.</p></main>
+<script>
+  (function () {
+    var btn = document.getElementById('hoodie'), tip = document.getElementById('tip');
+    // Hovering the item adds it to the bag with a GET, and shows the bag's answer as a tooltip.
+    btn.addEventListener('mouseover', function () {
+      fetch('/bag/add?sku=1').then(function (r) { return r.text(); }).then(function (t) { tip.textContent = 'Added: ' + t.slice(0, 40); tip.hidden = false; }).catch(function () {});
+    });
+    btn.addEventListener('mouseleave', function () { tip.hidden = true; });
+  })();
+</script>
+</body>
+</html>

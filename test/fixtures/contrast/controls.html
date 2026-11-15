@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Form fields and icon buttons</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .row { display: flex; gap: 24px; align-items: center; margin: 0 0 16px; padding: 8px; }
+  label { display: block; font-size: 14px; }
+  input, select, textarea { font: inherit; }
+  .dark { background: #333333; color: #fff; }
+  .grey { background: #f0f0f0; }
+  .styled { border: 1px solid #ddd; background: #fff; padding: 6px 8px; border-radius: 4px; }
+  .bs { border: 1px solid #ced4da; background: #fff; padding: 6px 12px; border-radius: 6px; }
+  .fill-fail { border: 0; background: #eeeeee; padding: 8px; }
+  .select-fail { appearance: none; border: 1px solid #e0e0e0; background: #fff; padding: 6px 28px 6px 8px; }
+  .box-fail { appearance: none; width: 18px; height: 18px; border: 1px solid #dddddd; background: #fff; margin: 0; }
+  .ok-border { border: 1px solid #767676; background: #fff; padding: 6px 8px; }
+  .bottom { border: 0; border-bottom: 2px solid #595959; background: transparent; padding: 6px 2px; }
+  .fill-ok { border: 0; background: #e8e8e8; padding: 8px; }
+  .unmarked { border: 0; background: transparent; padding: 6px; }
+  .ring { border: 0; box-shadow: 0 0 0 1px #767676; background: #fff; padding: 6px 8px; }
+  .icon-btn { width: 40px; height: 40px; border: 0; background: #fff; padding: 8px; display: inline-flex; align-items: center; justify-content: center; }
+  .star::before { content: "\2605"; font-size: 22px; color: #dddddd; }
+  .star { text-decoration: none; display: inline-block; width: 32px; height: 32px; text-align: center; }
+  .masked { width: 40px; height: 40px; border: 0; background: #cccccc; -webkit-mask: url(icon-dark.svg) center / 20px no-repeat; mask: url(icon-dark.svg) center / 20px no-repeat; }
+  .bg-icon { background: #fff url(icon-dark.svg) center / 20px no-repeat; }
+  .with-text { display: inline-flex; gap: 6px; align-items: center; border: 1px solid #767676; background: #fff; padding: 6px 10px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+</head>
+<body>
+<main>
+  <form action="#" onsubmit="return false">
+  <h1>Form fields</h1>
+  <div class="row">
+    <label>Name <input id="f-light-border" class="styled" type="text"></label>
+    <label>Email <input id="f-bootstrap" class="bs" type="email"></label>
+    <label>Search <input id="f-fill-fail" class="fill-fail" type="search"></label>
+    <label>Topic <select id="f-select-fail" class="select-fail"><option>General</option></select></label>
+    <label><input id="f-check-fail" class="box-fail" type="checkbox"> Remember me</label>
+  </div>
+  <div class="row">
+    <label>Town <input id="f-dark-border" class="ok-border" type="text"></label>
+    <label>Postcode <input id="f-bottom-only" class="bottom" type="text"></label>
+    <label>Notes <textarea id="f-ring" class="ring" rows="2"></textarea></label>
+    <label>Plain <input id="f-default" type="text"></label>
+    <label>Off <input id="f-disabled" class="styled" type="text" disabled></label>
+    <label>Bare <input id="f-unmarked" class="unmarked" type="text"></label>
+    <label><input id="f-native-check" type="checkbox"> Native</label>
+  </div>
+  <div class="row dark">
+    <label>Phone <input id="f-fill-ok" class="fill-ok" type="tel"></label>
+    <label>Plain on dark <input id="f-default-dark" type="text"></label>
+  </div>
+  <h2>Icon buttons</h2>
+  <div class="row">
+    <button id="i-svg-fail" class="icon-btn" type="button" aria-label="Close"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3 L17 17 M17 3 L3 17" stroke="#cccccc" stroke-width="3"/></svg></button>
+    <a id="i-font-fail" class="star" href="#fav" aria-label="Favourite"></a>
+    <button id="i-mask-fail" class="masked" type="button" aria-label="Info"></button>
+    <button id="i-svg-ok" class="icon-btn" type="button" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4h16v3H2zM2 9h16v3H2zM2 14h16v3H2z" fill="#333333"/></svg></button>
+    <button id="i-thin-ok" class="icon-btn" type="button" aria-label="Add"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2 V18 M2 10 H18 M4 4 L16 16" stroke="#595959" stroke-width="1"/></svg></button>
+    <button id="i-img-ok" class="icon-btn" type="button"><img src="icon-dark.svg" width="20" height="20" alt="Info"></button>
+    <button id="i-bg-ok" class="icon-btn bg-icon" type="button" aria-label="Settings"></button>
+ <a id="i-logo" href="#home" aria-label="Home"><svg width="90" height="30" viewBox="0 0 90 30" aria-hidden="true"><rect width="90" height="30" fill="#eeeeee"/></svg></a>
+    <a id="i-partner" href="#partner"><img src="icon-dark.svg" width="20" height="20" alt="Partner logo" style="opacity:0.1"></a>
+    <button id="i-with-text" class="with-text" type="button"><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="#dddddd"/></svg>Search</button>
+  </div>
+  </form>
+</main>
+</body>
+</html>

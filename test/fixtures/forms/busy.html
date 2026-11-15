@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Frozen form (hangs on input)</title></head>
+<body>
+<main>
+<h1>Subscribe</h1>
+<form action="/subscribe-list" method="post">
+  <p><label><input type="checkbox" name="weekly" onchange="for (;;) {}"> Weekly news</label></p>
+  <p><label for="b-email">Email</label><br><input id="b-email" name="email" type="email" autocomplete="email"></p>
+  <button type="submit">Join</button>
+</form>
+</main>
+</body>
+</html>

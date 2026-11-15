@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Feedback (server-side only)</title></head>
+<body>
+<main>
+<h1>Send feedback</h1>
+<form action="/feedback" method="post">
+  <p><label for="fb-name">Name</label><br><input id="fb-name" name="name" autocomplete="name" aria-describedby="fb-name-err"><span id="fb-name-err"></span></p>
+  <p><label for="fb-text">Feedback</label><br><textarea id="fb-text" name="feedback"></textarea></p>
+  <button type="submit">Send feedback</button>
+</form>
+</main>
+</body>
+</html>

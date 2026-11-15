@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Saved routes (a press that acts at once)</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; } #save { display: inline-block; padding: 6px 12px; border: 1px solid #333333; cursor: pointer; }</style></head>
+<body><main>
+<h1>Saved routes</h1>
+<p>Route 12 runs every 20 minutes on weekdays.</p>
+<span id="save" role="button" tabindex="0">Save route 12</span>
+<p id="out" role="status"></p>
+<p><a href="about.html">About these routes</a></p>
+</main>
+<script>
+// The route is saved the moment the button goes down: moving away before releasing cannot cancel it.
+document.getElementById('save').addEventListener('mousedown', function () { document.getElementById('out').textContent = 'Route 12 is saved to your list.'; });
+document.getElementById('save').addEventListener('keydown', function (e) { if (e.key === 'Enter') document.getElementById('out').textContent = 'Route 12 is saved to your list.'; });
+</script>
+</body>
+</html>

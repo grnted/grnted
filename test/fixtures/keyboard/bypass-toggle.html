@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a button hides the navigation (ACT cf77f2, SCR28)</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<!-- No failure (2.4.1): the first control hides the table of contents. -->
+<button type="button" onclick="document.getElementById('toc').hidden = true">Hide table of content</button>
+<nav id="toc"><ol><li><a href="/chapter1.html">Chapter 1</a></li><li><a href="/chapter2.html">Chapter 2</a></li></ol></nav>
+<div id="main"><p>Unity succeeds division and division follows unity. One is bound to be replaced by the other after a long span of time.</p></div>
+</body>
+</html>

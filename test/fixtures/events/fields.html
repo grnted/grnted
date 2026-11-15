@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fields page</title></head>
+<body><main>
+<h1 title="secret-title">Fields page</h1>
+<form>
+<label>Name <input type="text" name="n" value="secret-typed"></label>
+<label>Notes <textarea name="t">secret-area</textarea></label>
+<label>Choice <select name="s"><option>secret-choice</option></select></label>
+<input type="hidden" name="h" value="secret-hidden">
+<label for="later">Later</label> <input id="later" type="text" name="l">
+<button type="submit" aria-label="secret-aria" data-x="secret-data">Send</button>
+</form>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="secret-alt" width="40" height="40"></p>
+<script>
+  // What a visitor typed: values set after load never appear in any event.
+  document.getElementById('later').value = 'secret-script';
+  document.querySelector('textarea').value = 'secret-script-area';
+</script>
+</main></body>
+</html>

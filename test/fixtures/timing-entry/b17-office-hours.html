@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Chat with the clerk</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Chat with the clerk</h1>
+<form action="/chat" method="get"><p id="hours"></p><p><label>Your question <input id="q" name="q"></label></p><p><button>Send</button></p></form>
+</main>
+<script>
+  // The desk closes at a time of day: the next quarter hour that is at least 20 minutes away.
+  var q = 15 * 60 * 1000, now = Date.now(), closes = Math.ceil((now + 20 * 60 * 1000) / q) * q;
+  var at = new Date(closes);
+  document.getElementById('hours').textContent = 'The clerk answers on weekdays. Chat with the clerk closes at ' + at.getHours() + ':' + String(at.getMinutes()).padStart(2, '0') + ' today.';
+  setTimeout(function () { document.getElementById('q').disabled = true; document.getElementById('hours').textContent = 'The desk is closed. Chat opens again tomorrow at 8:00.'; }, closes - now);
+</script>
+</body>
+</html>

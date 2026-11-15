@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Flashing on a page with scroll snapping</title>
+<style>
+  html { scroll-snap-type: y mandatory; }
+  main > p, main > div { scroll-snap-align: start; }
+  body { margin: 0; font: 16px sans-serif; }
+  h1, p { margin: 1rem; }
+  .flash { width: 600px; height: 300px; background: #000; animation: flash 0.125s steps(1, end) infinite; }
+  @keyframes flash { 0% { background: #000; } 50% { background: #fff; } }
+</style></head>
+<body><main>
+<h1>Flashing on a page with scroll snapping</h1>
+<p>Synthetic test pattern. The page snaps each paragraph to the top of the window.</p>
+<div class="flash" id="flasher" role="img" aria-label="Test pattern"></div>
+<p>More text.</p><p>More text.</p><p>More text.</p>
+<div style="height: 2400px"></div>
+</main></body>
+</html>

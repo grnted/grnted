@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: turned by CSS in portrait</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; }
+  @media (orientation: portrait) {
+    #page { transform: rotate(90deg); transform-origin: top left; position: absolute; top: 0; left: 100%; width: 100vh; }
+  }
+</style>
+</head>
+<body>
+<div id="page">
+<main>
+  <h1>Game rules</h1>
+  <p>Each team has five players on the court. The game has four quarters of eight minutes, with a ten minute break at half time.</p>
+  <p>Fouls are called by the referee. A player with five fouls sits out the rest of the game. Ties go to a three minute overtime.</p>
+</main>
+</div>
+</body>
+</html>

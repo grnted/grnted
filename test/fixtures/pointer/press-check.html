@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a press that checks a box</title></head>
+<body><main><h1>Cart</h1>
+<p><label><input type="checkbox" id="opt"> Gift wrap</label> <button type="button" id="wrap">Wrap it</button></p>
+</main>
+<script>
+  document.getElementById('wrap').addEventListener('mousedown', function () { document.getElementById('opt').checked = true; });
+</script>
+</body>
+</html>

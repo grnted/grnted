@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a press that changes a field value</title></head>
+<body><main><h1>Cart</h1>
+<p><label>Quantity <input id="qty" value="1" size="3"></label> <button type="button" id="plus">One more</button></p>
+</main>
+<script>
+  document.getElementById('plus').addEventListener('mousedown', function () { var q = document.getElementById('qty'); q.value = String(+q.value + 1); });
+</script>
+</body>
+</html>

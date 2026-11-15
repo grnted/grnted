@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>main{min-height:3000px}</style><title>Library hours</title></head>
+<body>
+<main>
+<h1>Library hours</h1>
+<p id="state">Checking your browser…</p>
+</main>
+<!-- Reloads itself once, 300 ms after its first load (a cookie or session check); the reloaded page shows the content. -->
+<script>
+  if (!sessionStorage.getItem('checked')) {
+    sessionStorage.setItem('checked', '1');
+    addEventListener('load', function () { setTimeout(function () { location.reload(); }, 300); });
+  } else {
+    document.getElementById('state').innerHTML = 'Open 9 to 5. <a href="/reloaded-only.html">Holiday hours</a>';
+  }
+</script>
+</body>
+</html>

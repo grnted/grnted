@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: focus under a panel laid over the control</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  .slot { position: relative; min-height: 120px; margin: 24px 0; }
+  .slot button { position: absolute; top: 16px; left: 16px; }
+  .panel { position: absolute; inset: 0; z-index: 2; padding: 24px; background: #eef3f0; border: 1px solid #99a; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Records</h1>
+  <a href="/before.html">Order a soil test</a>
+  <div class="slot"><button type="button" id="copy">Copy the reference</button><div class="panel">Records desk: answers within five days.</div></div>
+  <a href="/after.html">Fees</a>
+</main>
+</body>
+</html>

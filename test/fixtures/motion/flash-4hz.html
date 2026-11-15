@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Full screen flashing, 4 a second</title>
+<style>
+  body { margin: 0; font: 16px sans-serif; }
+  h1, p { margin: 1rem; position: relative; z-index: 1; color: #888; }
+  .flash { position: fixed; inset: 0; background: #000; animation: flash 0.25s steps(1, end) infinite; }
+  @keyframes flash { 0% { background: #000; } 50% { background: #fff; } }
+</style></head>
+<body><main>
+<div class="flash" role="img" aria-label="Test pattern"></div>
+<h1>Full screen flashing, 4 a second</h1>
+<p>Synthetic test pattern.</p>
+</main></body>
+</html>

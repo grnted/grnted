@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News ticker next to a card</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+main { padding: 16px 24px; }
+.ticker { padding: 8px 12px; background: #f0f0f0; }
+.card { cursor: pointer; padding: 12px; border: 1px solid #767676; margin-top: 12px; }
+.lazy { width: 200px; height: 0; }
+</style></head>
+<body>
+<main>
+  <h1>News ticker next to a card</h1>
+  <p class="ticker" id="ticker">Bus 12 runs late today</p>
+  <div class="card">
+    <h2>Lunch menu</h2>
+    <p>Tacos on Tuesday.</p>
+  </div>
+  <img class="lazy" id="late" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=">
+</main>
+<script>
+  // The page changes by itself: a ticker every 250 ms, and a picture that appears late. Clicks only count.
+  var items = ['Bus 12 runs late today', 'Library open until 6', 'Spring concert on Friday'], i = 0;
+  setInterval(function () { i = (i + 1) % items.length; document.getElementById('ticker').textContent = items[i]; }, 250);
+  setTimeout(function () { document.getElementById('late').style.height = '120px'; }, 1500);
+  document.addEventListener('click', function () { window.__clicks = (window.__clicks || 0) + 1; });
+</script>
+</body></html>

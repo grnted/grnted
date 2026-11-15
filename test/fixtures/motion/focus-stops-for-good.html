@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A ticker that stops for good once it has had keyboard focus</title><style>
+  body { font: 18px sans-serif; margin: 24px; } .strip { width: 600px; overflow: hidden; border: 1px solid #333; }
+  .line { display: inline-block; white-space: nowrap; padding: 12px 0; animation: run 9s linear infinite; }
+  @keyframes run { from { transform: translateX(600px); } to { transform: translateX(-100%); } }
+  /* Passes (2.2.2): once the ticker has had keyboard focus it stays stopped. */
+  .line.stopped { animation-play-state: paused; }
+</style></head>
+<body><main>
+<h1>Harbour notices</h1>
+<div class="strip"><span class="line" id="line" tabindex="0">The foot ferry runs every twenty minutes until dusk. High water is at 14:20 today.</span></div>
+<p><a href="#times" id="times">Ferry times</a></p>
+</main>
+<script>document.getElementById('line').addEventListener('focus', function () { this.classList.add('stopped'); });</script>
+</body>
+</html>

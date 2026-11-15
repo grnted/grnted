@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Volunteer sign-up (steps, filled in)</title></head>
+<body>
+<main>
+<h1>Volunteer sign-up</h1>
+<form id="volunteer" action="/volunteer" method="post">
+  <div class="step" id="s1">
+    <p><label for="g-name">Full name *</label><br><input id="g-name" name="name" autocomplete="name" required></p>
+    <p><label for="g-email">Email *</label><br><input id="g-email" name="email" type="email" autocomplete="email" required></p>
+    <button type="button" id="next">Continue</button>
+  </div>
+  <div class="step" id="s2" style="display:none">
+    <p><label for="g-email2">Email for reminders</label><br><input id="g-email2" name="reminder-email" type="email" autocomplete="email"></p>
+    <p><label for="g-phone">Phone</label><br><input id="g-phone" name="phone" type="tel" autocomplete="tel"></p>
+    <button type="submit">Sign up</button>
+  </div>
+</form>
+</main>
+<script>
+  document.getElementById('next').addEventListener('click', () => {
+    document.getElementById('g-email2').value = document.getElementById('g-email').value;
+    document.getElementById('s1').style.display = 'none';
+    document.getElementById('s2').style.display = 'block';
+  });
+</script>
+</body>
+</html>

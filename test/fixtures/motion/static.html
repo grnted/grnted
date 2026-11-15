@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A page where nothing moves</title>
+<style>
+  .intro { animation: fadein .5s ease-out 1; }
+  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+  .spin:hover { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style></head>
+<body><main>
+<h1 class="intro">About the school</h1>
+<p>The school was founded in 1921. It has 400 students and 30 teachers.</p>
+<img src="still.gif" alt="School crest" width="120" height="120">
+<button type="button" class="spin" id="hello">Say hello</button>
+<form action="/subscribe" method="post"><label>Email <input type="email" name="email"></label></form>
+</main>
+<script>
+  // A timer that changes nothing visible (an analytics-style heartbeat).
+  setInterval(function heartbeat() { window.__beats = (window.__beats || 0) + 1; }, 5000);
+  document.getElementById('hello').addEventListener('click', function () { this.textContent = 'Hello'; });
+</script>
+</body>
+</html>

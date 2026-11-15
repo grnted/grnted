@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Arrivals at Main Station</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Arrivals at Main Station</h1>
+<div id="board"></div>
+</main>
+<script>
+  // A board that draws itself again every 30 s (a timeout that sets the next), its route filter included.
+  var times = [4, 9, 13];
+  function draw() { document.getElementById('board').innerHTML = '<p><label>Filter by route <input id="route" name="route"></label></p><p>Route 12: ' + times[0] + ' min. Route 24: ' + times[1] + ' min.</p>'; times.push(times.shift()); setTimeout(draw, 30000); }
+  draw();
+</script>
+</body>
+</html>

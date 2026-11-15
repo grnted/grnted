@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riverbend Library</title>
+<style>
+body { margin: 0; font: 16px/1.5 Arial, sans-serif; color: #222; background: #fff; }
+header { padding: 12px 24px; border-bottom: 1px solid #767676; }
+header .site { font-size: 20px; font-weight: 700; color: #1b1b1b; }
+main { padding: 16px 24px; max-width: 900px; }
+#band { background: #1a3e97; color: #fff; padding: 16px; margin: 16px 0; }
+.field { display: block; margin: 8px 0 16px; }
+.field input { border: 2px solid #767676; padding: 6px; font: inherit; width: 260px; max-width: 100%; box-sizing: border-box; }
+/* The pop-up shown on load: a dark backdrop and a dialog (the shape of a cookie or news-alert modal). */
+#pop-bg { position: fixed; inset: 0; background: #000; opacity: 0.8; z-index: 1000; }
+#pop { position: fixed; top: 320px; left: 50%; transform: translateX(-50%); width: 420px; max-width: calc(100vw - 32px); box-sizing: border-box;
+  background: #fff; color: #222; padding: 20px; z-index: 1001; }
+#pop h2 { margin: 0 0 8px; font-size: 20px; }
+#pop p { margin: 0 0 12px; }
+#pop button, #pop a { font: inherit; margin-right: 8px; }
+#pop .email { border: 2px solid #595959; padding: 6px; font: inherit; width: 100%; box-sizing: border-box; margin-bottom: 12px; }
+html.pop-open { overflow: hidden; }
+/* At a narrow width the dialog moves up over the header (2026-11-07 audit: a news alert's paragraph "overlapping" the site name at 320 px). */
+@media (max-width: 600px) {
+  #pop { top: 4px; padding: 8px; font-size: 14px; line-height: 1.4; }
+  #pop h2 { font-size: 18px; margin: 0 0 4px; }
+  #pop p { margin: 0 0 4px; }
+  #pop .email { margin-bottom: 4px; padding: 4px; }
+  #pop .wide { display: none; }
+  .own #pop .wide { display: block; }
+}
+/* ?own=1: the pop-up's own content has low contrast and overflows; round 8 deliberately leaves it unmeasured. */
+.own #pop-text { color: #aaaaaa; }
+.own #pop .email { border-color: #dddddd; }
+.own #pop .wide { width: 560px; }
+/* ?lowpage=1: the page behind the pop-up has real failures of its own (they must still fail once it is set aside). */
+.lowpage #p1 { color: #999999; }
+.lowpage #page-q { border-color: #cccccc; }
+/* ?opaque=1: the backdrop hides the page completely (Sol popup-r1, 8). */
+.opaque #pop-bg { opacity: 1; }
+/* ?hidden=1: while the pop-up is up the site hides a section, whose 600 px line does not fit at 320 px (Sol popup-r1, 9). */
+#hidden-sec { display: none; }
+#hidden-sec p { white-space: nowrap; width: 600px; }
+.hidden #hidden-sec { display: block; }
+.pop-open.hidden #hidden-sec { display: none; }
+/* ?two=1: a second, smaller pop-up (a newsletter box) with low contrast of its own (Sol popup-r1, 6). */
+#pop2 { position: fixed; right: 16px; bottom: 16px; width: 280px; background: #fff; padding: 12px; z-index: 1002; border: 1px solid #222; }
+#pop2 p { color: #aaaaaa; margin: 0 0 8px; }
+#pop2 input { border: 2px solid #dddddd; padding: 4px; font: inherit; width: 100%; box-sizing: border-box; }
+/* ?many=1: the page's own lines run into each other at 320 px (more places than the cap holds), and the pop-up's own
+   lines run past the bottom of a 256 px high screen, a place that comes after them (Sol popup-r1, 7). */
+#pop .line { margin: 0; }
+#ovl { display: none; }
+.many #ovl { display: block; }
+@media (max-width: 600px) { #ovl p + p { margin-top: -1.2em; } }
+#ovl p { margin: 0; }
+/* ?collide=1: two of the pop-up's own lines run into each other at 320 px (Sol popup-r2, 7). */
+@media (max-width: 600px) { .collide #pop-c2 { margin-top: -1.2em; } .collide #pop { padding-top: 14px; } }
+#pop-c1, #pop-c2 { margin: 0; }
+</style>
+</head>
+<body>
+<div id="page">
+<header><span class="site">Riverbend Library and Community Learning Center</span></header>
+<main id="main">
+  <h1>Welcome to the library</h1>
+  <p id="p1">The library is open every day from nine in the morning to eight in the evening. Card holders can borrow books, films and music, use the computers and reserve the meeting rooms.</p>
+  <p id="band">Summer reading starts on June 1. Sign up at the front desk or online, and collect a stamp for every book you finish.</p>
+  <p>Our branches host story times for children, homework help for teenagers and classes in computer skills for adults. Every event is free and open to everyone.</p>
+  <form id="contact" action="/contact" method="post">
+    <label class="field">Your email <input id="page-email" type="email" name="email"></label>
+    <label class="field">Your question <input id="page-q" type="text" name="question"></label>
+    <button type="submit">Send</button>
+  </form>
+  <p>Questions about your account, fines or holds can be answered at any branch or by phone during opening hours.</p>
+  <section id="hidden-sec"><p>Opening hours for every branch: Central, North, East, West, Riverside and Hilltop, all week long.</p></section>
+</main>
+</div>
+<div id="pop-bg"></div>
+<div id="pop" role="dialog" aria-modal="true" aria-labelledby="pop-title">
+  <h2 id="pop-title">Stay in touch</h2>
+  <p id="pop-text">Get the library newsletter once a month.</p>
+  <p class="wide" id="pop-wide">New titles, events and closures are in every issue.</p>
+  <label>Email <input class="email" id="pop-email" type="email" name="news"></label>
+  <span id="closers"></span>
+</div>
+<script>
+const q = new URLSearchParams(location.search);
+const page = document.getElementById('page');
+const pop = document.getElementById('pop');
+const bg = document.getElementById('pop-bg');
+// ?nobg=1: no backdrop; round 8 still retains no look-1 findings.
+if (q.get('nobg')) bg.remove();
+if (q.get('own')) document.documentElement.classList.add('own');
+if (q.get('lowpage')) document.documentElement.classList.add('lowpage');
+// ?nopop=1: no pop-up at all (the same page, for the tests that must measure it exactly as before).
+if (q.get('nopop')) { pop.remove(); bg.remove(); } else document.documentElement.classList.add('pop-open');
+// ?lb=1: a lightbox with no dialog role, positioned absolutely over its fixed backdrop (Magnific Popup's
+// fixedContentPos: false, as on the 2026-11-07 audit's news alert): its text lies in the page's own layer.
+if (q.get('lb')) {
+  pop.removeAttribute('role');
+  pop.removeAttribute('aria-modal');
+  pop.style.position = 'absolute';
+}
+// ?inert=1: the page behind the pop-up is inert and hidden from screen readers while it is open.
+if (q.get('inert')) {
+  page.setAttribute('inert', '');
+  page.setAttribute('aria-hidden', 'true');
+}
+if (q.get('opaque')) document.documentElement.classList.add('opaque');
+// ?pe=1: the backdrop takes no pointer events (a hit test there finds the page under it; Sol popup-r3, 1).
+if (q.get('pe')) bg.style.pointerEvents = 'none';
+if (q.get('hidden')) document.documentElement.classList.add('hidden');
+let pop2 = null;
+// ?deco=1: the pop-up's decoration, a light grey box drawn exactly over the page's email field (Sol popup-r2, 1).
+if (q.get('deco')) {
+  const r = document.getElementById('page-email').getBoundingClientRect();
+  const deco = document.createElement('div');
+  deco.style.cssText = `position:absolute;left:${r.left + scrollX}px;top:${r.top + scrollY}px;width:${r.width}px;height:${r.height}px;box-sizing:border-box;background:#111111;border:2px solid #222222;z-index:1002`;
+  document.body.appendChild(deco);
+}
+// ?reveal=1: closing the pop-up shows a notice the page hid while it was up, in light grey (Sol popup-r2, 6).
+// On a gradient, so axe cannot decide it and the text-contrast test measures it (as for any undecided text).
+if (q.get('reveal')) document.getElementById('main').insertAdjacentHTML('beforeend', '<p id="revealed" style="display:none;color:#aaaaaa;background:linear-gradient(#ffffff,#fefefe)">The library is closed on public holidays.</p>');
+// ?bighidden=1: three thousand pieces of hidden text before everything else, the pop-up's visible text past them (Sol popup-r3, 8 B).
+if (q.get('bighidden')) document.body.insertAdjacentHTML('afterbegin', `<div id="bighidden" style="display:none">${Array.from({ length: 3100 }, (_, i) => `<span>h${i} </span>`).join('')}</div>`);
+// ?revealplain=1: closing the pop-up shows a notice in plain light grey on white, which axe fails outright (Sol popup-r4, 5 A).
+if (q.get('revealplain')) document.getElementById('main').insertAdjacentHTML('beforeend', '<p id="revealed2" style="display:none;color:#aaaaaa;background:#ffffff">Book returns are due within three weeks.</p>');
+// ?phone=1: closing it shows a notice that sits on a gradient at the desktop width (axe cannot decide; it passes) and is
+// light grey on white at the phone width (axe fails it there only; Sol popup-r4, 5 B).
+if (q.get('phone')) {
+  document.head.insertAdjacentHTML('beforeend', '<style>#phone { color:#222222; background:linear-gradient(#ffffff,#fefefe); } @media (max-width: 600px) { #phone { color:#b0b0b0; background:#ffffff; } }</style>');
+  document.getElementById('main').insertAdjacentHTML('beforeend', '<p id="phone" style="display:none">Branch hours change in summer.</p>');
+}
+// ?manyframes=1: closing it shows 22 small frames, more than axe tests (Sol popup-r4, 7: a frame axe could not test).
+if (q.get('manyframes')) document.getElementById('main').insertAdjacentHTML('beforeend', `<div id="frames" style="display:none">${Array.from({ length: 22 }, (_, i) => `<iframe title="Notice ${i + 1}" style="width:60px;height:30px;border:0" srcdoc="<p style=&quot;color:#999999;margin:0&quot;>n${i + 1}</p>"></iframe>`).join('')}</div>`);
+// ?moved=1: a line of the pop-up that a script moves into the page at a narrow width, where it does not fit; it
+// stays in the pop-up on the desktop (Sol popup-r4, 2).
+if (q.get('moved')) {
+  pop.insertAdjacentHTML('beforeend', '<p id="moved" style="white-space:nowrap;width:600px;margin:0">Moved line that is wider than a phone screen is.</p>');
+  const moved = document.getElementById('moved');
+  addEventListener('resize', () => { if (innerWidth < 600 && moved.parentElement !== document.getElementById('main')) document.getElementById('main').appendChild(moved); });
+}
+// ?revealframe=1: closing the pop-up shows a same-origin frame whose text, on a gradient, is light grey (Sol popup-r3, 10).
+if (q.get('revealframe')) document.getElementById('main').insertAdjacentHTML('beforeend', '<iframe id="revealframe" title="Notice" style="display:none;width:600px;height:80px;border:0" srcdoc="<!doctype html><html lang=en><body style=&quot;margin:0;font:16px Arial&quot;><p id=framed style=&quot;color:#aaaaaa;background:linear-gradient(#ffffff,#fefefe)&quot;>Holiday hours are posted at every branch.</p></body></html>"></iframe>');
+// ?wide=1: a line of the page that does not fit at 320 px (a real reflow failure behind the pop-up; Sol popup-r3, 4).
+if (q.get('wide')) document.getElementById('main').insertAdjacentHTML('beforeend', '<p id="wideline" style="white-space:nowrap;width:600px">Every branch lends laptops, hotspots and museum passes for a week.</p>');
+// ?ghost=1: a white layer at opacity 0 lies over the question field (a layer that paints nothing; Sol popup-r3, 5).
+if (q.get('ghost')) {
+  const r = document.getElementById('page-q').getBoundingClientRect();
+  document.body.insertAdjacentHTML('beforeend', `<div id="ghost" style="position:absolute;left:${r.left + scrollX - 4}px;top:${r.top + scrollY - 4}px;width:${r.width + 8}px;height:${r.height + 8}px;background:#ffffff;opacity:0;z-index:5"></div>`);
+}
+// ?big=1: three thousand pieces of page text before the pop-up (Sol popup-r2, 8).
+if (q.get('big')) document.getElementById('main').insertAdjacentHTML('afterbegin', `<div id="big" style="font-size:2px;line-height:2px">${Array.from({ length: 3100 }, (_, i) => `<span>w${i} </span>`).join('')}</div>`);
+if (q.get('collide')) {
+  document.documentElement.classList.add('collide');
+  pop.insertAdjacentHTML('afterbegin', '<p id="pop-c1">First line of the notice</p><p id="pop-c2">Second line of the notice</p>');
+}
+if (q.get('two')) {
+  pop2 = document.createElement('div');
+  pop2.id = 'pop2';
+  pop2.setAttribute('role', 'dialog');
+  pop2.setAttribute('aria-label', 'Newsletter');
+  pop2.innerHTML = '<p id="pop2-text">Our newsletter comes out every month.</p><label>Email <input id="pop2-email" type="email"></label>';
+  // ?pop2close=1: the newsletter box has a Close of its own, so it is a pop-up too.
+  if (q.get('pop2close')) { pop2.insertAdjacentHTML('beforeend', '<button type="button" id="pop2-close">Close</button>'); pop2.querySelector('#pop2-close').addEventListener('click', () => pop2.remove()); }
+  document.body.appendChild(pop2);
+  // ?rel=1: the newsletter box is positioned relatively, in the page's flow, above the backdrop (Sol popup-r2, 4).
+  if (q.get('rel')) { pop2.removeAttribute('role'); pop2.removeAttribute('aria-label'); pop2.style.position = 'relative'; pop2.style.right = 'auto'; pop2.style.bottom = 'auto'; pop2.style.margin = '16px'; }
+  // ?stack=1: the newsletter box lies under the main pop-up, which covers its email field, and stays when that one
+  // closes (Sol popup-r2, 5).
+  if (q.get('stack')) {
+    // A blank part of the main pop-up lies exactly over the newsletter box's email field.
+    pop.insertAdjacentHTML('beforeend', '<div id="spacer" style="height:160px"></div>');
+    pop2.style.cssText = 'position:fixed;top:0;left:50%;transform:translateX(-50%);width:420px;right:auto;bottom:auto;z-index:1000;padding:20px;';
+    bg.style.zIndex = '999';
+    const sp = document.getElementById('spacer').getBoundingClientRect();
+    const em = document.getElementById('pop2-email').getBoundingClientRect();
+    pop2.style.top = `${sp.top + 60 - em.top}px`;
+  }
+}
+if (q.get('many')) {
+  document.documentElement.classList.add('many');
+  pop.insertAdjacentHTML('beforeend', Array.from({ length: 10 }, (_, i) => `<p class="line">Line ${i + 1} of the notice</p>`).join(''));
+  document.getElementById('main').insertAdjacentHTML('beforeend', `<div id="ovl">${Array.from({ length: 20 }, (_, i) => `<p>Branch news item ${i + 1}</p>`).join('')}</div>`);
+}
+let closed = false;
+// ?hang=1: once the pop-up is closed, a resize runs a script that never ends (Sol popup-r1, 13).
+if (q.get('hang')) addEventListener('resize', () => { if (closed) { const t = Date.now(); while (Date.now() - t < 60000) { /* hang */ } } });
+const close = () => {
+  closed = true;
+  pop.remove();
+  bg.remove();
+  if (pop2 && !q.get('stack')) pop2.remove();
+  const rv = document.getElementById('revealed');
+  if (rv) rv.style.display = '';
+  const rf = document.getElementById('revealframe');
+  if (rf) rf.style.display = '';
+  for (const id of ['revealed2', 'phone', 'frames']) { const el = document.getElementById(id); if (el) el.style.display = ''; }
+  // ?second=1: closing it shows a second dialog, with a low-contrast field and a Close of its own (Sol popup-r4, 6).
+  if (q.get('second')) {
+    document.body.insertAdjacentHTML('beforeend', '<div id="second" role="dialog" aria-modal="true" aria-label="Survey" style="position:fixed;top:120px;left:50%;transform:translateX(-50%);width:420px;background:#fff;padding:20px;border:1px solid #222;z-index:1001"><p>Tell us how we did.</p><label>Comments <input id="second-field" type="text" style="border:2px solid #dddddd;padding:6px;font:inherit"></label> <button type="button" id="second-close">Close</button></div>');
+    document.getElementById('second-close').addEventListener('click', () => document.getElementById('second').remove());
+  }
+  page.removeAttribute('inert');
+  page.removeAttribute('aria-hidden');
+  document.documentElement.classList.remove('pop-open');
+};
+const closers = document.getElementById('closers');
+// ?mode=: how the pop-up can be closed.
+const mode = q.get('mode') || 'button';
+if (mode === 'button') {
+  closers.innerHTML = '<button type="button" id="accept">No thanks</button>';
+  document.getElementById('accept').addEventListener('click', close);
+} else if (mode === 'pointer') {
+  // Only a pointer closes it: Enter and Space do nothing (undismissable by keyboard).
+  closers.innerHTML = '<button type="button" id="accept">Close</button>';
+  document.getElementById('accept').addEventListener('pointerdown', close);
+} else if (mode === 'none') {
+  // No control named to close it at all.
+  closers.innerHTML = '<button type="button" id="more">Tell me more</button>';
+} else if (mode === 'js') {
+  closers.innerHTML = '<a href="javascript:void(0)" id="accept">Close</a>';
+  document.getElementById('accept').addEventListener('click', close);
+} else if (mode === 'hash') {
+  closers.innerHTML = '<a href="#main" id="accept">Close</a>';
+  document.getElementById('accept').addEventListener('click', close);
+} else if (mode === 'push') {
+  closers.innerHTML = '<button type="button" id="accept">Close</button>';
+  document.getElementById('accept').addEventListener('click', () => { history.pushState({}, '', '/account'); close(); });
+} else if (mode === 'consent') {
+  // A consent box: Accept first records the consent (a request), Reject second closes it locally; Escape does nothing
+  // (Sol popup-r4, 8).
+  pop.removeAttribute('aria-modal');
+  closers.innerHTML = '<button type="button" id="accept">Accept all</button><button type="button" id="reject">Reject all</button>';
+  document.getElementById('accept').addEventListener('click', () => { fetch('/consent', { method: 'POST', body: 'yes' }).catch(() => {}); close(); });
+  document.getElementById('reject').addEventListener('click', close);
+} else if (mode === 'escape') {
+  // Its Close takes only a pointer; Escape closes it (Sol popup-r1, 10).
+  closers.innerHTML = '<button type="button" id="accept">Close</button>';
+  document.getElementById('accept').addEventListener('pointerdown', close);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+} else if (mode === 'escnav') {
+  // Escape goes to another page (Sol popup-r1, 10): not a dismissal.
+  closers.innerHTML = '<button type="button" id="accept">Close</button>';
+  document.getElementById('accept').addEventListener('pointerdown', close);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') location.assign('/away'); });
+} else if (mode === 'focusremove') {
+  // Focusing Close removes the pop-up and puts focus on the page (Sol popup-r1, 2).
+  closers.innerHTML = '<button type="button" id="accept">Close</button>';
+  document.getElementById('accept').addEventListener('focus', () => { if (!first0) { close(); document.getElementById('main').setAttribute('tabindex', '-1'); document.getElementById('main').focus(); } });
+} else if (mode === 'focuspost') {
+  // Focusing Close tells the site; Enter closes (Sol popup-r1, 3): not a dismissal.
+  closers.innerHTML = '<button type="button" id="accept">Close</button>';
+  // A synchronous request: it is made (and stopped by the guard) before the focus call returns (Sol popup-r1, 3).
+  document.getElementById('accept').addEventListener('focus', () => { if (first0) return; const x = new XMLHttpRequest(); x.open('POST', '/track', false); try { x.send('focus'); } catch { /* stopped */ } });
+  document.getElementById('accept').addEventListener('click', close);
+} else if (mode === 'trap') {
+  // Tab cycles between its two fields and leaves its Close out (Sol popup-r1, 4); a script could focus Close.
+  pop.insertAdjacentHTML('beforeend', '<label>Name <input id="t1" type="text"></label>');
+  closers.innerHTML = '<button type="button" id="accept">Close</button>';
+  document.getElementById('accept').addEventListener('click', close);
+  const ring = [document.getElementById('pop-email'), document.getElementById('t1')];
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || closed) return;
+    e.preventDefault();
+    const i = ring.indexOf(document.activeElement);
+    ring[(i + (e.shiftKey ? ring.length - 1 : 1) + ring.length) % ring.length].focus();
+  }, true);
+} else if (mode === 'shadow') {
+  // Its Close is inside an open shadow root (Sol popup-r1, 11).
+  const host = document.createElement('span');
+  closers.appendChild(host);
+  host.attachShadow({ mode: 'open' }).innerHTML = '<button type="button" id="accept">Close</button>';
+  host.shadowRoot.getElementById('accept').addEventListener('click', close);
+} else if (mode === 'pointeronly') {
+  // A dialog (not modal) whose Close takes only a pointer and is out of the Tab order: nothing to try (Sol popup-r2, 3).
+  pop.removeAttribute('aria-modal');
+  closers.innerHTML = '<button type="button" id="accept" tabindex="-1">Close</button>';
+  document.getElementById('accept').addEventListener('pointerdown', close);
+} else if (mode === 'nested') {
+  // A modal with no named close, inside a fixed full-screen wrapper; Escape closes both (Sol popup-r2, 2).
+  closers.innerHTML = '<button type="button" id="more">Tell me more</button>';
+  const wrap = document.createElement('div');
+  wrap.id = 'wrap';
+  wrap.style.cssText = 'position:fixed;inset:0;z-index:1001';
+  pop.before(wrap);
+  wrap.appendChild(pop);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); wrap.remove(); } });
+} else if (mode === 'labelledby') {
+  // An icon button named Close only through aria-labelledby (Sol popup-r1, 11).
+  closers.innerHTML = '<span id="x-name" hidden>Close</span><button type="button" id="accept" aria-labelledby="x-name"><svg width="16" height="16" aria-hidden="true"><path d="M2 2L14 14M14 2L2 14" stroke="#222" stroke-width="2"/></svg></button>';
+  document.getElementById('accept').addEventListener('click', close);
+}
+// The dialog takes focus on load (as modal scripts do); the focus handlers above ignore this first one.
+let first0 = true;
+const first = mode === 'trap' ? document.getElementById('pop-email') : mode === 'focusremove' || mode === 'focuspost' ? null : closers.querySelector('button, a');
+if (first) first.focus();
+first0 = false;
+</script>
+</body>
+</html>

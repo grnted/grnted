@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: elements removed during the traversal</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } a.bare:focus { outline: none; }</style>
+</head>
+<body>
+<main>
+  <h1>Changing page</h1>
+  <p><a href="/first.html">First</a></p>
+  <!-- Focusing this link removes the next one (an element removed mid-traversal). -->
+  <p><a href="/remover.html" id="remover">Remover</a></p>
+  <p id="victim-p"><a href="/victim.html" id="victim">Victim</a></p>
+  <!-- A rotating region that replaces its links every 200 ms. -->
+  <div id="rotator"><a href="/slide-1.html">Slide 1</a></div>
+  <p><a href="/middle.html">Middle</a></p>
+  <!-- Planted failure (2.4.7) at the end: proves the traversal gets past the removals. -->
+  <p><a class="bare" id="end" href="/end.html">The end</a></p>
+</main>
+<script>
+  document.getElementById('remover').addEventListener('focus', function () {
+    var v = document.getElementById('victim-p');
+    if (v) v.remove();
+  });
+  var n = 1;
+  setInterval(function () {
+    n++;
+    document.getElementById('rotator').innerHTML = '<a href="/slide-' + n + '.html">Slide ' + n + '</a>';
+  }, 200);
+</script>
+</body>
+</html>

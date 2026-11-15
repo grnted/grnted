@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Enrollment by year</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Enrollment by year</h1>
+<p>District enrollment has grown each year since 2021. The table below the chart gives the same numbers.</p>
+<div class="chart"><canvas id="enrollment" role="img" aria-label="Bar chart: enrollment by year, 2021 to 2025, rising from 4,120 to 4,655 students"></canvas></div>
+<table>
+<caption>Enrollment by year</caption>
+<thead><tr><th scope="col">Year</th><th scope="col">Students</th></tr></thead>
+<tbody><tr><td>2021</td><td>4,120</td></tr><tr><td>2022</td><td>4,260</td></tr><tr><td>2023</td><td>4,395</td></tr><tr><td>2024</td><td>4,510</td></tr><tr><td>2025</td><td>4,655</td></tr></tbody>
+</table>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script src="vendor/chartjs/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('enrollment'), {
+  type: 'bar',
+  data: { labels: ['2021', '2022', '2023', '2024', '2025'], datasets: [{ label: 'Students', data: [4120, 4260, 4395, 4510, 4655] }] },
+});
+</script>
+</body>
+</html>

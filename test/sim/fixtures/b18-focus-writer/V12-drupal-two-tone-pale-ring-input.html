@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Burn Permit Lookup | North Fork Fire District</title>
+<meta name="description" content="Burn Permit Lookup">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:1rem;line-height:1.55;background:#ffffff;color:#1f2933}
+button,input,select,textarea{font:inherit}
+img,svg{max-width:100%}
+.site-header{background:#ffffff;color:#8b1e1e;border-bottom:3px solid #8b1e1e}
+.site-header .inner,.site-footer .inner{max-width:68rem;margin:0 auto;padding:1rem 1.25rem}
+.site-header .inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:inline-flex;align-items:center;gap:.6rem;color:#8b1e1e;text-decoration:none;font-weight:700;font-size:1.2rem}
+.brand svg{flex:none}
+.site-nav ul{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;list-style:none;margin:0;padding:0}
+.site-nav a{color:#8b1e1e;text-decoration:none;font-weight:600;padding:.25rem .1rem}
+.site-nav a:hover{text-decoration:underline}
+main{display:block;max-width:68rem;margin:0 auto;padding:2rem 1.25rem 3rem}
+main:focus{outline:none}
+h1{font-size:2rem;line-height:1.2;margin:.25rem 0 1rem}
+h2{font-size:1.35rem;line-height:1.3;margin:2rem 0 .75rem}
+h3{font-size:1.1rem;margin:1.25rem 0 .5rem}
+a{color:#0b5cad}
+.lead{font-size:1.15rem;max-width:44rem}
+.notice{background:rgba(0,0,0,.035);border-left:4px solid #55606e;padding:.85rem 1rem;margin:1.25rem 0;max-width:46rem}
+.news{list-style:none;margin:0;padding:0;max-width:46rem}
+.news li{padding:.65rem 0;border-bottom:1px solid rgba(0,0,0,.12)}
+.news .meta{display:block;font-size:.875rem;opacity:.85}
+.link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.5rem 1.5rem;list-style:none;margin:0;padding:0}
+.link-grid li{padding:.35rem 0}
+.site-footer{background:#2b2b2b;color:#ffffff;margin-top:2rem;}
+.site-footer a{color:#ffffff}
+.footer-links{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;list-style:none;margin:.75rem 0;padding:0}
+.small{font-size:.875rem}
+/* site-wide keyboard focus style */
+:where(a[href],button,input,select,textarea,summary):focus-visible{outline:3px solid #1a1a1a;outline-offset:2px}
+:where(.site-footer) :where(a[href],button,input,select):focus-visible{outline-color:#ffffff}
+:where(.on-dark) :where(a[href],button,input,select):focus-visible{outline-color:#ffffff}
+/* page components */
+.form-item{margin:1rem 0}
+.form-item label{display:block;font-weight:700;margin-bottom:.3rem}
+.form-item .description{font-size:.875rem;margin-top:.25rem}
+input.form-text{padding:.6rem .8rem;border:1px solid #bdbdbd;border-radius:4px;width:min(100%,24rem);background:#ffffff}
+#edit-permit-address:focus{outline:none;box-shadow:0 0 0 2px #ffffff,0 0 0 4px #d3e3f9}
+.button--primary{background:#8b1e1e;color:#ffffff;border:0;border-radius:4px;padding:.65rem 1.2rem;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body class="path-node page-node-type-webform">
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="#"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><path d="M18 3c2 6 9 9 9 18a9 9 0 0 1-18 0c0-5 3-7 4-11 1 3 3 4 3 4s-1-7 2-11z" fill="currentColor"/></svg><span>North Fork Fire District</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#burn-permits">Burn Permits</a></li>
+        <li><a href="#prevention">Prevention</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+<h1>Burn permit lookup</h1>
+<p class="lead">Check whether an address has an active residential burn permit.</p>
+<form class="webform-submission-form" action="#" onsubmit="return false">
+  <div class="form-item js-form-item form-type-textfield">
+    <label for="edit-permit-address">Street address</label>
+    <input type="text" id="edit-permit-address" name="permit_address" class="form-text" autocomplete="street-address">
+    <div class="description">Example: 3100 River Road</div>
+  </div>
+  <button type="submit" class="button button--primary">Look up</button>
+</form>
+<section aria-labelledby="fire-news-h">
+  <h2 id="fire-news-h">District news</h2>
+  <ul class="news">
+    <li><a href="#smoke">Free smoke alarm installation for seniors</a><span class="meta">November 9, 2026</span></li>
+    <li><a href="#levy">Levy renewal: frequently asked questions</a><span class="meta">October 26, 2026</span></li>
+  </ul>
+</section>
+<section aria-labelledby="fire-links-h">
+  <h2 id="fire-links-h">Safety resources</h2>
+  <ul class="link-grid">
+    <li><a href="#ready">Get wildfire ready</a></li>
+    <li><a href="#cpr">CPR classes</a></li>
+    <li><a href="#address">Address sign program</a></li>
+    <li><a href="#reports">Request an incident report</a></li>
+  </ul>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p><strong>North Fork Fire District</strong><br>18 Depot Street<br>Phone: 555-0128</p>
+    <ul class="footer-links">
+      <li><a href="#contact">Contact us</a></li>
+      <li><a href="#accessibility">Accessibility</a></li>
+      <li><a href="#records-request">Public records requests</a></li>
+      <li><a href="#privacy">Privacy policy</a></li>
+    </ul>
+    <p class="small">&copy; 2026 North Fork Fire District</p>
+  </div>
+</footer>
+</body>
+</html>

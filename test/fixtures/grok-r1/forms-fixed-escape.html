@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 1: a fixed field that escapes a zero-height clipping box</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<!-- 3.3.2 failure: the field is fixed on screen; its 0-height overflow:hidden parent does not clip it. -->
+<div style="height:0;overflow:hidden"><input style="position:fixed;top:16px;left:16px;opacity:1" placeholder="Email"></div>
+</body>
+</html>

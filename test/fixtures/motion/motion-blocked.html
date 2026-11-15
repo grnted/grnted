@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Motion the guard keeps from happening</title></head>
+<body><main>
+<h1>Shop</h1>
+<!-- An animated image at an address with an action word, set by the page's own 15 s timer: it can only
+     load while a test runs (the test runs such timers early), and then the guard stops the request. -->
+<img id="shop" alt="Our shop" width="160" height="160">
+<div id="news" style="width: 500px; height: 120px; border: 1px solid #333"><p id="headline">First headline.</p></div>
+</main>
+<script>
+  setTimeout(function () { document.getElementById('shop').src = 'cart.gif'; }, 15000);
+  // The next headline comes from the server by POST: stopped by the guard, so nothing changes on screen.
+  setInterval(function () {
+    fetch('/api/headlines/next', { method: 'POST' }).then(function (r) { return r.text(); }).then(function (t) { document.getElementById('headline').textContent = t; });
+  }, 4000);
+</script>
+</body>
+</html>

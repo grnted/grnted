@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Utility payment</title></head>
+<body><main><h1>Utility payment</h1>
+<form id="payment">
+ <label for="routing">Routing number</label><input id="routing" inputmode="numeric">
+ <label for="account">Bank account number</label><input id="account" inputmode="numeric">
+ <label for="amount">Amount</label>
+ <input id="amount" type="number" value="25" autocomplete="transaction-amount">
+ <button>Pay now</button>
+</form>
+<dialog id="review" aria-labelledby="review-title">
+ <h2 id="review-title">Check your payment details</h2>
+ <p id="summary"></p>
+ <button id="edit" type="button">Edit details</button>
+ <button id="confirm" type="button">Confirm transfer</button>
+</dialog>
+<p id="result" role="status"></p></main>
+<script>
+const review = document.getElementById('review');
+document.getElementById('payment').addEventListener('submit', e => {
+  e.preventDefault();
+  document.getElementById('summary').textContent =
+    'Amount: ' + document.getElementById('amount').value +
+    '; routing: ' + document.getElementById('routing').value +
+    '; account: ' + document.getElementById('account').value;
+  review.showModal();
+});
+document.getElementById('edit').onclick = () => review.close();
+document.getElementById('confirm').onclick = () => {
+  review.close();
+  document.getElementById('result').textContent = 'Payment scheduled.';
+};
+</script></body></html>

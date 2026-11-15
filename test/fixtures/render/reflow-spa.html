@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: a script re-renders the page when it gets narrow</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; }
+  .mobile-card { box-sizing: border-box; width: 900px; border: 1px solid #767676; padding: 0.5rem; }
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+  (function () {
+    var app = document.getElementById('app');
+    var mode = '';
+    function render() {
+      var next = window.innerWidth < 600 ? 'mobile' : 'desktop';
+      if (next === mode) return;
+      mode = next;
+      app.innerHTML = next === 'mobile'
+        ? '<h1>Menu for this week</h1><div class="mobile-card" id="mobile-card">The mobile layout puts the whole menu in one wide card that runs off the right edge of a phone screen.</div>'
+        : '<h1>Menu for this week</h1><p>Monday is vegetable lasagna, Tuesday is tacos, and Wednesday is chicken noodle soup with bread.</p><p>Thursday is pizza day and Friday is fish with rice.</p>';
+    }
+    render();
+    window.addEventListener('resize', render);
+  })();
+</script>
+</body>
+</html>

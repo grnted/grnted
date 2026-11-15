@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a second trap after a dialog closed with Esc</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } #dialog { position: fixed; top: 24px; right: 24px; width: 320px; background: #fff; padding: 16px; border: 2px solid #333; }</style>
+</head>
+<body>
+<!-- Clean (2.1.2): the dialog closes with Esc. Planted failure (2.1.2): the widget after it keeps focus. -->
+<div id="dialog" role="dialog" aria-modal="true" aria-label="Welcome"><p><label for="e">Email</label> <input id="e"></p><button type="button">Subscribe</button></div>
+<main>
+  <h1>Pick a date</h1>
+  <p><a href="/before.html">Before the widget</a></p>
+  <div id="widget" role="group" aria-label="Date picker"><button type="button">Previous month</button> <button type="button">Next month</button></div>
+  <p><a href="/after.html">After the widget</a></p>
+</main>
+<script>
+  var d = document.getElementById('dialog');
+  document.addEventListener('keydown', function (e) {
+    if (!d.isConnected) return;
+    if (e.key === 'Escape') { d.remove(); return; }
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    var f = Array.prototype.slice.call(d.querySelectorAll('button, input'));
+    var i = f.indexOf(document.activeElement);
+    f[i < 0 ? 0 : (i + 1) % f.length].focus();
+  });
+  var w = document.getElementById('widget');
+  w.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    var b = Array.prototype.slice.call(w.querySelectorAll('button'));
+    b[(b.indexOf(document.activeElement) + (e.shiftKey ? b.length - 1 : 1)) % b.length].focus();
+  });
+</script>
+</body>
+</html>

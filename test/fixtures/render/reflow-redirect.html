@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: goes to a mobile page when the window gets narrow</title>
+<style>body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; } main { padding: 1rem; }</style>
+</head>
+<body>
+<main>
+  <h1>Desktop page</h1>
+  <p>When the window is narrower than 600 pixels this page sends the visitor to a separate mobile page.</p>
+</main>
+<script>
+  window.addEventListener('resize', function () { if (window.innerWidth < 600) location.href = '/mobile.html'; });
+</script>
+</body>
+</html>

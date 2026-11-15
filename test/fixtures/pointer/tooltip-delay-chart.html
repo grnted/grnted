@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Library visits (a chart whose tooltip waits before it shows)</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; }</style></head>
+<body><main>
+<h1>Library visits</h1>
+<p>Library visits each season: winter 41, spring 18, summer 9 thousand.</p>
+<div id="season-chart" style="position:relative;max-width:30rem"><svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart: library visits each season" width="480" height="140" viewBox="0 0 480 140" style="max-width:100%"><rect width="480" height="140" fill="#dbe8f7"/><rect x="40" y="20" width="100" height="120" fill="#0b4fb3"/><rect x="190" y="80" width="100" height="60" fill="#0b4fb3"/><rect x="340" y="110" width="100" height="30" fill="#0b4fb3"/></svg></div>
+<p><a href="about.html">About these numbers</a></p>
+</main>
+<script>
+// A chart library's default tooltip: shown a quarter second after the pointer comes, hidden half a second after it
+// leaves, Escape closes it; the chart listens for presses (to start a zoom) and does nothing with them.
+(function(){var el=document.getElementById('season-chart'),tip=null,st=0,ht=0;function hide(){clearTimeout(st);if(tip){tip.remove();tip=null;}}function show(){if(tip)return;tip=document.createElement('div');tip.textContent='Winter: 41 thousand';tip.style.cssText='position:absolute;left:8px;top:8px;padding:4px 8px;background:#ffffff;border:1px solid #1a1a1a;color:#1a1a1a';el.appendChild(tip);}el.addEventListener('mousemove',function(){clearTimeout(ht);if(!tip){clearTimeout(st);st=setTimeout(show,250);}});el.addEventListener('mouseleave',function(){clearTimeout(st);clearTimeout(ht);ht=setTimeout(hide,500);});document.addEventListener('keydown',function(e){if(e.key==='Escape')hide();});el.addEventListener('mousedown',function(){});})();
+</script>
+</body>
+</html>

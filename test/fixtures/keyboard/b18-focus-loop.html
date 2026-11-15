@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Focus fixture: a widget loop keeps both walks from a launcher with no ring</title>
+<style>
+  body { font: 16px/1.5 Arial, sans-serif; margin: 24px; color: #222; background: #fff; }
+  a, button { color: #1a4f8b; }
+  :focus-visible { outline: 2px solid #1a4f8b; outline-offset: 2px; }
+  .launcher { position: fixed; left: 16px; bottom: 16px; background: #fff; border: 2px solid #0a6b6b; border-radius: 20px; padding: 10px 14px; }
+  body.portal .launcher:focus, body.portal .launcher:focus-visible { outline: none; box-shadow: none; }
+</style>
+</head>
+<body class="portal">
+<button id="w1" type="button">Previous tip</button>
+<main>
+  <h1>Newsletter</h1>
+  <p><a href="/archive.html">Read past issues</a></p>
+  <p><a href="/signup.html">Sign up</a></p>
+</main>
+<button class="launcher" id="launcher" type="button">Accessibility options</button>
+<button id="w2" type="button">Next tip</button>
+<script>
+  // The tip widget's two buttons send Tab and Shift+Tab to each other: a loop at both ends of the page.
+  const w1 = document.getElementById('w1'), w2 = document.getElementById('w2');
+  for (const [from, to] of [[w1, w2], [w2, w1]]) {
+    from.addEventListener('keydown', (e) => { if (e.key === 'Tab') { e.preventDefault(); to.focus(); } });
+  }
+</script>
+</body>
+</html>

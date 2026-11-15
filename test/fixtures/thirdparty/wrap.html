@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Wrapper frame</title></head>
+<body><main>
+<p>A frame that embeds the address in its <code>src</code> query parameter.</p>
+<iframe id="inner" title="Embedded frame" width="300" height="160"></iframe>
+<script>document.getElementById('inner').src = new URLSearchParams(location.search).get('src') || 'about:blank';</script>
+</main></body>
+</html>

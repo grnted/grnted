@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Many covered links</title>
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; color: #111; background: #fff; }
+#page { position: relative; height: 6000px; }
+#page h1 { margin: 0; padding: 8px; font-size: 20px; }
+#page a { position: absolute; right: 10px; width: 80px; height: 24px; line-height: 24px; color: #036; }
+.chat { position: fixed; top: 60px; right: 0; width: 100px; height: 150px; border: 0; background: #0050c8; color: #fff; z-index: 10; }
+#donate-bar { position: fixed; top: 100px; right: 10px; z-index: 5; }
+#donate { display: block; width: 80px; height: 24px; background: #fff; }
+</style>
+</head>
+<body>
+<!-- A long page: links down the right edge, every 100 px. A fixed chat widget covers the band
+     60–210 px from the top on the right, so a link sampled in that band is covered there and is
+     whole and clear once it is near the top of the screen. ?trap=1 adds a fixed link under the
+     widget (never clear). ?slow=N makes every scroll take N ms, ?slowhit=N every hit test; ?top=N adds N links on the
+     first screen, on the left; ?clock=1 freezes Date.now. -->
+<div id="page"><h1>News</h1></div>
+<button class="chat" type="button" aria-label="Chat with us">?</button>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var page = document.getElementById('page');
+  for (var i = 0, y = 400; y < 5900; y += 100, i++) {
+    var a = document.createElement('a');
+    a.href = '/story-' + i;
+    a.id = 'story-' + i;
+    a.textContent = 'Story ' + i;
+    a.style.top = y + 'px';
+    page.appendChild(a);
+  }
+  var top = Number(q.get('top') || 0);
+  for (var k = 0; k < top; k++) {
+    var t = document.createElement('a');
+    t.href = '/top-' + k;
+    t.textContent = 'Top ' + k;
+    t.style.cssText = 'top:' + (40 + k * 20) + 'px;left:8px;right:auto;height:18px;line-height:18px;width:60px';
+    page.appendChild(t);
+  }
+  if (q.get('trap')) {
+    var bar = document.createElement('div');
+    bar.id = 'donate-bar';
+    bar.innerHTML = '<a id="donate" href="/donate">Donate</a>';
+    document.body.insertBefore(bar, page);
+  }
+  // A page that freezes its clock (as fake-timer libraries do).
+  if (q.get('clock')) Date.now = function () { return 0; };
+  var busy = function (ms) { var t = performance.now(); while (performance.now() - t < ms) {} };
+  var slow = Number(q.get('slow') || 0);
+  if (slow) addEventListener('scroll', function () { busy(slow); });
+  var slowHit = Number(q.get('slowhit') || 0);
+  if (slowHit) {
+    var real = Document.prototype.elementsFromPoint;
+    Document.prototype.elementsFromPoint = function (x, y) { busy(slowHit); return real.call(this, x, y); };
+  }
+})();
+</script>
+</body>
+</html>

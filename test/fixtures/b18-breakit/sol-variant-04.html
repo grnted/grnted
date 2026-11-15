@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Shelter estimate</title></head>
+<body><main><h1>Shelter estimate</h1>
+<form id="estimate" novalidate>
+ <label for="nights">Number of nights</label>
+ <input id="nights" type="number" min="1" max="12" aria-describedby="error">
+ <p id="error" role="alert"></p>
+ <button>Calculate estimate</button>
+ <p id="result" role="status"></p>
+</form></main>
+<script>
+document.getElementById('estimate').addEventListener('submit', e => {
+  e.preventDefault();
+  const value = document.getElementById('nights').value;
+  const wrong = value !== '' && (+value < 1 || +value > 12);
+  document.getElementById('error').textContent = wrong ? 'Invalid' : '';
+  document.getElementById('result').textContent = wrong ? '' : 'Estimate ready.';
+});
+</script></body></html>

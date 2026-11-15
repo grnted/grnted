@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>main{min-height:3000px}</style><title>&nbsp;</title></head>
+<body>
+<main>
+<p>Checking your browser. <a href="/interstitial-only.html">Why am I seeing this?</a></p>
+</main>
+<!-- An interstitial that replaces itself 600 ms after load with a page whose server takes 5 s to answer. -->
+<script>addEventListener('load', function () { setTimeout(function () { location.replace('/slow-dest.html'); }, 600); });</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<p>The page records orientation for statistics only.</p>
+</main>
+<script>
+  window.__angles = [];
+  window.addEventListener('deviceorientation', function (e) { if (window.__angles.length < 100) window.__angles.push(e.beta); });
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Choose a seat (default cursor)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Choose a seat (default cursor)</h1>
+<p>Choose a seat on the plan to see whether it is free.</p>
+<canvas id="seats" width="640" height="200" style="max-width:100%" aria-label="Seat plan, row A, seats 1 to 8"></canvas>
+<p id="seat-out">No seat chosen.</p>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+var c = document.getElementById('seats'), g = c.getContext('2d');
+g.fillStyle = '#ffffff'; g.fillRect(0, 0, 640, 200);
+for (var i = 0; i < 8; i++) { g.fillStyle = '#0b4fb3'; g.fillRect(20 + i * 76, 60, 60, 80); g.fillStyle = '#ffffff'; g.font = '16px sans-serif'; g.fillText('A' + (i + 1), 38 + i * 76, 106); }
+c.addEventListener('click', function (e) { var n = Math.floor((e.offsetX - 20) / 76) + 1; if (n >= 1 && n <= 8) document.getElementById('seat-out').textContent = 'Seat A' + n + ' is free for the 7 pm show.'; });
+</script>
+</body>
+</html>

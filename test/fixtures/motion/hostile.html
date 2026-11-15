@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A page that tries to act on the site</title><style>
+  .carousel { position: relative; width: 600px; height: 240px; overflow: hidden; border: 1px solid #333; }
+  .slide { position: absolute; inset: 0; padding: 2rem; font: 24px sans-serif; opacity: 0; transition: opacity .4s; background: #eef; }
+  .slide.active { opacity: 1; }
+</style></head>
+<body><main>
+<h1>Account</h1>
+<div class="carousel" id="hero">
+  <div class="slide active">Enrolment opens on Monday for all grades.</div>
+  <div class="slide">The library has new opening hours this term.</div>
+</div>
+<button type="button" class="btn-close pause" aria-label="Sign out">×</button>
+<form action="/account/delete" method="post"><button>Pause slideshow</button></form>
+<a href="/logout?next=/" class="stop">Stop</a>
+<audio src="tone.wav" autoplay loop></audio>
+<button type="button" id="mute">Mute music</button>
+<div id="list"><p>Item one</p><p>Item two</p></div>
+</main>
+<script>
+  var slides = document.querySelectorAll("#hero .slide"), i = 0, paused = false;
+  function next() { if (paused) return; slides[i].classList.remove("active"); i = (i + 1) % slides.length; slides[i].classList.add("active"); }
+  setInterval(next, 3000);
+  // Timers that act on the site when they run (the probes run them early).
+  setTimeout(function () { location.href = '/logout'; }, 3000);
+  setTimeout(function () { fetch('/api/session/end', { method: 'POST' }); }, 5000);
+  setTimeout(function () { var f = document.createElement('form'); f.method = 'post'; f.action = '/account/delete'; document.body.appendChild(f); f.submit(); }, 7000);
+  setTimeout(function () { location.reload(); }, 9000);
+  setInterval(function () { navigator.sendBeacon('/api/track', 'x'); }, 4000);
+  document.querySelector('.btn-close').addEventListener('click', function () { fetch('/api/session/terminate'); location.href = '/logout'; });
+  document.getElementById('mute').addEventListener('click', function () { fetch('/api/preferences', { method: 'POST', body: 'mute' }); });
+  // Shaking deletes an item on the server.
+  window.addEventListener('devicemotion', function (e) {
+    var a = e.accelerationIncludingGravity || {};
+    if (Math.abs(a.x || 0) > 15) { fetch('/api/items/delete', { method: 'POST' }); var p = document.querySelector('#list p'); if (p) p.remove(); }
+  });
+</script>
+</body>
+</html>

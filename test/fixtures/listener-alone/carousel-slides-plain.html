@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>News (carousel slides)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>News (carousel slides)</h1>
+<p>The latest news from the district.</p>
+<div class="slick-slider"><div class="slick-list"><div class="slick-track"><div class="slick-slide" role="group" aria-label="1 of 2" style="display:inline-block;width:180px;padding:8px;border:1px solid #595959">The library opens late on Thursdays.</div><div class="slick-slide" role="group" aria-label="2 of 2" style="display:inline-block;width:180px;padding:8px;border:1px solid #595959">Bus routes 12 and 24 change in March.</div></div></div></div>
+<p><button type="button" id="prev">Previous</button> <button type="button" id="next">Next</button></p>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+var drag = function () {}; [].forEach.call(document.querySelectorAll('.slick-slide'), function (s) { s.addEventListener('click', drag); s.addEventListener('mousedown', drag); }); document.querySelector('.slick-track').addEventListener('click', drag);
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: a narrow menu under a wide trigger</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; max-width: 40rem; }
+  #services { position: relative; width: 20rem; height: 3rem; line-height: 3rem; padding: 0 0.5rem; box-sizing: border-box; background: #eef3f8; }
+  #services-menu { position: absolute; left: 0; top: 100%; width: 4rem; margin: 0; padding: 0; list-style: none; background: #1a1a1a; z-index: 2; line-height: 1.4; }
+  #services-menu[hidden] { display: none; }
+  #services-menu a { display: block; padding: 0.25rem; color: #fff; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Services</h1>
+  <!-- A wide trigger whose narrow, left-aligned menu touches its bottom edge. The menu is inside the
+       trigger, so it stays open while the pointer is over either; it hides when the pointer leaves both.
+       A straight line from the trigger's middle to the nearest point of the menu leaves both at the corner. -->
+  <div id="services">City services
+    <ul id="services-menu" hidden><li><a href="#water">Water</a></li><li><a href="#parks">Parks</a></li><li><a href="#roads">Roads</a></li></ul>
+  </div>
+  <p>This paragraph sits under the menu, which covers it while it is shown.</p>
+  <p>Spacer paragraph one.</p>
+  <p>Spacer paragraph two.</p>
+</main>
+<script>
+  (function () {
+    var t = document.getElementById('services'), m = document.getElementById('services-menu');
+    t.addEventListener('mouseenter', function () { m.hidden = false; });
+    t.addEventListener('mouseleave', function () { m.hidden = true; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') m.hidden = true; });
+  })();
+</script>
+</body>
+</html>

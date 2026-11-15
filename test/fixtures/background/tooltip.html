@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Background writes: the same page with no beacons</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  .skip { position: absolute; left: -9999px; top: 0; }
+  .skip:focus { left: 1rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  header, main, footer { padding: 1rem; max-width: 60rem; margin: 0 auto; }
+  nav ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; list-style: none; margin: 0; padding: 0; }
+  a { color: #0645ad; }
+  .card { min-height: 4rem; padding: 0.5rem; border: 1px solid #767676; margin: 1rem 0; }
+  .excerpt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; min-width: 40rem; }
+  th, td { border: 1px solid #767676; padding: 0.25rem 0.5rem; text-align: left; }
+  pre { overflow-x: auto; background: #f4f4f4; padding: 0.5rem; }
+  .btn { min-height: 2.75rem; padding: 0.5rem 1rem; font: inherit; }
+  .menu > ul { display: none; list-style: none; margin: 0; padding: 0 0 0 1rem; }
+  .menu:hover > ul, .menu:focus-within > ul { display: block; }
+  .tip-wrap { position: relative; display: inline-block; }
+  .tip { position: absolute; top: 100%; left: 0; width: 14rem; padding: 0.25rem 0.5rem; background: #1a1a1a; color: #fff; z-index: 2; }
+  .tip[hidden] { display: none; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="/beacon.html">Reflow</a></li>
+      <li><a href="/beacon.html">Text spacing</a></li>
+      <li><a href="/beacon.html">Resize text</a></li>
+      <li><a href="/beacon.html">Orientation</a></li>
+      <li><a href="/beacon.html">Orientation with a script</a></li>
+      <li><a href="/beacon.html">Hover content</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+  <h1>A page with no render problems</h1>
+  <p>This page reflows at any width, keeps its text readable with extra spacing and larger text, works in both orientations, and its tooltip can be dismissed, hovered and stays put.<span class="sr-only"> (screen reader note)</span></p>
+  <div class="card"><p class="excerpt">The card grows with its text. This excerpt is clamped to two lines with an ellipsis on purpose, and the full story is one link away, so the clamp is not counted as text being cut off by the tests that change the spacing or the size of the text.</p></div>
+  <div class="table-wrap">
+    <table>
+      <caption>Bus schedule</caption>
+      <thead><tr><th scope="col">Route</th><th scope="col">Morning pickup</th><th scope="col">Afternoon drop-off</th><th scope="col">Driver</th></tr></thead>
+      <tbody>
+        <tr><td>North loop</td><td>7:10 am at Elm and Fifth</td><td>3:25 pm at Elm and Fifth</td><td>Sam Ortiz</td></tr>
+        <tr><td>South loop</td><td>7:20 am at the library</td><td>3:35 pm at the library</td><td>Ana Lee</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <pre><code>const greeting = 'Code blocks may scroll sideways on narrow screens: they are an exception to reflow';</code></pre>
+  <ul class="links">
+    <li class="menu" tabindex="0">More resources
+      <ul>
+        <li><a href="/beacon.html">Reflow notes</a></li>
+        <li><a href="/beacon.html">Spacing notes</a></li>
+      </ul>
+    </li>
+  </ul>
+  <p>
+    <span class="tip-wrap" id="tip-wrap">
+      <button type="button" class="btn" id="tip-btn" aria-describedby="tip">Office hours</button>
+      <span class="tip" id="tip" role="tooltip" hidden>Monday to Friday, 8 am to 4 pm.</span>
+    </span>
+  </p>
+  <p>Text after the tooltip. The tooltip covers this line when it is shown, and pressing Escape hides it again.</p>
+  <button type="button" class="btn">Sign up for news</button>
+</main>
+<footer><p>Render fixture footer.</p></footer>
+<script>
+  (function () {
+    var wrap = document.getElementById('tip-wrap');
+    var tip = document.getElementById('tip');
+    function show() { tip.hidden = false; }
+    function hide() { tip.hidden = true; }
+    wrap.addEventListener('mouseenter', show);
+    wrap.addEventListener('mouseleave', hide);
+    wrap.addEventListener('focusin', show);
+    wrap.addEventListener('focusout', hide);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+  })();
+</script>
+</body>
+</html>

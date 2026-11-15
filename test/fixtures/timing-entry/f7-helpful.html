@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Shelter rules | Alder Parks</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 40rem; } textarea { font: inherit; width: 100%; }</style></head>
+<body>
+<main><h1>Shelter rules</h1><p>Shelters open at 8 am and close at dusk.</p>
+<section id="helpful" aria-labelledby="h-h"><h2 id="h-h">Was this page helpful?</h2>
+<label for="more">Tell us more</label><textarea id="more" rows="3"></textarea>
+<p><button type="button" id="send">Send feedback</button></p><p id="thanks"></p></section></main>
+<script>
+  // The press uses what was typed: it thanks the visitor, and 6 s later the box goes away.
+  document.getElementById('send').addEventListener('click', () => {
+    document.getElementById('thanks').textContent = 'Thanks for your feedback.';
+    setTimeout(() => document.getElementById('helpful').remove(), 6000);
+  });
+</script>
+</body></html>

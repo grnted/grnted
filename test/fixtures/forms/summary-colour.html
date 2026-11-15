@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Join the newsletter (summary alert, errors only in colour)</title>
+<style>.bad { border: 2px solid #d00000; }</style></head>
+<body>
+<main>
+<h1>Join the newsletter</h1>
+<form id="news" action="/newsletter" method="post" novalidate>
+  <div id="summary" role="alert"></div>
+  <p><label for="nname">Name</label><br><input id="nname" name="nname" autocomplete="name"></p>
+  <p><label for="nemail">Email</label><br><input id="nemail" name="nemail" type="email" autocomplete="email"></p>
+  <button type="submit">Join</button>
+</form>
+</main>
+<script>
+  // A generic alert and red borders: no text says which field is wrong or why.
+  document.getElementById('news').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let bad = 0;
+    for (const id of ['nname', 'nemail']) {
+      const f = document.getElementById(id);
+      if (f.value.trim()) f.classList.remove('bad'); else { f.classList.add('bad'); bad++; }
+    }
+    document.getElementById('summary').textContent = bad ? 'Error' : '';
+  });
+</script>
+</body>
+</html>

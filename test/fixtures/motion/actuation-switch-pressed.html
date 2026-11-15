@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Tour</title></head>
+<body><main>
+<h1>Tour</h1>
+<section aria-label="Slides" id="gallery">
+  <p id="slide" style="font: 24px sans-serif; padding: 2rem; border: 1px solid #333; width: 500px">Slide 1 of 4: the new library.</p>
+  <p><button type="button" id="next">Next slide</button></p>
+  <p><span role="switch" id="sw" tabindex="0" aria-pressed="true" aria-label="Tilt to change slides" style="display: inline-block; width: 40px; height: 24px; border: 1px solid #333"></span></p>
+</section>
+</main>
+<script>
+  // A switch that keeps its state in aria-pressed (no aria-checked).
+  var n = 1, armed = true, sw = document.getElementById('sw');
+  var next = function () { n = n % 4 + 1; document.getElementById('slide').textContent = 'Slide ' + n + ' of 4: ' + ['the new library', 'the river path', 'the skate park', 'the market'][n - 1] + '.'; };
+  addEventListener('deviceorientation', function (e) {
+    if (sw.getAttribute('aria-pressed') !== 'true') return;
+    var g = e.gamma || 0;
+    if (Math.abs(g) > 30 && armed) { armed = false; next(); }
+    if (Math.abs(g) < 10) armed = true;
+  });
+  document.getElementById('next').addEventListener('click', next);
+  sw.addEventListener('click', function () { sw.setAttribute('aria-pressed', String(sw.getAttribute('aria-pressed') !== 'true')); });
+</script>
+</body>
+</html>

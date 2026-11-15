@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Departure board</title>
+<style>#board { display: block; font: 32px monospace; padding: 1rem; }</style></head>
+<body><main>
+<h1>Buses</h1>
+<p>Buses leave from the north entrance of the town hall.</p>
+<!-- Planted failure (2.2.2): the same updating board next to other content, with no way to pause it. -->
+<div id="board">Next bus: 4 min</div>
+</main>
+<script>
+  (function () {
+    var board = document.getElementById('board'), n = 0;
+    setInterval(function () { n++; board.textContent = 'Next bus: ' + (4 + (n % 5)) + ' min'; }, 1000);
+  })();
+</script>
+</body>
+</html>

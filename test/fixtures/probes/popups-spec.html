@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Speculative loads</title>
+<script type="speculationrules">{"prefetch":[{"source":"list","urls":["/pop/spec-parser-prefetch"]}],"prerender":[{"source":"list","urls":["/pop/spec-parser-prerender"]}]}</script>
+<link rel="prefetch" href="/pop/link-prefetch">
+<link rel="prerender" href="/pop/link-prerender">
+</head>
+<body>
+<main><h1>Speculative loads</h1><p>The page asks the browser to load other pages ahead of time.</p></main>
+<script>
+  var s = document.createElement('script');
+  s.type = 'speculationrules';
+  s.textContent = JSON.stringify({ prefetch: [{ source: 'list', urls: ['/pop/spec-script-prefetch'] }], prerender: [{ source: 'list', urls: ['/pop/prerender'] }] });
+  document.head.append(s);
+  var l = document.createElement('link');
+  l.rel = 'prefetch';
+  l.href = '/pop/link-script-prefetch';
+  document.head.appendChild(l);
+</script>
+</body>
+</html>

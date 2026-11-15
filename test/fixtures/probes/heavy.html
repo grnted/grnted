@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Many listeners</title></head>
+<body>
+<main><h1>Many listeners</h1><div id="root"></div></main>
+<script>
+  // 1000 buttons, each with a click and a pointerdown handler that rely on `this`, and a second click
+  // handler that is removed again; a delegated handler on the container; 500 short timers.
+  var t = window.__selfTest = { errors: [] };
+  var root = document.getElementById('root');
+  for (var i = 0; i < 1000; i++) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = 'Button ' + i;
+    root.appendChild(b);
+    (function (b, i) {
+      var h1 = function () { if (this !== b) t.errors.push('this ' + i); b.dataset.c = String(Number(b.dataset.c || 0) + 1); };
+      var h2 = function () { t.errors.push('removed handler ran ' + i); };
+      b.addEventListener('click', h1);
+      b.addEventListener('click', h2);
+      b.addEventListener('pointerdown', function () {}, { passive: true });
+      b.removeEventListener('click', h2);
+    })(b, i);
+  }
+  root.addEventListener('click', function () { t.delegated = (t.delegated || 0) + 1; });
+  var buttons = root.querySelectorAll('button');
+  for (var j = 0; j < buttons.length; j++) buttons[j].click();
+  t.bad = 0;
+  for (var k = 0; k < buttons.length; k++) if (buttons[k].dataset.c !== '1') t.bad++;
+  for (var m = 0; m < 500; m++) setTimeout(function () { t.timers = (t.timers || 0) + 1; }, 0);
+</script>
+</body>
+</html>

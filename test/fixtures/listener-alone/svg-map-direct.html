@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Find your ward</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+.ward { cursor: pointer; }
+</style>
+</head>
+<body>
+<main>
+<h1>Find your ward</h1>
+<p>Choose your ward on the map to see who represents it.</p>
+<svg id="wards" xmlns="http://www.w3.org/2000/svg" width="640" height="240" viewBox="0 0 640 240" aria-label="Map of the four wards"><path id="ward-1" class="ward" d="M20,20 h140 v200 h-140 z" fill="#9ecae1"><title>Ward 1</title></path><path id="ward-2" class="ward" d="M170,20 h140 v200 h-140 z" fill="#6baed6"><title>Ward 2</title></path><path id="ward-3" class="ward" d="M320,20 h140 v200 h-140 z" fill="#4292c6"><title>Ward 3</title></path><path id="ward-4" class="ward" d="M470,20 h140 v200 h-140 z" fill="#2171b5"><title>Ward 4</title></path></svg>
+<p id="ward-out">No ward chosen.</p>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+[].forEach.call(document.querySelectorAll('.ward'), function (w) { w.addEventListener('click', function () { document.getElementById('ward-out').textContent = 'Ward ' + w.id.slice(5) + ': council member\u2019s office, room 30' + w.id.slice(5) + '.'; }); });
+</script>
+</body>
+</html>

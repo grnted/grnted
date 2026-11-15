@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meeting dates</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+.month { cursor: pointer; padding: 6px 12px; border: 1px solid #595959; }
+</style>
+</head>
+<body>
+<main>
+<h1>Meeting dates</h1>
+<p>Choose a month to see its meeting.</p>
+<ul id="months" style="list-style:none;padding:0;display:flex;gap:8px"><li class="month" data-m="March">March</li><li class="month" data-m="April">April</li><li class="month" data-m="May">May</li></ul>
+<p id="month-out">No month chosen.</p>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+document.getElementById('months').addEventListener('click', function (e) { var m = e.target.closest('.month'); if (m) document.getElementById('month-out').textContent = m.getAttribute('data-m') + ': the board meets on the second Tuesday at 6 pm.'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plot plan</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+button { font: inherit; padding: 6px 12px; }
+.tile { display: inline-block; padding: 8px 14px; border: 2px solid #1d4d3f; border-radius: 4px; background: #e7f2ee; cursor: pointer; }
+.tile:focus { outline: 3px solid #0b57d0; outline-offset: 2px; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header><a href="/">Marsh Lane Allotments</a> <a href="/about.html">About</a></header>
+<main>
+<h1>Plot plan</h1>
+<!-- Fails 2.1.1: only the pointer saves the choice. The control's name has the word "shortcuts" in it; that names no key. -->
+<p><span class="tile" role="button" tabindex="0" id="tile">Save my plot shortcuts</span></p>
+<p id="hint"></p>
+<p id="plan" role="status"></p>
+<p id="other"></p>
+</main>
+<footer><a href="/contact.html">Contact</a></footer>
+<script>
+var plan = document.getElementById('plan');
+function flip() { plan.textContent = 'Plots 4 and 9 are kept in your shortcuts.'; }
+document.getElementById('tile').addEventListener('pointerup', flip);
+
+</script>
+</body>
+</html>

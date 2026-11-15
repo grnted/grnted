@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Shelter booking</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Shelter booking</h1>
+<form id="f" action="/book" method="get"><p><label>What is the gathering for? <input id="what" name="what"></label></p><p><button>Book</button></p></form>
+<div id="ask" class="dlg" role="dialog" aria-modal="true" aria-labelledby="ask-h" hidden><h2 id="ask-h">Are you still there?</h2><p>We hold your place while you fill in the form.</p><button type="button" id="yes">Yes, I am here</button></div>
+</main>
+<script>
+  // Ten minutes after the last key press a box asks whether the visitor is still there; the form is switched off
+  // behind it and comes back, as it was, when the box is answered.
+  var t; var what = document.getElementById('what');
+  function ask() { what.disabled = true; document.getElementById('ask').hidden = false; }
+  what.addEventListener('input', function () { clearTimeout(t); t = setTimeout(ask, 10 * 60 * 1000); });
+  document.getElementById('yes').addEventListener('click', function () { what.disabled = false; document.getElementById('ask').hidden = true; });
+</script>
+</body>
+</html>

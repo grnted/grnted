@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: text spacing cuts a label sideways</title>
+<style>
+  body { margin: 0; font: 16px/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; }
+  /* A tab label in a box of fixed width: letter and word spacing push its end out of the box. */
+  /* Fixed-pitch text (0.6 em a character) so the measure does not depend on the fonts installed. */
+  #tab-btn, #tab-ellipsis { font: 16px/1.4 'Courier New', monospace; }
+  #tab-btn { width: 200px; white-space: nowrap; overflow: hidden; padding: 0; text-align: left; border: 1px solid #767676; }
+  /* The same, with an ellipsis on purpose: not counted. */
+  #tab-ellipsis { width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0; text-align: left; border: 1px solid #767676; }
+  /* An icon font draws a word as one glyph; letter spacing turns it back into the word. Not counted as text. */
+  .icon { font: 16px/1 'Material Symbols Outlined', 'Courier New', monospace; display: inline-block; width: 8.2em; overflow: hidden; white-space: nowrap; vertical-align: middle; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Tabs</h1>
+  <p><button type="button" id="tab-btn">Upcoming events list</button></p>
+  <p><button type="button" id="tab-ellipsis">Upcoming events list</button></p>
+  <p><button type="button" id="bell-btn" aria-label="Notifications"><span class="icon" aria-hidden="true">notifications</span></button></p>
+</main>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Preferences (alert on change)</title></head>
+<body>
+<main>
+<h1>Preferences</h1>
+<form action="/prefs" method="post">
+  <p><label for="dc-lang">Language</label> <select id="dc-lang" name="lang" onchange="alert('Saved')"><option>English</option><option>Español</option></select></p>
+  <p><label for="dc-size">Text size</label> <select id="dc-size" name="size"><option>Normal</option><option>Large</option></select></p>
+  <button type="submit">Save</button>
+</form>
+</main>
+</body>
+</html>

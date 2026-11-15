@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Permit inquiry</title></head>
+<body><main><h1>Permit inquiry</h1>
+<form onsubmit="event.preventDefault()">
+ <label id="permit-label" for="permit">Permit identifier</label>
+ <input id="permit" aria-describedby="format">
+ <p id="format">Use two uppercase letters followed by four digits, such as AB1234.</p>
+ <button id="send" disabled>Send inquiry</button>
+</form></main>
+<script>
+const field = document.getElementById('permit');
+const valid = () => /^[A-Z]{2}[0-9]{4}$/.test(field.value);
+field.addEventListener('input', () => {
+  document.getElementById('send').disabled = !valid();
+});
+field.addEventListener('blur', () => {
+  document.getElementById('permit-label').style.color = valid() ? '#111111' : '#b00000';
+});
+</script></body></html>

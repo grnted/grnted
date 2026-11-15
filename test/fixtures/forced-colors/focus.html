@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Focus indicators</title>
+<style>
+  body { margin: 0; font: 18px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  a { display: inline-block; margin: 12px; padding: 4px 8px; color: #0b4fb3; }
+  #f-shadow:focus { outline: none; box-shadow: 0 0 0 4px #b3006b; }
+  #f-fill:focus { outline: none; background: #ffd23f; }
+  #f-outline:focus { outline: 3px solid #b3006b; outline-offset: 2px; }
+  #f-clear:focus { outline: 3px solid transparent; box-shadow: 0 0 0 4px #b3006b; }
+  #f-none:focus { outline: none; }
+  input { font: inherit; border: 2px solid #595959; padding: 6px; margin: 12px; }
+  input:focus { outline: none; box-shadow: 0 0 0 3px #b3006b; }
+</style>
+</head>
+<body>
+<main>
+<h1>Focus indicators</h1>
+<p>
+  <a id="f-shadow" href="#a">Calendar</a>
+  <a id="f-fill" href="#b">Staff directory</a>
+  <a id="f-outline" href="#c">Lunch menu</a>
+  <a id="f-clear" href="#d">Bus routes</a>
+  <a id="f-none" href="#e">Athletics</a>
+</p>
+<label>Search <input id="f-field" type="text"></label>
+</main>
+</body>
+</html>

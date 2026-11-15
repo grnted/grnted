@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Trail conditions</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button{font:inherit;padding:6px 12px}</style></head><body>
+<!-- A menu with six openers of one make, all correct, before the main content. -->
+<header><nav aria-label="Main">
+<button type="button" class="opener" aria-expanded="false" aria-controls="m1">Trails</button><div id="m1" hidden><a href="/a">Ridge Loop</a></div>
+<button type="button" class="opener" aria-expanded="false" aria-controls="m2">Camping</button><div id="m2" hidden><a href="/b">Sites</a></div>
+<button type="button" class="opener" aria-expanded="false" aria-controls="m3">Permits</button><div id="m3" hidden><a href="/c">Fires</a></div>
+<button type="button" class="opener" aria-expanded="false" aria-controls="m4">Events</button><div id="m4" hidden><a href="/d">Walks</a></div>
+<button type="button" class="opener" aria-expanded="false" aria-controls="m5">News</button><div id="m5" hidden><a href="/e">Alerts</a></div>
+<button type="button" class="opener" aria-expanded="false" aria-controls="m6">About</button><div id="m6" hidden><a href="/f">Staff</a></div>
+</nav></header>
+<main><h1>Trail conditions</h1><p>Check a trail before you set out. Conditions are updated each morning by the ranger station.</p>
+<!-- The one disclosure of the page's own content, after them: it shows its block and still says collapsed. -->
+<button id="late" type="button" class="details-toggle" aria-expanded="false" aria-controls="late-panel">Bridge repair dates</button>
+<div id="late-panel" hidden><p>The bridge is closed from the third to the ninth.</p></div>
+</main>
+<script>
+  Array.prototype.forEach.call(document.querySelectorAll('.opener'), function (b) { b.addEventListener('click', function () { var p = document.getElementById(b.getAttribute('aria-controls')); p.hidden = !p.hidden; b.setAttribute('aria-expanded', String(!p.hidden)); }); });
+  document.getElementById('late').addEventListener('click', function () { var p = document.getElementById('late-panel'); p.hidden = !p.hidden; });
+</script>
+</body></html>

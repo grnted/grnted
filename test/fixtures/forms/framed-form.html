@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Contact form</title></head>
+<body>
+<form id="f" action="/framed-contact" method="post" novalidate>
+  <p><input name="who" placeholder="Your name"></p>
+  <p><label for="fr-mail">Email</label><br><input id="fr-mail" name="mail" type="email" autocomplete="email"></p>
+  <button type="submit">Send</button>
+</form>
+<script>
+  document.getElementById('f').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const mail = document.getElementById('fr-mail');
+    let p = mail.parentElement.querySelector('.err');
+    if (!p) { p = document.createElement('span'); p.className = 'err'; p.style.color = 'rgb(200,0,0)'; mail.after(p); }
+    p.textContent = !mail.value ? 'Required' : mail.value.includes('@') ? '' : 'Wrong';
+    if (mail.value.includes('@')) fetch('/framed-contact', { method: 'POST', body: new FormData(e.target) });
+  });
+</script>
+</body>
+</html>

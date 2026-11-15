@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<audio id="music" src="tone.wav" autoplay loop></audio>
+<label><input type="checkbox" role="switch" id="snd" checked> Background music</label>
+</main>
+<script>
+document.getElementById('snd').addEventListener('change', function () { var a = document.getElementById('music'); if (this.checked) a.play(); else a.pause(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Player inside an open web component</title>
+<style>body { font: 16px/1.5 Arial, Helvetica, sans-serif; color: #222; background: #fff; margin: 0 24px; } iframe { border: 0; }</style>
+</head>
+<body>
+<main>
+<h1>Player inside an open web component</h1>
+<section>
+  <h2>Video</h2>
+  <div id="host"></div>
+</section>
+<script>
+  const root = document.getElementById('host').attachShadow({ mode: 'open' });
+  const f = document.createElement('iframe');
+  f.title = 'Video';
+  f.width = 480;
+  f.height = 270;
+  f.src = 'http://www.youtube.com/embed/capsOn0001?from=shadow';
+  root.append(f);
+</script>
+</main>
+</body>
+</html>

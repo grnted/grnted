@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Platform board</title>
+<style>#board { font: 24px sans-serif; padding: .5rem; border: 1px solid #333; width: 420px; }</style></head>
+<body><main>
+<h1>Platform board</h1>
+<p>Trains toward the harbour leave from platform 2.</p>
+<!-- Planted failure (2.2.2): the select is about which lines to show, not how often the board updates (one of
+     its options has the word "frequent"); nothing pauses, stops or hides the updates or sets how often they come. -->
+<div id="board">Harbour line: 6 min</div>
+<p><label>Show<select id="which"><option value="f">Frequent lines</option><option value="a">All lines</option><option value="n">None</option></select></label></p>
+</main>
+<script>
+  (function () {
+    var n = 0, board = document.getElementById('board');
+    setInterval(function () { n++; board.textContent = 'Harbour line: ' + (6 + n % 4) + ' min'; }, 5000);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Map tools (a toolbar, its role in capitals)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Map tools (a toolbar, its role in capitals)</h1>
+<div role="Toolbar" aria-label="Map tools" id="tools" style="display:flex;gap:8px;align-items:center"><button type="button" tabindex="0">Zoom in</button><button type="button" tabindex="-1">Zoom out</button><div class="group"><div class="inner"><span id="legend" role="button" tabindex="-1" style="padding:4px 8px;border:1px solid #595959">Legend</span></div></div></div>
+<p id="out">Legend hidden.</p>
+<script>
+// A roving toolbar: Tab reaches its first tool, the arrow keys move among them all.
+var tools = [].slice.call(document.querySelectorAll('#tools button, #tools [role="button"]'));
+tools.forEach(function (t, i) { t.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); var n = tools[(i + d + tools.length) % tools.length]; tools.forEach(function (o) { o.tabIndex = o === n ? 0 : -1; }); n.focus(); }); });
+document.getElementById('legend').addEventListener('click', function () { document.getElementById('out').textContent = 'Legend shown.'; });
+document.getElementById('legend').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
+</script>
+<p><a href="/index.html">All reports</a></p>
+</main>
+</body>
+</html>

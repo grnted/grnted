@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Permits by type</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Permits by type</h1>
+<p>Building permits issued this year by type. The table below the chart gives the same numbers.</p>
+<div id="permits" class="chart" style="height:320px"></div>
+<table>
+<caption>Permits by type</caption>
+<thead><tr><th scope="col">Type</th><th scope="col">Permits</th></tr></thead>
+<tbody><tr><td>Residential</td><td>412</td></tr><tr><td>Commercial</td><td>96</td></tr><tr><td>Sign</td><td>58</td></tr></tbody>
+</table>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script src="vendor/echarts/echarts.simple.min.js"></script>
+<script>
+echarts.init(document.getElementById('permits')).setOption({
+  xAxis: { type: 'category', data: ['Residential', 'Commercial', 'Sign'] },
+  yAxis: { type: 'value' },
+  series: [{ type: 'bar', data: [412, 96, 58] }],
+});
+</script>
+</body>
+</html>

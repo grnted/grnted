@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 2: a GET form with a field named q, an email field and a Send button</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<!-- 3.3.2 failures: name="q" is no label; nothing names either field but its placeholder. -->
+<form method="get" action="/contact"><input name="q" placeholder="Question"><input name="email" placeholder="Email"><button>Send</button></form>
+</body>
+</html>

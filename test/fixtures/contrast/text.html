@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Text contrast on backgrounds</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .box { padding: 12px 16px; margin: 0 0 12px; }
+  .light { background: #fff url(light.svg); }
+  .dark { background: #111 url(dark.svg); }
+  .pale-gradient { background: linear-gradient(90deg, #dddddd, #bbbbbb); }
+  .deep-gradient { background: linear-gradient(90deg, #112233, #334455); }
+  .mid-gradient { background: linear-gradient(90deg, #767676, #707070); }
+  .white-gradient { background: linear-gradient(90deg, #ffffff, #f8f8f8); }
+  .split { width: 420px; background: linear-gradient(90deg, #000 0%, #000 45%, #fff 55%, #fff 100%); }
+  .pseudo { position: relative; }
+  .pseudo::before { content: ''; position: absolute; inset: 0; background: #cccccc; z-index: -1; }
+  .stack { position: relative; z-index: 0; }
+  .thin { font-size: 12px; font-weight: 300; }
+  .big { font-size: 28px; }
+  .off { position: absolute; left: -10000px; top: 0; width: 200px; }
+  p { margin: 0; }
+</style>
+</head>
+<body>
+<main>
+  <article>
+  <h1>Text on backgrounds</h1>
+  <div class="box light"><p id="t-fail-image" style="color:#aaaaaa">Light grey text on a light picture is hard to read for many people.</p></div>
+  <div class="box pale-gradient"><p id="t-fail-gradient" style="color:#ffffff">White text on a pale grey gradient fades into it.</p></div>
+  <div class="stack"><div class="box pseudo"><p id="t-fail-pseudo" style="color:#888888">Grey text on a grey box drawn by a pseudo-element.</p></div></div>
+  <div class="box split"><p id="t-fail-half" style="color:#ffffff">White text that runs from a black half onto a white half of the box behind it.</p></div>
+  <div class="box white-gradient"><p id="t-fail-thin" class="thin" style="color:#949494">Small light text in a thin weight, a little too pale for its size on white.</p></div>
+  <div class="box white-gradient"><p id="t-fail-opacity" style="color:#000000; opacity:0.3">Black text made faint with opacity.</p></div>
+
+  <div class="box light"><p id="t-ok-image" style="color:#222222">Dark text on a light picture is easy to read.</p></div>
+  <div class="box deep-gradient"><p id="t-ok-gradient" style="color:#ffffff">White text on a deep blue gradient.</p></div>
+  <div class="box mid-gradient"><p id="t-ok-large" class="big" style="color:#ffffff">Large white heading text on mid grey</p></div>
+  <div class="box white-gradient"><p id="t-ok-thin" class="thin" style="color:#595959">Small thin dark grey text on white has enough contrast.</p></div>
+  <div class="box white-gradient"><p id="t-ok-opacity" style="color:#000000; opacity:0.75">Black text at three quarters opacity on white.</p></div>
+  <div class="box dark"><p id="t-ok-dark" style="color:#f0f0f0">Near-white text on a dark picture.</p></div>
+  <div class="box pale-gradient off"><p id="t-offscreen" style="color:#ffffff">Off-screen text nobody sees.</p></div>
+  <grn-card id="card"></grn-card>
+  </article>
+</main>
+<script>
+  customElements.define('grn-card', class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' }).innerHTML = '<style>div{padding:12px 16px;background:linear-gradient(90deg,#eeeeee,#dddddd)}p{margin:0;color:#999999}</style><div><p id="inner">Grey text inside a component, on a light grey gradient.</p></div>';
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Dashboard</title></head>
+<body><main>
+<h1>Dashboard</h1>
+<div id="app" aria-busy="true"><p>Loading…</p></div>
+</main>
+<script>
+  // The app mounts from a timer, then sets its own time limit (a timer started by a timer).
+  setTimeout(function () {
+    var app = document.getElementById('app');
+    app.innerHTML = '<p>Your dashboard.</p>';
+    app.removeAttribute('aria-busy');
+    setTimeout(function () { location.href = '/static.html'; }, 60000);
+  }, 4000);
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: positive tabindex</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .tall { height: 1400px; }</style>
+</head>
+<body>
+<header><nav aria-label="Site"><a href="/a.html">Home</a> <a href="/b.html">About</a></nav></header>
+<main>
+  <h1>Report</h1>
+  <p>Read <a href="/intro.html">the introduction</a> first.</p>
+  <div class="tall"></div>
+  <!-- Planted failure (2.4.3): tabindex="1" sends focus here first, then back to the top of the page. -->
+  <p>Questions? <a href="/contact.html" id="contact" tabindex="1">Contact us</a></p>
+</main>
+</body>
+</html>

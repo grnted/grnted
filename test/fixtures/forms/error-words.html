@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Borrow a kit (errors in words)</title>
+<style>.msg { color: rgb(180, 0, 0); }</style></head>
+<body>
+<main>
+<h1>Borrow a kit</h1>
+<!-- The message is not tied to its field in the markup, but it repeats the question's own words: it says which field. -->
+<form id="quiz" action="/borrow-quiz" method="post" novalidate>
+  <p><label for="card">Library card number</label><br><input id="card" name="card" autocomplete="off"></p>
+  <p><label for="sum">What is seven plus five?</label><br><input id="sum" name="sum" autocomplete="off"></p>
+  <button type="submit">Check answer</button>
+</form>
+<!-- The message says nothing about which field it means, and nothing ties it to one. -->
+<form id="join" action="/borrow-join" method="post" novalidate>
+  <p><label for="phone">Phone</label><br><input id="phone" name="phone" type="tel" autocomplete="tel"></p>
+  <p><label for="town">Town</label><br><input id="town" name="town" autocomplete="address-level2"></p>
+  <button type="submit">Join the list</button>
+</form>
+</main>
+<script>
+  const say = (field, text) => {
+    let div = field.parentElement.querySelector('.msg');
+    if (!div) { div = document.createElement('div'); div.className = 'msg'; field.after(div); }
+    div.textContent = text;
+  };
+  document.getElementById('quiz').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const sum = document.getElementById('sum');
+    if (sum.value.trim() !== '12') say(sum, 'That is not seven plus five. Try again.');
+    else fetch('/borrow-quiz', { method: 'POST', body: new FormData(e.target) });
+  });
+  document.getElementById('join').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const town = document.getElementById('town');
+    if (!town.value.trim()) say(town, 'That does not look right. Check it and try again.');
+    else fetch('/borrow-join', { method: 'POST', body: new FormData(e.target) });
+  });
+</script>
+</body>
+</html>

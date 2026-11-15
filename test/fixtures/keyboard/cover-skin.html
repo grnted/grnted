@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: skins laid over their own controls</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  .check { position: relative; display: inline-block; width: 24px; height: 24px; vertical-align: middle; }
+  .check input { position: absolute; inset: 0; margin: 0; width: 24px; height: 24px; }
+  .check .box { position: absolute; inset: 0; background: #fff; border: 2px solid #234; z-index: 1; }
+  .check input:focus + .box { outline: 3px solid #05c; outline-offset: 2px; }
+  .sel { position: relative; display: inline-block; width: 200px; height: 36px; }
+  .sel select { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .sel .face { position: absolute; inset: 0; background: #fff; border: 2px solid #234; padding: 4px 8px; z-index: 1; pointer-events: auto; }
+  .sel select:focus + .face { outline: 3px solid #05c; outline-offset: 2px; }
+  .btn { position: relative; display: inline-block; }
+  .btn .shine { position: absolute; inset: 0; background: #1d4d3f; color: #fff; z-index: 1; border-radius: 4px; text-align: center; line-height: 36px; }
+  .btn button { height: 36px; min-width: 160px; }
+  .btn button:focus + .shine { outline: 3px solid #05c; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Preferences</h1>
+  <p><span class="check"><input type="checkbox" id="news"><span class="box"></span></span> <label for="news">Send me the newsletter</label></p>
+  <p><label for="lang">Language</label> <span class="sel"><select id="lang"><option>English</option><option>Spanish</option></select><span class="face">English</span></span></p>
+  <p><span class="btn"><button type="button" id="save">Save preferences</button><span class="shine">Save preferences</span></span></p>
+</main>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Book a shelter | Alder Parks</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 40rem; } label { display: block; margin-top: 1rem; } [hidden] { display: none; }</style></head>
+<body>
+<main><h1>Book a shelter</h1>
+<form id="book" novalidate>
+<div id="one"><h2>1. Your group</h2><label for="grp">Group name</label><input id="grp" type="text">
+<button type="button" id="next">Continue to the details</button></div>
+<div id="two" hidden><h2>2. Details</h2><p>Tell us how many people are coming.</p><label for="n">Number of people</label><input id="n" type="number"></div>
+</form></main>
+<script>
+  // "Continue" moves on to step two; 30 s later the page clears the group name typed in step one: a time limit on an
+  // entry still being worked on (nothing acknowledged it, nothing used it).
+  document.getElementById('next').addEventListener('click', () => {
+    document.getElementById('two').hidden = false;
+    setTimeout(() => { document.getElementById('grp').value = ''; }, 30000);
+  });
+</script>
+</body></html>

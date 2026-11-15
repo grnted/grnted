@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Dashboard</title></head>
+<body><main>
+<h1>Dashboard</h1>
+<div id="app"><p>Loading…</p></div>
+</main>
+<script>
+  // A timer starts a request; the response (about 1.4 s later) sets the time limit (Grok review round 2).
+  setTimeout(() => {
+    fetch('/slow/session.txt').then(() => {
+      setTimeout(() => { location.href = '/login'; }, 60000);
+    });
+  }, 2000);
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Background writes: shake to send</title></head>
+<body><main><h1>Feedback</h1><p>Shake your phone to report a problem.</p></main>
+<script>
+  // Shaking only sends a report to another host; nothing on the page changes.
+  var off = location.protocol + '//' + (location.hostname === 'localhost' ? '127.0.0.1' : 'localhost') + ':' + location.port;
+  var last = 0;
+  window.addEventListener('devicemotion', function (e) {
+    var a = e.accelerationIncludingGravity || {};
+    if (Math.abs(a.x || 0) > 15 && Date.now() - last > 300) {
+      last = Date.now();
+      fetch(off + '/report', { method: 'POST', body: 'shake=1' }).catch(function () {});
+    }
+  });
+</script>
+</body>
+</html>

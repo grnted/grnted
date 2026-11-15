@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Table display</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button{font:inherit;padding:6px 12px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style></head><body><main><h1>Table display</h1>
+<!-- Opening this one moves focus to a button inside what it opens. The second press must land on the button the
+     test pressed first, never on whatever has focus by then. -->
+<button id="opts" type="button" aria-controls="opts-panel">Display options</button>
+<div id="opts-panel" hidden><button id="apply" type="button">Apply to every table</button><p>Choose how the tables on this site are shown.</p></div>
+
+<!-- A toggle whose press changes nothing the test can see next to it: pressed once, never a second way. -->
+<button id="pin" type="button" aria-pressed="false">Pin this notice</button>
+
+<!-- An ordinary disclosure: pressed twice (open, then shut again), no more. -->
+<button id="more" type="button" aria-expanded="false" aria-controls="more-panel">More about the tables</button>
+<div id="more-panel" hidden><p>Each table can be sorted by its first column.</p></div>
+</main>
+<script>
+  var n = {};
+  function act(id) { n[id] = (n[id] || 0) + 1; console.log('act:' + id + ':' + n[id]); }
+  document.getElementById('opts').addEventListener('click', function () {
+    act('opts');
+    var p = document.getElementById('opts-panel'); p.hidden = !p.hidden;
+    if (!p.hidden) document.getElementById('apply').focus();
+  });
+  document.getElementById('apply').addEventListener('click', function () { act('apply'); });
+  document.getElementById('pin').addEventListener('click', function () { act('pin'); document.title = 'Pinned ' + n.pin; });
+  document.getElementById('more').addEventListener('click', function () {
+    act('more');
+    var p = document.getElementById('more-panel'); p.hidden = !p.hidden;
+    this.setAttribute('aria-expanded', String(!p.hidden));
+  });
+</script>
+</body></html>

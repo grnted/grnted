@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Controls the screenshots cannot settle</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .busy { padding: 16px; background: repeating-conic-gradient(#000 0 25%, #fff 0 50%) 0 0 / 6px 6px; }
+  .busy input { border: 1px solid #dddddd; background: #fff; padding: 6px 8px; font: inherit; }
+  #moving-row { padding: 16px; background: #808080; }
+  .icon-btn { width: 40px; height: 40px; border: 0; background: transparent; padding: 8px; }
+  .masked { width: 40px; height: 40px; border: 0; background: #cccccc; -webkit-mask: url(icon-dark.svg) center / 20px no-repeat; mask: url(icon-dark.svg) center / 20px no-repeat; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Hard to measure</h1>
+  <div class="busy"><label>Name <input id="u-busy" type="text"></label></div>
+  <div id="moving-row"><button id="u-moving" class="icon-btn" type="button" aria-label="Play"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3 L17 10 L5 17 Z" fill="#ffffff"/></svg></button></div>
+  <p><button id="u-unloaded" class="icon-btn" type="button" aria-label="Share"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" width="20" height="20"></button></p>
+</main>
+<script>
+  let n = 0;
+  setInterval(() => {
+    n = (n + 1) % 8;
+    document.getElementById('moving-row').style.background = `rgb(${64 + n * 16}, ${64 + n * 16}, ${64 + n * 16})`;
+  }, 30);
+</script>
+</body>
+</html>

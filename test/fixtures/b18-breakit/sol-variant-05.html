@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Print application</title></head>
+<body><main><h1>Print application</h1>
+<form onsubmit="event.preventDefault()">
+ <section id="one">
+  <label for="email">Contact email *</label>
+  <input id="email" type="email" autocomplete="email" required>
+  <button id="next" type="button">Continue</button>
+ </section>
+ <section id="two" hidden>
+  <label for="email-again">Contact email again *</label>
+  <input id="email-again" type="email" autocomplete="email" required>
+  <label><input id="settings" type="checkbox">Use my saved print settings</label>
+  <p id="paper">Paper size: Letter</p>
+  <button>Send application</button>
+ </section>
+</form></main>
+<script>
+document.getElementById('next').onclick = () => {
+  document.getElementById('one').hidden = true;
+  document.getElementById('two').hidden = false;
+};
+document.getElementById('settings').onchange = e => {
+  document.getElementById('paper').textContent =
+    e.target.checked ? 'Paper size: A4' : 'Paper size: Letter';
+};
+</script></body></html>

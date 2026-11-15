@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a skip control (role=button) whose script sets the fragment to the content</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .skip { display: inline-block; padding: 4px 8px; } .menu a { display: block; }</style></head>
+<body>
+<!-- No failure (2.4.1): pressing the control moves the focus starting point to #content; the next Tab is inside it. -->
+<span role="button" tabindex="0" class="skip" id="skip" onclick="location.hash = 'content'" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); location.hash = 'content'; }">Skip navigation</span>
+<div class="menu"><a href="/library">Library</a><a href="/hours">Hours</a><a href="/events">Events</a><a href="/catalog">Catalog</a></div>
+<div id="content">
+  <p>The branch is open from nine in the morning until eight in the evening on weekdays.</p>
+  <p><a href="/hours/holidays">Holiday hours</a></p>
+</div>
+</body>
+</html>

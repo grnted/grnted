@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Shelter booking</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Shelter booking</h1>
+<p>Time left to finish: <span id="left">45</span> s</p>
+<form id="f" action="/book" method="get"><p><label>What is the gathering for? <input id="what" name="what"></label></p><p><button>Book</button></p></form>
+</main>
+<script>
+  // A 45 s countdown from the load; at zero the entry is cleared and the countdown ends.
+  var left = 45, t = setInterval(function () { left--; document.getElementById('left').textContent = left; if (left <= 0) { clearInterval(t); document.getElementById('what').value = ''; } }, 1000);
+</script>
+</body>
+</html>

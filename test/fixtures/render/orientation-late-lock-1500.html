@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Council news</title>
+<style>body { font: 16px Arial; margin: 16px; } #lock { font: 20px Arial; padding: 24px; }</style>
+</head>
+<body>
+<p id="lock" hidden>Rotate your device to portrait to read this site.</p>
+<main id="main">
+<h1>Council news</h1>
+<p>The council meets on Thursday at 6 pm in the main hall. The agenda covers the new library, the river path,
+the skate park and the market. Everyone is welcome; the meeting is also streamed online and the recording is
+posted the next day with the minutes.</p>
+<p>The budget hearing follows on the first Monday of next month. Written comments can be sent to the clerk
+until the Friday before, and every comment is read into the record at the start of the hearing.</p>
+</main>
+<script>
+  // A lock that a script applies 1.5 s after the page is turned (Grok review round 2).
+  var main = document.getElementById('main');
+  var lock = document.getElementById('lock');
+  addEventListener('resize', function () {
+    var land = innerWidth > innerHeight;
+    setTimeout(function () { main.hidden = land; lock.hidden = !land; }, 1500);
+  });
+</script>
+</body>
+</html>

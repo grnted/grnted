@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Synth</title></head>
+<body><main>
+<h1>Synth</h1>
+<p>The page starts its audio context on the first press anywhere; a 2.5 s tone is scheduled 2 s into it (a 2.5 s sound: no control needed).</p>
+</main>
+<script>
+  var ctx = new AudioContext(), osc = ctx.createOscillator(), gain = ctx.createGain();
+  gain.gain.value = 0.2; osc.connect(gain); gain.connect(ctx.destination);
+  osc.start(ctx.currentTime + 2); osc.stop(ctx.currentTime + 4.5);
+  document.addEventListener('pointerdown', function () { ctx.resume(); });
+</script>
+</body>
+</html>

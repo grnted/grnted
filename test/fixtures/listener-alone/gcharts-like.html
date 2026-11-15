@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Permits by type</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Permits by type</h1>
+<p>Building permits issued this year by type. The table below the chart gives the same numbers.</p>
+<div id="permits" class="chart" style="height:360px"><div style="position:relative"><div id="gc-outer" dir="ltr" style="position:relative;width:640px;height:360px"><div id="gc-inner" style="position:absolute;left:0;top:0;width:100%;height:100%"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" aria-label="A chart."><rect width="640" height="360" fill="#ffffff"/><text x="120" y="40" font-size="14" font-weight="bold" fill="#000000">Permits by type</text><circle cx="280" cy="200" r="120" fill="#3366cc"/><path d="M280,200 L280,80 A120,120 0 0,1 384,260 Z" fill="#dc3912"/><path d="M280,200 L384,260 A120,120 0 0,1 330,309 Z" fill="#ff9900"/><g><circle cx="470" cy="96" r="6" fill="#3366cc"/><text x="484" y="100" font-size="13" fill="#222222">Residential</text><circle cx="470" cy="118" r="6" fill="#dc3912"/><text x="484" y="122" font-size="13" fill="#222222">Commercial</text><circle cx="470" cy="140" r="6" fill="#ff9900"/><text x="484" y="144" font-size="13" fill="#222222">Sign</text></g></svg><div aria-label="A tabular representation of the data in the chart." style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><table><thead><tr><th>Type</th><th>Permits</th></tr></thead><tbody><tr><td>Residential</td><td>412</td></tr><tr><td>Commercial</td><td>96</td></tr><tr><td>Sign</td><td>58</td></tr></tbody></table></div></div></div></div></div>
+<table>
+<caption>Permits by type</caption>
+<thead><tr><th scope="col">Type</th><th scope="col">Permits</th></tr></thead>
+<tbody><tr><td>Residential</td><td>412</td></tr><tr><td>Commercial</td><td>96</td></tr><tr><td>Sign</td><td>58</td></tr></tbody>
+</table>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+// What Google Charts (corechart) puts on a default chart: eight mouse listeners on the svg and on a wrapper
+// two levels up, a wheel listener between them, release listeners on the document.
+var noop = function () {};
+var types = ['mouseover', 'mouseout', 'mousemove', 'mouseup', 'mousedown', 'click', 'contextmenu', 'dblclick'];
+var svg = document.querySelector('#permits svg');
+types.forEach(function (t) { svg.addEventListener(t, noop); document.getElementById('gc-outer').addEventListener(t, noop); });
+document.getElementById('gc-inner').addEventListener('mousewheel', noop, { passive: true });
+['mousemove', 'mouseup'].forEach(function (t) { document.addEventListener(t, noop); });
+</script>
+</body>
+</html>

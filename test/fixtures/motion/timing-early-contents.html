@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account</title></head>
+<body><main id="main">
+<h1>Account</h1>
+<p>Your account summary.</p>
+<div id="note"><span id="msg" style="display: contents"></span></div>
+</main>
+<script>
+  // A 15 s time limit: the warning is written into a display:contents span (round 2, Sol 2).
+  setTimeout(function () { document.getElementById('msg').textContent = 'Your session has expired. Sign in again to continue.'; }, 15000);
+</script>
+</body>
+</html>

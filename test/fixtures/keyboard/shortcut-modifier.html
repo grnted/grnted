@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: shortcuts with modifier keys</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } #search { border: 2px solid #333; padding: 8px; margin: 12px 0; }</style>
+</head>
+<body>
+<main>
+  <h1>Shortcuts</h1>
+  <p><a href="/help.html">Help</a></p>
+  <!-- Clean control (2.1.4): Ctrl+K opens the search box; single keys do nothing; Esc closes it. -->
+  <div id="slot"></div>
+</main>
+<script>
+  document.addEventListener('keydown', function (e) {
+    var box = document.getElementById('search');
+    if (e.key === 'Escape' && box) { box.remove(); return; }
+    if (!(e.ctrlKey || e.metaKey) || e.key !== 'k' || box) return;
+    box = document.createElement('div');
+    box.id = 'search';
+    box.innerHTML = '<label for="q">Search</label> <input id="q" type="search">';
+    document.getElementById('slot').appendChild(box);
+    document.getElementById('q').focus();
+    e.preventDefault();
+  });
+</script>
+</body>
+</html>

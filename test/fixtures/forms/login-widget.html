@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Sign in (checkbox CAPTCHA)</title></head>
+<body>
+<main>
+<h1>Sign in</h1>
+<form action="/login" method="post">
+  <p><label for="u">Email</label><br><input id="u" name="u" type="email" autocomplete="username" required></p>
+  <p><label for="p">Password</label><br><input id="p" name="p" type="password" autocomplete="current-password" required></p>
+  <div class="g-recaptcha" data-sitekey="test-site-key" style="width:300px;height:74px;border:1px solid #ccc">I'm not a robot</div>
+  <button type="submit">Sign in</button>
+</form>
+</main>
+</body>
+</html>

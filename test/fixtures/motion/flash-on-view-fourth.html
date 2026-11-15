@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Lighthouse open day</title>
+<style>body { font: 18px sans-serif; margin: 0; padding: 16px; } .lamp { width: 720px; height: 240px; background: #fff; border: 1px solid #333; margin: 16px 0; } .lamp.on { animation: blink .25s steps(1, end) infinite; } @keyframes blink { 0% { background: #000; } 50% { background: #fff; } 100% { background: #fff; } } .gap { height: 1700px; } .panel { width: 720px; height: 240px; border: 1px solid #333; background: #fff; opacity: 0; transition: opacity .2s; } .panel.seen { opacity: 1; } .panel.hot.seen { animation: blink .25s steps(1, end) 8 both; }</style></head>
+<body><main>
+<h1>Lighthouse open day</h1>
+<p>The lighthouse on the point is open to visitors on the first Sunday of each month.</p>
+<!-- Planted failure (2.3.1): four panels wait to come into view; the first three fade in, the fourth blinks four times a second for two seconds. -->
+<p>The climb is 112 steps. The keeper shows the lamp room at eleven and at two.</p><div class="gap"></div><div class="panel" id="p1"><p>Room 1 of the tower.</p></div><div class="gap"></div><div class="panel" id="p2"><p>Room 2 of the tower.</p></div><div class="gap"></div><div class="panel" id="p3"><p>Room 3 of the tower.</p></div><div class="gap"></div><div class="panel hot" id="p4"><p>Room 4 of the tower.</p></div>
+</main>
+<script>var io = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } }); }, { threshold: 0.5 }); document.querySelectorAll('.panel').forEach(function (p) { io.observe(p); });</script>
+</body>
+</html>

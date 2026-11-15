@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Office hours (a handler inside a button element)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Office hours (a handler inside a button element)</h1>
+<hours-btn id="hours-btn" role="button" tabindex="0" style="display:inline-block;cursor:pointer;padding:6px 12px;border:1px solid #595959"></hours-btn>
+<p id="hours" hidden>8 am to 4 pm, Monday to Friday.</p>
+<script>
+customElements.define('hours-btn', class extends HTMLElement {
+  connectedCallback() { this.attachShadow({ mode: 'open' }).innerHTML = '<span onclick="void 0">Hours</span>'; }
+});
+var hb = document.getElementById('hours-btn');
+hb.addEventListener('click', function () { var h = document.getElementById('hours'); h.hidden = !h.hidden; });
+hb.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
+</script>
+<p><a href="/index.html">All reports</a></p>
+</main>
+</body>
+</html>

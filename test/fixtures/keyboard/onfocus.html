@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: changes on focus</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .menu { border: 1px solid #ccc; padding: 4px; }</style>
+</head>
+<body>
+<main>
+  <h1>On focus</h1>
+  <!-- Planted failure (3.2.1): focusing the select navigates. -->
+  <p><label for="jump">Go to</label> <select id="jump" onfocus="location.href = '/clean.html'"><option>Choose a page</option><option>Clean</option></select></p>
+  <!-- Planted failure (3.2.1): focus is taken away as soon as it arrives. -->
+  <p><a href="/lost.html" id="lost" onfocus="this.blur()">Focus taken away</a></p>
+  <!-- Clean control: a submenu shown on focus is a change of content, not of context. -->
+  <p><a href="/products.html" id="products">Products</a></p>
+  <div id="submenu"></div>
+  <!-- Planted failure (3.2.1): focusing this link shows an alert. -->
+  <p><a href="/alert.html" id="alerter" onfocus="alert('Welcome!')">Alert on focus</a></p>
+  <!-- Planted failure (3.2.1): focusing this link opens a new window. -->
+  <p><a href="/popup.html" id="opener" onfocus="window.open('/popup.html', 'promo')">Window on focus</a></p>
+  <!-- Planted failure (3.2.1): focusing this link loads an address the guard blocks as an action. -->
+  <p><a href="/bye.html" id="logout" onfocus="location.href = '/account/logout'">Sign out on focus</a></p>
+  <p><a href="/end.html">The end</a></p>
+</main>
+<script>
+  document.getElementById('products').addEventListener('focus', function () {
+    var m = document.getElementById('submenu');
+    if (m.children.length) return;
+    var ul = document.createElement('ul');
+    ul.className = 'menu';
+    ['Chairs', 'Tables', 'Lamps'].forEach(function (n) {
+      var li = document.createElement('li');
+      li.textContent = n;
+      ul.appendChild(li);
+    });
+    m.appendChild(ul);
+  });
+</script>
+</body>
+</html>

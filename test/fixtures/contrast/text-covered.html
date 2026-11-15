@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Covered and generated text</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .box { padding: 12px 16px; margin: 0 0 12px; position: relative; }
+  .light { background: #fff url(light.svg); }
+  .deep { background: linear-gradient(90deg, #112233, #223344); }
+  .cover { position: absolute; inset: 0; background: #ffffff; }
+  .clear { color: transparent; }
+  p { margin: 0; }
+  #importance p { color: #bbbbbb !important; }
+  nav a { display: inline-block; padding: 8px 12px; background: linear-gradient(90deg, #dddddd, #cccccc); color: #ffffff; text-decoration: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Covered text</h1>
+  <div class="box deep"><p id="t-shown" style="color:#ffffff">White text on deep blue is easy to read.</p></div>
+  <div class="box light"><p id="t-covered" style="color:#cccccc">Pale text hidden under a white box.</p><div class="cover"></div></div>
+  <div class="box light"><p id="t-clear" class="clear">Transparent text nobody can see.</p></div>
+  <div class="box light" id="importance"><p id="t-important" style="color:#222">Pale text whose colour an important rule sets.</p></div>
+  <div class="box light"><p id="t-span"><span style="color:#c8c8c8">Pale words in a span with a colour of their own.</span></p></div>
+  <nav id="menu"></nav>
+</main>
+<script>
+  // A menu script that gives its items a new id on every load.
+  const id = 'gen-' + Date.now() + Math.floor(Math.random() * 1e6);
+  document.getElementById('menu').innerHTML = `<a id="${id}-1" href="#schools"><span>Schools</span></a>`
+    + `<ul data-menu-id="${Date.now()}"><li><a href="#news">News</a></li></ul>`;
+</script>
+</body>
+</html>

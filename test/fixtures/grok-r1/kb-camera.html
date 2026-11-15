@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 1: click handlers named like a carousel, and a duplicate warning</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<main><h1>Shop</h1>
+<!-- 2.1.1 failures: an id "camera" is no carousel; "duplicate-warning" is no carousel clone. -->
+<div id="camera"><div onclick="addToCart()" style="cursor:pointer">Add to cart</div></div>
+<div class="duplicate-warning" onclick="dismissWarning()" style="cursor:pointer">This looks like a duplicate order. Dismiss</div>
+<p><a href="/cart.html">Cart</a></p></main>
+<script>function addToCart() { document.title += '+'; } function dismissWarning() { document.title += '-'; }</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Library services (label patterns from the 2026-11-07 audit)</title>
+<style>
+  #panel { position: fixed; top: 0; right: -420px; width: 400px; opacity: 0; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .picker { position: absolute; left: -9999px; top: 0; }
+  .trap { position: absolute; width: 1px; height: 1px; overflow: hidden; }
+  /* The page's own root scrolls (albany): a field far below the first screen is still in sight. */
+  html { overflow-y: scroll; }
+  .spacer { height: 1500px; }
+</style></head>
+<body>
+<header>
+  <!-- A site search posted to the server, its only label a placeholder, its button "Go": nothing names the field's
+       purpose (G167 needs a button that says Search; Grok round 1). A real failure. -->
+  <form action="/" method="post"><label for="other-id" class="sr">Search</label><input id="kw" name="search_api_fulltext" placeholder="Search books, movies and more."> <button type="submit">Go</button></form>
+  <!-- A site search with an icon link with no name for a button: a real failure. -->
+  <form action="/site-search/" method="post"><input name="searchquery" type="text" placeholder="Site Search"> <a href="#"><i title="Search the site">&#128269;</i></a></form>
+  <!-- Language pickers: a prompt option, and a list of languages showing the current one. -->
+  <div><select aria-label="Language Translate Widget"><option value="">Select Language</option><option value="es">Spanish</option><option value="vi">Vietnamese</option></select></div>
+  <div><span aria-hidden="true">&#127760;</span><select aria-label="Translate"><option value="">Translate</option><option value="zh-CN">简体中文</option><option value="en" selected>English</option><option value="es">Español</option></select></div>
+  <!-- A site search outside any form, its only label a placeholder, its button "Go" (a real failure). -->
+  <div class="site-search"><input name="searchField" placeholder="Search…"> <button type="button">Go</button></div>
+</header>
+<main>
+<h1>Library services</h1>
+<!-- A closed slide-in contact panel: transparent and off screen when tested. -->
+<div id="panel"><form action="/contact" method="post">
+  <p><label for="fn">First Name</label> <input id="fn" name="first_name"></p>
+  <p><label for="msg">Message</label> <textarea id="msg" name="message"></textarea></p>
+  <button type="submit">Send</button>
+</form></div>
+<!-- A trip planner: the date and time are filled in already. -->
+<form action="/trip" method="get">
+  <p><label for="from">From *</label> <input id="from" name="from" required></p>
+  <p><label for="to">To *</label> <input id="to" name="to" required></p>
+  <p><label for="date">Date</label> <input id="date" name="date" type="date" value="2026-11-07" required></p>
+  <p><label for="time">Time</label> <input id="time" name="time" type="time" value="20:33" required></p>
+  <!-- A date picker's pop-up parked off screen, its select still in the Tab order: keyboard users reach it, so it is judged (a real failure). -->
+  <div class="picker"><select aria-label="Change the month"><option>Nov</option><option>Dec</option></select></div>
+  <button type="submit">Plan my trip</button>
+</form>
+<div class="spacer"></div>
+<!-- A newsletter sign-up with an anti-spam trap; its only label is a placeholder (a real failure), far below the first screen. -->
+<form action="/newsletter" method="post">
+  <div class="trap"><input type="text" name="fields[1]" aria-label="Address" tabindex="-1" aria-hidden="true" style="visibility:hidden"></div>
+  <input type="text" name="subscriberemail" placeholder="Email Address">
+  <input type="submit" value="Subscribe">
+</form>
+<!-- An aria-disabled field is not judged (ACT 73f2c2). -->
+<form action="/prefs" method="post"><p><label>Username <input name="u" autocomplete="badname" aria-disabled="true"></label></p></form>
+</main>
+</body>
+</html>

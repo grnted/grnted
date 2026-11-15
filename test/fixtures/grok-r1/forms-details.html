@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 1: a field in a closed details element</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<!-- 3.3.2 failure: the details opens; its field's only label is a placeholder. -->
+<details><summary>Contact us</summary><form action="/contact" method="post"><input name="em" placeholder="Your email"> <button type="submit">Send</button></form></details>
+</body>
+</html>

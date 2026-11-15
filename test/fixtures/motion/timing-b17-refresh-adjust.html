@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Arrivals at Main Station</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Arrivals at Main Station</h1>
+<p id="board">Route 12: 4 min. Route 24: 9 min.</p>
+<p><label for="every">Refresh every</label> <select id="every"><option value="30" selected>30 seconds</option><option value="60">1 minute</option><option value="300">5 minutes</option></select></p>
+</main>
+<script>
+  var t;
+  function arm() { clearInterval(t); t = setInterval(function () { location.reload(); }, Number(document.getElementById('every').value) * 1000); }
+  arm(); document.getElementById('every').addEventListener('change', arm);
+</script>
+</body>
+</html>

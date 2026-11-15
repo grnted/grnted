@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: plain elements named for an action</title></head>
+<body><main><h1>Account</h1>
+<span id="lbl">Log out</span>
+<p><span id="p1" aria-labelledby="lbl" style="display:inline-block;padding:4px;border:1px solid">⎋</span></p>
+<p><span id="p2" style="display:inline-block;padding:4px;border:1px solid">Remove item</span></p>
+<p id="state">Signed in, two items.</p>
+</main>
+<script>
+  ['p1', 'p2'].forEach(function (id) {
+    document.getElementById(id).addEventListener('pointerdown', function () { document.getElementById('state').textContent = 'Changed by ' + id; });
+  });
+</script>
+</body>
+</html>

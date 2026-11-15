@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A page that acts while it settles</title></head>
+<body><main><h1>Settling</h1></main>
+<script>
+  // 300 ms after the load event, while the runner waits for the page to settle: an image and a
+  // navigation at action addresses.
+  addEventListener('load', function () {
+    setTimeout(function () {
+      var img = new Image();
+      img.src = '/account/logout.png?settle';
+      document.body.appendChild(img);
+      location.href = '/logout?settle';
+    }, 300);
+  });
+</script>
+</body>
+</html>

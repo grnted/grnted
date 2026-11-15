@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: shadow DOM</title></head>
+<body><main><h1>Alerts</h1>
+<alert-toggle id="alerts"></alert-toggle>
+<closed-toggle id="closed"></closed-toggle>
+</main>
+<script>
+  customElements.define('alert-toggle', class extends HTMLElement {
+    connectedCallback() {
+      var root = this.attachShadow({ mode: 'open' });
+      root.innerHTML = '<button id="show" type="button">Show alerts</button><p id="list" hidden>No school on Friday.</p>';
+      root.getElementById('show').addEventListener('pointerdown', function () { root.getElementById('list').hidden = false; });
+    }
+  });
+  customElements.define('closed-toggle', class extends HTMLElement {
+    connectedCallback() {
+      var root = this.attachShadow({ mode: 'closed' });
+      root.innerHTML = '<button type="button" style="width:200px;height:40px">Show bus delays</button><p hidden>Bus 4 is late.</p>';
+      var p = root.querySelector('p');
+      root.querySelector('button').addEventListener('mousedown', function () { p.hidden = false; });
+    }
+  });
+</script>
+</body>
+</html>

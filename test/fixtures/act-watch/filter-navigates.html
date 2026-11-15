@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Events</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } button, select { font: inherit; }</style></head>
+<body><main><h1>Events</h1><p>Events for families and neighbours this season.</p>
+<div class="filter"><label for="month">Month</label> <select id="month"><option>April</option><option>May</option></select> <button type="button" id="go">Update list</button><p id="result">Six events in April.</p></div>
+<ul><li><a href="/leaf-day.html">Leaf and brush drop-off</a></li><li><a href="/open-house.html">Eastbank open house</a></li></ul>
+</main><script>
+document.getElementById('month').addEventListener('change', (e) => { location.href = '/calendar-' + e.target.value.toLowerCase() + '.html'; });
+document.getElementById('go').addEventListener('click', () => { document.getElementById('result').textContent = document.getElementById('month').value === 'May' ? 'Four events in May.' : 'Six events in April.'; });
+</script></body></html>

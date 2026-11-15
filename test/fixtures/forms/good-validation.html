@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Contact us (good validation)</title>
+<style>.error { color: #b00020; } [aria-invalid="true"] { border: 2px solid #b00020; }</style></head>
+<body>
+<main>
+<h1>Contact us</h1>
+<div id="summary" role="alert"></div>
+<form id="contact" action="/contact" method="post" novalidate>
+  <p><label for="name">Full name (required)</label><br>
+  <input id="name" name="name" autocomplete="name" aria-describedby="name-error" required>
+  <span id="name-error" class="error"></span></p>
+  <p><label for="email">Email (required)</label><br>
+  <input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error" required>
+  <span id="email-error" class="error"></span></p>
+  <p><label for="topic">Topic</label><br>
+  <select id="topic" name="topic"><option value="">Choose…</option><option value="a">Admissions</option><option value="b">Buses</option></select></p>
+  <p><label><input type="checkbox" name="copy"> Send me a copy</label></p>
+  <p><label for="msg">Message</label><br><textarea id="msg" name="msg"></textarea></p>
+  <button type="submit">Send</button>
+</form>
+</main>
+<script>
+  const form = document.getElementById('contact');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const problems = [];
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const setError = (field, text) => {
+      document.getElementById(field.id + '-error').textContent = text;
+      if (text) { field.setAttribute('aria-invalid', 'true'); problems.push(text); } else field.removeAttribute('aria-invalid');
+    };
+    setError(name, name.value.trim() ? '' : 'Enter your full name');
+    if (!email.value.trim()) setError(email, 'Enter your email address');
+    else if (!/^[^@\s]+@[^@\s]+$/.test(email.value)) setError(email, 'Enter an email address in the format name@example.com');
+    else setError(email, '');
+    document.getElementById('summary').textContent = problems.length ? 'There is a problem: ' + problems.join('. ') : '';
+    if (problems.length) document.querySelector('[aria-invalid="true"]').focus();
+    else fetch('/contact', { method: 'POST', body: new FormData(form) });
+  });
+</script>
+</body>
+</html>

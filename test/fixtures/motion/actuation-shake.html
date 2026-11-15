@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Shopping list</title></head>
+<body><main>
+<h1>Shopping list</h1>
+<ul id="list"><li>Apples</li><li>Bread</li><li>Milk</li><li>Rice</li></ul>
+<p>Shake your phone to shuffle the list.</p>
+</main>
+<script>
+  var last = 0;
+  window.addEventListener('devicemotion', function (e) {
+    var a = e.accelerationIncludingGravity || {};
+    if (Math.abs(a.x || 0) > 15 && Date.now() - last > 300) {
+      last = Date.now();
+      var list = document.getElementById('list');
+      list.insertBefore(list.lastElementChild, list.firstElementChild);
+    }
+  });
+</script>
+</body>
+</html>

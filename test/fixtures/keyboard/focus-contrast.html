@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: focus indicator contrast</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; color: #222; background: #fff; }
+  p { margin: 16px 0; }
+  a { color: #0645ad; }
+  button { font: inherit; padding: 4px 10px; border: 1px solid #555; background: #f4f4f4; color: #111; }
+  .dark { background: #222; color: #eee; padding: 12px; }
+  .dark a { color: #9cf; }
+  /* Planted failure (1.4.11): a thin pale outline on white, about 1.4:1. */
+  a.pale:focus { outline: 1px solid #ddd; }
+  /* Planted failure (1.4.11): a see-through glow ring (25% blue), about 1.4:1 against white. */
+  button.glow:focus { outline: none; box-shadow: 0 0 0 3px rgba(13, 110, 253, .25); }
+  /* Planted failure (1.4.11): a dark grey ring on a dark section, about 1.5:1. */
+  .dark a.dim:focus { outline: 2px solid #444; }
+  /* Clean controls: a strong outline with a gap, a rounded outline at a fractional position, a light
+     ring on the dark section, a ring that fades in, and the browser's own ring. */
+  button.strong:focus { outline: 2px solid #1a4fa0; outline-offset: 2px; }
+  a.round { display: inline-block; margin-left: 10.5px; padding: 2px 6px; border-radius: 8px; }
+  a.round:focus { outline: 2px solid #000; }
+  .dark a.light:focus { outline: 2px solid #f0f0f0; }
+  button.fade { transition: box-shadow .4s; }
+  button.fade:focus { outline: none; box-shadow: 0 0 0 3px #005fcc; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Focus indicator contrast</h1>
+  <p><a class="pale" id="pale" href="/pale.html">Pale ring</a></p>
+  <p><button class="glow" id="glow" type="button">Glow ring</button></p>
+  <p><button class="strong" type="button">Strong ring</button></p>
+  <p><a class="round" href="/round.html">Rounded ring</a></p>
+  <p><button class="fade" type="button">Ring that fades in</button></p>
+  <p><a href="/default.html">Browser ring</a></p>
+  <div class="dark">
+    <p><a class="dim" id="dim" href="/dim.html">Dark ring on dark</a></p>
+    <p><a class="light" href="/light.html">Light ring on dark</a></p>
+  </div>
+</main>
+</body>
+</html>

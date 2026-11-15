@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ridership (a canvas with an empty handler)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Ridership (a canvas with an empty handler)</h1>
+<p>Ridership by month. The numbers are in the table.</p>
+<canvas id="trend" width="640" height="200" onclick="void 0" role="img" aria-label="Line chart: ridership by month, January to June, rising" style="max-width:100%"></canvas>
+<table>
+<caption>Ridership by month</caption>
+<thead><tr><th scope="col">Year</th><th scope="col">Students</th></tr></thead>
+<tbody><tr><td>2021</td><td>4,120</td></tr><tr><td>2022</td><td>4,260</td></tr><tr><td>2023</td><td>4,395</td></tr><tr><td>2024</td><td>4,510</td></tr><tr><td>2025</td><td>4,655</td></tr></tbody>
+</table>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+var t = document.getElementById('trend').getContext('2d');
+t.fillStyle = '#ffffff'; t.fillRect(0, 0, 640, 200); t.strokeStyle = '#0b4fb3'; t.lineWidth = 3; t.beginPath(); t.moveTo(20, 170); [150, 130, 120, 90, 60].forEach(function (y, i) { t.lineTo(140 + i * 120, y); }); t.stroke();
+</script>
+</body>
+</html>

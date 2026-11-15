@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Contrast fixture home</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #222222; background: #ffffff; }
+  nav, main, footer { padding: 16px 24px; }
+  nav a, footer a { color: #1a4f99; }
+  .hero { padding: 24px; background: #111 url(dark.svg); color: #f5f5f5; }
+  .hero p { margin: 0; }
+  .band { padding: 16px; background: linear-gradient(90deg, #ffffff, #f4f4f4); }
+  .field { border: 1px solid #767676; background: #fff; padding: 6px 8px; font: inherit; }
+  .icon-btn { width: 40px; height: 40px; border: 0; background: #fff; padding: 8px; }
+  .quiet { color: #1a4f99; text-decoration: none; }
+  .quiet:hover, .quiet:focus { text-decoration: underline; }
+</style>
+</head>
+<body>
+<nav aria-label="Pages"><a href="text.html">Text</a> · <a href="controls.html">Controls</a> · <a href="links.html">Links</a></nav>
+<main>
+  <h1>Contrast fixture</h1>
+  <div class="hero"><p id="hero-text">Light text on a dark picture reads well.</p></div>
+  <div class="band"><p id="band-text">Dark text on a soft white gradient reads well too.</p></div>
+  <h2>Search</h2>
+  <p><label>Search the site <input class="field" type="search"></label>
+    <button class="icon-btn" type="button" aria-label="Search"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="8" r="5" stroke="#222222" stroke-width="2" fill="none"/><path d="M12 12 L17 17" stroke="#222222" stroke-width="2"/></svg></button></p>
+  <p>Visit the <a class="quiet" href="#about">about page</a> to learn about the school and its history.</p>
+</main>
+<footer><p>Contact us at the front office.</p></footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Budget (a chart with keyboard proxies)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Budget (a chart with keyboard proxies)</h1>
+<p>Spending by fund this year, in millions of dollars.</p>
+<div id="budget" class="chart" style="position:relative;width:600px;max-width:100%">
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="240" viewBox="0 0 600 240" role="img" aria-label="Spending by fund"><g class="series"><rect id="pt-0" class="point" x="60" y="15" width="120" height="205" fill="#2c6fbb" style="cursor:pointer"/><rect id="pt-1" class="point" x="240" y="130" width="120" height="90" fill="#2c6fbb" style="cursor:pointer"/><rect id="pt-2" class="point" x="420" y="175" width="120" height="45" fill="#2c6fbb" style="cursor:pointer"/></g></svg>
+<div class="proxies" style="position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"><button type="button" data-p="0">General, 41</button><button type="button" data-p="1">Roads, 18</button><button type="button" data-p="2">Parks, 9</button></div>
+</div>
+<p id="out">No fund chosen.</p>
+<script>
+var names = ['General, 41 million', 'Roads, 18 million', 'Parks, 9 million'];
+[].forEach.call(document.querySelectorAll('.point'), function (p, i) { p.addEventListener('click', function () { document.getElementById('out').textContent = names[i]; }); });
+[].forEach.call(document.querySelectorAll('.proxies button'), function (b) { b.addEventListener('click', function () { document.getElementById('out').textContent = names[Number(b.dataset.p)]; }); });
+</script>
+<p><a href="/index.html">All reports</a></p>
+</main>
+</body>
+</html>

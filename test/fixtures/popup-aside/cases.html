@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pop-up look-alikes</title>
+<style>
+body { margin: 0; font: 16px/1.5 Arial, sans-serif; color: #222; background: #fff; }
+.page { padding: 24px; }
+.box { background: #fff; border: 1px solid #595959; padding: 16px; z-index: 10; }
+.full { position: fixed; inset: 0; overflow: auto; }
+.pane { position: fixed; top: 0; left: 0; width: 640px; height: 900px; }
+.chat { position: fixed; right: 16px; bottom: 16px; width: 300px; }
+.bg { position: fixed; inset: 0; background: #000; opacity: 0.6; z-index: 5; }
+.center { position: fixed; top: 120px; left: 50%; transform: translateX(-50%); width: 400px; }
+</style>
+</head>
+<body>
+<div class="page" id="page">
+  <h1>City news</h1>
+  <p>The council meets on the first Tuesday of every month in the main hall. Agendas are posted a week before each meeting, and minutes follow within two weeks.</p>
+  <p>Road works on Main Street continue until the end of the month. Expect delays between seven and nine in the morning.</p>
+</div>
+<div id="slot"></div>
+<script>
+// ?case=: one box, shown on load.
+const c = new URLSearchParams(location.search).get('case');
+const slot = document.getElementById('slot');
+const html = {
+  // A cookie wall that is the whole page: the only text, no other content.
+  wall: '<div class="box full" role="dialog" aria-modal="true" aria-label="Cookies"><h1>Before you continue</h1><p>We use cookies on this site.</p><button type="button">Accept</button></div>',
+  // A non-modal filter pane with no close control (Grok tc-r1): a dialog only by role, nothing closes it.
+  pane: '<div class="box pane" role="dialog" aria-label="Filters"><h2>Filters</h2><label><input type="checkbox"> Open now</label></div>',
+  // A full-screen menu open on load, with a Close button: navigation, so it is the page.
+  menu: '<div class="box full" role="dialog" aria-modal="true" aria-label="Menu"><button type="button">Close</button><nav><a href="/a">About</a> <a href="/b">Services</a> <a href="/c">Contact</a></nav></div>',
+  // A dialog that holds the main landmark (an app shell drawn as a dialog).
+  main: '<div class="box center" role="dialog" aria-label="App"><button type="button">Close</button><main><p>Your dashboard.</p></main></div>',
+  // A chat invite: a small non-modal dialog with a close button. A pop-up.
+  chat: '<div class="box chat" role="dialog" aria-label="Chat"><p>Questions? Chat with us.</p><button type="button" aria-label="Close chat">×</button></div>',
+  // A fixed box with no dialog role over a full-screen backdrop, with a close button. A pop-up.
+  over: '<div class="bg"></div><div class="box center"><p>Sign up for alerts.</p><button type="button">No thanks</button></div>',
+  // The same box with no backdrop and a small size: a fixed notice, part of the page.
+  notice: '<div class="box chat"><p>Sign up for alerts.</p><button type="button">No thanks</button></div>',
+  // A dialog whose only close is a submit button in its form, or a link to "#": nothing safe to press, so not a pop-up the test can set aside.
+  submit: '<div class="box center" role="dialog" aria-modal="true" aria-label="Sign up"><form action="/s" method="post"><label>Email <input type="email"></label><button>Close</button></form></div>',
+  hash: '<div class="box center" role="dialog" aria-modal="true" aria-label="News"><p>New this week.</p><a href="#">Close</a></div>',
+  // A consent modal with a small nav of privacy links (Sol popup-r1, 12): still a pop-up.
+  privacy: '<div class="box center" role="dialog" aria-modal="true" aria-label="Cookies"><p>We use cookies to remember your settings.</p><nav aria-label="Privacy"><a href="/privacy">Privacy policy</a> <a href="/cookies">Cookie policy</a></nav><button type="button">Accept</button></div>',
+  // A newsletter modal holding the page's only h1 (the page uses h2): still a pop-up (Sol popup-r1, 12).
+  onlyh1: '<div class="box center" role="dialog" aria-modal="true"><h1>Join our newsletter</h1><p>One email a month.</p><button type="button">No thanks</button></div>',
+  // A positioned main above a full-screen background layer, with a Hide control (Sol popup-r2, 9): the page itself.
+  mainself: '<div class="bg"></div><main id="workspace" class="box center" style="position:absolute;z-index:10"><p>Your workspace.</p><button type="button">Hide</button></main>',
+  // A full-screen fixed app shell holding main, and inside it an 800x600 fixed pop-up with Close and no dialog role
+  // (Sol popup-r3, 13): the shell is the page, the pop-up in it is a pop-up.
+  shellpop: '<div class="full" id="appshell"><main><p>Your account overview and recent orders.</p></main><div class="box" id="inner" style="position:fixed;top:100px;left:200px;width:800px;height:600px;box-sizing:border-box"><p>We have updated our terms of service.</p><button type="button">Close</button></div></div>',
+}[c] ?? '';
+slot.innerHTML = html;
+// Sol popup-r4, 3: a static custom element whose open shadow root holds a modal and its backdrop.
+if (c === 'shadowmodal') {
+  const host = document.createElement('x-notice');
+  slot.appendChild(host);
+  host.attachShadow({ mode: 'open' }).innerHTML = '<div style="position:fixed;inset:0;background:#000;opacity:.7;z-index:5"></div><div role="dialog" aria-modal="true" aria-label="Alert" style="position:fixed;top:120px;left:50%;transform:translateX(-50%);width:400px;background:#fff;padding:16px;z-index:6"><p>The library closes early today.</p><button type="button">Close</button></div>';
+}
+// Sol popup-r4, 3: a same-origin frame over the whole screen whose document holds the modal.
+if (c === 'framemodal') {
+  slot.innerHTML = '<iframe title="Alert" style="position:fixed;inset:0;width:100%;height:100%;border:0;z-index:5" srcdoc="<!doctype html><html lang=en><body style=&quot;margin:0;background:rgba(0,0,0,.7)&quot;><div role=dialog aria-modal=true aria-label=Alert style=&quot;position:fixed;top:120px;left:50%;transform:translateX(-50%);width:400px;background:#fff;padding:16px&quot;><p>The library closes early today.</p><button type=button>Close</button></div></body></html>"></iframe>';
+}
+// Ruling 3 (round 5): a frame from another site (`?src=`) fixed over 60% of the screen: a pop-up whose content cannot be read.
+if (c === 'foreign') {
+  const f = document.createElement('iframe');
+  f.title = 'Consent';
+  f.src = new URLSearchParams(location.search).get('src') ?? 'about:blank';
+  f.style.cssText = 'position:fixed;top:10%;left:10%;width:80%;height:80%;border:0;z-index:5';
+  slot.appendChild(f);
+}
+// Sol popup-r4, 4: a full-screen backdrop; a zero-height absolute portal wrapper; inside it an 800x600 absolute pop-up
+// with Close, above the backdrop.
+if (c === 'portal') {
+  slot.innerHTML = '<div class="bg"></div><div id="portal" style="position:absolute;top:0;left:0;width:100%;height:0;z-index:10"><div class="box" id="portal-pop" style="position:absolute;top:100px;left:200px;width:800px;height:600px;box-sizing:border-box"><p>Our hours change on Monday.</p><button type="button">Close</button></div></div>';
+}
+// The wall is all there is: the page under it has no content of its own.
+if (c === 'wall') document.getElementById('page').remove();
+if (c === 'onlyh1') { const h = document.querySelector('#page h1'); const h2 = document.createElement('h2'); h2.textContent = h.textContent; h.replaceWith(h2); }
+</script>
+</body>
+</html>

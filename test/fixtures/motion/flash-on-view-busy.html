@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Lighthouse open day</title>
+<style>body { font: 18px sans-serif; margin: 0; padding: 16px; } .lamp { width: 720px; height: 240px; background: #fff; border: 1px solid #333; margin: 16px 0; } .lamp.on { animation: blink .25s steps(1, end) infinite; } @keyframes blink { 0% { background: #000; } 50% { background: #fff; } 100% { background: #fff; } } .gap { height: 1700px; } .panel { width: 720px; height: 240px; border: 1px solid #333; background: #fff; } .panel.seen { animation: pulse 1s steps(1, end) 3 both; } @keyframes pulse { 0% { background: #ddd; } 50% { background: #fff; } 100% { background: #fff; } } .panel.hot.seen { animation: blink .25s steps(1, end) 8 both; }</style></head>
+<body><main>
+<h1>Lighthouse open day</h1>
+<p>The lighthouse on the point is open to visitors on the first Sunday of each month.</p>
+<!-- Seven panels each start a slow pulse (once a second) when they come into view; the seventh blinks four times a second. More places where something starts than the test films. -->
+<p>The climb is 112 steps. The keeper shows the lamp room at eleven and at two.</p><div class="gap"></div><div class="panel" id="p1"><p>Room 1 of the tower.</p></div><div class="gap"></div><div class="panel" id="p2"><p>Room 2 of the tower.</p></div><div class="gap"></div><div class="panel" id="p3"><p>Room 3 of the tower.</p></div><div class="gap"></div><div class="panel" id="p4"><p>Room 4 of the tower.</p></div><div class="gap"></div><div class="panel" id="p5"><p>Room 5 of the tower.</p></div><div class="gap"></div><div class="panel" id="p6"><p>Room 6 of the tower.</p></div><div class="gap"></div><div class="panel hot" id="p7"><p>Room 7 of the tower.</p></div>
+</main>
+<script>var io = new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } }); }, { threshold: 0.5 }); document.querySelectorAll('.panel').forEach(function (p) { io.observe(p); });</script>
+</body>
+</html>

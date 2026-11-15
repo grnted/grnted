@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Carousel next to a log out control styled as a close button</title><style>
+  .carousel { position: relative; width: 600px; height: 240px; overflow: hidden; border: 1px solid #333; }
+  .slide { position: absolute; inset: 0; padding: 2rem; font: 24px sans-serif; opacity: 0; transition: opacity .4s; background: #eef; }
+  .slide.active { opacity: 1; }
+</style></head>
+<body><main>
+<h1>News</h1>
+<div class="carousel" id="hero">
+  <div class="slide active">Enrolment opens on Monday for all grades.</div>
+  <div class="slide">The library has new opening hours this term.</div>
+</div>
+<!-- Its class says close and pause; its name says what it does. A probe must never click it. -->
+<button type="button" class="btn-close pause-icon" aria-label="Log out">×</button>
+</main>
+<script>
+  var slides = document.querySelectorAll("#hero .slide"), i = 0, paused = false;
+  function next() { if (paused) return; slides[i].classList.remove("active"); i = (i + 1) % slides.length; slides[i].classList.add("active"); }
+  setInterval(next, 3000);
+  document.querySelector('.btn-close').addEventListener('click', function () { paused = true; new Image().src = '/api/session/terminate?from=close'; fetch('/api/session/terminate'); });
+</script>
+</body>
+</html>

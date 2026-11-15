@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a closed shadow root</title></head>
+<body><main><h1>Closed component</h1><closed-pay id="c"></closed-pay></main>
+<script>
+  customElements.define('closed-pay', class extends HTMLElement {
+    connectedCallback() {
+      var root = this.attachShadow({ mode: 'closed' });
+      root.innerHTML = '<div style="position:relative;width:240px;height:60px"><button type="button" id="b" style="width:240px;height:60px">Show details</button>'
+        + '<a href="/pay" style="position:absolute;left:100px;top:20px;width:40px;height:20px;background:#fc0">Go</a></div><p hidden>Details.</p>';
+      var p = root.querySelector('p');
+      root.querySelector('button').addEventListener('mousedown', function () { p.hidden = false; });
+    }
+  });
+</script>
+</body>
+</html>

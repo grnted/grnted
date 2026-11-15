@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Video player</title></head>
+<body>
+<!-- Planted like the real YouTube player (verified 2026-10-30): aria-allowed-attr (critical) on the
+     title link and aria-prohibited-attr (serious) on #movie_player. -->
+<a class="title-link" href="#watch" aria-checked="true">Video title</a>
+<div id="movie_player" aria-label="Video player" style="width:320px;height:180px"></div>
+<!-- A srcdoc frame inside the third-party frame: third-party content too. -->
+<iframe id="captions" title="Captions" srcdoc="<!doctype html><html lang='en'><head><title>Captions</title></head><body><img id='noalt' src='data:image/gif;base64,R0lGODlhAQABAAAAACw=' width='40' height='40'></body></html>" width="200" height="80"></iframe>
+</body>
+</html>

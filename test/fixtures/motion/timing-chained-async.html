@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Dashboard</title></head>
+<body><main>
+<h1>Dashboard</h1>
+<div id="app" aria-busy="true"><p>Loading…</p></div>
+</main>
+<script>
+  // The app mounts from a timer and sets its time limit after a promise settles.
+  setTimeout(function () {
+    Promise.resolve().then(function () {
+      document.getElementById('app').innerHTML = '<p>Your dashboard.</p>';
+      setTimeout(function () { location.reload(); }, 60000);
+    });
+  }, 4000);
+</script>
+</body>
+</html>

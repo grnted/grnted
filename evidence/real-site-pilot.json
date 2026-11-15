@@ -1,0 +1,268 @@
+{
+ "about": "Real-site pilot: frozen pages of public agency websites, replayed offline so every tool sees the same copy. The answer key is AI-adjudicated, not certified by human auditors. Sites are not named. Units are page x criterion.",
+ "pilotDate": "2026-11-13",
+ "keyV2Date": "2026-11-14",
+ "key": "two independent AI auditors, an AI adjudicator, a pooled review of what tools found, then a second AI adjudication (key v2)",
+ "pages": 25,
+ "sites": 5,
+ "criteria": 55,
+ "sample": {
+  "schoolDistricts": 2,
+  "citiesOrTowns": 2,
+  "specialDistricts": 1
+ },
+ "keyV2": {
+  "failingUnits": 244,
+  "passOrNa": 1070,
+  "cannotTell": 61
+ },
+ "keyV1Final": {
+  "failingUnits": 207,
+  "passOrNa": 1104,
+  "cannotTell": 64
+ },
+ "auditorAgreement": {
+  "rawPct": 92.1,
+  "failAgreementPct": 68.6,
+  "kappa": 0.65
+ },
+ "replayFidelity": {
+  "identical": 1361,
+  "of": 1375,
+  "pct": 99
+ },
+ "rows": [
+  {
+   "column": "Granted 0.2.1 (released), AI off",
+   "oldKey": {
+    "precision": {
+     "pct": 63.1,
+     "k": 94,
+     "n": 149,
+     "lb95": 55.1
+    },
+    "recall": {
+     "pct": 45.4,
+     "k": 94,
+     "n": 207,
+     "lb95": 38.8
+    },
+    "unadjudicated": 0
+   },
+   "keyV2": {
+    "precision": {
+     "pct": 80.8,
+     "k": 122,
+     "n": 151,
+     "lb95": 73.8
+    },
+    "recall": {
+     "pct": 50,
+     "k": 122,
+     "n": 244,
+     "lb95": 43.8
+    },
+    "unadjudicated": 0
+   }
+  },
+  {
+   "column": "Granted development build (batch 17), AI off",
+   "oldKey": {
+    "precision": {
+     "pct": 62.5,
+     "k": 90,
+     "n": 144,
+     "lb95": 54.4
+    },
+    "recall": {
+     "pct": 43.5,
+     "k": 90,
+     "n": 207,
+     "lb95": 36.9
+    },
+    "unadjudicated": 0
+   },
+   "keyV2": {
+    "precision": {
+     "pct": 80.8,
+     "k": 118,
+     "n": 146,
+     "lb95": 73.7
+    },
+    "recall": {
+     "pct": 48.4,
+     "k": 118,
+     "n": 244,
+     "lb95": 42.2
+    },
+    "unadjudicated": 0
+   }
+  },
+  {
+   "column": "Granted development build (batch 17), AI on",
+   "oldKey": {
+    "precision": {
+     "pct": 61.3,
+     "k": 100,
+     "n": 163,
+     "lb95": 53.7
+    },
+    "recall": {
+     "pct": 48.3,
+     "k": 100,
+     "n": 207,
+     "lb95": 41.6
+    },
+    "unadjudicated": 0
+   },
+   "keyV2": {
+    "precision": {
+     "pct": 77.6,
+     "k": 128,
+     "n": 165,
+     "lb95": 70.6
+    },
+    "recall": {
+     "pct": 52.5,
+     "k": 128,
+     "n": 244,
+     "lb95": 46.2
+    },
+    "unadjudicated": 0
+   }
+  },
+  {
+   "column": "Granted development build (batch 18), AI off",
+   "oldKey": {
+    "precision": {
+     "pct": 64.5,
+     "k": 98,
+     "n": 152,
+     "lb95": 56.6
+    },
+    "recall": {
+     "pct": 47.3,
+     "k": 98,
+     "n": 207,
+     "lb95": 40.7
+    },
+    "unadjudicated": 15
+   },
+   "keyV2": {
+    "precision": {
+     "pct": 76.3,
+     "k": 129,
+     "n": 169,
+     "lb95": 69.4
+    },
+    "recall": {
+     "pct": 52.9,
+     "k": 129,
+     "n": 244,
+     "lb95": 46.6
+    },
+    "unadjudicated": 0
+   }
+  },
+  {
+   "column": "Granted development build (batch 18), AI on",
+   "oldKey": {
+    "precision": {
+     "pct": 67.1,
+     "k": 98,
+     "n": 146,
+     "lb95": 59.1
+    },
+    "recall": {
+     "pct": 47.3,
+     "k": 98,
+     "n": 207,
+     "lb95": 40.7
+    },
+    "unadjudicated": 14
+   },
+   "keyV2": {
+    "precision": {
+     "pct": 75.9,
+     "k": 123,
+     "n": 162,
+     "lb95": 68.8
+    },
+    "recall": {
+     "pct": 50.4,
+     "k": 123,
+     "n": 244,
+     "lb95": 44.2
+    },
+    "unadjudicated": 0
+   }
+  },
+  {
+   "column": "Granted development build (batch 19 precision work, c34d3813), AI off",
+   "oldKey": {
+    "precision": {
+     "pct": 75.2,
+     "k": 88,
+     "n": 117,
+     "lb95": 66.7
+    },
+    "recall": {
+     "pct": 42.5,
+     "k": 88,
+     "n": 207,
+     "lb95": 36
+    },
+    "unadjudicated": 16
+   },
+   "keyV2": {
+    "precision": {
+     "pct": 88.2,
+     "k": 120,
+     "n": 136,
+     "lb95": 81.7
+    },
+    "recall": {
+     "pct": 49.2,
+     "k": 120,
+     "n": 244,
+     "lb95": 43
+    },
+    "unadjudicated": 0
+   }
+  },
+  {
+   "column": "axe-core alone (its run inside a Granted scan, scored on its own)",
+   "oldKey": {
+    "precision": {
+     "pct": 74.2,
+     "k": 49,
+     "n": 66,
+     "lb95": 62.6
+    },
+    "recall": {
+     "pct": 23.7,
+     "k": 49,
+     "n": 207,
+     "lb95": 18.4
+    },
+    "unadjudicated": 0
+   },
+   "keyV2": {
+    "precision": {
+     "pct": 84.8,
+     "k": 56,
+     "n": 66,
+     "lb95": 74.3
+    },
+    "recall": {
+     "pct": 23,
+     "k": 56,
+     "n": 244,
+     "lb95": 18.1
+    },
+    "unadjudicated": 0
+   }
+  }
+ ],
+ "generated": "2026-11-15"
+}

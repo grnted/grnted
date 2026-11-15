@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Contact</title>
+<style>body { margin: 0; font: 16px/1.5 Arial, sans-serif; } main { padding: 16px 24px; } .gap { height: 600px; }
+#unl { background: #00ffff; border: 2px solid #000; width: 300px; height: 32px; font: inherit; }
+#first, #last { background: #ff00ff; border: 2px solid #000; width: 300px; height: 32px; font: inherit; }</style></head>
+<body><main>
+  <h1>Contact</h1>
+  <form action="/contact" method="post">
+    <fieldset>
+      <legend>Name *</legend>
+      <div><input id="first" name="f1" aria-labelledby="first-hint" required><div id="first-hint">First Name</div></div>
+      <div><input id="last" name="f2" aria-labelledby="last-hint" required><div id="last-hint">Last Name</div></div>
+    </fieldset>
+    <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;">
+      <input aria-hidden="true" aria-label="hidden response" name="fax_number" tabindex="-1" type="text">
+    </div>
+    <button type="submit">Send</button>
+  </form>
+  <div class="gap"></div>
+  <form action="/subscribe" method="post">
+    <p><input id="unl" name="list_email" type="email"></p>
+    <p><label for="nm">Name</label> <input id="nm" name="name"></p>
+    <button type="submit">Subscribe</button>
+  </form>
+</main></body>
+</html>

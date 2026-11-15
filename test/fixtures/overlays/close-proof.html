@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Survey panel</title>
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; color: #111; background: #fff; }
+main { padding: 8px 16px 400px; }
+#panel { position: fixed; left: 0; right: 0; bottom: 0; height: 75vh; box-sizing: border-box; padding: 16px; background: #1b1b1b; color: #fff; z-index: 20; }
+#panel p { margin: 0 0 12px; }
+#panel .x { cursor: pointer; text-decoration: underline; }
+</style>
+</head>
+<body>
+<!-- A survey panel covering three quarters of the screen at 320 px, over the page's links (2026-11-07 ruling:
+     it passes 1.4.10 only when the test closes it by keyboard and it stays closed).
+     ?mode=works: its Close button removes it. ?mode=broken: its Close button does nothing.
+     ?mode=mouse: only a mouse can close it (a span with a click handler). ?mode=returns: it closes, then comes back. -->
+<main><h1>City services</h1>
+<p>What the city does for you, in one place.</p>
+<p><a href="/pay">Pay a bill</a> <a href="/report">Report a problem</a> <a href="/parks">Find a park</a></p>
+<p>More about services.</p></main>
+<div id="panel" role="region" aria-label="Survey"><p>Tell us how we are doing. Take our short survey about city services.</p><span id="slot"></span></div>
+<script>
+var mode = new URLSearchParams(location.search).get('mode') || 'works';
+var slot = document.getElementById('slot'), panel = document.getElementById('panel');
+if (mode === 'mouse') slot.outerHTML = '<span class="x" id="close">Close</span>';
+else slot.outerHTML = '<button type="button" id="close">Close</button>';
+var close = document.getElementById('close');
+if (mode === 'works' || mode === 'mouse') close.addEventListener('click', function () { panel.remove(); });
+if (mode === 'returns') close.addEventListener('click', function () { panel.hidden = true; setTimeout(function () { panel.hidden = false; }, 700); });
+</script>
+</body>
+</html>

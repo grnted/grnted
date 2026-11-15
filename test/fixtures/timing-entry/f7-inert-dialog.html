@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Parks | Alder</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 40rem; } .dlg { position: fixed; inset: 20% 10%; background: #fff; border: 2px solid #333; padding: 1rem; } [hidden] { display: none; }</style></head>
+<body>
+<header><form role="search" action="/search" method="get"><label for="q">Search</label> <input id="q" name="q" type="search"></form></header>
+<main><h1>Parks</h1><p>Find a park near you, book a shelter or report a problem.</p></main>
+<div class="dlg" id="news" role="dialog" aria-modal="true" aria-labelledby="news-h" hidden><h2 id="news-h">Get park news</h2><p>Sign up for the monthly letter.</p><button type="button" id="close">Close</button></div>
+<script>
+  // A newsletter dialog that opens 8 s after the load and makes the page behind it inert; closing it gives everything back.
+  const page = [document.querySelector('header'), document.querySelector('main')];
+  setTimeout(() => { page.forEach((e) => { e.inert = true; }); document.getElementById('news').hidden = false; }, 8000);
+  document.getElementById('close').addEventListener('click', () => { page.forEach((e) => { e.inert = false; }); document.getElementById('news').hidden = true; });
+</script>
+</body></html>

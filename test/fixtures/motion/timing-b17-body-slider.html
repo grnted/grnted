@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account overview</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } </style></head>
+<body class="home has-slider"><div class="site-wrap"><main>
+<h1>Account overview</h1>
+<div id="app"><p>Your recent activity.</p><form action="/note" method="get"><label>Note <input name="n"></label> <button>Save</button></form></div>
+</main></div>
+<script>
+  // The theme marks the whole page as one with a slider (a class on the body): that says nothing
+  // about this message. After 15 minutes the page puts it in place of the form, with nothing to extend.
+  setTimeout(function () { document.getElementById('app').innerHTML = '<p role="alert">Your session has expired. <a href="static.html">Sign in again</a> to continue.</p>'; }, 15 * 60 * 1000);
+</script>
+</body>
+</html>

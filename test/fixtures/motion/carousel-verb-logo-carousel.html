@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Carousel with a "Stop logo carousel" button</title>
+<style>
+  .carousel { position: relative; width: 600px; height: 240px; overflow: hidden; border: 1px solid #333; }
+  .slide { position: absolute; inset: 0; padding: 2rem; font: 24px sans-serif; opacity: 0; transition: opacity .4s; background: #eef; }
+  .slide.active { opacity: 1; }
+</style></head>
+<body><main>
+<h1>News</h1>
+<section aria-roledescription="carousel" aria-label="Highlights">
+  <button type="button" id="toggle">Stop logo carousel</button>
+  <div class="carousel" id="hero">
+    <div class="slide active">Enrolment opens on Monday for all grades.</div>
+    <div class="slide">The library has new opening hours this term.</div>
+    <div class="slide">Sports day is moved to Friday afternoon.</div>
+  </div>
+</section>
+<p>Other content next to the carousel.</p>
+</main>
+<script>
+  (function () {
+    var slides = document.querySelectorAll('#hero .slide'), i = 0, timer = null;
+    function show(n) { slides[i].classList.remove('active'); i = (n + slides.length) % slides.length; slides[i].classList.add('active'); }
+    // A timeout chain, as Swiper and Flickity do.
+    function schedule() { timer = setTimeout(function advance() { show(i + 1); schedule(); }, 4000); }
+    schedule();
+    var btn = document.getElementById('toggle');
+    btn.addEventListener('click', function () {
+      if (timer) { clearTimeout(timer); timer = null; btn.textContent = 'Play'; }
+      else { schedule(); btn.textContent = 'Stop logo carousel'; }
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lead check: Grok's literal interval trap</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<main><h1>Code</h1><p><a href="/help.html">Help</a></p>
+<!-- 2.1.2 failure: Grok's exact script, an 80 ms interval with no arming, no focus or key listener. -->
+<p><label for="trap">Your code</label> <input id="trap" type="text"></p>
+<p><a href="/next.html">Next step</a></p></main>
+<script>var trap = document.getElementById('trap'); setInterval(function () { if (document.activeElement !== trap) trap.focus(); }, 80);</script>
+</body>
+</html>

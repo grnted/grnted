@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a handler on the document</title></head>
+<body><main><h1>Delegated</h1>
+<p><button type="button" id="reveal" class="reveal">Show the bell schedule</button></p>
+<div id="schedule" hidden>First bell 8:05.</div>
+<p><button type="button" id="plain">Print</button></p>
+</main>
+<script>
+  // One handler on the document acts for every .reveal control, on the down event.
+  document.addEventListener('mousedown', function (e) { if (e.target.closest && e.target.closest('.reveal')) document.getElementById('schedule').hidden = false; });
+</script>
+</body>
+</html>

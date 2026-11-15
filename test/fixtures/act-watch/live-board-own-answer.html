@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Step-free trip options (the form answers)</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .layout { display: flex; gap: 32px; } aside { border: 1px solid #555; padding: 8px 16px; }</style></head>
+<body>
+<header><nav aria-label="Main"><a href="/">Home</a> <a href="/plan">Plan a trip</a></nav></header>
+<main>
+<h1>Step-free trip options (the form answers)</h1>
+<div class="layout">
+<article>
+<form id="prefs" class="local">
+  <fieldset><legend>Path preferences</legend>
+  <label><input type="checkbox" name="stairs" checked> Avoid stairs</label>
+  <label><input type="checkbox" name="time" checked> Allow ten minutes for transfers</label>
+  <label>Maximum walking distance <select name="walk"><option>One quarter mile</option><option>One half mile</option></select></label>
+  </fieldset>
+  <p id="answer"></p>
+  <button type="submit">Update trip options</button>
+</form>
+</article>
+<aside aria-label="Arrivals"><h2>Next arrivals</h2><p>Route 12 to Library: <b id="eta">6 min</b></p><p>Estimates can change with traffic.</p></aside>
+</div>
+</main>
+<footer><p>Regional transit, 1 Station Square</p></footer>
+<script>
+var eta = 6; setInterval(function () { eta = eta === 6 ? 7 : 6; document.getElementById('eta').textContent = eta + ' min'; }, 1000);
+document.getElementById('prefs').addEventListener('submit', function (e) { e.preventDefault(); setTimeout(function () { document.getElementById('answer').textContent = 'Choose at least one way to board before you update.'; }, 1000); });
+</script>
+</body></html>

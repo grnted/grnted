@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A ticker that updates every 2 seconds for 6 seconds</title>
+<style>.ticker { width: 600px; min-height: 80px; padding: 24px 16px; font: 20px sans-serif; background: #eef3f8; }</style></head>
+<body><main>
+<h1>City news</h1>
+<!-- Updates every 2 s; the run at 6 s updates it one last time and clears the timer (the same run). -->
+<p class="ticker" id="ticker">Update 0: the pool opens on Monday.</p>
+<p>Other content next to the ticker.</p>
+</main>
+<script>
+  (function () {
+    var el = document.getElementById('ticker'), t0 = Date.now(), n = 0;
+    var timer = setInterval(function () {
+      n++;
+      el.textContent = 'Update ' + n + ': ' + ['the pool opens on Monday.', 'the library has new hours.', 'the bridge closes for repairs.'][n % 3];
+      if (Date.now() - t0 >= 5900) { clearInterval(timer); window.__simDone = true; }
+    }, 2000);
+  })();
+</script>
+</body>
+</html>

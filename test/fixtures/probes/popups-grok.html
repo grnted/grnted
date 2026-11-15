@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Popup fixture: races and clean realms</title></head>
+<body>
+<main id="main"><h1>Popup fixture: races and clean realms</h1>
+<p>Ways around a blocker in the page. Only the browser's sandbox (no allow-popups) stops all of them.</p>
+<p>
+  <a id="script-base" href="/pop/g-base">A link whose click adds a base element (clicked by script)</a>
+  <button type="button" id="clean-submit">Submit a form to a new window from a frame where scripts are off</button>
+  <button type="button" id="stolen">window.open taken from a frame where scripts are off</button>
+  <button type="button" id="proto-open">Window.prototype.open</button>
+  <button type="button" id="deleted-open">window.open after delete</button>
+  <button type="button" id="blob-nav">Go to a blob: page that opens a window</button>
+</p>
+<form id="fd" action="/pop/g-formdata" method="get"><label>Q <input name="q" value="a"></label> <button id="fd-b">Go (target set in formdata)</button></form>
+<div id="dhost"><template shadowrootmode="closed"><a href="/pop/g-closed" target="_blank" style="display:block;padding:24px;background:#eee">Link in a closed shadow root the parser made</a></template></div>
+<p id="end">The end.</p>
+</main>
+<script>
+  window.__openWhere = { own: !!Object.getOwnPropertyDescriptor(window, 'open'), proto: typeof Window.prototype.open };
+  var on = function (id, fn) { document.getElementById(id).addEventListener('click', fn); };
+  document.getElementById('script-base').addEventListener('click', function () {
+    document.head.insertAdjacentHTML('beforeend', '<base target="_blank">');
+  });
+  document.getElementById('fd').addEventListener('formdata', function () { this.target = '_blank'; });
+  // A frame with scripts off runs no init script: its window.open and form.submit are the browser's.
+  var clean = document.createElement('iframe');
+  clean.title = 'Frame with scripts off';
+  clean.setAttribute('sandbox', 'allow-same-origin allow-forms allow-popups');
+  clean.srcdoc = '<form id="f" action="/pop/g-srcdoc" method="get" target="_blank"><input name="q" value="a"></form>';
+  document.body.appendChild(clean);
+  window.__clean = clean;
+  on('clean-submit', function () { clean.contentDocument.getElementById('f').submit(); });
+  on('stolen', function () { window.__stolenHooked = !!clean.contentWindow.__grntedListeners; clean.contentWindow.open.call(window, '/pop/g-stolen'); });
+  on('proto-open', function () { try { Window.prototype.open.call(window, '/pop/g-proto'); } catch (e) { window.__protoError = e.name; } });
+  on('blob-nav', function () {
+    location.href = URL.createObjectURL(new Blob(['<script>window.open("' + location.origin + '/pop/blob")<\/script><p>blob</p>'], { type: 'text/html' }));
+  });
+  on('deleted-open', function () { delete window.open; try { window.open('/pop/g-deleted'); } catch (e) { window.__deletedError = e.name; } });
+</script>
+</body>
+</html>

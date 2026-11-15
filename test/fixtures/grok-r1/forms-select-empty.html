@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 1: selects whose shown option is a choice, not a prompt</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<!-- 3.3.2 failures: an empty value is not a prompt; "Pick up at Main Street" is a choice. -->
+<select><option value="">California</option><option value="OR">Oregon</option></select>
+<div><select><option>Pick up at Main Street</option><option>Deliver to my address</option></select></div>
+</body>
+</html>

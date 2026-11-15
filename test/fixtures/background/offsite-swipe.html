@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Background writes: a swipe that only POSTs to another host</title>
+<style>body{font:16px/1.5 sans-serif;margin:20px} #area{width:600px;height:240px;border:1px solid #333;background:#eef;display:flex;align-items:center;justify-content:center}</style></head>
+<body><main><h1>Photo strip</h1><div id="area">Swipe to see the next photo</div></main>
+<script>
+  var off = location.protocol + '//' + (location.hostname === 'localhost' ? '127.0.0.1' : 'localhost') + ':' + location.port;
+  var area = document.getElementById('area'), down = null, done = false;
+  function act() { fetch(off + '/photos/next', { method: 'POST', body: '1' }).catch(function () {}); }
+  area.addEventListener('pointerdown', function (e) { down = e.clientX; done = false; });
+  area.addEventListener('pointermove', function (e) { if (down !== null && !done && Math.abs(e.clientX - down) > 40) { done = true; act(); } });
+  area.addEventListener('pointerup', function () { down = null; });
+  area.addEventListener('touchstart', function (e) { down = e.touches[0].clientX; done = false; }, { passive: true });
+  area.addEventListener('touchmove', function (e) { if (down !== null && !done && Math.abs(e.touches[0].clientX - down) > 40) { done = true; act(); } }, { passive: true });
+  area.addEventListener('touchend', function () { down = null; });
+</script>
+</body>
+</html>

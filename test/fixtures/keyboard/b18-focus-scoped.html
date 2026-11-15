@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Focus fixture: a reset scoped to the footer on markup the navigation shares</title>
+<style>
+  body { font: 16px/1.5 Arial, sans-serif; margin: 0; color: #222; background: #fff; }
+  nav ul, footer ul { list-style: none; display: flex; gap: 16px; padding: 12px 24px; margin: 0; }
+  a { color: #1a4f8b; }
+  a:focus-visible { outline: 2px solid #1a4f8b; outline-offset: 2px; }
+  footer { border-top: 1px solid #ccc; margin-top: 40px; }
+  footer a:focus { outline: none; }
+  main { padding: 0 24px; }
+</style>
+</head>
+<body>
+<nav aria-label="Main"><ul><li><a href="/a.html">Services</a></li><li><a href="/b.html">News</a></li><li><a href="/c.html">Events</a></li></ul></nav>
+<main><h1>Library</h1><p>Opening hours and events for every branch.</p></main>
+<footer><ul><li><a id="foot-1" href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li></ul></footer>
+</body>
+</html>

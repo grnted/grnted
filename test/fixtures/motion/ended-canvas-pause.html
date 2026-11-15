@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>City news (a canvas wave whose Pause button stops its drawing loop)</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; } #box { width: 600px; max-width: 100%; height: 120px; background: #eef3f8; }</style></head>
+<body><main>
+<h1>City news</h1>
+<div id="box"><canvas id="wave" width="600" height="120" role="img" aria-label="A moving wave"></canvas></div>
+<button type="button" id="pause">Pause</button>
+<p>The council meets on Tuesday.</p>
+</main>
+<script>
+// The wave is drawn every frame until the Pause button cancels its drawing loop.
+(function () {
+  var c = document.getElementById('wave'), g = c.getContext('2d'), t0 = performance.now(), raf = 0;
+  function step(t) { var e = t - t0; g.fillStyle = '#eef3f8'; g.fillRect(0, 0, 600, 120); g.fillStyle = '#00376d'; g.fillRect((e / 8) % 520, 30, 80, 60); raf = requestAnimationFrame(step); }
+  raf = requestAnimationFrame(step);
+  document.getElementById('pause').addEventListener('click', function () { cancelAnimationFrame(raf); });
+})();
+</script>
+</body>
+</html>

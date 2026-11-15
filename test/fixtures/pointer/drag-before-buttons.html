@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dragging movements: a list that inserts before the drop target, with move buttons</title>
+<style>
+body{font:16px/1.5 sans-serif;margin:20px}
+.sortlist{list-style:none;padding:0;width:400px}
+.sortlist li{border:1px solid #333;margin:4px 0;padding:8px;background:#f8f8f8}
+</style>
+</head>
+<body><main><h1>Priorities</h1>
+<h2>Drag, or move buttons</h2>
+<ol class="sortlist" id="before-buttons">
+  <li draggable="true">Pools <button type="button" class="up">Move Pools up</button> <button type="button" class="down">Move Pools down</button></li>
+  <li draggable="true">Trails <button type="button" class="up">Move Trails up</button> <button type="button" class="down">Move Trails down</button></li>
+  <li draggable="true">Courts <button type="button" class="up">Move Courts up</button> <button type="button" class="down">Move Courts down</button></li>
+</ol></main>
+<script>
+  for (var list of document.querySelectorAll('.sortlist')) (function (list) {
+    var drag = null;
+    list.addEventListener('dragstart', function (e) { drag = e.target.closest('li'); });
+    list.addEventListener('dragover', function (e) { e.preventDefault(); });
+    list.addEventListener('drop', function (e) { e.preventDefault(); var t = e.target.closest('li'); if (drag && t && t !== drag) list.insertBefore(drag, t); drag = null; });
+    list.addEventListener('click', function (e) {
+      var li = e.target.closest('li');
+      if (!li) return;
+      if (e.target.classList.contains('up') && li.previousElementSibling) list.insertBefore(li, li.previousElementSibling);
+      if (e.target.classList.contains('down') && li.nextElementSibling) list.insertBefore(li.nextElementSibling, li);
+    });
+  })(list);
+</script>
+</body>
+</html>

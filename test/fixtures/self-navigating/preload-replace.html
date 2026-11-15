@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>One moment</title></head>
+<body>
+<main>
+<h1>One moment</h1>
+<p>Taking you to the page. <a href="/interstitial-only.html">Help with this page</a></p>
+<!-- An image that takes 2 s holds the load event; the page replaces itself 100 ms in, before load. -->
+<img src="/slow-image.svg" alt="Logo" width="40" height="40">
+</main>
+<script>setTimeout(function () { location.replace('/real.html'); }, 100);</script>
+</body>
+</html>

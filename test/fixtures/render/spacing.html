@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: text spacing failure</title>
+<style>
+  body { margin: 0; font: 16px/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; max-width: 40rem; }
+  .box { font-size: 16px; line-height: 20px; white-space: nowrap; width: 18rem; border: 0; padding: 0; margin: 1rem 0 0; }
+  #clip-box { height: 60px; overflow: hidden; }
+  #overlap-box { height: 80px; }
+  #after { margin: 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Text spacing</h1>
+  <p>Two boxes have a fixed height made for their text.</p>
+  <div class="box" id="clip-box">Spring concert<br>Thursday at 7 pm<br>Main gym doors open at 6</div>
+  <div class="box" id="overlap-box">Book fair<br>Monday to Friday<br>In the library<br>All week long</div>
+  <p id="after">This paragraph comes right after the second box.</p>
+</main>
+</body>
+</html>

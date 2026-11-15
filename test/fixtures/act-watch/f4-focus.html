@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Alerts</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .bad { border: 2px solid #b00020; } .err { color: #a00000; } .toast { position: fixed; right: 12px; bottom: 12px; background: #223; color: #fff; padding: 8px 12px; } .hidden { display: none; }</style></head>
+<body>
+<main><h1>Alerts</h1>
+<form id="s" novalidate><label for="em">Email address</label><input id="em" type="email">
+<fieldset><legend>Topics</legend><label><input type="checkbox" name="t" value="1"> Library news</label><label><input type="checkbox" name="t" value="2"> Pool hours</label></fieldset>
+
+<p><button type="submit">Update alerts</button></p></form>
+</main>
+<p id="toast" class="toast"></p>
+<script>
+
+document.getElementById('s').addEventListener('submit', (e) => { e.preventDefault();
+  const em = document.getElementById('em'); const ok = em.value.indexOf('@') > 0 && document.querySelector('input[name=t]:checked') && true;
+  document.getElementById('toast').textContent = ok ? 'Your alerts are updated.' : 'Could not update your alerts.';
+  if (!ok) em.focus(); });
+</script>
+</body></html>

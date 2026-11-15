@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Departments (on input)</title></head>
+<body>
+<main>
+<h1>Departments</h1>
+<p><label for="jump">Go to a department</label>
+<select id="jump" onchange="window.location.href = this.value">
+  <option value="">Choose a department</option>
+  <option value="/about.html">About us</option>
+  <option value="/sports.html">Sports</option>
+</select></p>
+<form id="filters" action="/news" method="get">
+  <p><label for="sort">Sort by</label>
+  <select id="sort" name="sort"><option value="new">Newest</option><option value="old">Oldest</option></select></p>
+  <p><label><input type="checkbox" name="archived" id="archived" onchange="this.form.submit()"> Include archived news</label></p>
+  <fieldset><legend>Size</legend>
+  <label><input type="radio" name="size" value="s" checked> Small</label>
+  <label><input type="radio" name="size" value="l"> Large</label></fieldset>
+  <p><label for="kw">Keywords</label> <input id="kw" name="kw"></p>
+  <button type="submit">Show news</button>
+</form>
+</main>
+</body>
+</html>

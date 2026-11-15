@@ -1,0 +1,725 @@
+{
+ "contrast/text.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "html > body > main > article > div:nth-of-type(4)",
+     "detail": "At 320 px wide, a 452 px wide container does not fit and its text needs scrolling sideways (the page is 476 px wide): “White text that runs from a black half onto a white half of…”"
+    }
+   ]
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#t-fail-image",
+     "detail": "Text contrast is 2.0:1 where it sits on a background image (text #aaaaaa on #f2f2f2, mostly #fbfbfb); 16 px text needs at least 4.5:1: “Light grey text on a light picture is hard to read for many people.”"
+    },
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#t-fail-gradient",
+     "detail": "Text contrast is 1.3:1 where it sits on a gradient (text #ffffff on #dbdbdb, mostly #d8d8d8); 16 px text needs at least 4.5:1: “White text on a pale grey gradient fades into it.”"
+    },
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#t-fail-pseudo",
+     "detail": "Text contrast is 2.2:1 where it sits on a pseudo-element (text #888888 on #cccccc); 16 px text needs at least 4.5:1: “Grey text on a grey box drawn by a pseudo-element.”"
+    },
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#t-fail-half",
+     "detail": "Text contrast is 1.0:1 where it sits on a gradient (text #ffffff on #ffffff, mostly #000000); 16 px text needs at least 4.5:1: “White text that runs from a black half onto a white half of the box behind it.”"
+    },
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#t-fail-thin",
+     "detail": "Text contrast is 2.9:1 where it sits on a gradient (text #949494 on #fdfdfd, mostly #fefefe); 12 px text needs at least 4.5:1: “Small light text in a thin weight, a little too pale for its size on white.”"
+    },
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#t-fail-opacity",
+     "detail": "Text contrast is 2.0:1 where it sits on a gradient (text #b3b3b3 on #ffffff, mostly #fefefe); 16 px text needs at least 4.5:1: “Black text made faint with opacity.”"
+    },
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#card >>> #inner",
+     "detail": "Text contrast is 2.3:1 where it sits on a gradient (text #999999 on #e9e9e9, mostly #ebebeb); 16 px text needs at least 4.5:1: “Grey text inside a component, on a light grey gradient.”"
+    }
+   ]
+  }
+ ],
+ "contrast/text-covered.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#t-important",
+     "detail": "Text contrast is 1.7:1 where it sits on a background image (text #bbbbbb on #f2f2f2, mostly #fbfbfb); 16 px text needs at least 4.5:1: “Pale text whose colour an important rule sets.”"
+    },
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#t-span > span",
+     "detail": "Text contrast is 1.4:1 where it sits on a background image (text #c8c8c8 on #f2f2f2, mostly #fbfbfb); 16 px text needs at least 4.5:1: “Pale words in a span with a colour of their own.”"
+    },
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#gen-1794628021309654967-1 > span",
+     "detail": "Text contrast is 1.4:1 where it sits on a gradient (text #ffffff on #d8d8d8, mostly #d5d5d5); 16 px text needs at least 4.5:1: “Schools”"
+    },
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "a[href$=\"#news\"]",
+     "detail": "Text contrast is 1.4:1 where it sits on a gradient (text #ffffff on #d8d8d8, mostly #d5d5d5); 16 px text needs at least 4.5:1: “News”"
+    },
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#gen-179462802130980856-1 > span",
+     "detail": "Text contrast is 1.4:1 at the phone width where it sits on a gradient (text #ffffff on #d8d8d8, mostly #d5d5d5); 16 px text needs at least 4.5:1: “Schools”"
+    }
+   ]
+  }
+ ],
+ "contrast/text-faded.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": []
+  }
+ ],
+ "contrast/text-mobile.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "#m-only",
+     "detail": "Text contrast is 1.3:1 at the phone width where it sits on a gradient (text #ffffff on #dadada, mostly #d7d7d7); 16 px text needs at least 4.5:1: “This banner only appears on narrow screens, in white on light grey.”"
+    }
+   ]
+  }
+ ],
+ "contrast/text-unmeasured.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "not_testable",
+     "target": "#t-shadow",
+     "detail": "axe could not decide the contrast of 3 text elements here; 1 measured from screenshots; 1 shown element could not be: 1 because it has a text shadow in a contrasting color, which may outline it; 1 element not shown when measured, so not counted: 1 covered by other content or transparent (showing it changed no pixels)"
+    }
+   ]
+  }
+ ],
+ "contrast/controls.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "failed",
+     "target": "#f-light-border",
+     "detail": "A form field’s boundary has 1.3:1 contrast with the colors next to it (edge #dddddd between #ffffff outside and #ffffff inside); at least 3:1 is needed to see the control: “Name”"
+    },
+    {
+     "criterion": "1.4.11",
+     "status": "failed",
+     "target": "#f-bootstrap",
+     "detail": "A form field’s boundary has 1.4:1 contrast with the colors next to it (edge #ced4da between #ffffff outside and #ffffff inside); at least 3:1 is needed to see the control: “Email”"
+    },
+    {
+     "criterion": "1.4.11",
+     "status": "failed",
+     "target": "#f-fill-fail",
+     "detail": "A form field’s boundary has 1.1:1 contrast with the colors next to it (fill #eeeeee on #ffffff); at least 3:1 is needed to see the control: “Search”"
+    },
+    {
+     "criterion": "1.4.11",
+     "status": "failed",
+     "target": "#f-select-fail",
+     "detail": "A form field’s boundary has 1.3:1 contrast with the colors next to it (edge #e0e0e0 between #ffffff outside and #ffffff inside); at least 3:1 is needed to see the control: “Topic General”"
+    },
+    {
+     "criterion": "1.4.11",
+     "status": "failed",
+     "target": "#f-check-fail",
+     "detail": "A checkbox or radio button’s boundary has 1.3:1 contrast with the colors next to it (edge #dddddd between #ffffff outside and #ffffff inside); at least 3:1 is needed to see the control: “Remember me”"
+    },
+    {
+     "criterion": "1.4.11",
+     "status": "failed",
+     "target": "#i-svg-fail",
+     "detail": "The icon of an icon-only control (svg) has 1.6:1 contrast with the color behind it (#cccccc on #ffffff); at least 3:1 is needed to make it out: “Close”"
+    },
+    {
+     "criterion": "1.4.11",
+     "status": "failed",
+     "target": "#i-font-fail",
+     "detail": "The icon of an icon-only control (icon font) has 1.3:1 contrast with the color behind it (#dddddd on #ffffff); at least 3:1 is needed to make it out: “Favourite”"
+    },
+    {
+     "criterion": "1.4.11",
+     "status": "failed",
+     "target": "#i-mask-fail",
+     "detail": "The icon of an icon-only control (mask image) has 1.6:1 contrast with the color behind it (#cccccc on #ffffff); at least 3:1 is needed to make it out: “Info”"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "html > body > main > form > div:nth-of-type(1)",
+     "detail": "At 320 px wide, content does not fit in its container and its text needs scrolling sideways (the page is 1178 px wide): “Search”"
+    },
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "html > body > main > form > div:nth-of-type(2)",
+     "detail": "At 320 px wide, content does not fit in its container and its text needs scrolling sideways (the page is 1178 px wide): “Notes”"
+    },
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "html > body > main > form > div:nth-of-type(4)",
+     "detail": "At 320 px wide, content does not fit in its container and its text needs scrolling sideways (the page is 1178 px wide): “Search”"
+    },
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "html > body > main > form > div:nth-of-type(3)",
+     "detail": "At 320 px wide, a form control does not fit in its container and needs scrolling sideways (the page is 1178 px wide): “Plain on dark”"
+    }
+   ]
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "no_failures_found",
+     "detail": "axe decided the contrast of all text on this page"
+    }
+   ]
+  }
+ ],
+ "contrast/controls-unmeasured.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_testable",
+     "target": "#u-busy",
+     "detail": "3 controls of 3 could not be measured: 1 because the colors around it vary too much to compare with (an image or other content right next to it); 1 because the area around it kept changing (video, animation or loading content); 1 because its icon could not be separated from its background in the screenshots"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "failed",
+     "target": "label",
+     "detail": "Text contrast is 1.1:1 where it sits on a gradient (text #111111 on #000000); 16 px text needs at least 4.5:1: “Name”"
+    }
+   ]
+  }
+ ],
+ "contrast/links.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": []
+  }
+ ],
+ "render/reflow.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#fixed-box",
+     "detail": "At 320 px wide, a 1000 px wide container does not fit and its text needs scrolling sideways (the page is 1138 px wide): “This container is one thousand pixels wide, so on a narrow…”"
+    }
+   ]
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "no_failures_found",
+     "detail": "axe decided the contrast of all text on this page"
+    }
+   ]
+  }
+ ],
+ "render/reflow-clean.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "no_failures_found",
+     "detail": "axe could not decide the contrast of 6 text elements here; 1 measured from screenshots; 5 elements not shown when measured, so not counted: 4 out of view in a carousel or scrolling area; 1 content marked as a graphic or hidden from assistive technology"
+    }
+   ]
+  }
+ ],
+ "render/reflow-app.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#wide-panel",
+     "detail": "At 320 px wide, a 900 px wide container does not fit and its text needs scrolling sideways (the page is 916 px wide): “Book the library meeting room for up to two hours at a…”"
+    }
+   ]
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "no_failures_found",
+     "detail": "axe decided the contrast of all text on this page"
+    }
+   ]
+  }
+ ],
+ "render/reflow-more.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no styled form fields or icon-only controls on the page (1 control with the browser’s own look or disabled, which are exempt)"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#lost-row",
+     "detail": "At 320 px wide, content does not fit in its container and its text is cut off at the edge of the screen (the page cannot scroll sideways): “Second notice: the office closes early on Friday afternoon.”"
+    },
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#wide-input",
+     "detail": "At 320 px wide, a 600 px wide form control does not fit and is cut off at the edge of the screen (the page cannot scroll sideways): “Search the site”"
+    },
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#scroll-strip",
+     "detail": "At 320 px wide, a line of text is wider than the region it scrolls in (288 px wide), so reading it means scrolling sideways: “This whole announcement is one long line that does not…”"
+    },
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#cookie",
+     "detail": "At 320 px wide, a box fixed to the screen runs past its 256 px height, so this text cannot be scrolled to: “This site uses cookies to remember your language and the…”"
+    }
+   ]
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": []
+  }
+ ],
+ "render/reflow-spa.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#mobile-card",
+     "detail": "At 320 px wide, a 900 px wide container does not fit and its text needs scrolling sideways (the page is 916 px wide): “The mobile layout puts the whole menu in one wide card that…”"
+    }
+   ]
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": []
+  }
+ ],
+ "popup-aside/?nopop=1": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "no_failures_found",
+     "detail": "axe decided the contrast of all text on this page"
+    }
+   ]
+  }
+ ],
+ "popup-aside/?nopop=1&lowpage=1&ghost=1": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "failed",
+     "target": "#page-q",
+     "detail": "A form field’s boundary has 1.6:1 contrast with the colors next to it (edge #cccccc between #ffffff outside and #ffffff inside); at least 3:1 is needed to see the control: “Your question”"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "no_failures_found",
+     "detail": "axe decided the contrast of all text on this page"
+    }
+   ]
+  }
+ ],
+ "popup-aside/?nopop=1&wide=1&hidden=1": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#hidden-sec > p",
+     "detail": "At 320 px wide, a 600 px wide container does not fit and its text needs scrolling sideways (the page is 705 px wide): “Opening hours for every branch: Central, North, East, West…”"
+    },
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#wideline",
+     "detail": "At 320 px wide, a 600 px wide container does not fit and its text needs scrolling sideways (the page is 705 px wide): “Every branch lends laptops, hotspots and museum passes for…”"
+    }
+   ]
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": []
+  }
+ ],
+ "popup-aside/cases.html?case=notice": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#slot > div > p",
+     "detail": "At 320 px wide, content does not fit in its container and its text is cut off at the edge of the screen (the page cannot scroll sideways): “Sign up for alerts.”"
+    },
+    {
+     "criterion": "1.4.10",
+     "status": "failed",
+     "target": "#slot > div > button",
+     "detail": "At 320 px wide, content does not fit in its container and its text is cut off at the edge of the screen (the page cannot scroll sideways): “No thanks”"
+    }
+   ]
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "no_failures_found",
+     "detail": "axe decided the contrast of all text on this page"
+    }
+   ]
+  }
+ ],
+ "popup-aside/cases.html?case=pane": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no styled form fields or icon-only controls on the page (1 control with the browser’s own look or disabled, which are exempt)"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "no_failures_found",
+     "detail": "axe decided the contrast of all text on this page"
+    }
+   ]
+  }
+ ],
+ "popup-aside/shell.html": [
+  {
+   "probe": "non-text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.11",
+     "status": "not_applicable",
+     "detail": "no form fields or icon-only controls on the page"
+    }
+   ]
+  },
+  {
+   "probe": "reflow",
+   "status": "ok",
+   "findings": []
+  },
+  {
+   "probe": "text-contrast",
+   "status": "ok",
+   "findings": [
+    {
+     "criterion": "1.4.3",
+     "status": "no_failures_found",
+     "detail": "axe decided the contrast of all text on this page"
+    }
+   ]
+  }
+ ]
+}

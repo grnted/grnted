@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Contact (form in a closed dialog)</title></head>
+<body>
+<main>
+<h1>Contact</h1>
+<button type="button" onclick="document.getElementById('d').showModal()">Write to us</button>
+<dialog id="d">
+  <form action="/dialog-contact" method="post">
+    <p><label for="hd-name">Name *</label><br><input id="hd-name" name="name" autocomplete="name" required></p>
+    <p><label for="hd-email">Email *</label><br><input id="hd-email" name="email" type="email" autocomplete="email" required></p>
+    <button type="submit">Send</button>
+  </form>
+</dialog>
+</main>
+</body>
+</html>

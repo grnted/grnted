@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Carousel without pause, with a Video link</title>
+<style>
+  .carousel { position: relative; width: 600px; height: 240px; overflow: hidden; border: 1px solid #333; }
+  .slide { position: absolute; inset: 0; padding: 2rem; font: 24px sans-serif; opacity: 0; transition: opacity .4s; background: #eef; }
+  .slide.active { opacity: 1; }
+</style></head>
+<body><nav aria-label="Main"><a href="/news.html">News</a> <a href="/video.html">Video</a> <a href="/slideshow.html">Slideshow</a></nav><main>
+<h1>News</h1>
+<div class="carousel" id="hero" aria-roledescription="carousel" aria-label="Highlights">
+  <div class="slide active">Enrolment opens on Monday for all grades.</div>
+  <div class="slide">The library has new opening hours this term.</div>
+  <div class="slide">Sports day is moved to Friday afternoon.</div>
+</div>
+<button type="button" id="next">Next slide</button>
+<p>Other content next to the carousel.</p>
+</main>
+<script>
+  (function () {
+    var slides = document.querySelectorAll('#hero .slide'), i = 0;
+    function show(n) { slides[i].classList.remove('active'); i = (n + slides.length) % slides.length; slides[i].classList.add('active'); }
+    setInterval(function rotate() { show(i + 1); }, 3000);
+    document.getElementById('next').addEventListener('click', function () { show(i + 1); });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page with frames</title></head>
+<body><main>
+<h1>Page with frames</h1>
+<p>The page itself has no problems. Its frames do.</p>
+<!-- Nested: outer.html embeds inner.html, whose image has no text alternative. -->
+<iframe id="first" title="Outer frame" src="/outer.html" width="320" height="200"></iframe>
+<!-- A sibling frame with the same image: its result must not be credited to the nested frame. -->
+<iframe id="second" title="Inner frame" src="/inner.html" width="320" height="120"></iframe>
+<!-- Hidden frames are skipped by axe (not exposed to assistive technology): neither tested nor reported. -->
+<iframe id="hidden" title="Hidden frame" src="/inner.html" style="display:none"></iframe>
+<!-- Nothing listens on port 9: the frame fails to load and is reported as not tested. -->
+<iframe id="broken" title="Broken frame" src="http://127.0.0.1:9/" width="320" height="80"></iframe>
+</main></body>
+</html>

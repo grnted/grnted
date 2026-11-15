@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Callback (wrong formats are sent)</title></head>
+<body>
+<main>
+<h1>Ask for a callback</h1>
+<form id="cb" action="/callback" method="post" novalidate>
+  <p><label for="cbs-name">Name *</label><br><input id="cbs-name" name="name" autocomplete="name" aria-describedby="cbs-err"></p>
+  <p><label for="cbs-mail">Email *</label><br><input id="cbs-mail" name="mail" type="email" autocomplete="email"></p>
+  <p id="cbs-err" role="alert"></p>
+  <button type="submit">Call me</button>
+</form>
+</main>
+<script>
+  // Empty fields get a message; anything typed is sent as it is (the format is checked on the server).
+  document.getElementById('cb').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cbs-name').value;
+    document.getElementById('cbs-err').textContent = name ? '' : 'Enter your name';
+    if (name) fetch('/callback', { method: 'POST', body: new FormData(e.target) }).catch(() => {});
+  });
+</script>
+</body>
+</html>

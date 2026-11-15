@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Listener fixture</title></head>
+<body>
+<main><h1>Listener fixture</h1>
+<button type="button" id="btn">Button</button>
+<div id="card" class="card featured" role="button" tabindex="0" aria-label="Open card">Card</div>
+<div id="inline" onclick="window.__inlineClicks = (window.__inlineClicks || 0) + 1">Inline handler</div>
+<div id="swipe">Swipe area</div>
+<div id="drag" draggable="true">Drag me</div>
+<ul id="list"><li>One</li><li>Two</li><li class="x">Three</li></ul>
+<label>Field <input id="field"></label>
+</main>
+<script>
+  // The page checks itself: every hook must keep `this`, return values, removal and timer arguments.
+  var t = window.__selfTest = { errors: [] };
+  function check(name, ok) { if (!ok) t.errors.push(name); }
+  var btn = document.getElementById('btn');
+  var r = btn.addEventListener('click', function () { t.clickThis = this === btn; t.clicks = (t.clicks || 0) + 1; });
+  check('addEventListener returns undefined', r === undefined);
+  function over() { t.over = true; }
+  btn.addEventListener('mouseover', over);
+  btn.removeEventListener('mouseover', over);
+  function down() {}
+  btn.addEventListener('mousedown', down, true);
+  btn.removeEventListener('mousedown', down, false); // capture differs: still registered
+  var obj = { handleEvent: function () { t.handleEventThis = this === obj; } };
+  document.getElementById('card').addEventListener('keydown', obj);
+  btn.addEventListener('click', function () { t.once = (t.once || 0) + 1; }, { once: true });
+  var ac = new AbortController();
+  btn.addEventListener('dblclick', function () { t.aborted = true; }, { signal: ac.signal });
+  ac.abort();
+  document.getElementById('swipe').addEventListener('touchstart', function () {}, { passive: true });
+  document.onkeydown = function (e) { t.docKey = e.key; };
+  window.addEventListener('devicemotion', function () {});
+  document.querySelector('#list li.x').onclick = function () { t.liThis = this.textContent; };
+  var field = document.getElementById('field');
+  field.onfocus = function () {};
+  field.onfocus = null;
+  document.getElementById('drag').addEventListener('dragstart', function () {});
+  btn.addEventListener('animationend', function () {}); // not a recorded type
+
+  setTimeout(function (a, b) { t.timeoutArgs = [a, b]; }, 0, 'x', 'y');
+  setInterval(function rotateSlides() { t.ticks = (t.ticks || 0) + 1; }, 5000);
+  setTimeout(function () { t.longTimer = true; alert('Your session will expire soon'); }, 1200);
+
+  check('native toString', /\[native code\]/.test(EventTarget.prototype.addEventListener.toString()));
+  check('native toString via Function.prototype', /\[native code\]/.test(Function.prototype.toString.call(setTimeout)));
+  check('names and lengths', EventTarget.prototype.addEventListener.name === 'addEventListener' && setTimeout.name === 'setTimeout' &&
+    EventTarget.prototype.addEventListener.length === 2 && setTimeout.length === 1);
+  try {
+    var audio = new AudioContext();
+    check('AudioContext instanceof', audio instanceof AudioContext && audio instanceof BaseAudioContext && audio.constructor === AudioContext);
+  } catch (e) { t.errors.push('AudioContext: ' + e.message); }
+
+  btn.click(); btn.click();
+  check('this preserved', t.clickThis === true);
+  check('two clicks', t.clicks === 2);
+  check('once ran once', t.once === 1);
+  btn.dispatchEvent(new MouseEvent('dblclick'));
+  check('aborted listener not called', !t.aborted);
+  document.getElementById('card').dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
+  check('handleEvent this', t.handleEventThis === true);
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'q' }));
+  check('document onkeydown', t.docKey === 'q');
+  document.querySelector('#list li.x').click();
+  check('property handler this', t.liThis === 'Three');
+  document.getElementById('inline').click();
+  check('inline attribute', window.__inlineClicks === 1);
+  btn.dispatchEvent(new MouseEvent('mouseover'));
+  check('removed listener not called', !t.over);
+  try { var o = { st: setTimeout }; o.st(function () {}, 10); t.illegal = 'none'; } catch (e) { t.illegal = e.constructor.name; }
+</script>
+</body>
+</html>

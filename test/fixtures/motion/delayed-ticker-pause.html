@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Market notice</title>
+<style>.strip { width: 600px; height: 60px; overflow: hidden; border: 1px solid #333; } .strip p { margin: 0; padding: 16px; white-space: nowrap; font: 20px sans-serif; } .strip p.go { animation: slide 9s linear infinite; } @keyframes slide { from { transform: translateX(600px); } to { transform: translateX(-100%); } } .strip p.held { animation-play-state: paused; }</style></head>
+<body><main>
+<h1>Saturday market</h1>
+<p>The market is open from eight until one on the square.</p>
+<!-- Passes (2.2.2): the same late-starting scroll with a Pause button that pauses it for good. -->
+<div class="strip"><p id="note">Stalls on the east side move to the car park this week.</p></div>
+<button type="button" id="pause">Pause</button>
+</main>
+<script>
+  setTimeout(function () { document.getElementById('note').classList.add('go'); }, 6000);
+  document.getElementById('pause').addEventListener('click', function () { document.getElementById('note').classList.add('held'); });
+</script>
+</body>
+</html>

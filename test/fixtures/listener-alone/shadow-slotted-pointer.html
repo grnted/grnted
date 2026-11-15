@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Winter service (a slotted line)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Winter service (a slotted line)</h1>
+<notice-card id="card" style="display:block;border:1px solid #595959;padding:8px 12px"><p id="line">Routes 12 and 24 run every 20 minutes on weekdays.</p></notice-card>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+customElements.define('notice-card', class extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({ mode: 'open' }).innerHTML = '<div style="cursor:pointer"><slot></slot></div>';
+    window.dataLayer = [];
+    document.getElementById('line').addEventListener('click', function () { window.dataLayer.push({ event: 'line_click' }); });
+  }
+});
+</script>
+</body>
+</html>

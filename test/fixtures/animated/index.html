@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A call to action that fades in</title>
+<style>
+  body { font: 18px/1.5 Georgia, serif; color: #1a1a1a; background: #fff; margin: 0; }
+  main { max-width: 40rem; margin: 0 auto; padding: 16px; }
+  .cta { display: inline-block; padding: 12px 20px; color: #fff; background: #2b2b2b; text-decoration: none; }
+  /* 7:1 or more at rest; it fades in after a delay, as an entrance animation does. */
+  .fade { animation: rise 1.5s ease 1.4s both; }
+  @keyframes rise { from { opacity: 0; } to { opacity: 1; } }
+</style></head>
+<body><main><h1>Enrolment is open</h1>
+<p>Families can enrol for next year from Monday.</p>
+<p class="fade"><a class="cta" href="/enrol">Enrol your child</a></p>
+<p><a href="/script.html">Another page</a></p>
+</main></body>
+</html>

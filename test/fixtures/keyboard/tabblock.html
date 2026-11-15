@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: Tab key blocked</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>No Tab</h1>
+  <!-- Planted failure (2.1.1): a script cancels every Tab key press, so no control can be reached. -->
+  <p><a href="/one.html">One</a> <a href="/two.html">Two</a></p>
+  <p><button type="button">Press me</button></p>
+</main>
+<script>
+  document.addEventListener('keydown', function (e) { if (e.key === 'Tab') e.preventDefault(); }, true);
+</script>
+</body>
+</html>

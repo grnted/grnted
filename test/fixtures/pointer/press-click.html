@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: clicks never complete</title></head>
+<body><main><h1>Clicks</h1>
+<p><button id="go" type="button">Go to your account</button></p>
+<p><a id="logout" href="/account/logout">Leave</a></p>
+<form method="post" action="/submit"><button id="send">Send</button></form>
+</main>
+<script>
+  window.__clicked = [];
+  ['go', 'logout', 'send'].forEach(function (id) {
+    var el = document.getElementById(id);
+    // A handler of its own on each (one shared handler would be tested once).
+    el.addEventListener('mousedown', function () { el.dataset.pressed = '1'; });
+    el.addEventListener('click', function () { window.__clicked.push(id); });
+  });
+  document.getElementById('go').addEventListener('click', function () { location.href = '/account/logout'; });
+</script>
+</body>
+</html>

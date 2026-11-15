@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Parcel map</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+.ctl { display: inline-block; padding: 8px 14px; border: 2px solid #1d4d3f; border-radius: 4px; background: #e7f2ee; cursor: pointer; }
+.ctl:focus { outline: 3px solid #0b57d0; outline-offset: 2px; }
+.note { min-height: 1.5em; margin: 8px 0; }
+.modal { position: fixed; inset: 20px; background: #fff; border: 2px solid #333; padding: 12px; }
+iframe { width: 560px; height: 260px; border: 1px solid #888; }
+.cover { position: absolute; left: 24px; width: 600px; height: 280px; background: #fff; }
+[hidden] { display: none !important; }
+
+</style>
+</head>
+<body>
+<main>
+<div role="tablist" aria-label="Weeks"><button id="t0" role="tab" aria-selected="true" aria-controls="p0" tabindex="0" class="ctl">This week</button><button id="t1" role="tab" aria-selected="false" aria-controls="p1" tabindex="-1" class="ctl">Next week</button></div>
+<section id="p0" role="tabpanel" aria-labelledby="t0"><p>Two meetings this week.</p></section><section id="p1" role="tabpanel" aria-labelledby="t1" hidden><p>One hearing next week.</p></section>
+</main>
+<script>
+var tabs = [].slice.call(document.querySelectorAll('[role=tab]'));
+function pick(t) { tabs.forEach(function (x) { var on = x === t; x.tabIndex = on ? 0 : -1; x.setAttribute('aria-selected', String(on)); document.getElementById(x.getAttribute('aria-controls')).hidden = !on; }); }
+tabs.forEach(function (t) { t.addEventListener('pointerup', function () { pick(t); }); });
+window.addEventListener('message', function (e) { if (e.data === 'next') pick(tabs[1]); });
+</script>
+</body>
+</html>

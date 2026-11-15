@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 1: a fixed bar over the name of a fixed link</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<style>body{margin:0} .bar{position:fixed;top:0;left:0;width:80%;height:80px;background:#123;color:#fff;z-index:2} .pay{position:fixed;top:40px;right:8px;width:120px;height:180px;background:#eef;display:block} main{padding:200px 16px 16px}</style>
+<!-- 1.4.10 failure: the bar (not full width: not the page's header) hides the link's name at every scroll position; only two corners are under it. -->
+<div class="bar">Offers</div>
+<a class="pay" href="/pay.html">Pay your bill</a>
+<main><h1>City services</h1><p>Text.</p></main>
+</body>
+</html>

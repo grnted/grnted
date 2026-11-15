@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Text over a background video</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  .hero { position: relative; height: 420px; overflow: hidden; }
+  .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .scrim { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.15); }
+  .caption { position: absolute; left: 40px; right: 40px; bottom: 60px; }
+  .caption p { margin: 0; color: #ffffff; font-size: 20px; }
+  main { padding: 16px 24px; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <video src="light-loop.webm" autoplay muted loop playsinline></video>
+  <div class="scrim"></div>
+  <div class="caption"><p id="t-video">White words over a light classroom video are hard to read.</p></div>
+</div>
+<main><h1>Welcome</h1><p>Regular text.</p></main>
+</body>
+</html>

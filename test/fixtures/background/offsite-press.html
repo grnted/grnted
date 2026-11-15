@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Background writes: a press that orders from another host</title>
+<style>body{font:16px/1.5 sans-serif;margin:20px} button{padding:12px 20px;font:inherit}</style></head>
+<body><main><h1>Lunch order</h1><p><button type="button" id="order">Pizza Friday</button></p></main>
+<script>
+  // Pressing down places the order with a POST to another host (the same server under another name).
+  var off = location.protocol + '//' + (location.hostname === 'localhost' ? '127.0.0.1' : 'localhost') + ':' + location.port;
+  document.getElementById('order').addEventListener('pointerdown', function () {
+    fetch(off + '/checkout', { method: 'POST', body: 'item=pizza', credentials: 'include' }).catch(function () {});
+  });
+</script>
+</body>
+</html>

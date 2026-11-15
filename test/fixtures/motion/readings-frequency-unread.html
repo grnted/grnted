@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Greenhouse readings</title>
+<style>#reading { font: 22px sans-serif; padding: .5rem; border: 1px solid #333; width: 400px; }</style></head>
+<body><main>
+<h1>Greenhouse readings</h1>
+<p>Temperature in the seedling house, read from the sensor by the door.</p>
+<!-- Not decided, never failed (2.2.2): the select that sets how often the reading updates sits in a label with no
+     words of its own (a picture only) and has no other name. What it is for cannot be read, so the test does not
+     decide; it never fails the reading. (The select's missing name is another criterion's failure, 4.1.2.) -->
+<div id="reading">18.2 °C</div>
+<p><label><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6"/></svg><select id="pace"><option value="2">2 s</option><option value="300">5 min</option><option value="0">Off</option></select></label></p>
+</main>
+<script>
+  (function () {
+    var n = 0, timer = null;
+    function tick() { n++; document.getElementById('reading').textContent = (18 + (n % 5) / 10).toFixed(1) + ' °C'; }
+    function set(s) { clearInterval(timer); if (s > 0) timer = setInterval(tick, s * 1000); }
+    set(2);
+    document.getElementById('pace').addEventListener('change', function (e) { set(Number(e.target.value)); });
+  })();
+</script>
+</body>
+</html>

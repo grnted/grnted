@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a page that floods the request log</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Busy page</h1>
+  <a href="/before.html">Before the widget</a>
+  <!-- Not testable (all keyboard criteria): 600 posts the guard stops fill its log before the test starts,
+       so nothing it logs afterwards can be trusted. The trap must not be "failed" either. -->
+  <div id="widget" role="group" aria-label="Date picker"><button type="button">Previous month</button> <button type="button">Next month</button></div>
+  <p><a href="/after.html">After the widget</a></p>
+</main>
+<script>
+  for (var i = 0; i < 600; i++) navigator.sendBeacon('/flood', String(i));
+  var w = document.getElementById('widget');
+  w.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    var b = Array.prototype.slice.call(w.querySelectorAll('button'));
+    b[(b.indexOf(document.activeElement) + 1) % b.length].focus();
+  });
+  document.addEventListener('keydown', function () {});
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Newsletter (input purpose)</title></head>
+<body>
+<main>
+<h1>Join the newsletter</h1>
+<form action="/newsletter" method="post">
+  <p><label for="n">Name *</label><br><input id="n" name="n" required></p>
+  <p><label for="e">E-mail address *</label><br><input id="e" name="e" type="email" required></p>
+  <p><label for="t">Phone number</label><br><input id="t" name="t" type="tel"></p>
+  <p><label for="z">ZIP code</label><br><input id="z" name="zip" autocomplete="postal-code"></p>
+  <p><label for="c">Correo electrónico</label><br><input id="c" name="correo" autocomplete="off"></p>
+  <p><label for="pg">Parent or guardian email</label><br><input id="pg" name="guardian" type="email"></p>
+  <p><label for="school">School</label><br><input id="school" name="school"></p>
+  <button type="submit">Join</button>
+</form>
+</main>
+</body>
+</html>

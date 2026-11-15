@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A headline fetched by POST</title></head>
+<body><main>
+<h1>News</h1>
+<div id="news" style="width: 500px; height: 120px; border: 1px solid #333"><p id="headline">First headline.</p></div>
+</main>
+<script>
+  // The next headline comes from the server by POST: stopped by the guard, so nothing changes on screen.
+  setInterval(function () {
+    fetch('/api/headlines/next', { method: 'POST' }).then(function (r) { return r.text(); }).then(function (t) { document.getElementById('headline').textContent = t; });
+  }, 4000);
+</script>
+</body>
+</html>

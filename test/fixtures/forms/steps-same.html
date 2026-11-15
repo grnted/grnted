@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Seed swap sign-up (two steps with no group names)</title></head>
+<body>
+<main>
+<h1>Seed swap sign-up</h1>
+<!-- Step two asks for the e-mail address again: the same label, the same declared purpose, no group that names
+     another person, and the first step hidden with nothing on the page to bring it back. -->
+<form id="seeds" action="/seeds" method="post">
+  <div id="step1">
+    <p><label for="w-name">Full name *</label><br><input id="w-name" name="w-name" autocomplete="name" required></p>
+    <p><label for="w-email">Email *</label><br><input id="w-email" name="email" type="email" autocomplete="email" required></p>
+    <button type="button" id="next">Next</button>
+  </div>
+  <div id="step2" hidden>
+    <p><label for="w-email2">Email *</label><br><input id="w-email2" name="contact-email" type="email" autocomplete="email" required></p>
+    <p><label for="w-phone">Phone</label><br><input id="w-phone" name="phone" type="tel" autocomplete="tel"></p>
+    <button type="submit">Sign up</button>
+  </div>
+</form>
+</main>
+<script>
+  document.getElementById('next').addEventListener('click', () => {
+    const step1 = document.getElementById('step1');
+    if (![...step1.querySelectorAll('input')].every((i) => i.checkValidity())) return;
+    step1.hidden = true;
+    document.getElementById('step2').hidden = false;
+    document.getElementById('w-email2').focus();
+  });
+</script>
+</body>
+</html>

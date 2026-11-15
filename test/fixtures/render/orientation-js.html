@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: portrait only (script)</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; }
+  #lock { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #fff; }
+  #lock[hidden] { display: none; }
+</style>
+</head>
+<body>
+<div id="lock" hidden><p>Turn your phone to portrait. This page only works in portrait mode.</p></div>
+<main id="content">
+  <h1>Lunch account</h1>
+  <p>Check your child's lunch balance, add money to the account, and see what was bought this week. Balances update every night after the cafeteria closes.</p>
+  <p>Accounts with a negative balance get a reminder by email on Monday. Free and reduced lunch applications are open all year and are kept private.</p>
+  <p>Questions about an account go to the nutrition services office, open on school days from 7 am to 3 pm.</p>
+</main>
+<script>
+  (function () {
+    function landscape() {
+      if (screen.orientation && screen.orientation.type) return screen.orientation.type.indexOf('landscape') === 0 && window.innerWidth > window.innerHeight;
+      return window.innerWidth > window.innerHeight;
+    }
+    function update() {
+      // Only phones are locked: a desktop browser window is wide anyway.
+      var phone = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      var locked = phone && landscape();
+      document.getElementById('lock').hidden = !locked;
+      document.getElementById('content').hidden = locked;
+    }
+    update();
+    if (screen.orientation) screen.orientation.addEventListener('change', update);
+    window.addEventListener('resize', update);
+  })();
+</script>
+</body>
+</html>

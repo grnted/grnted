@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio</title>
+<style>
+body { margin: 0; font: 16px/1.5 Arial, sans-serif; background: #fff; }
+/* A fixed full-screen app shell with no main landmark: it IS the page (Grok tc-r1). */
+#shell { position: fixed; inset: 0; overflow: auto; background: #fff; padding: 24px; box-sizing: border-box; }
+#shell h1 { color: #9a9a9a; margin: 0 0 12px; }
+#shell p { color: #222; }
+</style>
+</head>
+<body>
+<div id="shell">
+  <a href="#c">Skip</a>
+  <span id="extra"></span>
+  <h1 id="shell-h1">Studio</h1>
+  <p>Welcome to the studio. We design books, posters and websites for people who care about type.</p>
+  <a href="/work">Work</a>
+</div>
+<script>
+// ?close=1: the shell also has a button named Close; it is still the page, never a pop-up.
+if (new URLSearchParams(location.search).get('close')) {
+  document.getElementById('extra').innerHTML = '<button type="button" id="x">Close</button>';
+  document.getElementById('x').addEventListener('click', () => document.getElementById('shell').remove());
+}
+</script>
+</body>
+</html>

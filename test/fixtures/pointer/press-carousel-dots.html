@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: carousel dots next to a rotating testimonial</title>
+<style>#quote { padding: 1rem; border: 1px solid #555; } .dots button { width: 220px; }</style></head>
+<body><main><h1>What families say</h1>
+<section id="carousel" aria-roledescription="carousel" aria-label="Testimonials">
+  <blockquote id="quote">The teachers know every child by name.</blockquote>
+  <p class="dots"><button type="button" id="dot1" aria-label="Go to testimonial 1">1</button> <button type="button" id="dot2" aria-label="Go to testimonial 2">2</button></p>
+</section>
+</main>
+<script>
+  // As a component library does: a 5 s interval (paused while the pointer is over the carousel), and a
+  // swap that fades the old quote out first (an animation) before the new one shows.
+  var quotes = ['The teachers know every child by name.', 'The after-school clubs are wonderful.'], n = 0, hover = false;
+  var q = document.getElementById('quote');
+  function show(k) { n = k; q.textContent = quotes[n]; }
+  window.__tick = function () { q.animate([{ opacity: 1 }, { opacity: 0.6 }], { duration: 250 }).onfinish = function () { show((n + 1) % quotes.length); }; };
+  var c = document.getElementById('carousel');
+  c.addEventListener('mouseenter', function () { hover = true; });
+  c.addEventListener('mouseleave', function () { hover = false; });
+  setInterval(function () { if (!hover) window.__tick(); }, 5000);
+  // The dots act on click only (on release); a framework's root listener hears every press.
+  document.getElementById('dot1').addEventListener('click', function () { show(0); });
+  document.getElementById('dot2').addEventListener('click', function () { show(1); });
+  document.addEventListener('pointerdown', function () {});
+</script>
+</body>
+</html>

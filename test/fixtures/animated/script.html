@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A call to action a script fades in</title>
+<style>
+  body { font: 18px/1.5 Georgia, serif; color: #1a1a1a; background: #fff; margin: 0; }
+  main { max-width: 40rem; margin: 0 auto; padding: 16px; }
+  .cta { display: inline-block; padding: 12px 20px; color: #fff; background: #2b2b2b; text-decoration: none; }
+</style></head>
+<body><main><h1>Enrolment is open</h1>
+<p>Families can enrol for next year from Monday.</p>
+<p id="cta" style="opacity:0"><a class="cta" href="/enrol">Enrol your child</a></p>
+</main>
+<script>
+  // As a motion library does without the Web Animations API: a delay, then opacity set frame by frame.
+  setTimeout(function () {
+    var el = document.getElementById('cta'), t0 = performance.now();
+    (function step(t) { var k = Math.min(1, (t - t0) / 1500); el.style.opacity = String(k); if (k < 1) requestAnimationFrame(step); })(t0);
+  }, 1400);
+</script>
+</body>
+</html>

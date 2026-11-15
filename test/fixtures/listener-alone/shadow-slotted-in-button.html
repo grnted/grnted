@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fares (a label shown in a button element)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Fares (a label shown in a button element)</h1>
+<p>Choose the fare you pay.</p>
+<fare-button id="adult"><span class="fare"><span class="fare-text"><span id="adult-label" style="cursor:pointer">Adult fare, $2</span></span></span></fare-button>
+<p id="out">No fare chosen.</p>
+<script>
+customElements.define('fare-button', class extends HTMLElement {
+  connectedCallback() { this.attachShadow({ mode: 'open' }).innerHTML = '<button type="button" style="cursor:default;font:inherit"><slot></slot></button>'; }
+});
+document.getElementById('adult-label').addEventListener('click', function () { document.getElementById('out').textContent = 'Chosen: adult fare.'; });
+</script>
+<p><a href="/index.html">All reports</a></p>
+</main>
+</body>
+</html>

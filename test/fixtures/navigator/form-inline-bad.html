@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact form without a form element</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+main { padding: 16px 24px; }
+.field { margin-bottom: 12px; }
+label { display: block; }
+input, textarea { font: inherit; padding: 6px; border: 2px solid #767676; width: 280px; }
+input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 3px solid #0b57d0; outline-offset: 2px; }
+.bad { border-color: #c00; }
+button { font: inherit; padding: 6px 14px; }
+</style></head>
+<body>
+<main>
+  <h1>Contact the office</h1>
+  <div class="contact-form" id="contact">
+    <div class="field"><label for="name">Your name (required)</label><input id="name" name="name" autocomplete="name"></div>
+    <div class="field"><label for="email">Email (required)</label><input id="email" name="email" type="email" autocomplete="email"></div>
+    <div class="field"><label for="msg">Message (required)</label><textarea id="msg" name="msg" rows="3"></textarea></div>
+    <button type="button" class="send">Send message</button>
+  </div>
+</main>
+<script>
+  // Client-side validation only: an empty field gets a red border, and nothing says which field or why.
+  document.querySelector('.send').addEventListener('click', function () {
+    var ok = true;
+    ['name', 'email', 'msg'].forEach(function (id) {
+      var f = document.getElementById(id);
+      var bad = !f.value.trim() || (id === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.value.trim()));
+      f.classList.toggle('bad', bad);
+      if (bad) ok = false;
+    });
+    if (ok) fetch('/contact', { method: 'POST', body: JSON.stringify({}) });
+  });
+</script>
+</body></html>

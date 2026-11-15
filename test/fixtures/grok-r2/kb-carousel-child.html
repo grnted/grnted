@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 2: a click listener inside a carousel slide</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<main><h1>Shop</h1>
+<!-- 2.1.1 failure: the slide is the carousel's; "Add to cart" inside it is a function of its own, mouse only. -->
+<div class="slick-slider"><div class="slick-track"><div class="slick-slide"><div id="buy" style="cursor:pointer">Add to cart</div></div></div></div>
+<p><a href="/cart.html">Cart</a></p></main>
+<script>document.getElementById('buy').addEventListener('click', function () { document.title += '+'; });</script>
+</body>
+</html>

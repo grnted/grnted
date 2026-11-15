@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a shortcut that focuses a search box with type-ahead</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Search</h1>
+  <!-- Planted failure (2.1.4): "/" focuses the search box. The keys after it must never be typed into
+       it: every input sends a type-ahead request (/typed). -->
+  <p><label for="q">Search</label> <input id="q" type="search"></p>
+</main>
+<script>
+  var q = document.getElementById('q');
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== q) { e.preventDefault(); q.focus(); }
+  });
+  q.addEventListener('input', function () { new Image().src = '/typed?q=' + encodeURIComponent(q.value); });
+</script>
+</body>
+</html>

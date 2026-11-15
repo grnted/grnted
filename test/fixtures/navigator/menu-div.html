@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu built from divs</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1a1a1a; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+a { color: #0b57d0; }
+.menu-toggle { display: inline-block; padding: 8px 14px; background: #1a1a1a; color: #fff; cursor: pointer; }
+.menu-list { list-style: none; margin: 0; padding: 8px 0; }
+.menu-list a { display: block; padding: 6px 14px; }
+.closed { display: none; }
+</style></head>
+<body>
+<header>
+  <nav aria-label="Main">
+    <div class="menu-toggle">Menu</div>
+    <ul class="menu-list closed" id="site-menu">
+      <li><a href="/menu-div.html#about">About us</a></li>
+      <li><a href="/menu-div.html#programs">Programs</a></li>
+      <li><a href="/menu-div.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <h1>Menu built from divs</h1>
+  <p>The main menu opens from a plain element. Its click is handled by a listener on the document.</p>
+</main>
+<footer><p>Fixture site</p></footer>
+<script>
+  // jQuery-style delegation: one listener on the document for every toggle on the page.
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('.menu-toggle');
+    if (!t) return;
+    document.getElementById('site-menu').classList.toggle('closed');
+  });
+</script>
+</body></html>

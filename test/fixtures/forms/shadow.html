@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Sign-up widget (shadow DOM)</title></head>
+<body>
+<main>
+<h1>Join the list</h1>
+<signup-box></signup-box>
+</main>
+<script>
+  customElements.define('signup-box', class extends HTMLElement {
+    connectedCallback() {
+      const root = this.attachShadow({ mode: 'open' });
+      root.innerHTML = '<form action="/shadow-join" method="post"><label>Email <input name="email" type="email"></label><button>Join</button></form>';
+    }
+  });
+</script>
+</body>
+</html>

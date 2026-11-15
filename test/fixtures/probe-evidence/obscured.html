@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Probe evidence fixture: sticky header</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 0; background: #fff; color: #1a1a1a; }
+  /* Planted failure (2.4.11): an opaque sticky header 92 px tall (90 + 2 px border). Shift+Tab scrolls links up under it. */
+  header { position: sticky; top: 0; height: 90px; background: #fff; border-bottom: 2px solid #333; z-index: 5; padding: 0 24px; }
+  header p { margin: 0; line-height: 90px; }
+  main { padding: 0 24px; }
+  main a { display: block; width: max-content; height: 24px; margin: 16px 0; color: #0645ad; }
+</style>
+</head>
+<body>
+<header><p><a href="/obscured.html">Site name</a></p></header>
+<main>
+  <h1>A long list</h1>
+  <a href="/item-1.html">Item 1</a><a href="/item-2.html">Item 2</a><a href="/item-3.html">Item 3</a><a href="/item-4.html">Item 4</a>
+  <a href="/item-5.html">Item 5</a><a href="/item-6.html">Item 6</a><a href="/item-7.html">Item 7</a><a href="/item-8.html">Item 8</a>
+  <a href="/item-9.html">Item 9</a><a href="/item-10.html">Item 10</a><a href="/item-11.html">Item 11</a><a href="/item-12.html">Item 12</a>
+  <a href="/item-13.html">Item 13</a><a href="/item-14.html">Item 14</a><a href="/item-15.html">Item 15</a><a href="/item-16.html">Item 16</a>
+  <a href="/item-17.html">Item 17</a><a href="/item-18.html">Item 18</a><a href="/item-19.html">Item 19</a><a href="/item-20.html">Item 20</a>
+  <a href="/item-21.html">Item 21</a><a href="/item-22.html">Item 22</a><a href="/item-23.html">Item 23</a><a href="/item-24.html">Item 24</a>
+  <a href="/item-25.html">Item 25</a><a href="/item-26.html">Item 26</a><a href="/item-27.html">Item 27</a><a href="/item-28.html">Item 28</a>
+</main>
+</body>
+</html>

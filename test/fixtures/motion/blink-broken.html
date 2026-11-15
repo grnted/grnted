@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A blinking notice with a Pause button that does nothing</title>
+<style>
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } }
+#notice { margin: 16px 0; font: 700 24px sans-serif; color: #00376d; animation: blink 1s steps(1, end) infinite; }
+</style></head>
+<body><main><h1>News</h1>
+<!-- Half of every second the notice is at opacity 0 by its own animation: it is blinking, not hidden. -->
+<p id="notice">Open house this Saturday</p>
+<p><button type="button" onclick="void 0">Pause</button></p>
+<p>Other content next to the notice.</p>
+</main></body>
+</html>

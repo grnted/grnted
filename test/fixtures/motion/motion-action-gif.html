@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>An animated image at an action address, loaded with the page</title></head>
+<body><main>
+<h1>Shop</h1>
+<!-- Loaded with the page (static files are allowed while it loads), but the test cannot read its frames:
+     its address has an action word, so the guard stops the test's own request for it. Whether the
+     screenshots catch it moving depends on timing, so the result is failed or not_testable, never clean. -->
+<img src="cart.gif" alt="Our shop" width="160" height="160">
+</main></body>
+</html>

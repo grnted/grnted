@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fares</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+.ctl { display: inline-block; padding: 8px 14px; border: 2px solid #1d4d3f; border-radius: 4px; background: #e7f2ee; cursor: pointer; }
+.ctl:focus { outline: 3px solid #0b57d0; outline-offset: 2px; }
+.note { min-height: 1.5em; margin: 8px 0; }
+[hidden] { display: none !important; }
+.modal { position: fixed; inset: 15% 20%; padding: 20px; background: #fff; border: 2px solid #1c1c1c; z-index: 50; }
+</style>
+</head>
+<body>
+<header><a href="/">Riverbend Township</a> <a href="/about.html">About</a></header>
+<main>
+<h1>Fares</h1>
+<button id="help" type="button">Ticket questions</button>
+<p><a href="/fares.html">All fares</a></p>
+<div id="dlg" class="modal" role="dialog" aria-modal="true" aria-label="Ticket questions" hidden>
+<p>Concession tickets need a card from the office.</p>
+<button type="button" id="b1">Concession tickets</button> <button type="button" id="b2">Hut hours</button>
+</div>
+</main>
+<footer><a href="/contact.html">Contact</a> <a href="/privacy.html">Privacy</a></footer>
+<script>
+var dlg = document.getElementById('dlg');
+document.getElementById('help').addEventListener('click', function () { dlg.hidden = false; document.getElementById('b1').focus(); });
+dlg.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') { e.preventDefault(); return; }
+  if (e.key !== 'Tab') return;
+  e.preventDefault();
+  (document.activeElement === document.getElementById('b1') ? document.getElementById('b2') : document.getElementById('b1')).focus();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 1: focus moved to an off-screen link target</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<main><h1>News</h1>
+<!-- 2.4.3 failure: Tab to the first link moves focus to #main, off screen. -->
+<p><a href="#main" id="go">Skip to main content</a></p>
+<div id="main" tabindex="-1" style="position:absolute;left:-9999px;width:120px;height:24px">Main</div>
+<p><a href="/a.html">A</a> <a href="/b.html">B</a></p></main>
+<script>document.getElementById('go').addEventListener('focus', function () { document.getElementById('main').focus(); });</script>
+</body>
+</html>

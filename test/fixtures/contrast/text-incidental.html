@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Text nobody can see, and characters used as icons</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px; }
+  .pager a, .pager button { display: inline-block; min-width: 32px; padding: 6px 10px; border: 0; font: 16px Arial, Helvetica, sans-serif; text-decoration: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Search results</h1>
+  <!-- Clean (1.4.3 incidental): text in exactly the colour of its background is not visible to anyone. -->
+  <p id="t-same" style="color: #e8e8e8; background: #e8e8e8;">keywords: council, minutes, agenda</p>
+  <!-- Clean (not text): a lone character whose control is named in words is drawn as an icon. -->
+  <div class="pager">
+    <button id="t-glyph" type="button" aria-label="Next page" style="color: #6e6e6e; background: #111111;">&raquo;</button>
+    <!-- Planted failures: a lone character that is the control's own name is text (a page number), and so is
+         one with no name around it. -->
+    <a id="t-digit" href="#p4" aria-label="Page 4" style="color: #808080; background: #eeeeee;">4</a>
+    <span id="t-lone" style="color: #808080; background: #eeeeee;">7</span>
+  </div>
+  <!-- Planted failure: the same faint grey on a slightly different background is visible, and fails. -->
+  <p id="t-near" style="color: #e8e8e8; background: #ffffff;">Faint text that can still be seen.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a click-only control directly in the main content</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .toggle { cursor: pointer; color: #0645ad; text-decoration: underline; display: inline-block; padding: 8px 0; }</style>
+</head>
+<body>
+<main>
+  <h1>Office</h1>
+  <p>Call us or use <a href="/contact.html">the contact page</a>.</p>
+  <!-- Planted failure (2.1.1): a div with a click handler, directly in main. The one link elsewhere in
+       main is not its keyboard equivalent: a landmark is not a card. -->
+  <div id="hours-toggle" class="toggle">Show office hours</div>
+  <p id="hours" hidden>8 am to 4 pm on school days.</p>
+</main>
+<script>
+  document.getElementById('hours-toggle').addEventListener('click', function () { var h = document.getElementById('hours'); h.hidden = !h.hidden; });
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Calls for service</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Calls for service</h1>
+<p>Calls for service by quarter. The table below the chart gives the same numbers.</p>
+<div class="chart"><canvas id="calls">Calls for service by quarter: 1,204, 1,310, 1,288 and 1,402.</canvas></div>
+<table>
+<caption>Calls by quarter</caption>
+<thead><tr><th scope="col">Quarter</th><th scope="col">Calls</th></tr></thead>
+<tbody><tr><td>Q1</td><td>1,204</td></tr><tr><td>Q2</td><td>1,310</td></tr><tr><td>Q3</td><td>1,288</td></tr><tr><td>Q4</td><td>1,402</td></tr></tbody>
+</table>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script src="vendor/chartjs/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('calls'), {
+  type: 'line',
+  data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [{ label: 'Calls', data: [1204, 1310, 1288, 1402] }] },
+});
+</script>
+</body>
+</html>

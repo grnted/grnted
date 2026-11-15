@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Permit lookup</title></head>
+<body><main><h1>Permit lookup</h1>
+<form onsubmit="event.preventDefault()">
+ <label for="permit">Permit identifier *</label>
+ <input id="permit" required pattern="[A-Z]{2}[0-9]{6}"
+  title="Two uppercase letters followed by six digits"
+  aria-describedby="format">
+ <p id="format">Use two uppercase letters followed by six digits, such as AB123456.</p>
+ <button>Look up permit</button>
+</form></main>
+<script>
+document.getElementById('permit').addEventListener('input', e => {
+  e.target.setCustomValidity(
+    e.target.value && e.target.validity.patternMismatch ? 'Invalid' : '');
+});
+</script></body></html>

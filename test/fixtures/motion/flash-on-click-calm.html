@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Night market</title>
+<style>body { font: 18px sans-serif; margin: 0; padding: 16px; } #sign { width: 720px; height: 200px; background: #fff; border: 1px solid #333; margin: 16px 0; } #sign { display: none; background: #123; } #sign.on { display: block; }</style></head>
+<body><main>
+<h1>Night market</h1>
+<p>The night market opens on the square at six.</p>
+<!-- Passes (2.3.1): the button shows a still sign. -->
+<button type="button" id="show">Show the lantern sign</button><div id="sign"></div><p>Stalls sell hot food, lanterns and winter clothes. Bring cash for the smaller stalls.</p>
+</main>
+<script>document.getElementById('show').addEventListener('click', function () { document.getElementById('sign').classList.add('on'); });</script>
+</body>
+</html>

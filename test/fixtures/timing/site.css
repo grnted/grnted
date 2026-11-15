@@ -1,0 +1,12 @@
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 system-ui,sans-serif;color:#1b1b1b;background:#fff}
+header{background:#123a6b;color:#fff;padding:12px 24px}header a{color:#fff}
+.brand{font-size:22px;font-weight:700}nav ul{display:flex;flex-wrap:wrap;gap:12px;list-style:none;margin:8px 0 0;padding:0}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;color:#000;padding:4px}
+main{max-width:1100px;margin:0 auto;padding:24px}a{color:#0b4f9c}a:focus,button:focus,input:focus,select:focus,textarea:focus{outline:3px solid #f2a900;outline-offset:2px}
+.carousel{position:relative;height:280px;overflow:hidden;border-radius:8px}.slide{position:absolute;inset:0;transition:opacity .6s;opacity:0}
+.slide.on{opacity:1}.slide img{width:100%;height:100%;object-fit:cover}.slide p{position:absolute;left:16px;bottom:16px;margin:0;background:rgba(0,0,0,.75);color:#fff;padding:8px 12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px}.card{border:1px solid #ccc;border-radius:6px;padding:16px}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid #bbb;padding:6px 8px;text-align:left}
+form label{display:block;margin-top:12px;font-weight:600}form input,form select,form textarea{width:100%;max-width:420px;padding:6px;font:inherit}
+button{font:inherit;padding:6px 14px;background:#123a6b;color:#fff;border:0;border-radius:4px;cursor:pointer}
+footer{background:#f2f2f2;padding:24px;margin-top:32px}.ticker{animation:fade 4s ease-in-out 2}@keyframes fade{50%{opacity:.6}}

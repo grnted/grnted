@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Ask for a service</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .invalid { border: 2px solid #b00020; } .toast { position: fixed; bottom: 12px; right: 12px; background: #223; color: #fff; padding: 8px 12px; }</style></head>
+<body>
+<header><nav aria-label="Main"><a href="/">Home</a> <a href="/services">Services</a></nav></header>
+<main>
+<h1>Ask for a service</h1>
+<p>Use this form for requests that can wait a day.</p>
+<form id="report" class="local">
+  <label for="place">Location (required)</label><input id="place" name="place" required>
+  <label for="details">What should we know? (required)</label><textarea id="details" name="details" rows="3" required></textarea>
+  <label for="kind">Type of concern</label><select id="kind" name="kind"><option>Street or sidewalk</option><option>Drainage</option></select>
+  <button type="submit">Send request</button>
+  <p class="form-status" role="status"></p>
+</form>
+</main>
+<footer><p>City offices, 1 Civic Walk</p></footer>
+<script>
+  document.getElementById('report').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const s = document.querySelector('.form-status');
+    s.textContent = 'Your report is ready to review. Check the address before you call.';
+    
+  });
+</script>
+</body></html>

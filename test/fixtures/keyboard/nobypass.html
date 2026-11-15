@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: no way to bypass blocks</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .top a { margin-right: 12px; } .big { font-size: 24px; font-weight: bold; }</style>
+</head>
+<body>
+<!-- Planted failure (2.4.1): no skip link, no main landmark, no headings. -->
+<div class="top"><a href="/a.html">A</a><a href="/b.html">B</a><a href="/c.html">C</a><a href="/d.html">D</a><a href="/e.html">E</a></div>
+<div class="content">
+  <div class="big">Article</div>
+  <p>Text with <a href="/f.html">a link</a>.</p>
+</div>
+</body>
+</html>

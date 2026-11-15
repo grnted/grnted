@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: skip link that does nothing</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } nav a { margin-right: 12px; }</style>
+</head>
+<body>
+<!-- Planted failure (2.4.1): the target exists, but a script cancels the link, so focus stays at the top. -->
+<a href="#main" id="skip">Skip to main content</a>
+<header><nav aria-label="Site"><a href="/a.html">A</a><a href="/b.html">B</a><a href="/c.html">C</a></nav></header>
+<main id="main">
+  <h1>Article</h1>
+  <p>Text with <a href="/d.html">a link</a>.</p>
+</main>
+<script>
+  document.getElementById('skip').addEventListener('click', function (e) { e.preventDefault(); });
+</script>
+</body>
+</html>

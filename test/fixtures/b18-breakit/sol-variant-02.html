@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Departments</title></head>
+<body><main><h1 id="page-title" tabindex="-1">Departments</h1>
+<p id="department-label">Department</p>
+<div id="departments" role="listbox" tabindex="0"
+ aria-labelledby="department-label" aria-activedescendant="library">
+ <div id="library" role="option" aria-selected="true">Library</div>
+ <div id="parks" role="option" aria-selected="false">Parks</div>
+</div>
+<p id="content">Choose a department.</p></main>
+<script>
+const list = document.getElementById('departments');
+const options = [...list.children];
+function choose(index) {
+  options.forEach((o,i) => o.setAttribute('aria-selected', String(i === index)));
+  list.setAttribute('aria-activedescendant', options[index].id);
+  history.pushState({}, '', options[index].id);
+  document.title = options[index].textContent + ' department';
+  document.getElementById('page-title').textContent = document.title;
+  document.getElementById('content').textContent = 'Department services and opening hours.';
+  document.getElementById('page-title').focus();
+}
+list.addEventListener('keydown', e => {
+  if (!['ArrowDown','ArrowUp'].includes(e.key)) return;
+  e.preventDefault();
+  choose(e.key === 'ArrowDown' ? 1 : 0);
+});
+options.forEach((o,i) => o.addEventListener('click', () => choose(i)));
+</script></body></html>

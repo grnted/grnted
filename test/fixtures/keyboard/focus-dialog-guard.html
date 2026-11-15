@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a dialog with focus guards</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  #box { border: 2px solid #222; padding: 16px; margin: 16px 0; }
+  .guard { position: absolute; width: 1px; height: 1px; overflow: hidden; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Welcome</h1>
+  <a href="/before.html">Skip the tour</a>
+  <div id="box" role="dialog" aria-label="Site tour">
+    <span class="guard" tabindex="0" id="g0"></span>
+    <button type="button" id="next">Next tip</button> <button type="button" id="done">Close</button>
+    <span class="guard" tabindex="0" id="g1"></span>
+  </div>
+  <p><a href="/after.html">News</a></p>
+</main>
+<script>
+document.getElementById('g0').addEventListener('focus', function () { document.getElementById('done').focus(); });
+document.getElementById('g1').addEventListener('focus', function () { document.getElementById('next').focus(); });
+document.getElementById('done').addEventListener('click', function () { document.getElementById('box').remove(); });
+document.getElementById('box').addEventListener('keydown', function (e) { if (e.key === 'Escape') document.getElementById('box').remove(); });
+</script>
+</body>
+</html>

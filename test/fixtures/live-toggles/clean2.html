@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Trail conditions</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button,[role=button]{font:inherit;padding:6px 12px}.on{background:#135;color:#fff}[role=button]{display:inline-block;border:1px solid #666;cursor:pointer}</style></head><body><main><h1>Trail conditions</h1><p>Check a trail before you set out. Conditions are updated each morning by the ranger station.</p>
+<!-- A button that opens a dialog and moves focus into it: a dialog's own pattern, not a disclosure. -->
+<button id="ask" type="button">Ask a ranger</button>
+<div id="ask-panel" role="dialog" aria-label="Ask a ranger" hidden><p>Call the station on 555 0100 between eight and four.</p><button id="ask-close" type="button">Close</button></div>
+
+<!-- A button that shows its panel and moves focus into it. -->
+<button id="map" type="button">Open the trail map key</button>
+<div id="map-panel" tabindex="-1" hidden><p>Solid lines are paved paths, dashed lines are footpaths.</p></div>
+
+<!-- A status message after a button is no panel it shows and hides. -->
+<button id="copy" type="button">Copy the station address</button>
+<p id="copy-status" role="status"></p>
+
+<!-- The browser's own disclosure keeps its state on the details element, whatever role its summary is given. -->
+<details><summary id="park" role="button">Where to park</summary><p>The car park behind the hall is free after six in the evening.</p></details>
+<details><summary><span id="lift" role="button">Lift access</span></summary><p>The lift is by the east door and is in service all day.</p></details>
+
+<!-- A submit button is never pressed, whatever it says of itself. -->
+<form action="/subscribe" method="post"><label for="mail">Email</label> <input id="mail" type="email" name="mail" autocomplete="email">
+<button id="sub" aria-expanded="false" aria-pressed="false">Subscribe to alerts</button><div hidden><p>Thanks.</p></div></form>
+</main>
+<script>
+  document.getElementById('ask').addEventListener('click', function () { var p = document.getElementById('ask-panel'); p.hidden = !p.hidden; if (!p.hidden) document.getElementById('ask-close').focus(); });
+  document.getElementById('ask-close').addEventListener('click', function () { document.getElementById('ask-panel').hidden = true; document.getElementById('ask').focus(); });
+  document.getElementById('map').addEventListener('click', function () { var p = document.getElementById('map-panel'); p.hidden = !p.hidden; if (!p.hidden) p.focus(); });
+  document.getElementById('copy').addEventListener('click', function () { document.getElementById('copy-status').textContent = 'Address copied.'; });
+</script>
+</body></html>

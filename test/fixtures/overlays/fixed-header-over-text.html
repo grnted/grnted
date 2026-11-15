@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixed header over the text</title>
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; color: #111; background: #fff; }
+main { padding: 8px; }
+p { margin: 0 0 12px; }
+#bar { position: fixed; top: 0; left: 0; right: 0; height: 120px; background: #036; color: #fff; padding: 8px; box-sizing: border-box; z-index: 5; }
+#bar p { margin: 0; font-size: 22px; }
+html, body { height: 100%; overflow: hidden; }
+</style>
+</head>
+<body>
+<!-- Fails 1.4.10: the page cannot scroll, and its heading and first lines stay under the fixed header at 320 px
+     wide: that text is lost. -->
+<div id="bar"><p>Harbour Ferries</p><p>Sailings every hour</p></div>
+<main><h1>Timetable</h1>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+</main>
+</body>
+</html>

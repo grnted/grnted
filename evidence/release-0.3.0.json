@@ -1,0 +1,51 @@
+{
+ "about": "The 0.3.0 release gate and the checks behind it.",
+ "version": "0.3.0",
+ "gate": {
+  "commit": "2419f6eee",
+  "engine": "8408cb4f",
+  "date": "2026-11-14",
+  "suitesPassed": 13,
+  "suites": [
+   "notices",
+   "build",
+   "typecheck",
+   "engine",
+   "report",
+   "deliverables-report-mac",
+   "deliverables-delivery-mac",
+   "worker",
+   "worker-node",
+   "web",
+   "gold",
+   "hostedai",
+   "hostedgold"
+  ]
+ },
+ "labs": {
+  "labs": 86,
+  "cases": 18350,
+  "stillWrong": 1451,
+  "stillWrongPct": 7.9,
+  "regressions": 0,
+  "notRun": 2,
+  "notRunWhy": "code unchanged since 0.2.1",
+  "noSavedRecord": 16
+ },
+ "identity": {
+  "against": "0.2.1",
+  "compared": 3674,
+  "changed": 493,
+  "explained": 493,
+  "missesNowCaught": 357,
+  "falseAlarmsRemoved": 2,
+  "newFalseAlarms": 0,
+  "rulingsToNeedsReview": 9
+ },
+ "gold": {
+  "batch": 19,
+  "scans": 377,
+  "result": "exact: only recorded changes"
+ },
+ "generated": "2026-11-15"
+}

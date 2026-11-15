@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account overview</title></head>
+<body><main>
+<h1>Account overview</h1>
+<p>Your recent activity.</p>
+</main>
+<script>
+  setTimeout(function () {
+    fetch('/session/end', { method: 'POST' }).then(function () { location.href = 'logged-out.html'; });
+  }, 2 * 60 * 1000);
+</script>
+</body>
+</html>

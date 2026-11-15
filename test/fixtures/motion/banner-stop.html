@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Scrolling banner with a stop control</title>
+<style>
+  .ticker { width: 700px; overflow: hidden; border: 1px solid #333; }
+  .ticker p { margin: 0; padding: 1rem; white-space: nowrap; font: 20px sans-serif; animation: scroll 8s linear infinite; }
+  .ticker.paused p { animation-play-state: paused; }
+  @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+</style></head>
+<body><main>
+<h1>Announcements</h1>
+<div class="ticker" id="ticker"><p>School closes early on Wednesday for staff training. Buses leave at 1 pm.</p></div>
+<button type="button" aria-pressed="false" id="stop">Stop scrolling</button>
+<p>Other content next to the banner.</p>
+</main>
+<script>
+  document.getElementById('stop').addEventListener('click', function () {
+    var paused = document.getElementById('ticker').classList.toggle('paused');
+    this.setAttribute('aria-pressed', String(paused));
+  });
+</script>
+</body>
+</html>

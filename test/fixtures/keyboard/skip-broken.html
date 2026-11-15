@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: broken skip link</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } nav a { margin-right: 12px; }</style>
+</head>
+<body>
+<!-- Planted failure (2.4.1): the skip link points to an id that does not exist. -->
+<a href="#content" id="skip">Skip to content</a>
+<header><nav aria-label="Site"><a href="/a.html">A</a><a href="/b.html">B</a><a href="/c.html">C</a></nav></header>
+<main>
+  <h1>Article</h1>
+  <p>Text with <a href="/d.html">a link</a>.</p>
+</main>
+</body>
+</html>

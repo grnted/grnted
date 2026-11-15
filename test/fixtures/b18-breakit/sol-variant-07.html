@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Service application</title></head>
+<body><main><h1>Service application</h1>
+<form onsubmit="event.preventDefault()">
+ <section id="one">
+  <label for="email">Contact email *</label>
+  <input id="email" type="email" autocomplete="email" required>
+  <button id="next" type="button">Continue</button>
+ </section>
+ <section id="two" hidden>
+  <label for="repeat">Contact email again *</label>
+  <input id="repeat" type="email" autocomplete="email" required>
+  <button id="back" type="button" aria-controls="one">Back</button>
+  <button>Send application</button>
+ </section>
+</form></main>
+<script>
+function show(second) {
+  document.getElementById('one').hidden = second;
+  document.getElementById('two').hidden = !second;
+}
+document.getElementById('next').onclick = () => show(true);
+document.getElementById('back').onclick = () => show(false);
+</script></body></html>

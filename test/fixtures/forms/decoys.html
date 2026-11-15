@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Contact us (decoy fields)</title></head>
+<body>
+<main>
+<h1>Send us an email</h1>
+<!-- A CMS contact form, as such forms are built: names labelled by visible hint text under the fields,
+     the group's legend carrying the required mark, a CAPTCHA widget's response box and an anti-spam
+     trap field that nobody can see or reach. -->
+<form action="/contact" method="post">
+  <fieldset>
+    <legend>Name<span aria-hidden="true">*</span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">required</span></legend>
+    <div><input id="d-first" name="field_211" autocomplete="given-name" aria-labelledby="d-first-hint" required><div id="d-first-hint">First Name</div></div>
+    <div><input id="d-last" name="field_212" autocomplete="family-name" aria-labelledby="d-last-hint" required><div id="d-last-hint">Last Name</div></div>
+  </fieldset>
+  <p><label for="d-msg">How can we help?</label><br><textarea id="d-msg" name="field_216" rows="3"></textarea></p>
+  <div class="g-recaptcha">
+    <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width:250px;height:40px;display:none"></textarea>
+  </div>
+  <div class="h-captcha"><textarea name="h-captcha-response" style="display:none"></textarea></div>
+  <div class="cf-turnstile"><input type="hidden" name="cf-turnstile-response" value=""></div>
+  <div aria-hidden="true" aria-label="hidden response" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;">
+    <input aria-hidden="true" aria-label="hidden response" autocomplete="off" name="fax_number" tabindex="-1" type="text">
+  </div>
+  <div style="opacity:0"><input name="website" tabindex="-1" autocomplete="off"></div>
+  <button type="submit">Submit</button>
+</form>
+<h2>Newsletter</h2>
+<form action="/subscribe-list" method="post">
+  <p><input id="d-unl" name="list_email" type="email" style="background:#00ffff"></p>
+  <p><label for="d-nm">Name</label> <input id="d-nm" name="list_name"></p>
+  <button type="submit">Subscribe</button>
+</form>
+</main>
+</body>
+</html>

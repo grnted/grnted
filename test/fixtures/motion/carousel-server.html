@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Carousel whose pause button asks the server</title>
+<style>
+  .carousel { position: relative; width: 600px; height: 240px; overflow: hidden; border: 1px solid #333; }
+  .slide { position: absolute; inset: 0; padding: 2rem; font: 24px sans-serif; opacity: 0; transition: opacity .4s; background: #eef; }
+  .slide.active { opacity: 1; }
+</style></head>
+<body><main>
+<h1>News</h1>
+<div class="carousel" id="hero">
+  <div class="slide active">Enrolment opens on Monday for all grades.</div>
+  <div class="slide">The library has new opening hours this term.</div>
+</div>
+<button type="button" id="pause">Pause slideshow</button>
+</main>
+<script>
+  (function () {
+    var slides = document.querySelectorAll('#hero .slide'), i = 0;
+    var t = setInterval(function () { slides[i].classList.remove('active'); i = (i + 1) % slides.length; slides[i].classList.add('active'); }, 3000);
+    // The pause preference is saved on the server first; the slideshow stops only when that works.
+    document.getElementById('pause').addEventListener('click', function () {
+      fetch('/api/preferences', { method: 'POST', body: 'carousel=off' }).then(function () { clearInterval(t); });
+    });
+  })();
+</script>
+</body>
+</html>

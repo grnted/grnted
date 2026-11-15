@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Parcel viewer</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+.ctl { display: inline-block; padding: 8px 14px; border: 2px solid #1d4d3f; border-radius: 4px; background: #e7f2ee; cursor: pointer; }
+.ctl:focus { outline: 3px solid #0b57d0; outline-offset: 2px; }
+.note { min-height: 1.5em; margin: 8px 0; }
+.modal { position: fixed; inset: 20px; background: #fff; border: 2px solid #333; padding: 12px; }
+iframe { width: 560px; height: 260px; border: 1px solid #888; }
+.cover { position: absolute; left: 24px; width: 600px; height: 280px; background: #fff; }
+[hidden] { display: none !important; }
+
+</style>
+</head>
+<body>
+<header><a href="/">Riverbend Township</a> <a href="/about.html">About</a></header>
+<main>
+<h1>Parcel viewer</h1>
+<p>The parcel viewer below shows the flood zones of each lot.</p>
+<div id="slot"></div>
+<script>setTimeout(function () { document.getElementById('slot').innerHTML = '<iframe id="map-frame" title="Parcel map" src="/frame-pointer-inner.html"></iframe>'; }, 600);</script>
+<p><a href="/parcels.html">All parcels</a></p>
+</main>
+<footer><a href="/contact.html">Contact</a> <a href="/privacy.html">Privacy</a></footer>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page with small buttons</title>
+<style>
+/* Locks the page to landscape: in portrait the whole page is turned sideways (WCAG 1.3.4). */
+@media (orientation: portrait) { body { transform: rotate(90deg); } }
+.pager { display: flex; }
+.pager button { width: 12px; height: 12px; padding: 0; margin: 0; border: 1px solid #333; background: #fff; color: #000; font-size: 8px; line-height: 1; }
+</style>
+</head>
+<body><main>
+<h1>Page with small buttons</h1>
+<p>Two 12 by 12 pixel buttons side by side are too small and too close together (WCAG 2.5.8).</p>
+<div class="pager"><button type="button" aria-label="Previous">&lt;</button><button type="button" aria-label="Next">&gt;</button></div>
+</main></body>
+</html>

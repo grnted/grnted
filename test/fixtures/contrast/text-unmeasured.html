@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Text the screenshots cannot settle</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .box { padding: 12px 16px; margin: 0 0 12px; }
+  p { margin: 0; }
+  #moving-box { background: #808080; }
+  .covered { position: relative; }
+  .cover { position: absolute; inset: 0; background: #ffffff; }
+  .halo { background: #fff url(light.svg); }
+  .track { width: 400px; overflow: hidden; }
+  .slides { display: flex; width: 800px; }
+  .slide { width: 400px; flex: none; padding: 12px; box-sizing: border-box; background: linear-gradient(90deg, #eeeeee, #dddddd); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Text on moving, covered or outlined backgrounds</h1>
+  <div class="box" id="moving-box"><p id="t-moving" style="color:#ffffff">Text over a background that keeps changing, like a video.</p></div>
+  <div class="box covered"><p id="t-covered" style="color:#cccccc">Text hidden under another box.</p><div class="cover"></div></div>
+  <div class="box halo"><p id="t-shadow" style="color:#ffffff; text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 0 3px #000">White text with a dark outline on a light picture.</p></div>
+  <div class="track"><div class="slides"><div class="slide"><p id="t-slide-1" style="color:#222222">The first slide is shown.</p></div><div class="slide"><p id="t-slide-2" style="color:#aaaaaa">The second slide waits off to the side.</p></div></div></div>
+</main>
+<script>
+  let n = 0;
+  setInterval(() => {
+    n = (n + 1) % 8;
+    document.getElementById('moving-box').style.background = `rgb(${96 + n * 16}, ${96 + n * 16}, ${96 + n * 16})`;
+  }, 30);
+</script>
+</body>
+</html>

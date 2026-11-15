@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account overview</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Account overview</h1>
+<p>Your recent activity.</p>
+<p id="msg" role="status"></p>
+</main>
+<script>
+  // A notice only: nothing on this page signs anyone out, and using the site keeps the session going.
+  setTimeout(function () { document.getElementById('msg').textContent = 'Your session will expire in 5 minutes.'; }, 25 * 60 * 1000);
+</script>
+</body>
+</html>

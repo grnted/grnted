@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 1: a fixed panel of 35-39% on a page that does not scroll</title>
+<style>html,body{margin:0} h1{font-size:18px;margin:4px 16px} p{margin:2px 16px;font-size:14px;line-height:20px} .panel{position:fixed;left:0;top:50%;width:100%;height:35%;background:#222;color:#fff}</style></head>
+<body>
+<style>html,body{margin:0} h1{font-size:18px;margin:4px 16px} p{margin:2px 16px;font-size:14px;line-height:20px} .panel{position:fixed;left:0;top:50%;width:100%;height:35%;background:#222;color:#fff}</style>
+<!-- 1.4.10 failure: no way to close it; the page cannot scroll, so the text under it is never seen. -->
+<main><h1>Notice</h1><p>Line 1 of the notice the panel hides.</p><p>Line 2 of the notice the panel hides.</p><p>Line 3 of the notice the panel hides.</p><p>Line 4 of the notice the panel hides.</p><p>Line 5 of the notice the panel hides.</p><p>Line 6 of the notice the panel hides.</p><p>Line 7 of the notice the panel hides.</p><p>Line 8 of the notice the panel hides.</p></main>
+<div class="panel">Survey: tell us how we are doing. We value your opinion about every service.</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: controls with focus stops inside them</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } a.bare:focus { outline: none; }</style>
+</head>
+<body>
+<main>
+  <h1>Booking</h1>
+  <!-- Clean control (2.1.2 and the walk): Tab moves through the parts of a date and a time field and
+       a player's own buttons while the page sees one element; that is not a focus loop. -->
+  <p><a href="/before.html">Before</a></p>
+  <p><label for="d">Date</label> <input id="d" type="date"></p>
+  <!-- Planted failure (2.4.7) between the fields: only reached when Tab gets through the date field. -->
+  <p><a class="bare" id="between" href="/between.html">Between the fields</a></p>
+  <p><label for="t">Time</label> <input id="t" type="time"></p>
+  <p><audio controls src="/tone.wav"></audio></p>
+  <p><video controls width="320" height="180" src="/clip.webm"><track kind="captions" src="/clip.vtt" srclang="en" label="English"></video></p>
+  <p><a href="/after.html">After</a></p>
+</main>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Find parks</title></head>
+<body><main><h1>Find parks</h1>
+<label for="filter">Park facilities</label>
+<select id="filter"><option value="all">All parks</option><option value="pool">Swimming pool</option></select>
+<p id="count" role="status" aria-live="off">2 parks</p>
+<ul><li>Riverside Park — swimming pool</li><li id="hill">Hill Park — walking trails</li></ul>
+</main><script>
+document.getElementById('filter').onchange = e => {
+  const filtered = e.target.value === 'pool';
+  document.getElementById('hill').hidden = filtered;
+  document.getElementById('count').textContent = filtered ? '1 park' : '2 parks';
+};
+</script></body></html>

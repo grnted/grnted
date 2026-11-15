@@ -1,0 +1,10 @@
+<!doctype html><html lang="en">
+<meta charset="utf-8"><title>Staged notice</title>
+<style>body{font:16px Arial;background:white;color:#111}#late{color:#aaa}</style>
+<p>Collection information</p>
+<p id="late" hidden>Collections move to the east entrance on Monday.</p>
+<script>
+setTimeout(() => {
+  setTimeout(() => document.getElementById('late').hidden = false, 3000);
+}, 3000);
+</script></html>

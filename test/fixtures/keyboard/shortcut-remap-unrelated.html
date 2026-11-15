@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: single-key shortcut next to an unrelated modifier-key setting</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .note { border: 1px solid #333; padding: 4px; margin: 4px 0; }</style>
+</head>
+<body>
+<main>
+  <h1>Notes</h1>
+  <p>Press J to add a note.</p>
+  <!-- Planted failure (2.1.4): this setting names a modifier key, but not for the shortcut; nothing turns the shortcut off or moves it. -->
+  <p><label><input type="checkbox" id="multi"> Hold the Shift key to pick several days</label></p>
+  <div id="notes"></div>
+</main>
+<script>
+  document.addEventListener('keydown', function (e) {
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+    if (e.key.toLowerCase() !== 'j') return;
+    var n = document.createElement('p');
+    n.className = 'note';
+    n.textContent = 'New note';
+    document.getElementById('notes').appendChild(n);
+  });
+</script>
+</body>
+</html>

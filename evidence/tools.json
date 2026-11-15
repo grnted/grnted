@@ -1,0 +1,70 @@
+{
+ "about": "The checkers compared, their pinned versions and configurations (the same for every comparison here).",
+ "tools": [
+  {
+   "tool": "granted",
+   "name": "Granted",
+   "maker": null,
+   "version": "0.3.0 (engine 8408cb4f)",
+   "config": "Its library call, as its command-line tool makes it: one page per scan, its default core tests, no AI. Results are its own per-criterion table.",
+   "browser": "Chromium from Playwright 1.61.1"
+  },
+  {
+   "tool": "axe",
+   "name": "axe-core",
+   "maker": "Deque",
+   "version": "4.14.0",
+   "config": "`axe.run` with its defaults on the loaded page; violations only.",
+   "browser": "Chromium from Playwright 1.61.1"
+  },
+  {
+   "tool": "pa11y-axe",
+   "name": "Pa11y (axe runner)",
+   "maker": null,
+   "version": "10.0.0 (bundles axe-core 4.13.0)",
+   "config": "Standard WCAG2AA; errors only (its default).",
+   "browser": "Chromium from Playwright 1.61.1"
+  },
+  {
+   "tool": "lighthouse",
+   "name": "Lighthouse",
+   "maker": "Google",
+   "version": "13.6.0",
+   "config": "The accessibility category only, desktop settings; an audit that scores 0 is a failure; each audit in its own process and browser.",
+   "browser": "Chromium from Playwright 1.61.1"
+  },
+  {
+   "tool": "pa11y-htmlcs",
+   "name": "Pa11y (HTML_CodeSniffer runner)",
+   "maker": null,
+   "version": "10.0.0 (HTML_CodeSniffer 2.6.0)",
+   "config": "Standard WCAG2AA; errors only (its default).",
+   "browser": "Chromium from Playwright 1.61.1"
+  },
+  {
+   "tool": "ibm",
+   "name": "IBM Equal Access",
+   "maker": "IBM",
+   "version": "accessibility-checker-engine 4.0.34",
+   "config": "Ruleset IBM_Accessibility; only \"violation\" and \"fail\" results, the checker's default fail levels.",
+   "browser": "Chromium from Playwright 1.61.1"
+  },
+  {
+   "tool": "alfa",
+   "name": "Siteimprove Alfa",
+   "maker": "Siteimprove",
+   "version": "alfa-rules 0.120.0 (alfa-playwright 0.84.3)",
+   "config": "All stable rules; only \"failed\" outcomes.",
+   "browser": "Chromium from Playwright 1.61.1"
+  },
+  {
+   "tool": "qualweb",
+   "name": "QualWeb",
+   "maker": null,
+   "version": "core 0.9.5 (ACT rules 0.8.6, WCAG techniques 0.4.9)",
+   "config": "ACT rules and WCAG techniques modules; only \"failed\" outcomes; one QualWeb instance per page.",
+   "browser": "Chromium from Playwright 1.61.1"
+  }
+ ],
+ "generated": "2026-11-15"
+}

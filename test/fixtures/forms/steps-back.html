@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Allotment waiting list (two steps, with a way back)</title></head>
+<body>
+<main>
+<h1>Allotment waiting list</h1>
+<!-- Step two asks for the e-mail address again; the first step is hidden, and a Back button shows it again.
+     Whether that makes the first answer available to select is not for a rule to say: undecided. -->
+<form id="shed" action="/shed" method="post">
+  <fieldset id="s1"><legend>Step 1: About you</legend>
+    <p><label for="s-name">Full name *</label><br><input id="s-name" name="s-name" autocomplete="name" required></p>
+    <p><label for="s-email">Email *</label><br><input id="s-email" name="email" type="email" autocomplete="email" required></p>
+    <button type="button" id="s-next">Next</button>
+  </fieldset>
+  <fieldset id="s2" hidden><legend>Step 2: How to reach you</legend>
+    <p><label for="s-email2">Email *</label><br><input id="s-email2" name="contact-email" type="email" autocomplete="email" required></p>
+    <button type="button" id="s-back">Back</button> <button type="submit">Join the list</button>
+  </fieldset>
+</form>
+</main>
+<script>
+  const one = document.getElementById('s1'); const two = document.getElementById('s2');
+  document.getElementById('s-next').addEventListener('click', () => {
+    if (![...one.querySelectorAll('input')].every((i) => i.checkValidity())) return;
+    one.hidden = true; two.hidden = false; document.getElementById('s-email2').focus();
+  });
+  document.getElementById('s-back').addEventListener('click', () => { two.hidden = true; one.hidden = false; });
+</script>
+</body>
+</html>

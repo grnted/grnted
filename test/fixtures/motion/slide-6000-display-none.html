@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A banner that slides for 6 seconds, then the page hides it</title>
+<style>
+@keyframes slide { from { transform: translateX(0); } to { transform: translateX(200px); } }
+#banner { width: 300px; height: 60px; background: #0b4fb3; color: #fff; padding: 8px; animation: slide 6s linear 1 forwards; }
+</style></head>
+<body><main><h1>News</h1><p id="banner">Spring show on May 9.</p><p>Other content next to the banner.</p></main>
+<script>document.getElementById('banner').addEventListener('animationend', function (e) { e.target.style.display = 'none'; });</script>
+</body>
+</html>

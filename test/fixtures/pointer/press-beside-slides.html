@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: an action on press beside a slideshow</title></head>
+<body><main><h1>Printing</h1>
+<p id="slides">Notice 1: picture day on May 1.</p><p><button type="button" id="pause-slides">Pause</button></p>
+<p><button type="button" id="print" style="width:220px">Print this page</button> <span id="printed"></span></p>
+</main>
+<script>
+  // A notice slideshow that changes by itself (with a Pause button that acts on click).
+  var n = 1, s = document.getElementById('slides').firstChild;
+  var t = setInterval(function () { n = n % 3 + 1; s.nodeValue = 'Notice ' + n + ': ' + ['picture day on May 1.', 'book fair on May 4th.', 'spring show on May 9.'][n - 1]; }, 1200);
+  document.getElementById('pause-slides').addEventListener('click', function () { clearInterval(t); this.textContent = 'Paused'; });
+  // The action on press: showing the same message again changes nothing, so a second press looks clean.
+  document.getElementById('print').addEventListener('mousedown', function () { document.getElementById('printed').textContent = 'Sent to the printer.'; });
+</script>
+</body>
+</html>

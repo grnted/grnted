@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Platform board</title>
+<style>#board { font: 24px sans-serif; padding: .5rem; border: 1px solid #333; width: 420px; }</style></head>
+<body><main>
+<h1>Platform board</h1>
+<p>Trains toward the harbour leave from platform 2.</p>
+<!-- Passes (2.2.2): content that updates by itself with a control for how often it updates; its "Manual only"
+     setting stops the updates. The select sits inside its label, so the label's text runs into the options. -->
+<div id="board">Harbour line: 6 min</div>
+<p><label>Update frequency<select id="how"><option value="5000">Every 5 seconds</option><option value="30000">Every 30 seconds</option><option value="0">Manual only</option></select></label></p>
+</main>
+<script>
+  (function () {
+    var n = 0, timer = null, board = document.getElementById('board');
+    function tick() { n++; board.textContent = 'Harbour line: ' + (6 + n % 4) + ' min'; }
+    function set(ms) { clearInterval(timer); timer = ms > 0 ? setInterval(tick, ms) : null; }
+    set(5000);
+    document.getElementById('how').addEventListener('change', function (e) { set(Number(e.target.value)); });
+  })();
+</script>
+</body>
+</html>

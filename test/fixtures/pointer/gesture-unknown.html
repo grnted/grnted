@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer gestures: a control with an unknown name</title>
+<style>body{font:16px/1.5 sans-serif;margin:20px}.car{position:relative;width:600px;height:200px;overflow:hidden;border:1px solid #333}.track{display:flex;width:1800px;height:200px}.slide{width:600px;height:200px;flex:none;display:flex;align-items:center;justify-content:center;font-size:28px}.s1{background:#fde}.s2{background:#dfe}.s3{background:#def}.sortlist{list-style:none;padding:0;width:400px}.sortlist li{border:1px solid #333;margin:4px 0;background:#f8f8f8;position:relative;height:48px}.grip{position:absolute;left:4px;top:4px;width:30px;height:20px;cursor:grab;background:#ccc}.sortlist li button{position:absolute;left:0;right:0;bottom:0;height:30px;width:100%}</style>
+</head>
+<body><main><h1>Gallery</h1>
+<div class="car" id="car"><div class="track" id="t"><div class="slide s1">One</div><div class="slide s2">Two</div><div class="slide s3">Three</div></div></div>
+<p><button type="button" id="fw">Forward</button></p>
+</main>
+<script>
+  var n = 0, sx = null, t = document.getElementById('t'), go = function (k) { n = Math.max(0, Math.min(2, k)); t.style.transform = 'translateX(' + (-600 * n) + 'px)'; };
+  document.getElementById('car').addEventListener('pointerdown', function (e) { sx = e.clientX; });
+  document.getElementById('car').addEventListener('pointerup', function (e) { if (sx !== null && e.clientX - sx < -50) go(n + 1); sx = null; });
+  document.getElementById('fw').addEventListener('click', function () { go(n + 1); });
+</script>
+</body>
+</html>

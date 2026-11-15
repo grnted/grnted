@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a skip button whose script puts focus on the content (a single-page app)</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .skip { position: absolute; left: -999px; } .skip:focus { left: 8px; top: 8px; } .topbar a { margin-right: 12px; } .big { font-size: 24px; font-weight: bold; }</style></head>
+<body>
+<!-- No failure (2.4.1): the router owns the address's fragment, so the skip control is a button that focuses the view. -->
+<button type="button" class="skip" id="skip" onclick="document.getElementById('view').focus()">Skip to main content</button>
+<div class="topbar"><a href="/">Home</a><a href="/permits">Permits</a><a href="/parks">Parks</a><a href="/news">News</a><a href="/contact">Contact</a></div>
+<div id="view" tabindex="-1">
+  <div class="big">Permits</div>
+  <p>Apply for a residential building permit online or at the counter in City Hall during office hours.</p>
+  <p>Read the <a href="/permits/fees">fee schedule</a> before you apply.</p>
+</div>
+</body>
+</html>

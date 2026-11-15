@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Notices in two formats</title><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body>
+<main>
+<h1>Notices in two formats</h1>
+<section><h2>A first file this browser cannot play</h2>
+<video id="second" controls preload="metadata" width="640" height="360"><source src="/files/speech-open-captions.webm?first" type="video/x-notice"><source src="/files/speech-plain.webm?second" type="video/webm"></video>
+</section>
+<section><h2>The first file plays</h2>
+<video id="first" controls preload="metadata" width="640" height="360"><source src="/files/speech-plain.webm?first" type="video/webm"><source src="/files/speech-plain.webm?fallback" type="video/x-notice"></video>
+</section>
+</main>
+</body>
+</html>

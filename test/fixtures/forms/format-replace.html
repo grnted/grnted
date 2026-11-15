@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Callback (page replaced after typing)</title></head>
+<body>
+<main>
+<h1>Ask for a callback</h1>
+<form id="cr" action="/callback" method="post" novalidate>
+  <p><label for="cr-name">Name *</label><br><input id="cr-name" name="name" autocomplete="name" aria-describedby="cr-err"></p>
+  <p><label for="cr-mail">Email *</label><br><input id="cr-mail" name="mail" type="email" autocomplete="email"></p>
+  <p id="cr-err" role="alert"></p>
+  <button type="submit">Call me</button>
+</form>
+</main>
+<script>
+  document.getElementById('cr').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cr-name').value;
+    if (!name) { document.getElementById('cr-err').textContent = 'Enter your name'; return; }
+    document.open(); document.write('<!doctype html><title>Thanks</title><p>Thanks, we will call you.</p>'); document.close();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a frame</title></head>
+<body><main><h1>Embedded widget</h1>
+<p>The widget below comes from this site.</p>
+<iframe id="widget" title="Calendar widget" src="/press-frame-inner.html" width="500" height="200"></iframe>
+<p>The map below comes from another site.</p>
+<iframe id="other" title="Map from another site" width="500" height="200"></iframe>
+</main>
+<script>
+  // The same widget served from another origin (localhost instead of 127.0.0.1): third-party content.
+  document.getElementById('other').src = location.origin.replace('127.0.0.1', 'localhost') + '/press-frame-inner.html';
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: landscape only</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; }
+  #rotate-msg { display: none; }
+  @media (orientation: portrait) {
+    main { display: none; }
+    #rotate-msg { display: flex; position: fixed; inset: 0; align-items: center; justify-content: center; padding: 2rem; background: #fff; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div id="rotate-msg"><p>Please turn your phone on its side to read this page.</p></div>
+<main id="content">
+  <h1>Field trip permission</h1>
+  <p>The fifth grade field trip to the science museum leaves at 8:30 am on Friday and returns by 2:45 pm. Students bring a packed lunch and a water bottle.</p>
+  <p>Families who would like to volunteer as chaperones can sign up at the front office before Wednesday. Each chaperone looks after a group of four students.</p>
+  <p>Please return the permission slip by Thursday. Students without a signed slip will spend the day in the library with a substitute teacher.</p>
+</main>
+</body>
+</html>

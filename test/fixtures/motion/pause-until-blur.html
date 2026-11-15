@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Pool lanes</title>
+<style>#board { font: 24px sans-serif; padding: .5rem; border: 1px solid #333; width: 420px; }</style></head>
+<body><main>
+<h1>Pool lanes</h1>
+<p>Lane swimming is in the main pool until nine.</p>
+<!-- Planted failure (2.2.2): Pause stops the updates only while keyboard focus stays on the button; when focus
+     moves on they start again, and nobody asked for that (WCAG "paused": not resumed until requested). -->
+<div id="board">Lane 3 opens in 9 min</div>
+<button type="button" id="pause">Pause updates</button>
+<p><a href="#prices">Prices</a></p>
+</main>
+<script>
+  (function () {
+    var n = 0, board = document.getElementById('board'), timer = null;
+    function tick() { n++; board.textContent = 'Lane 3 opens in ' + (9 - n % 5) + ' min'; }
+    function start() { if (!timer) timer = setInterval(tick, 1500); }
+    function stop() { clearInterval(timer); timer = null; }
+    start();
+    var b = document.getElementById('pause');
+    b.addEventListener('click', stop);
+    b.addEventListener('focusout', start);
+  })();
+</script>
+</body>
+</html>

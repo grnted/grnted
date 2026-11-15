@@ -1,0 +1,1239 @@
+{
+ "about": "Blind test: sites 71 and 72, brand new when tested. Head-to-head of 8 checkers on the same pages with one scoring rule, and Granted's normal whole-site scan. Totals only.",
+ "status": "final",
+ "sites": [
+  "71",
+  "72"
+ ],
+ "built": "2026-11-14",
+ "pages": 59,
+ "items": 797,
+ "failItems": 474,
+ "passItems": 323,
+ "debatable": 2,
+ "everyCriterionHasAFailure": true,
+ "headToHead": {
+  "run": "2026-11-14-blind-7172",
+  "date": "2026-11-14",
+  "engine": "8408cb4f",
+  "settings": {
+   "viewport": "1280x900",
+   "pageCapSeconds": 240,
+   "pagesAtATimePerTool": 2,
+   "machines": {
+    "os": "Linux",
+    "cpus": 4,
+    "memoryGiB": 6,
+    "sameForEveryTool": true
+   },
+   "browser": {
+    "name": "Chromium from Playwright",
+    "build": "1228",
+    "sameForEveryTool": true
+   },
+   "network": "none beyond the local site server"
+  },
+  "tools": [
+   {
+    "tool": "granted",
+    "name": "Granted",
+    "maker": null,
+    "version": "0.3.0 (engine 8408cb4f)",
+    "config": "Its library call, as its command-line tool makes it: one page per scan, its default core tests, no AI. Results are its own per-criterion table.",
+    "browser": "Chromium from Playwright 1.61.1",
+    "pagesScanned": "59/59",
+    "criteriaTested": 44,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 71.1,
+     "k": 337,
+     "n": 474,
+     "ci95": [
+      66.9,
+      75
+     ]
+    },
+    "recallTested": {
+     "pct": 78.7,
+     "k": 337,
+     "n": 428,
+     "ci95": [
+      74.6,
+      82.4
+     ]
+    },
+    "precision": {
+     "pct": 94.7,
+     "k": 337,
+     "n": 356,
+     "ci95": [
+      91.8,
+      96.6
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 10.4,
+     "k": 19,
+     "n": 182,
+     "ci95": [
+      6.8,
+      15.7
+     ]
+    },
+    "notTested": {
+     "fail": 46,
+     "pass": 140
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 75,
+      "k": 192,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 87.3,
+      "k": 192,
+      "n": 220
+     },
+     "falseAlarmRate": {
+      "pct": 21.9,
+      "k": 16,
+      "n": 73
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 66.5,
+      "k": 145,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 69.7,
+      "k": 145,
+      "n": 208
+     },
+     "falseAlarmRate": {
+      "pct": 2.8,
+      "k": 3,
+      "n": 109
+     }
+    }
+   },
+   {
+    "tool": "axe",
+    "name": "axe-core",
+    "maker": "Deque",
+    "version": "4.14.0",
+    "config": "`axe.run` with its defaults on the loaded page; violations only.",
+    "browser": "Chromium from Playwright 1.61.1",
+    "pagesScanned": "59/59",
+    "criteriaTested": 22,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 30.4,
+     "k": 144,
+     "n": 474,
+     "ci95": [
+      26.4,
+      34.7
+     ]
+    },
+    "recallTested": {
+     "pct": 51.4,
+     "k": 144,
+     "n": 280,
+     "ci95": [
+      45.6,
+      57.2
+     ]
+    },
+    "precision": {
+     "pct": 100,
+     "k": 144,
+     "n": 144,
+     "ci95": [
+      97.4,
+      100
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 0,
+     "k": 0,
+     "n": 140,
+     "ci95": [
+      0,
+      2.7
+     ]
+    },
+    "notTested": {
+     "fail": 194,
+     "pass": 182
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 56.3,
+      "k": 144,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 68.9,
+      "k": 144,
+      "n": 209
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 66
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 0,
+      "k": 0,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 0,
+      "k": 0,
+      "n": 71
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 74
+     }
+    }
+   },
+   {
+    "tool": "pa11y-axe",
+    "name": "Pa11y (axe runner)",
+    "maker": null,
+    "version": "10.0.0 (bundles axe-core 4.13.0)",
+    "config": "Standard WCAG2AA; errors only (its default).",
+    "browser": "Chromium from Playwright 1.61.1",
+    "pagesScanned": "59/59",
+    "criteriaTested": 21,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 20.3,
+     "k": 96,
+     "n": 474,
+     "ci95": [
+      16.9,
+      24.1
+     ]
+    },
+    "recallTested": {
+     "pct": 42.3,
+     "k": 96,
+     "n": 227,
+     "ci95": [
+      36,
+      48.8
+     ]
+    },
+    "precision": {
+     "pct": 97,
+     "k": 96,
+     "n": 99,
+     "ci95": [
+      91.5,
+      99
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 2.2,
+     "k": 3,
+     "n": 137,
+     "ci95": [
+      0.7,
+      6.2
+     ]
+    },
+    "notTested": {
+     "fail": 247,
+     "pass": 185
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 35.5,
+      "k": 91,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 58.3,
+      "k": 91,
+      "n": 156
+     },
+     "falseAlarmRate": {
+      "pct": 4.8,
+      "k": 3,
+      "n": 63
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 2.3,
+      "k": 5,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 7,
+      "k": 5,
+      "n": 71
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 74
+     }
+    }
+   },
+   {
+    "tool": "lighthouse",
+    "name": "Lighthouse",
+    "maker": "Google",
+    "version": "13.6.0",
+    "config": "The accessibility category only, desktop settings; an audit that scores 0 is a failure; each audit in its own process and browser.",
+    "browser": "Chromium from Playwright 1.61.1",
+    "pagesScanned": "59/59",
+    "criteriaTested": 17,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 34.8,
+     "k": 165,
+     "n": 474,
+     "ci95": [
+      30.7,
+      39.2
+     ]
+    },
+    "recallTested": {
+     "pct": 70.5,
+     "k": 165,
+     "n": 234,
+     "ci95": [
+      64.4,
+      76
+     ]
+    },
+    "precision": {
+     "pct": 100,
+     "k": 165,
+     "n": 165,
+     "ci95": [
+      97.7,
+      100
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 0,
+     "k": 0,
+     "n": 132,
+     "ci95": [
+      0,
+      2.8
+     ]
+    },
+    "notTested": {
+     "fail": 240,
+     "pass": 190
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 64.5,
+      "k": 165,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 78.9,
+      "k": 165,
+      "n": 209
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 64
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 0,
+      "k": 0,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 0,
+      "k": 0,
+      "n": 25
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 68
+     }
+    }
+   },
+   {
+    "tool": "pa11y-htmlcs",
+    "name": "Pa11y (HTML_CodeSniffer runner)",
+    "maker": null,
+    "version": "10.0.0 (HTML_CodeSniffer 2.6.0)",
+    "config": "Standard WCAG2AA; errors only (its default).",
+    "browser": "Chromium from Playwright 1.61.1",
+    "pagesScanned": "59/59",
+    "criteriaTested": 48,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 18.4,
+     "k": 87,
+     "n": 474,
+     "ci95": [
+      15.1,
+      22.1
+     ]
+    },
+    "recallTested": {
+     "pct": 22.3,
+     "k": 87,
+     "n": 390,
+     "ci95": [
+      18.5,
+      26.7
+     ]
+    },
+    "precision": {
+     "pct": 96.7,
+     "k": 87,
+     "n": 90,
+     "ci95": [
+      90.7,
+      98.9
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 1.1,
+     "k": 3,
+     "n": 282,
+     "ci95": [
+      0.4,
+      3.1
+     ]
+    },
+    "notTested": {
+     "fail": 84,
+     "pass": 40
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 34,
+      "k": 87,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 41.4,
+      "k": 87,
+      "n": 210
+     },
+     "falseAlarmRate": {
+      "pct": 1.1,
+      "k": 2,
+      "n": 176
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 0,
+      "k": 0,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 0,
+      "k": 0,
+      "n": 180
+     },
+     "falseAlarmRate": {
+      "pct": 0.9,
+      "k": 1,
+      "n": 106
+     }
+    }
+   },
+   {
+    "tool": "ibm",
+    "name": "IBM Equal Access",
+    "maker": "IBM",
+    "version": "accessibility-checker-engine 4.0.34",
+    "config": "Ruleset IBM_Accessibility; only \"violation\" and \"fail\" results, the checker's default fail levels.",
+    "browser": "Chromium from Playwright 1.61.1",
+    "pagesScanned": "59/59",
+    "criteriaTested": 40,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 36.7,
+     "k": 174,
+     "n": 474,
+     "ci95": [
+      32.5,
+      41.1
+     ]
+    },
+    "recallTested": {
+     "pct": 43.2,
+     "k": 174,
+     "n": 403,
+     "ci95": [
+      38.4,
+      48.1
+     ]
+    },
+    "precision": {
+     "pct": 90.6,
+     "k": 174,
+     "n": 192,
+     "ci95": [
+      85.7,
+      94
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 10,
+     "k": 18,
+     "n": 180,
+     "ci95": [
+      6.4,
+      15.3
+     ]
+    },
+    "notTested": {
+     "fail": 71,
+     "pass": 142
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 67.6,
+      "k": 173,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 77.9,
+      "k": 173,
+      "n": 222
+     },
+     "falseAlarmRate": {
+      "pct": 24,
+      "k": 18,
+      "n": 75
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 0.5,
+      "k": 1,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 0.6,
+      "k": 1,
+      "n": 181
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 105
+     }
+    }
+   },
+   {
+    "tool": "alfa",
+    "name": "Siteimprove Alfa",
+    "maker": "Siteimprove",
+    "version": "alfa-rules 0.120.0 (alfa-playwright 0.84.3)",
+    "config": "All stable rules; only \"failed\" outcomes.",
+    "browser": "Chromium from Playwright 1.61.1",
+    "pagesScanned": "59/59",
+    "criteriaTested": 23,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 30.6,
+     "k": 145,
+     "n": 474,
+     "ci95": [
+      26.6,
+      34.9
+     ]
+    },
+    "recallTested": {
+     "pct": 46.9,
+     "k": 145,
+     "n": 309,
+     "ci95": [
+      41.4,
+      52.5
+     ]
+    },
+    "precision": {
+     "pct": 100,
+     "k": 145,
+     "n": 145,
+     "ci95": [
+      97.4,
+      100
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 0,
+     "k": 0,
+     "n": 86,
+     "ci95": [
+      0,
+      4.3
+     ]
+    },
+    "notTested": {
+     "fail": 165,
+     "pass": 236
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 56.6,
+      "k": 145,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 70,
+      "k": 145,
+      "n": 207
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 64
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 0,
+      "k": 0,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 0,
+      "k": 0,
+      "n": 102
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 22
+     }
+    }
+   },
+   {
+    "tool": "qualweb",
+    "name": "QualWeb",
+    "maker": null,
+    "version": "core 0.9.5 (ACT rules 0.8.6, WCAG techniques 0.4.9)",
+    "config": "ACT rules and WCAG techniques modules; only \"failed\" outcomes; one QualWeb instance per page.",
+    "browser": "Chromium from Playwright 1.61.1",
+    "pagesScanned": "59/59",
+    "criteriaTested": 29,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 37.6,
+     "k": 178,
+     "n": 474,
+     "ci95": [
+      33.3,
+      42
+     ]
+    },
+    "recallTested": {
+     "pct": 55.8,
+     "k": 178,
+     "n": 319,
+     "ci95": [
+      50.3,
+      61.1
+     ]
+    },
+    "precision": {
+     "pct": 90.8,
+     "k": 178,
+     "n": 196,
+     "ci95": [
+      86,
+      94.1
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 9.9,
+     "k": 18,
+     "n": 182,
+     "ci95": [
+      6.3,
+      15.1
+     ]
+    },
+    "notTested": {
+     "fail": 155,
+     "pass": 140
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 61.3,
+      "k": 157,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 84.9,
+      "k": 157,
+      "n": 185
+     },
+     "falseAlarmRate": {
+      "pct": 18.6,
+      "k": 16,
+      "n": 86
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 9.6,
+      "k": 21,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 15.7,
+      "k": 21,
+      "n": 134
+     },
+     "falseAlarmRate": {
+      "pct": 2.1,
+      "k": 2,
+      "n": 96
+     }
+    }
+   }
+  ]
+ },
+ "grantedWholeSite": {
+  "rule": "the head-to-head's per-item rule (every keyed item counted per page); not part of the like-for-like comparison, since no other tool scans a whole site",
+  "rows": [
+   {
+    "label": "whole-site crawl from the home page, AI off",
+    "pagesScanned": "whole-site, 2/2 sites",
+    "criteriaTested": 50,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 66,
+     "k": 313,
+     "n": 474,
+     "ci95": [
+      61.7,
+      70.2
+     ]
+    },
+    "recallTested": {
+     "pct": 67,
+     "k": 313,
+     "n": 467,
+     "ci95": [
+      62.6,
+      71.1
+     ]
+    },
+    "precision": {
+     "pct": 82.2,
+     "k": 313,
+     "n": 381,
+     "ci95": [
+      78,
+      85.7
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 21.3,
+     "k": 68,
+     "n": 319,
+     "ci95": [
+      17.2,
+      26.1
+     ]
+    },
+    "notTested": {
+     "fail": 7,
+     "pass": 3
+    },
+    "failOnErrorPages": 63,
+    "static": {
+     "recallOverall": {
+      "pct": 80.5,
+      "k": 206,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 80.5,
+      "k": 206,
+      "n": 256
+     },
+     "falseAlarmRate": {
+      "pct": 33.8,
+      "k": 71,
+      "n": 210
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 57.3,
+      "k": 125,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 57.6,
+      "k": 125,
+      "n": 217
+     },
+     "falseAlarmRate": {
+      "pct": 2.7,
+      "k": 3,
+      "n": 112
+     }
+    },
+    "run": "2026-11-14-8408cb4f-rt7172",
+    "mode": "crawl",
+    "ai": false,
+    "engine": "8408cb4f"
+   },
+   {
+    "label": "whole-site scan of the keyed page list, AI off",
+    "pagesScanned": "whole-site, 2/2 sites",
+    "criteriaTested": 50,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 78.5,
+     "k": 372,
+     "n": 474,
+     "ci95": [
+      74.6,
+      81.9
+     ]
+    },
+    "recallTested": {
+     "pct": 79.7,
+     "k": 372,
+     "n": 467,
+     "ci95": [
+      75.8,
+      83.1
+     ]
+    },
+    "precision": {
+     "pct": 84.4,
+     "k": 372,
+     "n": 441,
+     "ci95": [
+      80.7,
+      87.4
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 21.6,
+     "k": 69,
+     "n": 319,
+     "ci95": [
+      17.5,
+      26.5
+     ]
+    },
+    "notTested": {
+     "fail": 7,
+     "pass": 3
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 85.9,
+      "k": 220,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 87.3,
+      "k": 220,
+      "n": 252
+     },
+     "falseAlarmRate": {
+      "pct": 31.7,
+      "k": 66,
+      "n": 208
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 69.7,
+      "k": 152,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 70.7,
+      "k": 152,
+      "n": 215
+     },
+     "falseAlarmRate": {
+      "pct": 2.7,
+      "k": 3,
+      "n": 111
+     }
+    },
+    "run": "2026-11-14-8408cb4f-rt7172",
+    "mode": "seed",
+    "ai": false,
+    "engine": "8408cb4f"
+   },
+   {
+    "label": "whole-site crawl from the home page, AI on",
+    "pagesScanned": "whole-site, 2/2 sites",
+    "criteriaTested": 54,
+    "criteriaKeyed": 55,
+    "recallOverall": {
+     "pct": 69.8,
+     "k": 331,
+     "n": 474,
+     "ci95": [
+      65.6,
+      73.8
+     ]
+    },
+    "recallTested": {
+     "pct": 70,
+     "k": 331,
+     "n": 473,
+     "ci95": [
+      65.7,
+      73.9
+     ]
+    },
+    "precision": {
+     "pct": 81.7,
+     "k": 331,
+     "n": 405,
+     "ci95": [
+      77.7,
+      85.2
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 23,
+     "k": 74,
+     "n": 322,
+     "ci95": [
+      18.7,
+      27.9
+     ]
+    },
+    "notTested": {
+     "fail": 1,
+     "pass": 0
+    },
+    "failOnErrorPages": 63,
+    "static": {
+     "recallOverall": {
+      "pct": 80.5,
+      "k": 206,
+      "n": 256
+     },
+     "recallTested": {
+      "pct": 80.5,
+      "k": 206,
+      "n": 256
+     },
+     "falseAlarmRate": {
+      "pct": 33.8,
+      "k": 71,
+      "n": 210
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 57.3,
+      "k": 125,
+      "n": 218
+     },
+     "recallTested": {
+      "pct": 57.6,
+      "k": 125,
+      "n": 217
+     },
+     "falseAlarmRate": {
+      "pct": 2.7,
+      "k": 3,
+      "n": 112
+     }
+    },
+    "run": "2026-11-14-8408cb4f-rt7172-ai",
+    "mode": "crawl",
+    "ai": true,
+    "engine": "8408cb4f"
+   }
+  ]
+ },
+ "grantedOwnScorer": {
+  "rule": "our test scorer: the four site-wide criteria (2.4.5, 3.2.3, 3.2.4, 3.2.6) count once per site; a problem inside a linked document is judged per document; a correct pass is any keyed pass item with no definite failure",
+  "engine": "8408cb4f",
+  "version": "0.3.0",
+  "aiOff": {
+   "run": "2026-11-14-8408cb4f-rt7172",
+   "crawl": {
+    "group": "crawl",
+    "n": 635,
+    "tp": 327,
+    "miss": 117,
+    "falseAlarm": 19,
+    "correctPass": 172,
+    "recall": {
+     "pct": 73.6,
+     "k": 327,
+     "n": 444,
+     "lb95": 69.4
+    },
+    "precision": {
+     "pct": 94.5,
+     "k": 327,
+     "n": 346,
+     "lb95": 91.6
+    },
+    "falseAlarmRate": {
+     "pct": 9.9,
+     "k": 19,
+     "n": 191,
+     "lb95": 6.5
+    },
+    "sites": {
+     "71": {
+      "group": "Site 71",
+      "n": 319,
+      "tp": 165,
+      "miss": 50,
+      "falseAlarm": 7,
+      "correctPass": 97,
+      "recall": {
+       "pct": 76.7,
+       "k": 165,
+       "n": 215,
+       "lb95": 70.7
+      },
+      "precision": {
+       "pct": 95.9,
+       "k": 165,
+       "n": 172,
+       "lb95": 91.8
+      },
+      "falseAlarmRate": {
+       "pct": 6.7,
+       "k": 7,
+       "n": 104,
+       "lb95": 3.3
+      }
+     },
+     "72": {
+      "group": "Site 72",
+      "n": 316,
+      "tp": 162,
+      "miss": 67,
+      "falseAlarm": 12,
+      "correctPass": 75,
+      "recall": {
+       "pct": 70.7,
+       "k": 162,
+       "n": 229,
+       "lb95": 64.5
+      },
+      "precision": {
+       "pct": 93.1,
+       "k": 162,
+       "n": 174,
+       "lb95": 88.3
+      },
+      "falseAlarmRate": {
+       "pct": 13.8,
+       "k": 12,
+       "n": 87,
+       "lb95": 8.1
+      }
+     }
+    }
+   },
+   "seed": {
+    "group": "seed",
+    "n": 635,
+    "tp": 341,
+    "miss": 103,
+    "falseAlarm": 20,
+    "correctPass": 171,
+    "recall": {
+     "pct": 76.8,
+     "k": 341,
+     "n": 444,
+     "lb95": 72.7
+    },
+    "precision": {
+     "pct": 94.5,
+     "k": 341,
+     "n": 361,
+     "lb95": 91.6
+    },
+    "falseAlarmRate": {
+     "pct": 10.5,
+     "k": 20,
+     "n": 191,
+     "lb95": 6.9
+    },
+    "sites": {
+     "71": {
+      "group": "Site 71",
+      "n": 319,
+      "tp": 166,
+      "miss": 49,
+      "falseAlarm": 7,
+      "correctPass": 97,
+      "recall": {
+       "pct": 77.2,
+       "k": 166,
+       "n": 215,
+       "lb95": 71.2
+      },
+      "precision": {
+       "pct": 96,
+       "k": 166,
+       "n": 173,
+       "lb95": 91.9
+      },
+      "falseAlarmRate": {
+       "pct": 6.7,
+       "k": 7,
+       "n": 104,
+       "lb95": 3.3
+      }
+     },
+     "72": {
+      "group": "Site 72",
+      "n": 316,
+      "tp": 175,
+      "miss": 54,
+      "falseAlarm": 13,
+      "correctPass": 74,
+      "recall": {
+       "pct": 76.4,
+       "k": 175,
+       "n": 229,
+       "lb95": 70.5
+      },
+      "precision": {
+       "pct": 93.1,
+       "k": 175,
+       "n": 188,
+       "lb95": 88.5
+      },
+      "falseAlarmRate": {
+       "pct": 14.9,
+       "k": 13,
+       "n": 87,
+       "lb95": 8.9
+      }
+     }
+    }
+   }
+  },
+  "aiOn": {
+   "run": "2026-11-14-8408cb4f-rt7172-ai",
+   "crawl": {
+    "group": "crawl",
+    "n": 635,
+    "tp": 345,
+    "miss": 99,
+    "falseAlarm": 25,
+    "correctPass": 166,
+    "recall": {
+     "pct": 77.7,
+     "k": 345,
+     "n": 444,
+     "lb95": 73.6
+    },
+    "precision": {
+     "pct": 93.2,
+     "k": 345,
+     "n": 370,
+     "lb95": 90.2
+    },
+    "falseAlarmRate": {
+     "pct": 13.1,
+     "k": 25,
+     "n": 191,
+     "lb95": 9
+    },
+    "sites": {
+     "71": {
+      "group": "Site 71",
+      "n": 319,
+      "tp": 174,
+      "miss": 41,
+      "falseAlarm": 10,
+      "correctPass": 94,
+      "recall": {
+       "pct": 80.9,
+       "k": 174,
+       "n": 215,
+       "lb95": 75.2
+      },
+      "precision": {
+       "pct": 94.6,
+       "k": 174,
+       "n": 184,
+       "lb95": 90.3
+      },
+      "falseAlarmRate": {
+       "pct": 9.6,
+       "k": 10,
+       "n": 104,
+       "lb95": 5.3
+      }
+     },
+     "72": {
+      "group": "Site 72",
+      "n": 316,
+      "tp": 171,
+      "miss": 58,
+      "falseAlarm": 15,
+      "correctPass": 72,
+      "recall": {
+       "pct": 74.7,
+       "k": 171,
+       "n": 229,
+       "lb95": 68.7
+      },
+      "precision": {
+       "pct": 91.9,
+       "k": 171,
+       "n": 186,
+       "lb95": 87.1
+      },
+      "falseAlarmRate": {
+       "pct": 17.2,
+       "k": 15,
+       "n": 87,
+       "lb95": 10.7
+      }
+     }
+    }
+   }
+  }
+ },
+ "generated": "2026-11-15"
+}

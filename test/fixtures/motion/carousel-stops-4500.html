@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A carousel that stops by itself after 4.5 s</title>
+<style>
+  .stories { width: 600px; min-height: 120px; background: #eef3f8; }
+  .stories p { display: none; margin: 0; padding: 40px 16px; font: 20px sans-serif; }
+  .stories p.on { display: block; }
+</style></head>
+<body><main>
+<h1>City news</h1>
+<!-- Changes every 1.5 s, and stops by itself after 4.5 s (no control needed: it does not last more than 5 s). -->
+<div class="stories" id="stories">
+  <p class="on">Story 1: the pool opens on Monday.</p>
+  <p>Story 2: the library has new hours.</p>
+  <p>Story 3: the bridge closes for repairs.</p>
+</div>
+<p>Other content next to the stories.</p>
+</main>
+<script>
+  (function () {
+    var s = document.querySelectorAll('#stories p'), i = 0;
+    var t0 = Date.now(), timer = setInterval(function () { if (Date.now() - t0 >= 4500) { clearInterval(timer); window.__simDone = true; return; } s[i].classList.remove('on'); i = (i + 1) % s.length; s[i].classList.add('on'); }, 1500);
+  })();
+</script>
+</body>
+</html>

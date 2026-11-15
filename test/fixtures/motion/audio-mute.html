@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<audio id="music" src="tone.wav" autoplay loop></audio>
+<button type="button" id="mute" aria-pressed="false">Mute music</button>
+</main>
+<script>
+  document.getElementById('mute').addEventListener('click', function () { var a = document.getElementById('music'); a.muted = !a.muted; this.setAttribute('aria-pressed', String(a.muted)); });
+</script>
+</body>
+</html>

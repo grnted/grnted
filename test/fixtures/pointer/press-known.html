@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: requests like the ones made at load</title></head>
+<body><main><h1>Feed</h1>
+<p><button type="button" id="more">Load page 2</button></p><ul id="feed"><li>Item one</li></ul>
+<p><button type="button" id="pic">Show the photo</button></p><div id="photo"></div>
+</main>
+<script>
+  fetch('/api/feed?page=1').catch(function () {});
+  // The list grows only from the response: the request with another query is stopped, nothing changes.
+  document.getElementById('more').addEventListener('mousedown', function () {
+    fetch('/api/feed?page=2').then(function (r) { return r.text(); }).then(function () { var li = document.createElement('li'); li.textContent = 'Item two'; document.getElementById('feed').appendChild(li); }).catch(function () {});
+  });
+  // The only change is the image the guard stops.
+  document.getElementById('pic').addEventListener('mousedown', function () {
+    var img = document.createElement('img'); img.src = '/api/photo.png?id=7'; img.width = 40; img.height = 40; img.alt = ''; document.getElementById('photo').appendChild(img);
+  });
+</script>
+</body>
+</html>

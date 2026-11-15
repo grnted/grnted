@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Carousel in a frame from another origin</title></head>
+<body><main>
+<h1>News</h1>
+<iframe id="f" title="Highlights" width="700" height="420"></iframe>
+<p>Other content next to the frame.</p>
+</main>
+<script>
+  // The same fixture server under another host name: a cross-origin (and cross-site) frame.
+  document.getElementById('f').src = location.protocol + '//localhost:' + location.port + '/carousel-auto.html';
+</script>
+</body>
+</html>

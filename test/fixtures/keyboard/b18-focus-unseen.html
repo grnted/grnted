@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Focus fixture: indicators the styles draw and nobody sees</title>
+<style>
+  body { font: 16px/1.5 Arial, sans-serif; margin: 24px; background: #fff; color: #222; }
+  a, button { color: #1a4f8b; }
+  /* The ring is white on a white page. */
+  #white:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  /* An inset ring under the link's own picture. */
+  #covered { display: inline-block; width: 120px; height: 60px; }
+  #covered img { display: block; width: 120px; height: 60px; position: relative; z-index: 1; }
+  #covered:focus-visible { outline: 3px solid #000; outline-offset: -6px; }
+  /* A ring cut away by the element's own clip-path. */
+  #clipped-path { clip-path: inset(0); border: 0; background: #e8eef7; padding: 8px 12px; }
+  #clipped-path:focus-visible { outline: 3px solid #000; outline-offset: 3px; }
+  /* Look-alikes: a two-tone ring; a visible inset ring on a plain button; a white ring on a dark band. */
+  #two-tone:focus-visible { outline: 2px solid transparent; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000; }
+  #inset-ok { background: #f0f0f0; border: 1px solid #555; padding: 8px 12px; }
+  #inset-ok:focus-visible { outline: 3px solid #000; outline-offset: -5px; }
+  .band { background: #10283f; color: #fff; padding: 16px; margin-top: 24px; }
+  .band a { color: #fff; }
+  .band a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Permits</h1>
+  <p><a id="white" href="/white.html">Apply for a permit</a></p>
+  <p><a id="covered" href="/map.html"><img alt="Zoning map" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='120' height='60' fill='%23c9d6e2'/%3E%3C/svg%3E"></a></p>
+  <p><button id="clipped-path" type="button">Show fees</button></p>
+  <p><a id="two-tone" href="/two.html">Inspection times</a></p>
+  <p><button id="inset-ok" type="button">Print this page</button></p>
+  <div class="band"><p><a id="dark-band" href="/contact.html">Contact the permit desk</a></p></div>
+</main>
+</body>
+</html>

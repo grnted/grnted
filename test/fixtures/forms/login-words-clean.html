@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Sign in (numbers in words, no sum)</title></head>
+<body>
+<main>
+<h1>Member log in</h1>
+<p>What is new: lane four opens at seven, plus two more evening sessions from the ninth.</p>
+<!-- Number words in the page's text and in a label, with no calculation asked: not a test. -->
+<form action="/login" method="post">
+  <p><label for="member">Member number (one of the six digits on your card)</label><br><input id="member" name="member" autocomplete="username" required></p>
+  <p><label for="pin">PIN</label><br><input id="pin" name="pin" type="password" autocomplete="current-password" required></p>
+  <button type="submit">Log in</button>
+</form>
+</main>
+</body>
+</html>

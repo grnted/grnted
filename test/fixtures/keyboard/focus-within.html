@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: focus shown on the parent</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  ul { list-style: none; padding: 0; }
+  /* Clean control (2.4.7): the link's own outline is removed, its list item shows a ring well outside the link. */
+  li { padding: 12px 16px; margin: 8px 0; }
+  li a { outline: none; }
+  li:focus-within { outline: 3px solid #005fcc; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Menu</h1>
+  <ul>
+    <li><a href="/one.html">One</a></li>
+    <li><a href="/two.html">Two</a></li>
+  </ul>
+</main>
+</body>
+</html>

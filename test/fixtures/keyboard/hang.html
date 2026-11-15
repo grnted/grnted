@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a page that hangs on focus</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Hangs</h1>
+  <p><a href="/one.html">One</a></p>
+  <!-- Hostile: focusing this link blocks the page for 20 seconds. -->
+  <p><a href="/two.html" onfocus="var t = Date.now(); while (Date.now() - t < 20000) {}">Two</a></p>
+  <p><a href="/three.html">Three</a></p>
+</main>
+</body>
+</html>

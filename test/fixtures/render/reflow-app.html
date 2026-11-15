@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: an app layout that scrolls a wrapper, not the page</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; overflow: hidden; }
+  body { font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  #app { height: 100%; overflow: auto; }
+  main { padding: 1rem; }
+  #wide-panel { width: 900px; border: 1px solid #767676; padding: 0.5rem; }
+</style>
+</head>
+<body>
+<div id="app">
+  <main>
+    <h1>Room booking</h1>
+    <p>The whole app scrolls inside one wrapper. The panel below has a fixed width.</p>
+    <div id="wide-panel">Book the library meeting room for up to two hours at a time, between eight in the morning and four in the afternoon on school days.</div>
+    <p>Bookings are confirmed by email. Cancel at least a day ahead so someone else can use the room.</p>
+    <p>Rooms with a projector: the library meeting room and the board room. Ask the front office for the remote.</p>
+    <p>Rooms without a projector: the counseling office conference table and the staff lounge.</p>
+  </main>
+</div>
+</body>
+</html>

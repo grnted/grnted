@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Parks and recreation</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Parks and recreation</h1>
+<p>Programs for every age.</p>
+<div id="notices" class="notice-carousel" aria-roledescription="carousel" aria-label="Notices"><p id="slide">Pool hours change on June 1.</p></div>
+<p><button type="button" id="stop">Pause notices</button></p>
+</main>
+<script>
+  var lines = ['Pool hours change on June 1.', 'Summer session sign-up expires Friday at 5 pm.', 'Trail work closes the east loop this week.'], n = 0;
+  var t = setInterval(function () { n = (n + 1) % lines.length; document.getElementById('slide').textContent = lines[n]; }, 6000);
+  document.getElementById('stop').addEventListener('click', function () { clearInterval(t); });
+</script>
+</body>
+</html>

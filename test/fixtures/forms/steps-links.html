@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Tool library (two steps, with links to each step)</title></head>
+<body>
+<main>
+<h1>Tool library</h1>
+<!-- Step two asks to confirm the e-mail address. The first step is still in the page, hidden, and the numbered
+     step links above the form (links to the steps' own places on the page) show it again: the first answer is on the page, and something may bring it
+     back. Whether that makes it available to select is not for a rule to say: undecided, never failed. -->
+<ol id="steps"><li><a href="#g1" id="g-one">1 About you</a></li><li><a href="#g2" id="g-two">2 Confirm</a></li></ol>
+<form id="tools" action="/tools" method="post">
+  <fieldset id="g1"><legend>About you</legend>
+    <p><label for="g-name">Full name *</label><br><input id="g-name" name="g-name" autocomplete="name" required></p>
+    <p><label for="g-email">Email *</label><br><input id="g-email" name="email" type="email" autocomplete="email" required></p>
+    <button type="button" id="g-next">Next</button>
+  </fieldset>
+  <fieldset id="g2" hidden><legend>Confirm</legend>
+    <p><label for="g-email2">Confirm email *</label><br><input id="g-email2" name="confirm-email" type="email" autocomplete="off" required></p>
+    <button type="submit">Ask for a key</button>
+  </fieldset>
+</form>
+</main>
+<script>
+  const one = document.getElementById('g1'); const two = document.getElementById('g2');
+  const show = (n) => { one.hidden = n !== 1; two.hidden = n !== 2; };
+  document.getElementById('g-next').addEventListener('click', () => {
+    if (![...one.querySelectorAll('input')].every((i) => i.checkValidity())) return;
+    show(2); document.getElementById('g-email2').focus();
+  });
+  document.getElementById('g-one').addEventListener('click', (e) => { e.preventDefault(); show(1); });
+  document.getElementById('g-two').addEventListener('click', (e) => { e.preventDefault(); if ([...one.querySelectorAll('input')].every((i) => i.checkValidity())) show(2); });
+</script>
+</body>
+</html>

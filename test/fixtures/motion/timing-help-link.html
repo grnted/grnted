@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Your account</title></head>
+<body><main>
+<h1>Your account</h1>
+<p>You are signed out after 30 seconds. <a href="/help">How to turn off automatic sign-out</a></p>
+</main>
+<script>
+  setTimeout(() => location.href = '/login', 30000);
+</script>
+</body>
+</html>

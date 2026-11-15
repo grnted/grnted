@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Block party permit</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .invalid { border: 2px solid #b00020; } .toast { position: fixed; bottom: 12px; right: 12px; background: #223; color: #fff; padding: 8px 12px; }</style></head>
+<body>
+<header><nav aria-label="Main"><a href="/">Home</a> <a href="/services">Services</a></nav></header>
+<main>
+<h1>Block party permit</h1>
+<p>Apply for a block party permit.</p>
+<form id="permit" novalidate>
+  <label for="cname">Your name</label><input id="cname" autocomplete="name">
+  <label for="cemail">Email address</label><input id="cemail" type="email" autocomplete="email">
+  
+  <label for="account">Permit number</label><input id="account">
+  <button type="submit">Apply for a permit</button>
+  <p id="result" role="status"></p>
+</form>
+</main>
+<footer><p>City offices, 1 Civic Walk</p></footer>
+<script>
+  document.getElementById('permit').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+    for (const id of ['cname', 'cemail', 'account']) {
+      const f = document.getElementById(id);
+      const ok = f.value.trim() !== '' && (f.type !== 'email' || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.value));
+      f.classList.toggle('invalid', !ok);
+      
+      valid = valid && ok;
+    }
+    document.getElementById('result').textContent = valid ? 'Application received. We will reply by email.' : '';
+  });
+</script>
+</body></html>

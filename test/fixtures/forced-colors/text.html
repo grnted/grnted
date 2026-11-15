@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Text over pictures</title>
+<style>
+  body { margin: 0; font: 20px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .hero { background: #101010 url(dark.svg); color: #fff; padding: 16px; margin: 0 0 16px; }
+  .keep { forced-color-adjust: none; color: #fff; }
+  .over { position: relative; height: 80px; margin: 0 0 16px; }
+  .over img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .over p { position: relative; color: #fff; margin: 0; padding: 16px; }
+  .grad { background: linear-gradient(90deg, #c00, #00c); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+</style>
+</head>
+<body>
+<main>
+<h1>Text over pictures</h1>
+<div class="hero"><span id="t-keep" class="keep">Spring open house on May 4</span></div>
+<div class="hero"><p id="ok-hero" style="margin:0">Library hours change next week</p></div>
+<div class="over"><img src="dark.svg" alt=""><p id="ok-img">The board approved the budget</p></div>
+<p id="ok-grad" class="grad">Welcome back, students</p>
+</main>
+</body>
+</html>

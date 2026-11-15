@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Plan your visit</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button{font:inherit;padding:6px 12px}.mark{margin-left:.6rem;font-weight:bold}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}img{vertical-align:middle;margin-left:.4rem}</style></head><body><main><h1>Plan your visit</h1><p>Build a checklist of the pages you want to bring to the service counter. The list is kept in this browser only.</p>
+<!-- Sol review of batch 17, S4. Each press shows "✓ Included" beside the button in text hidden from assistive
+     technology AND tells the state some other way the accessibility tree has and a walk of text nodes does not:
+     an image's text alternative, a role="img" label, text in a shadow root. Never a hidden-state failure. -->
+<div class="row"><button id="alt" type="button" aria-pressed="false">Include the fee table in my visit checklist</button><span id="alt-mark" class="mark" aria-hidden="true"></span><img id="alt-icon" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%23176%22/%3E%3C/svg%3E" width="16" height="16" alt=""></div>
+<div class="row"><button id="label" type="button" aria-pressed="false">Include the office hours in my visit checklist</button><span id="label-mark" class="mark" aria-hidden="true"></span><span id="label-icon" role="img" aria-label="Not included">&#9675;</span></div>
+<div class="row"><button id="shadow" type="button" aria-pressed="false">Include the map in my visit checklist</button><span id="shadow-mark" class="mark" aria-hidden="true"></span><span id="shadow-host"></span></div>
+<!-- The failure, read the same way: nothing assistive technology is given changes. -->
+<div class="row"><button id="check" type="button" aria-pressed="false">Include this page in my visit checklist</button><span id="check-mark" class="mark" aria-hidden="true"></span></div>
+</main>
+<script>
+  function mark(id, text) { var m = document.getElementById(id); m.textContent = m.textContent ? '' : text; return !!m.textContent; }
+  var root = document.getElementById('shadow-host').attachShadow({ mode: 'open' });
+  root.innerHTML = '<span class="sr"></span>';
+  document.getElementById('alt').addEventListener('click', function () { var on = mark('alt-mark', '✓ Included'); document.getElementById('alt-icon').alt = on ? 'Included' : ''; });
+  document.getElementById('label').addEventListener('click', function () { var on = mark('label-mark', '✓ Included'); document.getElementById('label-icon').setAttribute('aria-label', on ? 'Included' : 'Not included'); });
+  document.getElementById('shadow').addEventListener('click', function () { var on = mark('shadow-mark', '✓ Included'); root.querySelector('span').textContent = on ? 'Included in your checklist' : ''; });
+  document.getElementById('check').addEventListener('click', function () { mark('check-mark', '✓ Included'); });
+</script>
+</body></html>

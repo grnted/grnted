@@ -1,0 +1,18 @@
+<!doctype html><html lang="en">
+<meta charset="utf-8"><title>External focus halo</title>
+<style>
+body{margin:0;min-height:100vh;background:white;color:#111;font:16px Arial}
+#copy,.face{position:absolute;left:80px;top:80px;width:120px;height:40px;
+  box-sizing:border-box}
+#copy:focus-visible{outline:4px solid #111;outline-offset:4px}
+.face{background:white;display:grid;place-items:center}
+#result{position:absolute;top:150px}
+</style>
+<button id="copy">Copy</button>
+<div class="face" aria-hidden="true">Copy</div>
+<p id="result"></p>
+<script>
+const button=document.getElementById('copy');
+button.onclick=()=>document.getElementById('result').textContent='Copied';
+document.querySelector('.face').onclick=()=>button.click();
+</script></html>

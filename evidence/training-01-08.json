@@ -1,0 +1,1222 @@
+{
+ "about": "Training sites 01-08: built to stress Granted, and Granted was tuned on them. A training score, not a fair comparison. Totals only.",
+ "sites": [
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08"
+ ],
+ "pages": 431,
+ "items": 1830,
+ "failItems": 1015,
+ "passItems": 815,
+ "debatable": 7,
+ "headToHead": {
+  "run": "2026-11-14-train-030",
+  "date": "2026-11-15",
+  "engine": "8408cb4f",
+  "settings": {
+   "viewport": "1280x900",
+   "pageCapSeconds": 240,
+   "pagesAtATimePerTool": 2,
+   "machines": {
+    "os": "Linux",
+    "cpus": 4,
+    "memoryGiB": 8,
+    "sameForEveryTool": true
+   },
+   "browser": {
+    "name": "Chromium from Playwright",
+    "build": "1228",
+    "sameForEveryTool": true
+   },
+   "network": "none beyond the local site server"
+  },
+  "tools": [
+   {
+    "tool": "granted",
+    "name": "Granted",
+    "version": "engine 8408cb4f",
+    "pagesScanned": "431/431",
+    "criteriaTested": 42,
+    "criteriaKeyed": 50,
+    "recallOverall": {
+     "pct": 71.6,
+     "k": 727,
+     "n": 1015,
+     "ci95": [
+      68.8,
+      74.3
+     ]
+    },
+    "recallTested": {
+     "pct": 75.1,
+     "k": 727,
+     "n": 968,
+     "ci95": [
+      72.3,
+      77.7
+     ]
+    },
+    "precision": {
+     "pct": 97.8,
+     "k": 727,
+     "n": 743,
+     "ci95": [
+      96.5,
+      98.7
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 2.8,
+     "k": 16,
+     "n": 577,
+     "ci95": [
+      1.7,
+      4.5
+     ]
+    },
+    "notTested": {
+     "fail": 47,
+     "pass": 238
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 86.9,
+      "k": 385,
+      "n": 443,
+      "ci95": [
+       83.4,
+       89.7
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 5.3,
+      "k": 16,
+      "n": 303,
+      "ci95": [
+       3.3,
+       8.4
+      ]
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 59.8,
+      "k": 342,
+      "n": 572,
+      "ci95": [
+       55.7,
+       63.7
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 274,
+      "ci95": [
+       0,
+       1.4
+      ]
+     }
+    },
+    "perCriterion": {
+     "1.4.3": {
+      "tp": 88,
+      "failN": 92,
+      "fp": 0,
+      "passTested": 43,
+      "tested": true
+     },
+     "1.4.11": {
+      "tp": 29,
+      "failN": 31,
+      "fp": 2,
+      "passTested": 28,
+      "tested": true
+     },
+     "1.4.1": {
+      "tp": 26,
+      "failN": 27,
+      "fp": 0,
+      "passTested": 9,
+      "tested": true
+     },
+     "1.1.1": {
+      "tp": 54,
+      "failN": 67,
+      "fp": 0,
+      "passTested": 33,
+      "tested": true
+     },
+     "3.1.2": {
+      "tp": 14,
+      "failN": 14,
+      "fp": 0,
+      "passTested": 6,
+      "tested": true
+     },
+     "3.2.2": {
+      "tp": 0,
+      "failN": 6,
+      "fp": 0,
+      "passTested": 1,
+      "tested": true
+     },
+     "1.4.5": {
+      "tp": 0,
+      "failN": 11,
+      "fp": 0,
+      "passTested": 0,
+      "tested": true
+     },
+     "1.3.1": {
+      "tp": 66,
+      "failN": 73,
+      "fp": 13,
+      "passTested": 52,
+      "tested": true
+     },
+     "2.4.11": {
+      "tp": 4,
+      "failN": 11,
+      "fp": 0,
+      "passTested": 8,
+      "tested": true
+     },
+     "2.4.7": {
+      "tp": 100,
+      "failN": 100,
+      "fp": 0,
+      "passTested": 10,
+      "tested": true
+     },
+     "2.1.2": {
+      "tp": 3,
+      "failN": 8,
+      "fp": 0,
+      "passTested": 3,
+      "tested": true
+     },
+     "2.4.6": {
+      "tp": 0,
+      "failN": 5,
+      "fp": 0,
+      "passTested": 10,
+      "tested": true
+     },
+     "2.1.1": {
+      "tp": 6,
+      "failN": 47,
+      "fp": 0,
+      "passTested": 19,
+      "tested": true
+     },
+     "4.1.2": {
+      "tp": 33,
+      "failN": 33,
+      "fp": 0,
+      "passTested": 12,
+      "tested": true
+     },
+     "3.2.1": {
+      "tp": 13,
+      "failN": 13,
+      "fp": 0,
+      "passTested": 0,
+      "tested": true
+     },
+     "3.3.2": {
+      "tp": 7,
+      "failN": 9,
+      "fp": 0,
+      "passTested": 14,
+      "tested": true
+     },
+     "3.3.4": {
+      "tp": 0,
+      "failN": 0,
+      "fp": 0,
+      "passTested": 1,
+      "tested": true
+     },
+     "3.3.1": {
+      "tp": 8,
+      "failN": 10,
+      "fp": 0,
+      "passTested": 5,
+      "tested": true
+     },
+     "1.4.10": {
+      "tp": 44,
+      "failN": 44,
+      "fp": 0,
+      "passTested": 24,
+      "tested": true
+     },
+     "1.4.4": {
+      "tp": 9,
+      "failN": 11,
+      "fp": 0,
+      "passTested": 5,
+      "tested": true
+     },
+     "4.1.3": {
+      "tp": 4,
+      "failN": 48,
+      "fp": 0,
+      "passTested": 34,
+      "tested": true
+     },
+     "2.2.2": {
+      "tp": 65,
+      "failN": 65,
+      "fp": 0,
+      "passTested": 37,
+      "tested": true
+     },
+     "2.4.1": {
+      "tp": 0,
+      "failN": 0,
+      "fp": 0,
+      "passTested": 10,
+      "tested": true
+     },
+     "1.4.12": {
+      "tp": 38,
+      "failN": 39,
+      "fp": 0,
+      "passTested": 12,
+      "tested": true
+     },
+     "3.3.7": {
+      "tp": 0,
+      "failN": 4,
+      "fp": 0,
+      "passTested": 2,
+      "tested": true
+     },
+     "2.5.8": {
+      "tp": 16,
+      "failN": 16,
+      "fp": 0,
+      "passTested": 21,
+      "tested": true
+     },
+     "2.5.7": {
+      "tp": 0,
+      "failN": 8,
+      "fp": 0,
+      "passTested": 0,
+      "tested": false
+     },
+     "2.5.3": {
+      "tp": 17,
+      "failN": 18,
+      "fp": 0,
+      "passTested": 2,
+      "tested": true
+     },
+     "1.2.1": {
+      "tp": 0,
+      "failN": 11,
+      "fp": 0,
+      "passTested": 9,
+      "tested": true
+     },
+     "2.1.4": {
+      "tp": 1,
+      "failN": 1,
+      "fp": 0,
+      "passTested": 0,
+      "tested": true
+     },
+     "2.4.4": {
+      "tp": 11,
+      "failN": 13,
+      "fp": 0,
+      "passTested": 10,
+      "tested": true
+     },
+     "1.4.13": {
+      "tp": 0,
+      "failN": 13,
+      "fp": 0,
+      "passTested": 0,
+      "tested": false
+     },
+     "2.4.2": {
+      "tp": 24,
+      "failN": 42,
+      "fp": 0,
+      "passTested": 42,
+      "tested": true
+     },
+     "3.2.3": {
+      "tp": 0,
+      "failN": 0,
+      "fp": 0,
+      "passTested": 0,
+      "tested": false
+     },
+     "2.4.3": {
+      "tp": 2,
+      "failN": 8,
+      "fp": 0,
+      "passTested": 13,
+      "tested": true
+     },
+     "1.3.5": {
+      "tp": 6,
+      "failN": 6,
+      "fp": 0,
+      "passTested": 5,
+      "tested": true
+     },
+     "2.2.1": {
+      "tp": 0,
+      "failN": 16,
+      "fp": 0,
+      "passTested": 6,
+      "tested": true
+     },
+     "1.3.2": {
+      "tp": 10,
+      "failN": 10,
+      "fp": 0,
+      "passTested": 6,
+      "tested": true
+     },
+     "1.2.2": {
+      "tp": 1,
+      "failN": 22,
+      "fp": 0,
+      "passTested": 19,
+      "tested": true
+     },
+     "1.2.5": {
+      "tp": 0,
+      "failN": 5,
+      "fp": 0,
+      "passTested": 30,
+      "tested": true
+     },
+     "3.1.1": {
+      "tp": 22,
+      "failN": 22,
+      "fp": 1,
+      "passTested": 29,
+      "tested": true
+     },
+     "1.2.3": {
+      "tp": 0,
+      "failN": 3,
+      "fp": 0,
+      "passTested": 3,
+      "tested": true
+     },
+     "2.4.5": {
+      "tp": 0,
+      "failN": 0,
+      "fp": 0,
+      "passTested": 0,
+      "tested": false
+     },
+     "1.3.4": {
+      "tp": 5,
+      "failN": 5,
+      "fp": 0,
+      "passTested": 2,
+      "tested": true
+     },
+     "1.3.3": {
+      "tp": 0,
+      "failN": 4,
+      "fp": 0,
+      "passTested": 0,
+      "tested": false
+     },
+     "3.3.3": {
+      "tp": 0,
+      "failN": 1,
+      "fp": 0,
+      "passTested": 0,
+      "tested": true
+     },
+     "3.3.8": {
+      "tp": 1,
+      "failN": 1,
+      "fp": 0,
+      "passTested": 2,
+      "tested": true
+     },
+     "2.3.1": {
+      "tp": 0,
+      "failN": 20,
+      "fp": 0,
+      "passTested": 0,
+      "tested": false
+     },
+     "2.5.2": {
+      "tp": 0,
+      "failN": 2,
+      "fp": 0,
+      "passTested": 0,
+      "tested": false
+     },
+     "3.2.6": {
+      "tp": 0,
+      "failN": 0,
+      "fp": 0,
+      "passTested": 0,
+      "tested": false
+     }
+    }
+   },
+   {
+    "tool": "axe",
+    "name": "axe-core",
+    "version": "4.14.0",
+    "pagesScanned": "431/431",
+    "criteriaTested": 21,
+    "criteriaKeyed": 50,
+    "recallOverall": {
+     "pct": 11.7,
+     "k": 119,
+     "n": 1015,
+     "ci95": [
+      9.9,
+      13.8
+     ]
+    },
+    "recallTested": {
+     "pct": 18.5,
+     "k": 119,
+     "n": 643,
+     "ci95": [
+      15.7,
+      21.7
+     ]
+    },
+    "precision": {
+     "pct": 96,
+     "k": 119,
+     "n": 124,
+     "ci95": [
+      90.9,
+      98.3
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 1.3,
+     "k": 5,
+     "n": 395,
+     "ci95": [
+      0.5,
+      2.9
+     ]
+    },
+    "notTested": {
+     "fail": 372,
+     "pass": 420
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 26.6,
+      "k": 118,
+      "n": 443,
+      "ci95": [
+       22.7,
+       30.9
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 1.9,
+      "k": 5,
+      "n": 261,
+      "ci95": [
+       0.8,
+       4.4
+      ]
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 0.2,
+      "k": 1,
+      "n": 572,
+      "ci95": [
+       0,
+       1
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 134,
+      "ci95": [
+       0,
+       2.8
+      ]
+     }
+    }
+   },
+   {
+    "tool": "pa11y-axe",
+    "name": "Pa11y (axe runner)",
+    "version": "10.0.0 (bundles axe-core 4.13.0)",
+    "pagesScanned": "431/431",
+    "criteriaTested": 20,
+    "criteriaKeyed": 50,
+    "recallOverall": {
+     "pct": 13,
+     "k": 132,
+     "n": 1015,
+     "ci95": [
+      11.1,
+      15.2
+     ]
+    },
+    "recallTested": {
+     "pct": 21.1,
+     "k": 132,
+     "n": 625,
+     "ci95": [
+      18.1,
+      24.5
+     ]
+    },
+    "precision": {
+     "pct": 79,
+     "k": 132,
+     "n": 167,
+     "ci95": [
+      72.3,
+      84.5
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 8.9,
+     "k": 35,
+     "n": 393,
+     "ci95": [
+      6.5,
+      12.1
+     ]
+    },
+    "notTested": {
+     "fail": 390,
+     "pass": 422
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 25.1,
+      "k": 111,
+      "n": 443,
+      "ci95": [
+       21.2,
+       29.3
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 12.4,
+      "k": 32,
+      "n": 259,
+      "ci95": [
+       8.9,
+       16.9
+      ]
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 3.7,
+      "k": 21,
+      "n": 572,
+      "ci95": [
+       2.4,
+       5.5
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 2.2,
+      "k": 3,
+      "n": 134,
+      "ci95": [
+       0.8,
+       6.4
+      ]
+     }
+    }
+   },
+   {
+    "tool": "lighthouse",
+    "name": "Lighthouse",
+    "version": "13.6.0",
+    "pagesScanned": "431/431",
+    "criteriaTested": 17,
+    "criteriaKeyed": 50,
+    "recallOverall": {
+     "pct": 14.9,
+     "k": 151,
+     "n": 1015,
+     "ci95": [
+      12.8,
+      17.2
+     ]
+    },
+    "recallTested": {
+     "pct": 31.4,
+     "k": 151,
+     "n": 481,
+     "ci95": [
+      27.4,
+      35.7
+     ]
+    },
+    "precision": {
+     "pct": 96.8,
+     "k": 151,
+     "n": 156,
+     "ci95": [
+      92.7,
+      98.6
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 1.6,
+     "k": 5,
+     "n": 318,
+     "ci95": [
+      0.7,
+      3.6
+     ]
+    },
+    "notTested": {
+     "fail": 534,
+     "pass": 497
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 31.4,
+      "k": 139,
+      "n": 443,
+      "ci95": [
+       27.2,
+       35.8
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 1.9,
+      "k": 5,
+      "n": 259,
+      "ci95": [
+       0.8,
+       4.4
+      ]
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 2.1,
+      "k": 12,
+      "n": 572,
+      "ci95": [
+       1.2,
+       3.6
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 59,
+      "ci95": [
+       0,
+       6.1
+      ]
+     }
+    }
+   },
+   {
+    "tool": "pa11y-htmlcs",
+    "name": "Pa11y (HTML_CodeSniffer runner)",
+    "version": "10.0.0 (HTML_CodeSniffer 2.6.0)",
+    "pagesScanned": "431/431",
+    "criteriaTested": 43,
+    "criteriaKeyed": 50,
+    "recallOverall": {
+     "pct": 10.9,
+     "k": 111,
+     "n": 1015,
+     "ci95": [
+      9.2,
+      13
+     ]
+    },
+    "recallTested": {
+     "pct": 11.4,
+     "k": 111,
+     "n": 972,
+     "ci95": [
+      9.6,
+      13.6
+     ]
+    },
+    "precision": {
+     "pct": 89.5,
+     "k": 111,
+     "n": 124,
+     "ci95": [
+      82.9,
+      93.8
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 1.8,
+     "k": 13,
+     "n": 729,
+     "ci95": [
+      1,
+      3
+     ]
+    },
+    "notTested": {
+     "fail": 43,
+     "pass": 86
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 25.1,
+      "k": 111,
+      "n": 443,
+      "ci95": [
+       21.2,
+       29.3
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 4.5,
+      "k": 13,
+      "n": 288,
+      "ci95": [
+       2.7,
+       7.6
+      ]
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 0,
+      "k": 0,
+      "n": 572,
+      "ci95": [
+       0,
+       0.7
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 441,
+      "ci95": [
+       0,
+       0.9
+      ]
+     }
+    }
+   },
+   {
+    "tool": "ibm",
+    "name": "IBM Equal Access",
+    "version": "accessibility-checker-engine 4.0.34",
+    "pagesScanned": "431/431",
+    "criteriaTested": 38,
+    "criteriaKeyed": 50,
+    "recallOverall": {
+     "pct": 20.2,
+     "k": 205,
+     "n": 1015,
+     "ci95": [
+      17.8,
+      22.8
+     ]
+    },
+    "recallTested": {
+     "pct": 22.1,
+     "k": 205,
+     "n": 927,
+     "ci95": [
+      19.6,
+      24.9
+     ]
+    },
+    "precision": {
+     "pct": 78.8,
+     "k": 205,
+     "n": 260,
+     "ci95": [
+      73.5,
+      83.4
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 10,
+     "k": 55,
+     "n": 551,
+     "ci95": [
+      7.7,
+      12.8
+     ]
+    },
+    "notTested": {
+     "fail": 88,
+     "pass": 264
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 43.6,
+      "k": 193,
+      "n": 443,
+      "ci95": [
+       39,
+       48.2
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 17.8,
+      "k": 54,
+      "n": 304,
+      "ci95": [
+       13.9,
+       22.5
+      ]
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 2.1,
+      "k": 12,
+      "n": 572,
+      "ci95": [
+       1.2,
+       3.6
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 0.4,
+      "k": 1,
+      "n": 247,
+      "ci95": [
+       0.1,
+       2.3
+      ]
+     }
+    }
+   },
+   {
+    "tool": "alfa",
+    "name": "Siteimprove Alfa",
+    "version": "alfa-rules 0.120.0 (alfa-playwright 0.84.3)",
+    "pagesScanned": "431/431",
+    "criteriaTested": 22,
+    "criteriaKeyed": 50,
+    "recallOverall": {
+     "pct": 13.5,
+     "k": 137,
+     "n": 1015,
+     "ci95": [
+      11.5,
+      15.7
+     ]
+    },
+    "recallTested": {
+     "pct": 20.1,
+     "k": 137,
+     "n": 682,
+     "ci95": [
+      17.3,
+      23.3
+     ]
+    },
+    "precision": {
+     "pct": 96.5,
+     "k": 137,
+     "n": 142,
+     "ci95": [
+      92,
+      98.5
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 1.3,
+     "k": 5,
+     "n": 379,
+     "ci95": [
+      0.6,
+      3.1
+     ]
+    },
+    "notTested": {
+     "fail": 333,
+     "pass": 436
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 28.2,
+      "k": 125,
+      "n": 443,
+      "ci95": [
+       24.2,
+       32.6
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 2,
+      "k": 5,
+      "n": 247,
+      "ci95": [
+       0.9,
+       4.7
+      ]
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 2.1,
+      "k": 12,
+      "n": 572,
+      "ci95": [
+       1.2,
+       3.6
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 0,
+      "k": 0,
+      "n": 132,
+      "ci95": [
+       0,
+       2.8
+      ]
+     }
+    }
+   },
+   {
+    "tool": "qualweb",
+    "name": "QualWeb",
+    "version": "core 0.9.5 (ACT rules 0.8.6, WCAG techniques 0.4.9)",
+    "pagesScanned": "431/431",
+    "criteriaTested": 28,
+    "criteriaKeyed": 50,
+    "recallOverall": {
+     "pct": 31,
+     "k": 315,
+     "n": 1015,
+     "ci95": [
+      28.3,
+      33.9
+     ]
+    },
+    "recallTested": {
+     "pct": 41.8,
+     "k": 315,
+     "n": 753,
+     "ci95": [
+      38.4,
+      45.4
+     ]
+    },
+    "precision": {
+     "pct": 87.3,
+     "k": 315,
+     "n": 361,
+     "ci95": [
+      83.4,
+      90.3
+     ]
+    },
+    "falseAlarmRate": {
+     "pct": 8.8,
+     "k": 46,
+     "n": 521,
+     "ci95": [
+      6.7,
+      11.6
+     ]
+    },
+    "notTested": {
+     "fail": 262,
+     "pass": 294
+    },
+    "failOnErrorPages": 0,
+    "static": {
+     "recallOverall": {
+      "pct": 35.2,
+      "k": 156,
+      "n": 443,
+      "ci95": [
+       30.9,
+       39.8
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 8.5,
+      "k": 20,
+      "n": 236,
+      "ci95": [
+       5.6,
+       12.7
+      ]
+     }
+    },
+    "interaction": {
+     "recallOverall": {
+      "pct": 27.8,
+      "k": 159,
+      "n": 572,
+      "ci95": [
+       24.3,
+       31.6
+      ]
+     },
+     "falseAlarmRate": {
+      "pct": 9.1,
+      "k": 26,
+      "n": 285,
+      "ci95": [
+       6.3,
+       13
+      ]
+     }
+    }
+   }
+  ]
+ },
+ "grantedReleases": {
+  "rule": "our test scorer (as in blind-71-72.json grantedOwnScorer); whole-site scans with the deep tests, AI off",
+  "0.3.0": {
+   "run": "2026-11-14-8408cb4f",
+   "date": "2026-11-14",
+   "engine": "8408cb4f",
+   "ai": "no AI",
+   "crawl": {
+    "tp": 868,
+    "miss": 147,
+    "falseAlarm": 2,
+    "correctPass": 613,
+    "recall": {
+     "pct": 85.5,
+     "k": 868,
+     "n": 1015,
+     "lb95": 83.2
+    },
+    "precision": {
+     "pct": 99.8,
+     "k": 868,
+     "n": 870,
+     "lb95": 99.2
+    },
+    "falseAlarmRate": {
+     "pct": 0.3,
+     "k": 2,
+     "n": 615,
+     "lb95": 0.1
+    },
+    "pagesReached": "426/431"
+   },
+   "seed": {
+    "tp": 876,
+    "miss": 139,
+    "falseAlarm": 2,
+    "correctPass": 613,
+    "recall": {
+     "pct": 86.3,
+     "k": 876,
+     "n": 1015,
+     "lb95": 84.1
+    },
+    "precision": {
+     "pct": 99.8,
+     "k": 876,
+     "n": 878,
+     "lb95": 99.2
+    },
+    "falseAlarmRate": {
+     "pct": 0.3,
+     "k": 2,
+     "n": 615,
+     "lb95": 0.1
+    },
+    "pagesReached": "431/431"
+   }
+  },
+  "0.2.1": {
+   "run": "2026-11-12-19041198",
+   "date": "2026-11-12",
+   "engine": "19041198",
+   "ai": "no AI",
+   "crawl": {
+    "tp": 690,
+    "miss": 325,
+    "falseAlarm": 3,
+    "correctPass": 612,
+    "recall": {
+     "pct": 68,
+     "k": 690,
+     "n": 1015,
+     "lb95": 65
+    },
+    "precision": {
+     "pct": 99.6,
+     "k": 690,
+     "n": 693,
+     "lb95": 98.7
+    },
+    "falseAlarmRate": {
+     "pct": 0.5,
+     "k": 3,
+     "n": 615,
+     "lb95": 0.2
+    },
+    "pagesReached": "426/431"
+   },
+   "seed": {
+    "tp": 706,
+    "miss": 309,
+    "falseAlarm": 3,
+    "correctPass": 612,
+    "recall": {
+     "pct": 69.6,
+     "k": 706,
+     "n": 1015,
+     "lb95": 66.7
+    },
+    "precision": {
+     "pct": 99.6,
+     "k": 706,
+     "n": 709,
+     "lb95": 98.8
+    },
+    "falseAlarmRate": {
+     "pct": 0.5,
+     "k": 3,
+     "n": 615,
+     "lb95": 0.2
+    },
+    "pagesReached": "431/431"
+   }
+  }
+ },
+ "generated": "2026-11-15"
+}

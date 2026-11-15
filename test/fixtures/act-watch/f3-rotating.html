@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Comment</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .bad { border: 2px solid #b00020; } .err { color: #a00000; } .toast { position: fixed; right: 12px; bottom: 12px; background: #223; color: #fff; padding: 8px 12px; } .hidden { display: none; }</style></head>
+<body>
+<main><h1>Comment</h1>
+<div class="notice"><p id="n1">Burn ban: residents must use approved fire pits.</p><p id="n2" class="hidden">Road closed, please use the detour.</p></div>
+<form id="c"><label for="who">Your name</label><input id="who" required>
+<label for="m">Comment</label><textarea id="m" required></textarea>
+<p><button type="submit">Send comment</button></p></form>
+</main>
+<p id="o1" class="toast" hidden>Sorry, the chat is offline. Please try again later.</p>
+<script>
+
+let k = 0; setInterval(() => { k++; document.getElementById('n1').classList.toggle('hidden', k % 2 === 1); document.getElementById('n2').classList.toggle('hidden', k % 2 === 0);
+  const o = document.getElementById('o1'); o.hidden = !o.hidden; }, 6000);
+setTimeout(() => { const o = document.getElementById('o1'); o.hidden = false; }, 2500);
+document.getElementById('c').addEventListener('submit', (e) => { e.preventDefault(); });
+</script>
+</body></html>

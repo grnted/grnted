@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account overview</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Account overview</h1>
+<p>Your recent activity.</p>
+<div id="warn" class="dlg" role="alertdialog" aria-labelledby="wt" hidden><p id="wt">You will be signed out in 2 minutes due to inactivity.</p><p><button type="button" id="out">Log out now</button></p></div>
+</main>
+<script>
+  setTimeout(function () { document.getElementById('warn').hidden = false; }, 18 * 60 * 1000);
+  setTimeout(function () { location.href = 'static.html'; }, 20 * 60 * 1000);
+  document.getElementById('out').addEventListener('click', function () { location.href = 'static.html'; });
+</script>
+</body>
+</html>

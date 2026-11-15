@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dragging movements: a list with a menu of actions elsewhere</title>
+<style>
+body{font:16px/1.5 sans-serif;margin:20px}
+.sortlist{list-style:none;padding:0;width:400px}
+.sortlist li{border:1px solid #333;margin:4px 0;padding:8px;background:#f8f8f8}
+</style>
+</head>
+<body>
+<!-- A menu button far from the list: its menu may hold the way to reorder. The test opens no menu, so it cannot tell. -->
+<div><button type="button" id="actions" aria-haspopup="menu" aria-expanded="false">Reorder stops</button></div>
+<main><h1>Plan your visit</h1>
+<p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p><p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p><p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p><p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p><p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p><p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p>
+<h2>Your stops</h2>
+<ol class="sortlist" id="stops">
+  <li draggable="true">Welcome table</li><li draggable="true">Leaf printing</li><li draggable="true">Ranger talk</li>
+</ol>
+<p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p>
+</main>
+<script>
+  var list = document.getElementById('stops');
+  var drag = null;
+  list.addEventListener('dragstart', function (e) { drag = e.target.closest('li'); });
+  list.addEventListener('dragover', function (e) { e.preventDefault(); });
+  list.addEventListener('drop', function (e) { e.preventDefault(); var t = e.target.closest('li'); if (drag && t && t !== drag) list.insertBefore(drag, t.nextElementSibling); drag = null; });
+</script>
+</body>
+</html>

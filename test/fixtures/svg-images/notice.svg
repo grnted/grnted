@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A notice drawn as an SVG: its words are the information. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400">
+  <rect width="300" height="400" fill="#fffbe6" stroke="#333" stroke-width="4"/>
+  <text x="150" y="70" font-family="Arial, sans-serif" font-size="30" font-weight="bold" text-anchor="middle" fill="#111">Closed</text>
+  <text x="150" y="140" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" fill="#111">Saturday, December 6</text>
+  <text x="150" y="190" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#111">Holds wait at the</text>
+  <text x="150" y="220" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#111">west entrance shelf</text>
+  <script>fetch('/svg-script-ran')</script>
+</svg>

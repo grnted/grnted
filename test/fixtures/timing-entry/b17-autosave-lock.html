@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Comment on the plan</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Comment on the plan</h1>
+<form action="/comment" method="get"><p><label>Your comment <input id="c" name="c"></label></p><p><button>Send comment</button></p></form>
+<p id="saved" role="status"></p>
+</main>
+<script>
+  // Ten seconds after the last key press the draft is saved: the field is read-only for a moment while it is.
+  var t, c = document.getElementById('c');
+  c.addEventListener('input', function () { clearTimeout(t); t = setTimeout(function () { c.readOnly = true; document.getElementById('saved').textContent = 'Saving your draft.'; setTimeout(function () { c.readOnly = false; document.getElementById('saved').textContent = 'Draft saved.'; }, 800); }, 10000); });
+</script>
+</body>
+</html>

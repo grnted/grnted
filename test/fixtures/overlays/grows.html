@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grows on scroll</title>
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; color: #111; background: #fff; }
+main { padding: 8px; }
+p { margin: 0 0 12px; }
+#panel[hidden] { display: none; }
+</style>
+</head>
+<body>
+<!-- Appends a story each time the page is scrolled near its end, and opens a panel when the menu
+     link gets focus: both last until the page is loaded again. -->
+<main><h1>News</h1><a id="menu" href="/menu">Menu</a><div id="panel" hidden><a href="/a">A</a></div>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age. Board meetings are held on the second Tuesday of each month.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age. Board meetings are held on the second Tuesday of each month.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age. Board meetings are held on the second Tuesday of each month.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age. Board meetings are held on the second Tuesday of each month.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age. Board meetings are held on the second Tuesday of each month.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age. Board meetings are held on the second Tuesday of each month.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age. Board meetings are held on the second Tuesday of each month.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age. Board meetings are held on the second Tuesday of each month.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age. Board meetings are held on the second Tuesday of each month.</p>
+<p>The district serves families across the valley with schools, buses, meals and programs for every age. Board meetings are held on the second Tuesday of each month.</p>
+</main>
+<script>
+addEventListener('scroll', function () {
+  if (scrollY + innerHeight >= document.documentElement.scrollHeight - 50) {
+    var m = document.createElement('p');
+    m.className = 'more';
+    m.textContent = 'More news.';
+    document.querySelector('main').appendChild(m);
+  }
+});
+document.getElementById('menu').addEventListener('focus', function () { document.getElementById('panel').hidden = false; });
+</script>
+</body>
+</html>

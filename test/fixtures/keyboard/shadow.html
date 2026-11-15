@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: shadow DOM</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Components</h1>
+  <p><a href="/light-1.html">Light link</a></p>
+  <site-card></site-card>
+  <p><a href="/light-2.html">Another light link</a></p>
+</main>
+<script>
+  customElements.define('site-card', class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' }).innerHTML =
+        '<style>a { color: #0645ad; } .ok:focus { outline: 3px solid #005fcc; } .bare:focus { outline: none; }</style>' +
+        '<p><a class="ok" href="/shadow-ok.html">Shadow link with outline</a></p>' +
+        // Planted failure (2.4.7) inside a shadow root.
+        '<p><a class="bare" id="shadow-bare" href="/shadow-bare.html">Shadow link without focus indicator</a></p>' +
+        // Planted failure (2.1.1) inside a shadow root: a mouse-only control.
+        '<div id="shadow-tile" style="cursor:pointer;padding:8px;background:#eef">Open the shadow gallery</div>';
+      this.shadowRoot.getElementById('shadow-tile').addEventListener('click', function () { this.textContent = 'Opened'; });
+    }
+  });
+</script>
+</body>
+</html>

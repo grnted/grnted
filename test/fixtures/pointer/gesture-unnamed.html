@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer gestures: arrows without names</title>
+<style>
+body{font:16px/1.5 sans-serif;margin:20px}
+.car{position:relative;width:600px;height:200px;overflow:hidden;border:1px solid #333}
+.track{display:flex;width:1800px;height:200px}
+.slide{width:600px;height:200px;flex:none;display:flex;align-items:center;justify-content:center;font-size:28px}
+.s1{background:#fde}.s2{background:#dfe}.s3{background:#def}
+.fade .slide{position:absolute;left:0;top:0;opacity:0}.fade .slide.on{opacity:1}
+.icon{width:32px;height:32px;padding:0;border:1px solid #333;background:#fff}
+</style>
+</head>
+<body><main><h1>Carousel with unnamed arrows</h1>
+<div class="car" id="car"><div class="track" id="t"><div class="slide s1">One</div><div class="slide s2">Two</div><div class="slide s3">Three</div></div></div>
+<p><button type="button" class="icon" id="l"><svg width="16" height="16" aria-hidden="true"><path d="M10 2 4 8l6 6"/></svg></button>
+<button type="button" class="icon" id="r"><svg width="16" height="16" aria-hidden="true"><path d="m6 2 6 6-6 6"/></svg></button></p>
+</main>
+<script>
+  var n = 0, t = document.getElementById('t'), go = function (k) { n = Math.max(0, Math.min(2, k)); t.style.transform = 'translateX(' + (-600 * n) + 'px)'; };
+  var sx = null, box = document.getElementById('car');
+  box.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+  box.addEventListener('pointerup', function (e) { if (sx === null) return; var dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 50) go(n + (dx < 0 ? 1 : -1)); });
+  document.getElementById('l').addEventListener('click', function () { go(n - 1); });
+  document.getElementById('r').addEventListener('click', function () { go(n + 1); });
+</script>
+</body>
+</html>

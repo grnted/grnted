@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: keyboard trap</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  #widget { border: 1px solid #333; padding: 8px; margin: 12px 0; display: inline-block; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Pick a date</h1>
+  <a href="/before.html">Before the widget</a>
+  <!-- Planted failure (2.1.2): Tab and Shift+Tab cycle between the two buttons; Esc does nothing. -->
+  <div id="widget" role="group" aria-label="Date picker">
+    <button type="button" id="prev">Previous month</button>
+    <button type="button" id="next">Next month</button>
+  </div>
+  <p><a href="/after-1.html">After the widget</a> and <a href="/after-2.html">another link</a>.</p>
+</main>
+<script>
+  var w = document.getElementById('widget');
+  w.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    var b = Array.prototype.slice.call(w.querySelectorAll('button'));
+    var i = b.indexOf(document.activeElement);
+    b[(i + (e.shiftKey ? b.length - 1 : 1)) % b.length].focus();
+  });
+</script>
+</body>
+</html>

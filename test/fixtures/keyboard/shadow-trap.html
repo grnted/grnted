@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: trap with every other control in a shadow root</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Pick a date</h1>
+  <!-- Planted failure (2.1.2): Tab cycles between the two buttons; all other controls are in a shadow root. -->
+  <div id="widget" role="group" aria-label="Date picker"><button type="button">Previous month</button> <button type="button">Next month</button></div>
+  <site-links></site-links>
+</main>
+<script>
+  customElements.define('site-links', class extends HTMLElement {
+    constructor() { super(); this.attachShadow({ mode: 'open' }).innerHTML = '<p><a href="/a.html">A</a> <a href="/b.html">B</a></p>'; }
+  });
+  var w = document.getElementById('widget');
+  w.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    var b = Array.prototype.slice.call(w.querySelectorAll('button'));
+    b[(b.indexOf(document.activeElement) + 1) % b.length].focus();
+  });
+</script>
+</body>
+</html>

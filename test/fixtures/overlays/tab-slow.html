@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A long list of links that is slow to focus</title>
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; color: #111; background: #fff; }
+main { padding: 8px; }
+</style>
+</head>
+<body>
+<main><h1>All pages</h1>
+<ul>
+  <li><a href="/p1">Page 1</a></li>
+  <li><a href="/p2">Page 2</a></li>
+  <li><a href="/p3">Page 3</a></li>
+  <li><a href="/p4">Page 4</a></li>
+  <li><a href="/p5">Page 5</a></li>
+  <li><a href="/p6">Page 6</a></li>
+  <li><a href="/p7">Page 7</a></li>
+  <li><a href="/p8">Page 8</a></li>
+  <li><a href="/p9">Page 9</a></li>
+  <li><a href="/p10">Page 10</a></li>
+  <li><a href="/p11">Page 11</a></li>
+  <li><a href="/p12">Page 12</a></li>
+  <li><a href="/p13">Page 13</a></li>
+  <li><a href="/p14">Page 14</a></li>
+  <li><a href="/p15">Page 15</a></li>
+  <li><a href="/p16">Page 16</a></li>
+  <li><a href="/p17">Page 17</a></li>
+  <li><a href="/p18">Page 18</a></li>
+  <li><a href="/p19">Page 19</a></li>
+  <li><a href="/p20">Page 20</a></li>
+  <li><a href="/p21">Page 21</a></li>
+  <li><a href="/p22">Page 22</a></li>
+  <li><a href="/p23">Page 23</a></li>
+  <li><a href="/p24">Page 24</a></li>
+  <li><a href="/p25">Page 25</a></li>
+  <li><a href="/p26">Page 26</a></li>
+  <li><a href="/p27">Page 27</a></li>
+  <li><a href="/p28">Page 28</a></li>
+  <li><a href="/p29">Page 29</a></li>
+  <li><a href="/p30">Page 30</a></li>
+  <li><a href="/p31">Page 31</a></li>
+  <li><a href="/p32">Page 32</a></li>
+  <li><a href="/p33">Page 33</a></li>
+  <li><a href="/p34">Page 34</a></li>
+  <li><a href="/p35">Page 35</a></li>
+  <li><a href="/p36">Page 36</a></li>
+  <li><a href="/p37">Page 37</a></li>
+  <li><a href="/p38">Page 38</a></li>
+  <li><a href="/p39">Page 39</a></li>
+  <li><a href="/p40">Page 40</a></li>
+  <li><a href="/p41">Page 41</a></li>
+  <li><a href="/p42">Page 42</a></li>
+  <li><a href="/p43">Page 43</a></li>
+  <li><a href="/p44">Page 44</a></li>
+  <li><a href="/p45">Page 45</a></li>
+  <li><a href="/p46">Page 46</a></li>
+  <li><a href="/p47">Page 47</a></li>
+  <li><a href="/p48">Page 48</a></li>
+  <li><a href="/p49">Page 49</a></li>
+  <li><a href="/p50">Page 50</a></li>
+  <li><a href="/p51">Page 51</a></li>
+  <li><a href="/p52">Page 52</a></li>
+  <li><a href="/p53">Page 53</a></li>
+  <li><a href="/p54">Page 54</a></li>
+  <li><a href="/p55">Page 55</a></li>
+  <li><a href="/p56">Page 56</a></li>
+  <li><a href="/p57">Page 57</a></li>
+  <li><a href="/p58">Page 58</a></li>
+  <li><a href="/p59">Page 59</a></li>
+  <li><a href="/p60">Page 60</a></li>
+</ul>
+</main>
+<script>
+  // Every focus change runs a heavy script (250 ms): tabbing through all of it takes far longer than usual.
+  addEventListener('focusin', () => { const until = performance.now() + 250; while (performance.now() < until) { /* busy */ } });
+</script>
+</body>
+</html>

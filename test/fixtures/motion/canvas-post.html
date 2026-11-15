@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Canvas animation and a headline the guard keeps from changing</title></head>
+<body><main>
+<h1>Particles</h1>
+<canvas id="c" width="500" height="200" aria-label="Decorative particles"></canvas>
+<div id="news" style="width: 500px; height: 120px; border: 1px solid #333"><p id="headline">First headline.</p></div>
+</main>
+<script>
+  var c = document.getElementById('c'), g = c.getContext('2d'), x = 0;
+  (function frame() {
+    x = (x + 4) % 500;
+    g.fillStyle = '#fff'; g.fillRect(0, 0, 500, 200);
+    g.fillStyle = '#036'; g.fillRect(x, 50, 80, 80);
+    requestAnimationFrame(frame);
+  })();
+  // The next headline comes from the server by POST: stopped by the guard.
+  setInterval(function () {
+    fetch('/api/headlines/next', { method: 'POST' }).then(function (r) { return r.text(); }).then(function (t) { document.getElementById('headline').textContent = t; });
+  }, 4000);
+</script>
+</body>
+</html>

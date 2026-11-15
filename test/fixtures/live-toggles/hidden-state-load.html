@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Plan your visit</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button{font:inherit;padding:6px 12px}.mark{margin-left:.6rem;font-weight:bold}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}img{vertical-align:middle;margin-left:.4rem}</style></head><body><main><h1>Plan your visit</h1><p>Build a checklist of the pages you want to bring to the service counter. The list is kept in this browser only.</p>
+<!-- Sol review of batch 17, S5. Each press shows "✓ Included" beside the button, hidden from assistive technology,
+     and loads a file whose load event writes aria-pressed: a picture, a style sheet. The test refuses every request
+     while it presses, so the button says "not pressed" here where a visitor's would not: undecided, never failed. -->
+<div class="row"><button id="img" type="button" aria-pressed="false">Include the fee table in my visit checklist</button><span id="img-mark" class="mark" aria-hidden="true"></span><span id="img-slot"></span></div>
+<div class="row"><button id="css" type="button" aria-pressed="false">Include the office hours in my visit checklist</button><span id="css-mark" class="mark" aria-hidden="true"></span></div>
+<!-- The failure beside them: nothing is loaded, nothing assistive technology is given changes. -->
+<div class="row"><button id="check" type="button" aria-pressed="false">Include this page in my visit checklist</button><span id="check-mark" class="mark" aria-hidden="true"></span></div>
+</main>
+<script>
+  var n = 0;
+  function mark(id, text) { var m = document.getElementById(id); m.textContent = m.textContent ? '' : text; return !!m.textContent; }
+  document.getElementById('img').addEventListener('click', function () {
+    var b = this, on = mark('img-mark', '✓ Included'), slot = document.getElementById('img-slot');
+    slot.textContent = '';
+    if (on) { var i = new Image(16, 16); i.alt = ''; i.onload = function () { b.setAttribute('aria-pressed', 'true'); }; i.src = '/icons/included.svg?n=' + (++n); slot.appendChild(i); } else b.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('css').addEventListener('click', function () {
+    var b = this, on = mark('css-mark', '✓ Included');
+    if (on) { var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = '/css/included.css?n=' + (++n); l.onload = function () { b.setAttribute('aria-pressed', 'true'); }; document.head.appendChild(l); } else b.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('check').addEventListener('click', function () { mark('check-mark', '✓ Included'); });
+</script>
+</body></html>

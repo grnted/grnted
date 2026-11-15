@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Account inquiry</title></head>
+<body><main><h1>Account inquiry</h1>
+<form onsubmit="event.preventDefault()">
+ <div>
+  <label for="account">Account number</label>
+  <input id="account" required aria-describedby="account-note">
+  <p id="account-note">Account number is required.</p>
+ </div>
+ <div>
+  <label for="phone">Phone number</label>
+  <input id="phone" type="tel" autocomplete="tel" required>
+ </div>
+ <button>Send inquiry</button>
+</form></main></body></html>

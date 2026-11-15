@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Hostile form (sends on every keystroke)</title></head>
+<body>
+<main>
+<h1>Quick quote</h1>
+<form id="quote" action="/quote" method="post" novalidate>
+  <p><label for="h-name">Name</label><br><input id="h-name" name="name" autocomplete="name"></p>
+  <p><label for="h-email">Email</label><br><input id="h-email" name="email" type="email" autocomplete="email"></p>
+  <p><label for="h-size">Size</label><br><select id="h-size" name="size"><option value="s">Small</option><option value="l">Large</option></select></p>
+  <p><label><input type="checkbox" name="rush" id="h-rush"> Rush order</label></p>
+  <button type="submit">Get a quote</button>
+</form>
+<iframe name="sink" title="Results" style="width:10px;height:10px"></iframe>
+</main>
+<script>
+  const form = document.getElementById('quote');
+  const qs = () => new URLSearchParams(new FormData(form)).toString();
+  // Every keystroke: an autosave POST, a suggestion GET with the value, and a tracking pixel.
+  form.addEventListener('input', () => {
+    fetch('/autosave', { method: 'POST', body: new FormData(form) }).catch(() => {});
+    fetch('/suggest?' + qs()).catch(() => {});
+    new Image().src = '/pixel.gif?' + qs();
+    const x = new XMLHttpRequest(); x.open('GET', '/xhr?' + qs()); x.send();
+  });
+  // A delayed autosave that fires after the test has moved on.
+  form.addEventListener('change', () => {
+    setTimeout(() => { fetch('/late?' + qs()).catch(() => {}); navigator.sendBeacon('/late-beacon', qs()); }, 400);
+    window.frames.sink.location = '/frame-load?' + qs();
+  });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    fetch('/quote', { method: 'POST', body: new FormData(form) }).catch(() => {});
+    const es = new EventSource('/events?' + qs());
+    setTimeout(() => es.close(), 100);
+  });
+</script>
+</body>
+</html>

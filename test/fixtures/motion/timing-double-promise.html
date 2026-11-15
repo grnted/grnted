@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Dashboard</title></head>
+<body><main>
+<h1>Dashboard</h1>
+<div id="app"><p>Loading…</p></div>
+</main>
+<script>
+  setTimeout(() => Promise.resolve().then(() => {
+    setTimeout(() => Promise.resolve().then(() => {
+      setTimeout(() => location.reload(), 60000);
+    }), 5000);
+  }), 4000);
+</script>
+</body>
+</html>

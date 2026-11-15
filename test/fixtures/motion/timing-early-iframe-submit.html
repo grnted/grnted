@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Quiz</title></head>
+<body><main id="main">
+<h1>Quiz</h1>
+<form id="quiz" action="quiz-result.html" target="results">
+  <label>Answer <input name="answer"></label>
+  <button>Send</button>
+</form>
+<iframe name="results" title="Results" src="about:blank"></iframe>
+</main>
+<script>
+  // A 15 s time limit (Sol 7): after a promise, the timer submits the quiz form into a named iframe.
+  setTimeout(async function () { await Promise.resolve(); document.getElementById('quiz').submit(); }, 15000);
+</script>
+</body>
+</html>

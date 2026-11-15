@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Text and a page that leaves</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .spacer { height: 1600px; }
+  .box { padding: 12px 16px; background: linear-gradient(90deg, #112233, #223344); }
+  .box p { margin: 0; color: #ffffff; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Further down</h1>
+  <div class="spacer"></div>
+  <div class="box" id="leave"><p id="t-leave">This section sends the page elsewhere when it scrolls into view.</p></div>
+</main>
+<script>
+  new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) location.href = '/text.html?from=navigate';
+  }).observe(document.getElementById('leave'));
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Text over a picture that loads when scrolled to</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .spacer { height: 1800px; }
+  /* Like a lazy-loading theme: the picture is set only once the box is in view, and the server takes
+     a while to send it. Until then the white text sits on the box's white placeholder. */
+  .hero { padding: 40px 24px; background: #ffffff; background-size: cover; }
+  .hero.in { background-image: url(/slow-dark.svg); }
+  p { margin: 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>News</h1>
+  <div class="spacer"></div>
+  <div class="hero" id="hero"><p id="t-lazy-hero" style="color:#ffffff">White text on a dark picture once it has loaded.</p></div>
+</main>
+<script>
+  new IntersectionObserver((entries, io) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.disconnect(); }
+  }).observe(document.getElementById('hero'));
+</script>
+</body>
+</html>

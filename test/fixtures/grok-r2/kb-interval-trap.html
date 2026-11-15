@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 2: an interval that takes focus back, with no focus or key listener</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<main><h1>Code</h1><p><a href="/help.html">Help</a></p>
+<!-- 2.1.2 failure: every 80 ms an interval puts focus back in the field; the page has no focus, blur or key listener. -->
+<p><label for="trap">Your code</label> <input id="trap" type="text" autocomplete="off"></p>
+<p><a href="/next.html">Next step</a> <a href="/other.html">Other</a></p></main>
+<script>var trap = document.getElementById('trap'); var armed = false; setInterval(function () { if (armed && document.activeElement !== trap) trap.focus(); if (document.activeElement === trap) armed = true; }, 80);</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Pay a fee (with confirmation)</title></head>
+<body>
+<main>
+<h1>Pay the field trip fee</h1>
+<form action="/fees" method="post">
+  <p><label for="pg-name">Name on card</label><br><input id="pg-name" name="ccname" autocomplete="cc-name" required></p>
+  <p><label for="pg-num">Card number</label><br><input id="pg-num" name="cardnumber" autocomplete="cc-number" inputmode="numeric" required></p>
+  <p><label><input type="checkbox" name="ok" required> I have checked the amount and my card details are correct</label></p>
+  <button type="submit">Pay now</button>
+</form>
+</main>
+</body>
+</html>

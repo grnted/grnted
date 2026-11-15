@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Board meetings (a counted list)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+.month { padding: 6px 12px; border: 1px solid #595959; }
+</style>
+</head>
+<body>
+<main>
+<h1>Board meetings (a counted list)</h1>
+<p>The board meets on the second Tuesday of these months.</p>
+<ul id="months" style="list-style:none;padding:0;display:flex;gap:8px"><li role="listitem" class="month">March</li><li class="month">April</li><li role="presentation" class="month">May</li></ul>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+window.dataLayer = []; document.getElementById('months').addEventListener('click', function (e) { window.dataLayer.push({ event: 'months_click' }); });
+</script>
+</body>
+</html>

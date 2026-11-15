@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Popup frame</title></head>
+<body>
+<button type="button" id="fopen">Open from the frame</button>
+<script>
+  document.getElementById('fopen').addEventListener('click', function () { window.open('/pop/frame'); });
+  if (location.search === '?xo') window.open('/pop/frame-xo');
+  if (location.search === '?obj') window.open('/pop/frame-obj');
+</script>
+</body>
+</html>

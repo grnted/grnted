@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: wide tooltips under small triggers</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; max-width: 40rem; }
+  .wrap { position: relative; display: inline-block; }
+  .tip { position: absolute; left: 0; top: 100%; width: 18rem; padding: 0.5rem; background: #1a1a1a; color: #fff; z-index: 2; }
+  .tip[hidden] { display: none; }
+  .gap .tip { top: calc(100% + 24px); }
+  .small { font-size: 0.875rem; }
+  .tip.wide { width: 24rem; }
+  a, button { font: inherit; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Wide tooltips</h1>
+  <!-- Hoverable: shown while the pointer is over the wrapper (trigger or tip), much wider than its small trigger:
+       a pointer that goes straight for the tip's middle leaves the trigger beside the tip, not over it. -->
+  <div class="wrap" id="fee-wrap"><a href="#fees" id="fee" class="small">Fee</a><div class="tip wide" id="fee-tip" role="tooltip" hidden>The fee is 25 dollars for residents and 40 dollars for visitors.</div></div>
+  <p>This paragraph sits under the first tooltip, which covers it while it is shown.</p>
+  <p>Spacer paragraph one.</p>
+  <p>Spacer paragraph two.</p>
+  <!-- Not hoverable: touches its trigger, but hides as soon as the pointer leaves the trigger. -->
+  <section><span class="wrap" id="hours-wrap"><a href="#hours" id="hours">Hours</a><span class="tip" id="hours-tip" role="tooltip" hidden>Open 8 am to 4 pm on school days, closed in August.</span></span></section>
+  <p>This paragraph sits under the second tooltip, which covers it while it is shown.</p>
+  <p>Spacer paragraph three.</p>
+  <p>Spacer paragraph four.</p>
+  <!-- Not hoverable: a 24 px gap between trigger and tip; it hides when the wrapper is left. -->
+  <aside><span class="wrap gap" id="map-wrap"><button type="button" id="map" class="map">Map</button><span class="tip" id="map-tip" role="tooltip" hidden>The office is on the second floor of the north building.</span></span></aside>
+  <p>This paragraph sits under the third tooltip, which covers it while it is shown.</p>
+  <p>Spacer paragraph five.</p>
+</main>
+<script>
+  (function () {
+    function bind(area, tip) {
+      area.addEventListener('mouseenter', function () { tip.hidden = false; });
+      area.addEventListener('mouseleave', function () { tip.hidden = true; });
+    }
+    bind(document.getElementById('fee-wrap'), document.getElementById('fee-tip'));
+    bind(document.getElementById('hours'), document.getElementById('hours-tip'));
+    bind(document.getElementById('map-wrap'), document.getElementById('map-tip'));
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      for (var t of document.querySelectorAll('.tip')) t.hidden = true;
+    });
+  })();
+</script>
+</body>
+</html>

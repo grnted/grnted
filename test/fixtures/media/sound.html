@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Videos with and without sound</title></head>
+<body>
+<main>
+  <h1>Library videos</h1>
+  <section>
+    <h2>Reading room tour</h2>
+    <!-- Clean (1.2.2): a video-only file (no sound track) needs no captions; 1.2.1 asks to describe what it shows. -->
+    <video id="v-silent" src="/room-tour.webm" controls width="320" height="180"></video>
+  </section>
+  <section>
+    <h2>Story time</h2>
+    <!-- Planted failure (1.2.2): the same kind of video with a sound track and no captions. -->
+    <video id="v-talk" src="/story-time.webm" controls width="320" height="180"></video>
+  </section>
+  <section>
+    <h2>Hours</h2>
+    <p>The library is open from 9 to 5 on weekdays and from 10 to 2 on Saturdays.</p>
+    <p>Prefer to watch? The video below gives the same information as the text above.</p>
+    <!-- Not decided (1.2.2): labelled as a media alternative for the text, which WCAG exempts when it says no more. -->
+    <video id="v-alt" src="/hours.webm" controls width="320" height="180"></video>
+  </section>
+  <section>
+    <h2>Archive</h2>
+    <!-- Not decided (1.2.2): hidden when scanned (it may be shown later), so listed, not failed. -->
+    <video id="v-hidden" src="/archive.webm" controls width="320" height="180" style="display: none"></video>
+  </section>
+  <section>
+    <h2>Welcome</h2>
+    <!-- Clean (1.4.2): a media fragment plays 2 s of it, then it pauses. -->
+    <video id="v-short" src="/welcome.webm#t=1,3" autoplay width="320" height="180"><track kind="captions" src="/clip.vtt" srclang="en" label="English"></video>
+    <!-- Planted failure (1.4.2): a fragment to its end (11 s) with sound, autoplaying, no controls. -->
+    <video id="v-long" src="/welcome-long.webm#t=1,12" autoplay width="320" height="180"><track kind="captions" src="/clip.vtt" srclang="en" label="English"></video>
+    <!-- Clean (1.4.2): autoplaying and looping, but the file has no sound track. -->
+    <video id="v-loop" src="/banner-loop.webm" autoplay loop width="320" height="180"></video>
+  </section>
+</main>
+</body>
+</html>

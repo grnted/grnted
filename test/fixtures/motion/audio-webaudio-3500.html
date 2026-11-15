@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Synth</title></head>
+<body><main>
+<h1>Synth</h1>
+<p>A tone made with Web Audio plays by itself for 3.5 s from when it starts (the browser holds it until it may play).</p>
+</main>
+<script>
+  var ctx = new AudioContext(), osc = ctx.createOscillator(), gain = ctx.createGain();
+  gain.gain.value = 0.2; osc.connect(gain); gain.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + 3.5);
+</script>
+</body>
+</html>

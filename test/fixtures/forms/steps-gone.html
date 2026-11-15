@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Allotment waiting list (two steps, the first one gone)</title></head>
+<body>
+<main>
+<h1>Allotment waiting list</h1>
+<!-- Step two asks to confirm the e-mail address, and the first step is taken out of the page: the first answer is
+     nowhere a person can get at it. -->
+<form id="plot" action="/plot" method="post">
+  <fieldset id="p1"><legend>Step 1: About you</legend>
+    <p><label for="p-name">Full name *</label><br><input id="p-name" name="p-name" autocomplete="name" required></p>
+    <p><label for="p-email">Email *</label><br><input id="p-email" name="email" type="email" autocomplete="email" required></p>
+    <button type="button" id="p-next">Next</button>
+  </fieldset>
+  <fieldset id="p2" hidden><legend>Step 2: Confirm</legend>
+    <p><label for="p-email2">Confirm email *</label><br><input id="p-email2" name="confirm-email" type="email" autocomplete="off" required></p>
+    <button type="submit">Join the list</button>
+  </fieldset>
+</form>
+</main>
+<script>
+  document.getElementById('p-next').addEventListener('click', () => {
+    const one = document.getElementById('p1');
+    if (![...one.querySelectorAll('input')].every((i) => i.checkValidity())) return;
+    one.remove();
+    document.getElementById('p2').hidden = false;
+    document.getElementById('p-email2').focus();
+  });
+</script>
+</body>
+</html>

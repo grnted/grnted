@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Report a problem</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Report a problem</h1>
+<form action="/report" method="get"><p><label>What is the problem? <input id="what" name="what"></label></p><p><img id="pic" alt="Six characters to copy" width="160" height="48" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='48'%3E%3Crect width='160' height='48' fill='%23eee'/%3E%3Ctext x='12' y='32' font-size='24'%3EK7 M2 QX%3C/text%3E%3C/svg%3E"></p><p><label>Type the characters shown above <input id="answer" name="captcha"></label> <button type="button" id="new">New picture</button></p><p><button>Send report</button></p></form>
+</main>
+<script>
+  // The picture is good for two minutes; then a new one takes its place and the old answer goes with it.
+  setTimeout(function () { document.getElementById('answer').value = ''; document.getElementById('pic').alt = 'Six new characters to copy'; }, 2 * 60 * 1000);
+</script>
+</body>
+</html>

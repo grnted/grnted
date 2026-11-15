@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Vendor portal: bids and proposals</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } </style></head>
+<body><main>
+<h1>Vendor registration</h1>
+<nav aria-label="Portal"><h2>Open bids</h2><h2>Property assessments</h2></nav>
+<p id="msg" role="status"></p>
+<form action="/register" method="get"><label>Company name <input name="company"></label> <button>Register</button></form>
+</main>
+<script>
+  // A sign-in time limit on a registration form: "bids" and "assessments" in its menu name no timed activity.
+  setTimeout(function () { document.getElementById('msg').textContent = 'Your session will expire in 2 minutes.'; }, 18 * 60 * 1000);
+  setTimeout(function () { location.href = 'static.html'; }, 20 * 60 * 1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text shown only on phones</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px; }
+  .banner { display: none; padding: 12px; background: linear-gradient(90deg, #dddddd, #cccccc); }
+  .banner p { margin: 0; color: #ffffff; }
+  @media (max-width: 600px) { .banner { display: block; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Phone banner</h1>
+  <div class="banner"><p id="m-only">This banner only appears on narrow screens, in white on light grey.</p></div>
+  <p>Regular text.</p>
+</main>
+</body>
+</html>

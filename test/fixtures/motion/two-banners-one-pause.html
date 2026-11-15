@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Two sliding banners and one Pause button for both</title>
+<style>
+@keyframes slide { from { transform: translateX(0); } to { transform: translateX(200px); } }
+.banner { width: 300px; height: 60px; background: #0b4fb3; color: #fff; padding: 8px; animation: slide 4s linear infinite alternate; }
+.paused .banner { animation-play-state: paused; }
+#b2 { width: 260px; }
+</style></head>
+<body><main id="m"><h1>News</h1><p class="banner" id="b1">Spring show on May 9.</p><p class="banner" id="b2">Book fair on May 4th.</p>
+<p><button type="button" id="pause-all">Pause</button></p></main>
+<script>document.getElementById('pause-all').addEventListener('click', function () { document.getElementById('m').classList.add('paused'); });</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Office location (an icon in a counted block)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Office location (an icon in a counted block)</h1>
+<p>The district office is in the Civic Center.</p>
+<div id="where" style="display:inline-flex;gap:6px;align-items:center"><svg id="map-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" style="cursor:pointer" focusable="false"><path d="M10 1a6 6 0 0 0-6 6c0 5 6 12 6 12s6-7 6-12a6 6 0 0 0-6-6z" fill="#0b4fb3"/></svg><span>Civic Center, 555 Main Street, room 210</span></div>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+window.dataLayer = []; document.getElementById('where').addEventListener('click', function () { window.dataLayer.push({ event: 'where_click' }); });
+</script>
+</body>
+</html>

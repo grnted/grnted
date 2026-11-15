@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Winter service (with a frame)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Winter service (with a frame)</h1>
+<p id="note-a">Routes 12 and 24 run every 20 minutes on weekdays.</p>
+<h2 id="note-b">Weekend service is unchanged</h2>
+<iframe id="board" src="frame-candidates-inner.html" title="Service notes" width="600" height="360"></iframe>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+window.dataLayer = [];
+['note-a', 'note-b'].forEach(function (id) { document.getElementById(id).addEventListener('click', function () { window.dataLayer.push({ event: id }); }); });
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Night market</title>
+<style>body { font: 18px sans-serif; margin: 0; padding: 16px; } #sign { width: 720px; height: 200px; background: #fff; border: 1px solid #333; margin: 16px 0; } .gap { height: 1400px; } #sign.go { animation: rise 1.2s ease-out 1 both; } @keyframes rise { from { transform: translateY(30px); background: #dde6ee; } to { transform: none; background: #123; } }</style></head>
+<body><main>
+<h1>Night market</h1>
+<p>The night market opens on the square at six.</p>
+<!-- Passes (2.3.1): below the first screen, the sign slides in once as the page arrives. -->
+<div class="gap"></div>
+<div id="sign"></div>
+<p>Stalls sell hot food, lanterns and winter clothes. Bring cash for the smaller stalls.</p>
+</main>
+<script>requestAnimationFrame(function () { document.getElementById('sign').classList.add('go'); });</script>
+</body>
+</html>

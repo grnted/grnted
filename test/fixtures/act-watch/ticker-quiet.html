@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Board comments</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .invalid { border: 2px solid #b00020; } .toast { position: fixed; bottom: 12px; right: 12px; background: #223; color: #fff; padding: 8px 12px; }</style></head>
+<body>
+<header><nav aria-label="Main"><a href="/">Home</a> <a href="/services">Services</a></nav></header>
+<main>
+<h1>Board comments</h1>
+<p>Leave a comment for the board.</p>
+<form id="comment">
+  <label for="who">Your name</label><input id="who" name="who">
+  <label for="what">Comment</label><textarea id="what" name="what"></textarea>
+  <button type="submit">Send comment</button>
+</form>
+</main>
+<footer><p>City offices, 1 Civic Walk</p></footer>
+<div class="portal"><p id="news" class="toast">Library hours updated</p></div>
+<script>
+  const lines = ['Library hours updated', '3 results found for park closures', 'Pool schedule saved for winter', 'Trail work completed early'];
+  let n = 0;
+  setInterval(() => { n = (n + 1) % lines.length; document.getElementById('news').textContent = lines[n]; }, 1200);
+  document.getElementById('comment').addEventListener('submit', (e) => { e.preventDefault(); });
+</script>
+</body></html>

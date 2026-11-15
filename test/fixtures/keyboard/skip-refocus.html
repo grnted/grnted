@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: skip link that refuses focus the second time</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<!-- Not testable (2.4.1): the skip link takes focus once, then blurs itself, so it cannot be activated. -->
+<a id="skip" href="#main">Skip to main content</a>
+<nav aria-label="Site"><a href="/a.html">A</a> <a href="/b.html">B</a></nav>
+<main id="main"><h1>Article</h1><p>Text with <a href="/d.html">a link</a>.</p></main>
+<script>
+  var n = 0;
+  document.getElementById('skip').addEventListener('focus', function () { if (++n > 1) this.blur(); });
+</script>
+</body>
+</html>

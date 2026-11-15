@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Budget table tools</title>
+<style>body { font: 16px/1.5 Arial, sans-serif; margin: 24px; } button { font: inherit; padding: 6px 12px; }</style></head>
+<body>
+<main>
+<h1>Budget table tools</h1>
+<!-- Toggle buttons whose handlers also save a file the page makes itself: nothing the network guard can see. -->
+<p><button id="export" type="button" aria-pressed="false">Export view</button>
+<button id="keep" type="button" aria-pressed="false">Keep a copy</button></p>
+<p id="state">Nothing exported yet.</p>
+</main>
+<script>
+  var made = 0;
+  function file() { made++; return URL.createObjectURL(new Blob(['year,amount\n2026,1200\n'], { type: 'text/csv' })); }
+  // A link made for the download and clicked by the script, never added to the page.
+  document.getElementById('export').addEventListener('click', function () {
+    var a = document.createElement('a');
+    a.href = file(); a.download = 'budget.csv';
+    a.click();
+    this.setAttribute('aria-pressed', this.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+    document.getElementById('state').textContent = 'Export asked for ' + made + ' time(s).';
+  });
+  // The same with the link in the page and a synthetic click event.
+  document.getElementById('keep').addEventListener('click', function () {
+    var a = document.createElement('a');
+    a.href = file(); a.setAttribute('download', 'copy.csv'); a.hidden = true;
+    document.body.appendChild(a);
+    a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    this.setAttribute('aria-pressed', this.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+  });
+</script>
+</body></html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probe evidence fixture: reflow</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; }
+  /* Planted failure (1.4.10): a container 1000 px wide. */
+  #fixed-box { box-sizing: border-box; width: 1000px; border: 1px solid #767676; padding: 0.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Reflow</h1>
+  <p>The box below has a fixed width.</p>
+  <div id="fixed-box">This container is one thousand pixels wide, so on a narrow screen its text runs off to the right and has to be scrolled sideways to read.</div>
+  <p>Text after the box wraps normally. It is long enough to make the page taller than the narrow window, so the window can scroll down to it.</p>
+  <p>More text to make the page scroll. More text to make the page scroll. More text to make the page scroll.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: planted failures</title>
+<style>body{font:16px/1.5 sans-serif;margin:20px} .pressed{outline:2px solid #036} .ripple{display:inline-block;width:6px;height:6px;background:#036;border-radius:50%}</style>
+</head>
+<body>
+<main>
+<h1>Pointer cancellation fixture</h1>
+<p><a id="down-nav" href="/about.html">About the school</a></p>
+<p><button id="down-go" type="button">Go to the about page</button></p>
+<p><span id="touch-act" role="button" tabindex="0">Show the campus map</span></p>
+<div id="map-note" hidden>Map of the campus with every building.</div>
+<p><button id="down-toggle" type="button">Show details</button></p>
+<div id="details" hidden>Opening hours are 8 am to 4 pm.</div>
+<p><button id="safe-click" type="button">Load more news</button></p>
+<div id="more" hidden>More news items appear here.</div>
+</main>
+<script>
+  var $ = function (id) { return document.getElementById(id); };
+  // Planted: acts on the down event, nothing on release can undo it.
+  $('down-toggle').addEventListener('mousedown', function () { $('details').hidden = !$('details').hidden; });
+  $('down-nav').addEventListener('mousedown', function () { location.href = this.href; });
+  $('down-go').addEventListener('mousedown', function () { location.href = '/about.html'; });
+  $('touch-act').addEventListener('touchstart', function () { $('map-note').hidden = false; });
+  // Clean: feedback on the down event (a ripple and a class), the action on click.
+  $('safe-click').addEventListener('pointerdown', function () { this.classList.add('pressed'); var r = document.createElement('span'); r.className = 'ripple'; this.appendChild(r); });
+  $('safe-click').addEventListener('click', function () { $('more').hidden = false; });
+</script>
+</body>
+</html>

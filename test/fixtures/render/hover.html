@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: hover content failures</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; max-width: 40rem; }
+  .tip { position: absolute; width: 16rem; padding: 0.5rem; background: #1a1a1a; color: #fff; z-index: 2; }
+  .tip[hidden] { display: none; }
+  .wrap { position: relative; display: inline-block; }
+  .wrap .tip { top: 100%; left: 0; }
+  button { font: inherit; padding: 0.5rem 1rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Hover content</h1>
+  <p><button type="button" id="info-btn">More information</button></p>
+  <div class="tip" id="info-tip" hidden>Office hours are 8 am to 4 pm on school days.</div>
+  <p>This paragraph sits under the first tooltip, which covers it while it is shown. The tooltip has no Escape key handler and it is not inside its trigger, so it disappears when the pointer moves onto it.</p>
+  <p><span class="wrap" id="bus-wrap"><button type="button" id="bus-btn">Bus routes</button><span class="tip" id="bus-tip" hidden>Routes change on early release days.</span></span></p>
+  <p>The second tooltip hides itself after one and a half seconds, before anyone could read it.</p>
+</main>
+<script>
+  (function () {
+    var btn = document.getElementById('info-btn');
+    var tip = document.getElementById('info-tip');
+    btn.addEventListener('mouseenter', function () {
+      var r = btn.getBoundingClientRect();
+      tip.style.left = (r.left + window.scrollX) + 'px';
+      tip.style.top = (r.bottom + window.scrollY + 12) + 'px';
+      tip.hidden = false;
+    });
+    btn.addEventListener('mouseleave', function () { tip.hidden = true; });
+
+    var wrap = document.getElementById('bus-wrap');
+    var bus = document.getElementById('bus-tip');
+    var timer;
+    wrap.addEventListener('mouseenter', function () {
+      bus.hidden = false;
+      clearTimeout(timer);
+      timer = setTimeout(function () { bus.hidden = true; }, 1500);
+    });
+    wrap.addEventListener('mouseleave', function () { bus.hidden = true; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') bus.hidden = true; });
+  })();
+</script>
+</body>
+</html>

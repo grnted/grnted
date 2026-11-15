@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Application (next step from the server)</title></head>
+<body>
+<main>
+<h1>Apply for a permit</h1>
+<form id="permit" action="/permit" method="post" novalidate>
+  <div id="s1">
+    <p><label for="ps-name">Full name</label><br><input id="ps-name" name="name" autocomplete="name"></p>
+    <button type="button" id="next">Next</button>
+  </div>
+  <div id="s2" hidden>
+    <p><label for="ps-addr">Address</label><br><input id="ps-addr" name="address" autocomplete="street-address"></p>
+    <button type="submit">Apply</button>
+  </div>
+</form>
+</main>
+<script>
+  document.getElementById('next').addEventListener('click', async () => {
+    const form = document.getElementById('permit');
+    // The server decides what the next step asks (sends what was typed).
+    const r = await fetch('/permit/step2?name=' + encodeURIComponent(form.name.value));
+    if (r.ok) { document.getElementById('s1').hidden = true; document.getElementById('s2').hidden = false; }
+  });
+  document.getElementById('permit').addEventListener('submit', (e) => {
+    e.preventDefault();
+    navigator.sendBeacon('/permit/apply', new FormData(e.target));
+  });
+</script>
+</body>
+</html>

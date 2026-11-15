@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Gestures: a slider that loads its styles on the first drag</title>
+<style>
+body{font:16px/1.5 sans-serif;margin:20px}
+.slider{position:relative;width:300px;height:12px;background:#ccc;margin:20px 0}
+.thumb{position:absolute;top:-6px;width:24px;height:24px;background:#036;border-radius:50%}
+</style>
+</head>
+<body><main><h1>Brightness</h1>
+<div><div class="slider" id="track"><div class="thumb" id="thumb" role="slider" tabindex="0" aria-label="Brightness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="left:138px"></div></div>
+<button type="button" id="dec">Decrease</button> <button type="button" id="inc">Increase</button></div>
+</main>
+<script>
+  var $ = function (id) { return document.getElementById(id); };
+  var thumb = $('thumb'), track = $('track'), on = false, loaded = false;
+  var set = function (v) { v = Math.max(0, Math.min(100, v)); thumb.style.left = (v * 2.76) + 'px'; thumb.setAttribute('aria-valuenow', v); };
+  // The first press loads a reCAPTCHA stylesheet and a web font from Google's static servers (as on
+  // perrydaleschool.com). Tests map every host to this machine; the gesture test blocks them anyway.
+  thumb.addEventListener('pointerdown', function () {
+    on = true;
+    if (loaded) return;
+    loaded = true;
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'https://www.gstatic.com/recaptcha/releases/abc/styles__ltr.css'; document.head.appendChild(l);
+    var f = new FontFace('Roboto', 'url(https://fonts.gstatic.com/s/roboto/v30/roboto.woff2)'); f.load().catch(function () {});
+  });
+  document.addEventListener('pointermove', function (e) { if (on) { var r = track.getBoundingClientRect(); set(Math.round((e.clientX - r.left) / r.width * 100)); } });
+  document.addEventListener('pointerup', function () { on = false; });
+  $('dec').addEventListener('click', function () { set(+thumb.getAttribute('aria-valuenow') - 10); });
+  $('inc').addEventListener('click', function () { set(+thumb.getAttribute('aria-valuenow') + 10); });
+</script>
+</body>
+</html>

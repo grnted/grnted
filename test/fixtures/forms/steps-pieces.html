@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Orchard share (two steps, the first answer shown in pieces)</title></head>
+<body>
+<main>
+<h1>Orchard share</h1>
+<!-- Step two asks to confirm the e-mail address. The first step is taken out of the page, and the address given
+     there is shown beside the field, its name and its domain in two elements with the "@" between them
+     (review round 2, finding 1): it is on the page, to read, select and copy. Only the send button is left. -->
+<form id="orchard" action="/orchard" method="post">
+  <fieldset id="p1"><legend>Step 1: About you</legend>
+    <p><label for="p-name">Full name *</label><br><input id="p-name" name="p-name" autocomplete="name" required></p>
+    <p><label for="p-email">Email *</label><br><input id="p-email" name="email" type="email" autocomplete="email" required></p>
+    <button type="button" id="p-next">Next</button>
+  </fieldset>
+  <fieldset id="p2" hidden><legend>Step 2: Confirm</legend>
+    <p id="given">You gave us: <span id="g-name"></span>@<span id="g-host"></span></p>
+    <p><label for="p-email2">Confirm email *</label><br><input id="p-email2" name="confirm-email" type="email" autocomplete="off" required></p>
+    <button type="submit">Join the list</button>
+  </fieldset>
+</form>
+</main>
+<script>
+  document.getElementById('p-next').addEventListener('click', () => {
+    const one = document.getElementById('p1');
+    if (![...one.querySelectorAll('input')].every((i) => i.checkValidity())) return;
+    const parts = document.getElementById('p-email').value.split('@');
+    document.getElementById('g-name').textContent = parts[0] || '';
+    document.getElementById('g-host').textContent = parts.slice(1).join('@');
+    one.remove();
+    document.getElementById('p2').hidden = false;
+    document.getElementById('p-email2').focus();
+  });
+</script>
+</body>
+</html>

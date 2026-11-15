@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Night market</title>
+<style>body { font: 18px sans-serif; margin: 0; padding: 16px; } #sign { width: 720px; height: 200px; background: #fff; border: 1px solid #333; margin: 16px 0; } #sign.go { animation: strobe .25s steps(1, end) 8 both; } @keyframes strobe { 0% { background: #000; } 50% { background: #fff; } 100% { background: #fff; } } .gap { height: 2600px; }</style></head>
+<body><main>
+<h1>Night market</h1>
+<p>The night market opens on the square at six.</p>
+<!-- Planted failure (2.3.1): far down the page, the sign flashes four times a second for two seconds when half of it has come into view. -->
+<p>Stalls sell hot food, lanterns and winter clothes. Bring cash for the smaller stalls.</p><div class="gap"></div><div id="sign"></div><p>Stalls sell hot food, lanterns and winter clothes. Bring cash for the smaller stalls.</p>
+</main>
+<script>new IntersectionObserver(function (entries, io) { if (entries.some(function (e) { return e.isIntersecting; })) { document.getElementById('sign').classList.add('go'); io.disconnect(); } }, { threshold: 0.5 }).observe(document.getElementById('sign'));</script>
+</body>
+</html>

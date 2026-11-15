@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Lighthouse open day</title>
+<style>body { font: 18px sans-serif; margin: 0; padding: 16px; } .lamp { width: 720px; height: 240px; background: #fff; border: 1px solid #333; margin: 16px 0; } .lamp.on { animation: blink .25s steps(1, end) infinite; } @keyframes blink { 0% { background: #000; } 50% { background: #fff; } 100% { background: #fff; } } </style></head>
+<body><main>
+<h1>Lighthouse open day</h1>
+<p>The lighthouse on the point is open to visitors on the first Sunday of each month.</p>
+<!-- Planted failure (2.3.1): the lamp blinks four times a second from 10 s, and is stopped only 2.5 s later. -->
+<div id="lamp" class="lamp"></div><p>The climb is 112 steps. The keeper shows the lamp room at eleven and at two.</p>
+</main>
+<script>var lamp = document.getElementById('lamp'); setTimeout(function () { lamp.classList.add('on'); }, 10000); setTimeout(function () { lamp.classList.remove('on'); }, 12500);</script>
+</body>
+</html>

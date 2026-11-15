@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: single-key shortcut</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } #search { border: 2px solid #333; padding: 8px; margin: 12px 0; }</style>
+</head>
+<body>
+<main>
+  <h1>Shortcuts</h1>
+  <p><a href="/help.html">Help</a></p>
+  <!-- Planted failure (2.1.4): pressing "s" anywhere opens the search box, with no way to turn it off. -->
+  <div id="slot"></div>
+</main>
+<script>
+  document.addEventListener('keydown', function (e) {
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+    if (e.key !== 's' || document.getElementById('search')) return;
+    var box = document.createElement('div');
+    box.id = 'search';
+    box.innerHTML = '<label for="q">Search</label> <input id="q" type="search">';
+    document.getElementById('slot').appendChild(box);
+    document.getElementById('q').focus();
+    e.preventDefault();
+  });
+</script>
+</body>
+</html>

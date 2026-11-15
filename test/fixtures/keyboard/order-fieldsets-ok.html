@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: tabindex in the order of the form</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  fieldset { margin: 12px 0; }
+  label, input, button { display: block; margin: 4px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Register</h1>
+  <form id="reg">
+    <p>Fill in the three parts from top to bottom.</p>
+    <fieldset><legend>1. Your home</legend><label for="name">Full name</label><input id="name" tabindex="1"><label for="street">Street</label><input id="street" tabindex="2"></fieldset>
+    <fieldset><legend>2. Delivery address</legend><label for="mail">Delivery address, when it differs</label><input id="mail" tabindex="3"></fieldset>
+    <fieldset><legend>3. Check</legend><button type="button" id="review" tabindex="4">Review my details</button></fieldset>
+  </form>
+  <p><a href="/help.html">Help with this form</a></p>
+</main>
+</body>
+</html>

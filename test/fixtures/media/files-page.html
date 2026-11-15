@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Players and labels</title><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body>
+<main>
+<h1>Players and labels</h1>
+<section><h2>Lobby camera</h2>
+<video id="nosound" controls preload="metadata" width="640" height="360" src="/files/no-sound.webm"></video>
+</section>
+<section><h2>The page's own player</h2>
+<div class="player"><video id="custom" preload="metadata" width="640" height="360" src="/files/speech-plain.webm?custom"></video><div class="bar"><button type="button" aria-label="Play">▶</button></div></div>
+</section>
+<section><h2>Meeting rules</h2>
+<p>The council meets on the first Tuesday of each month. Agendas are posted three days before each meeting. Public comment begins at six thirty in the evening.</p>
+<video id="alternative" controls preload="metadata" aria-label="Video version of the meeting rules above" width="640" height="360" src="/files/speech-plain.webm?alternative"></video>
+</section>
+<section><h2>Synced text</h2>
+<div class="player"><video id="area" controls preload="metadata" width="640" height="360" src="/files/speech-plain.webm?area"></video><div class="video-captions" aria-live="polite"></div></div>
+</section>
+<section><h2>Timed transcript</h2>
+<video id="timed" controls preload="metadata" width="640" height="360" src="/files/speech-plain.webm?timed"></video>
+<ol class="lines"><li data-start="0.3">The council meets on the first Tuesday of each month.</li><li data-start="3.7">Agendas are posted three days before each meeting.</li><li data-start="7.0">Public comment begins at six thirty in the evening.</li></ol>
+</section>
+<section><h2>From the media library</h2>
+<iframe src="/files-frame.html" title="Media library player" width="680" height="420"></iframe>
+</section>
+<section><h2>With a captions button</h2>
+<div class="player"><video id="button" controls preload="metadata" width="640" height="360" src="/files/speech-plain.webm?button"></video><div class="bar"><button type="button">Show captions</button></div></div>
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a text field that will not let go of focus</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Search</h1>
+  <!-- Not testable (2.1.4): the field takes focus back whenever it loses it, so single keys would be typed into it. -->
+  <p><label for="q">Search</label> <input id="q" type="search" autofocus></p>
+</main>
+<script>
+  var q = document.getElementById('q');
+  q.addEventListener('blur', function () { setTimeout(function () { q.focus(); }, 0); q.focus(); });
+  document.addEventListener('keydown', function () {});
+  q.addEventListener('input', function () { new Image().src = '/typed?q=' + encodeURIComponent(q.value); });
+</script>
+</body>
+</html>

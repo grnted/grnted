@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: reflow failure</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; }
+  #fixed-box { box-sizing: border-box; width: 1000px; border: 1px solid #767676; padding: 0.5rem; }
+  table { border-collapse: collapse; width: 900px; margin: 1rem 0; }
+  th, td { border: 1px solid #767676; padding: 0.25rem 0.5rem; text-align: left; }
+  pre { background: #f4f4f4; padding: 0.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Reflow</h1>
+  <p>The box below has a fixed width.</p>
+  <div id="fixed-box">This container is one thousand pixels wide, so on a narrow screen its text runs off to the right and has to be scrolled sideways to read.</div>
+  <table id="data">
+    <caption>Lunch menu (a data table may scroll)</caption>
+    <thead><tr><th scope="col">Day</th><th scope="col">Main</th><th scope="col">Side</th><th scope="col">Dessert</th><th scope="col">Drink</th></tr></thead>
+    <tbody><tr><td>Monday</td><td>Vegetable lasagna with garden salad</td><td>Steamed green beans</td><td>Fresh fruit cup</td><td>Milk or water</td></tr></tbody>
+  </table>
+  <pre><code>const longLine = 'Code blocks are an exception to reflow, so this long line may scroll sideways on a narrow screen';</code></pre>
+  <p>Text after the table wraps normally.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A ticker and a canvas</title>
+<style>
+  .ticker { width: 700px; overflow: hidden; border: 1px solid #333; }
+  .ticker p { margin: 0; padding: 1rem; white-space: nowrap; font: 20px sans-serif; animation: scroll 8s linear infinite; }
+  @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+</style></head>
+<body><main>
+<h1>Announcements</h1>
+<canvas id="c" width="500" height="200" aria-label="Decorative particles"></canvas>
+<div class="ticker"><p>School closes early on Wednesday for staff training.</p></div>
+</main>
+<script>
+  var c = document.getElementById('c'), g = c.getContext('2d'), x = 0;
+  (function frame() { x = (x + 4) % 500; g.fillStyle = '#fff'; g.fillRect(0, 0, 500, 200); g.fillStyle = '#036'; g.fillRect(x, 50, 80, 80); requestAnimationFrame(frame); })();
+</script>
+</body>
+</html>

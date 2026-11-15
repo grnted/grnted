@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Game scores</title>
+<style>#scores { font: 22px sans-serif; padding: .5rem; border: 1px solid #333; width: 400px; }</style></head>
+<body><main>
+<h1>Youth league scores</h1>
+<p>Scores from today's games in the town league.</p>
+<!-- Not decided (2.2.2): auto-updating content may instead let the user set how often it updates (WCAG 2.2.2);
+     whether the slowest setting is slow enough is not checked. -->
+<div id="scores">Hawks 2 - 1 Owls</div>
+<p><label for="every">Update scores every</label>
+<select id="every"><option value="1">second</option><option value="60">minute</option><option value="0">never</option></select></p>
+</main>
+<script>
+  (function () {
+    var n = 0, timer = null;
+    function tick() { n++; document.getElementById('scores').textContent = 'Hawks ' + (2 + n % 3) + ' - 1 Owls'; }
+    function set(s) { clearInterval(timer); if (s > 0) timer = setInterval(tick, s * 1000); }
+    set(1);
+    document.getElementById('every').addEventListener('change', function (e) { set(Number(e.target.value)); });
+  })();
+</script>
+</body>
+</html>

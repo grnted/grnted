@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>City alerts</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .invalid { border: 2px solid #b00020; } .toast { position: fixed; bottom: 12px; right: 12px; background: #223; color: #fff; padding: 8px 12px; }</style></head>
+<body>
+<header><nav aria-label="Main"><a href="/">Home</a> <a href="/services">Services</a></nav></header>
+<main>
+<h1>City alerts</h1>
+<p>Choose the topics you want alerts for.</p>
+<form id="subs" novalidate>
+  <label for="email">Email address</label><input id="email" name="email" type="email">
+  
+  <fieldset><legend>Topics</legend>
+    <label><input type="checkbox" name="route" value="12"> Library news</label>
+    <label><input type="checkbox" name="route" value="24"> Park closures</label>
+  </fieldset>
+  <button type="submit">Update alerts</button>
+</form>
+</main>
+<footer><p>City offices, 1 Civic Walk</p></footer>
+<div class="portal"><p id="toast" class="toast" aria-live="polite" aria-atomic="true"></p></div>
+<script>
+  document.getElementById('subs').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email');
+    const ok = email.value && email.validity.valid;
+    document.getElementById('toast').textContent = ok ? 'Your alert settings are updated.' : 'Could not update your alerts.';
+    
+  });
+</script>
+</body></html>

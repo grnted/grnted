@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: dialog open on arrival, before the content</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } #dialog { position: fixed; top: 24px; right: 24px; width: 360px; background: #fff; padding: 16px; border: 2px solid #333; } a.bare:focus { outline: none; }</style>
+</head>
+<body>
+<!-- Clean control (2.1.2): Esc closes the dialog. Planted failure (2.4.7) behind it: only reached by
+     walking on after the dialog is closed (Tab from anywhere goes into the dialog while it is open). -->
+<div id="dialog" role="dialog" aria-modal="true" aria-label="Welcome">
+  <p><label for="e">Email</label> <input id="e" type="email"></p>
+  <button type="button">Subscribe</button>
+</div>
+<main><h1>Welcome</h1><p><a class="bare" id="behind" href="/behind.html">Behind the dialog</a></p></main>
+<script>
+  // Focus stays in the dialog while it is open, wherever focus was.
+  var d = document.getElementById('dialog');
+  var ping = function (x) { new Image().src = '/pressed?' + x; };
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && d.isConnected) { d.remove(); return; }
+    if (e.key !== 'Tab' || !d.isConnected) return;
+    e.preventDefault();
+    var f = Array.prototype.slice.call(d.querySelectorAll('a[href], area[href], button, input, textarea'));
+    var i = f.indexOf(document.activeElement);
+    f[i < 0 ? 0 : (i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus();
+  });
+</script>
+</body>
+</html>

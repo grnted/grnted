@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account overview</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Account overview</h1>
+<div id="app"><p>Your recent activity.</p><form action="/note" method="get"><label>Note <input name="n"></label> <button>Save</button></form></div>
+</main>
+<script>
+  // After 15 minutes the page puts this in place of everything, with no warning and nothing to extend.
+  setTimeout(function () { document.getElementById('app').innerHTML = '<p role="alert">Your session has expired. <a href="static.html">Sign in again</a> to continue.</p>'; }, 15 * 60 * 1000);
+</script>
+</body>
+</html>

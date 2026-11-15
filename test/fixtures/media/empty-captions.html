@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Board meeting videos</title>
+<style>body { font: 16px/1.5 Arial, sans-serif; color: #222; margin: 24px; } video { display: block; max-width: 320px; }</style>
+</head>
+<body>
+<main>
+<h1>Board meeting videos</h1>
+
+<!-- A video with sound whose captions track loads but has no cue in it: no captions are ever shown. -->
+<section><h2>October meeting</h2>
+<video id="empty" controls preload="metadata" width="320" height="180" src="/october.webm"><track kind="captions" src="/no-cues.vtt" srclang="en" label="English"></video>
+<p><button type="button">Download the video</button></p></section>
+
+<!-- An empty track, but the page offers captions another way: a control beside the player, a control elsewhere
+     that names the player, or a script that adds its own captions. None of these is "no captions". -->
+<section><h2>November meeting</h2>
+<div class="player"><video id="offered" controls preload="metadata" width="320" height="180" src="/november.webm"><track kind="captions" src="/no-cues.vtt" srclang="en" label="English"></video></div></section>
+<button type="button" id="cc-on">Turn on captions</button>
+<section><h2>December meeting</h2>
+<video id="tied" controls preload="metadata" width="320" height="180" src="/december.webm"><track kind="captions" src="/no-cues.vtt" srclang="en" label="English"></video></section>
+<section><h2>January meeting</h2>
+<video id="scripted" controls preload="metadata" width="320" height="180" src="/january.webm"><track kind="captions" src="/no-cues.vtt" srclang="en" label="English"></video>
+<script>
+  (function () {
+    var t = document.getElementById('scripted').addTextTrack('captions', 'English', 'en');
+    t.addCue(new VTTCue(0, 2, 'The meeting is called to order.'));
+    t.mode = 'showing';
+  })();
+</script></section>
+
+<!-- Look-alikes: the same track with cues; a video with no sound track; a background video; a file that is not there. -->
+<section><h2>September meeting</h2>
+<video id="captioned" controls preload="metadata" width="320" height="180" src="/september.webm"><track kind="captions" src="/clip.vtt" srclang="en" label="English"></video></section>
+<section><h2>Site walk (no sound)</h2>
+<video id="silent" controls preload="metadata" width="320" height="180" src="/site-walk.webm"><track kind="captions" src="/no-cues.vtt" srclang="en" label="English"></video></section>
+<section><h2>Welcome</h2>
+<video id="background" muted loop autoplay playsinline aria-hidden="true" preload="metadata" width="320" height="180" src="/loop.webm"><track kind="captions" src="/no-cues.vtt" srclang="en"></video></section>
+<section><h2>August meeting</h2>
+<video id="missing" controls preload="metadata" width="320" height="180" src="/august.webm"><track kind="captions" src="/not-there.vtt" srclang="en" label="English"></video></section>
+<!-- A video that does not load: whether it has sound cannot be read. -->
+<section><h2>February meeting</h2>
+<video id="unknown" controls preload="metadata" width="320" height="180" src="/gone.webm"><track kind="captions" src="/no-cues.vtt" srclang="en" label="English"></video></section>
+
+<!-- A video offered as another way to get text that is on the page, and labelled as one (the exception in 1.2.2). -->
+<section><h2>Winter parking notice</h2>
+<p>From the first of December cars may not be left on Mill Road overnight. Snow ploughs need the whole width of the road between ten at night and six in the morning, and cars left there will be moved to the yard behind the depot at the owner's cost.</p>
+<p>Watch this notice as a video.</p>
+<video id="fortext" controls preload="metadata" width="320" height="180" src="/notice.webm"><track kind="captions" src="/no-cues.vtt" srclang="en" label="English"></video></section>
+</main>
+<footer><p>Player tools: <a href="#tied" aria-controls="tied" role="button">Subtitles for the December meeting</a></p></footer>
+</body>
+</html>

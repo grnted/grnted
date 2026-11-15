@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Carousel next to account controls</title><style>
+  .carousel { position: relative; width: 600px; height: 240px; overflow: hidden; border: 1px solid #333; }
+  .slide { position: absolute; inset: 0; padding: 2rem; font: 24px sans-serif; opacity: 0; transition: opacity .4s; background: #eef; }
+  .slide.active { opacity: 1; }
+</style></head>
+<body><main>
+<h1>Account</h1>
+<div class="carousel" id="hero">
+  <div class="slide active">Enrolment opens on Monday for all grades.</div>
+  <div class="slide">The library has new opening hours this term.</div>
+</div>
+<p>
+  <button type="button" data-api="close">Close account</button>
+  <button type="button" data-api="subscription">Stop subscription</button>
+  <button type="button" data-api="trial">Start free trial</button>
+  <button type="button" data-api="membership">Pause membership</button>
+  <button type="button" data-api="pause-account">Pause account</button>
+  <button type="button" data-api="payments">Stop payments</button>
+  <button type="button" data-api="emails">Stop all emails</button>
+  <button type="button" data-api="sharing">Stop sharing</button>
+  <a role="button" href="javascript:void(0)" data-api="js">Pause</a>
+  <a role="button" href="" data-api="empty">Pause</a>
+  <a role="button" href="#/player/pause" data-api="route">Pause</a>
+</p>
+</main>
+<script>
+  var slides = document.querySelectorAll('#hero .slide'), i = 0, paused = false;
+  setInterval(function () { if (paused) return; slides[i].classList.remove('active'); i = (i + 1) % slides.length; slides[i].classList.add('active'); }, 3000);
+  // Each control would act on the site, and also pause the carousel (a click must never happen).
+  document.querySelectorAll('[data-api]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); paused = true; fetch('/api/' + el.getAttribute('data-api')); });
+  });
+</script>
+</body>
+</html>

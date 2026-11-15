@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Parcel map</title>
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 0; color: #1c1c1c; background: #fff; }
+header, main, footer { padding: 16px 24px; }
+.ctl { display: inline-block; padding: 8px 14px; border: 2px solid #1d4d3f; border-radius: 4px; background: #e7f2ee; cursor: pointer; }
+.ctl:focus { outline: 3px solid #0b57d0; outline-offset: 2px; }
+.note { min-height: 1.5em; margin: 8px 0; }
+.modal { position: fixed; inset: 20px; background: #fff; border: 2px solid #333; padding: 12px; }
+iframe { width: 560px; height: 260px; border: 1px solid #888; }
+.cover { position: absolute; left: 24px; width: 600px; height: 280px; background: #fff; }
+[hidden] { display: none !important; }
+
+</style>
+</head>
+<body>
+<main>
+<div id="layer" class="ctl" role="button" tabindex="0">Show flood zones</div>
+<p id="layer-out" class="note" hidden>Lots 12 to 18 are in the 100-year flood zone.</p>
+<p><a href="/parcels.html" target="_top">Parcel list</a></p>
+</main>
+<script>
+function show() { var o = document.getElementById('layer-out'); o.hidden = !o.hidden; }
+document.getElementById('layer').addEventListener('pointerup', show); window.addEventListener('message', function (e) { if (e.data === 'flood') show(); });
+</script>
+</body>
+</html>

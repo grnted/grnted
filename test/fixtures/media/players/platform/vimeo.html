@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fake Vimeo-style player</title>
+<!-- A synthetic stand-in for a Vimeo-style player (Task 4.8 tests): the player's config lists its
+     text tracks up front (window.playerConfig), and live events say so there. Canvas only. -->
+<style>
+  [hidden] { display: none !important; }
+  html, body { margin: 0; background: #111; color: #fff; font: 14px Arial, sans-serif; overflow: hidden; }
+  .player { position: relative; width: 100vw; height: 100vh; }
+  canvas { width: 100%; height: 100%; display: block; }
+  button.play { position: absolute; left: 50%; top: 50%; width: 64px; height: 40px; margin: -20px 0 0 -32px; }
+  .controls { position: absolute; left: 0; right: 0; bottom: 0; height: 36px; display: flex; gap: 6px; padding: 4px; }
+</style>
+<script>
+  (() => {
+    const path = location.pathname;
+    const id = path.split('/').filter(Boolean).find((s) => /^\d+$/.test(s));
+    window.playerConfig = {
+      // On-demand videos give their length; an event is live; 444444 is a bare stub that says neither.
+      video: id === '444444' ? {} : { id: Number(id), title: 'Science fair', ...(path.startsWith('/event/') ? { live_event: { status: 'started' } } : { duration: 120 }) },
+      request: { text_tracks: id === '111111' ? [{ lang: 'en', kind: 'captions', label: 'English (CC)', url: '/texttrack/1.vtt' }] : [] },
+    };
+  })();
+</script>
+</head>
+<body>
+<div class="player">
+  <canvas id="screen" width="320" height="180"></canvas>
+  <button class="play" aria-label="Play">&#9654;</button>
+  <div class="controls" hidden>
+    <button aria-label="Pause">II</button>
+    <button class="cc" aria-label="CC/subtitles" hidden>CC</button>
+  </div>
+</div>
+<script>
+  (() => {
+    const ctx = document.getElementById('screen').getContext('2d');
+    let t = 0;
+    const draw = () => { t++; ctx.fillStyle = `hsl(${(t * 53) % 360} 60% 35%)`; ctx.fillRect(0, 0, 320, 180); };
+    draw();
+    document.querySelector('button.play').addEventListener('click', (e) => {
+      e.currentTarget.hidden = true;
+      document.querySelector('.controls').hidden = false;
+      if (window.playerConfig.request.text_tracks.length) document.querySelector('.cc').hidden = false;
+      setInterval(draw, 100);
+      try { navigator.sendBeacon('/log', '{}'); } catch {}
+    });
+  })();
+</script>
+</body>
+</html>

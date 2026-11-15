@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer gestures: a fading carousel with buttons</title>
+<style>
+body{font:16px/1.5 sans-serif;margin:20px}
+.car{position:relative;width:600px;height:200px;overflow:hidden;border:1px solid #333}
+.track{display:flex;width:1800px;height:200px}
+.slide{width:600px;height:200px;flex:none;display:flex;align-items:center;justify-content:center;font-size:28px}
+.s1{background:#fde}.s2{background:#dfe}.s3{background:#def}
+.fade .slide{position:absolute;left:0;top:0;opacity:0}.fade .slide.on{opacity:1}
+.icon{width:32px;height:32px;padding:0;border:1px solid #333;background:#fff}
+</style>
+</head>
+<body><main><h1>Fading carousel</h1>
+<div class="car fade" id="fade"><div class="slide s1 on">Welcome back</div><div class="slide s2">Enrolment is open</div><div class="slide s3">Sports results</div></div>
+<p><button type="button" id="prev">Previous</button> <button type="button" id="next">Next</button></p>
+</main>
+<script>
+  var slides = document.querySelectorAll('#fade .slide'), n = 0;
+  var show = function (k) { n = (k + 3) % 3; slides.forEach(function (s, i) { s.classList.toggle('on', i === n); }); };
+  var sx = null, box = document.getElementById('fade');
+  box.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+  box.addEventListener('pointerup', function (e) { if (sx === null) return; var dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 50) show(n + (dx < 0 ? 1 : -1)); });
+  document.getElementById('prev').addEventListener('click', function () { show(n - 1); });
+  document.getElementById('next').addEventListener('click', function () { show(n + 1); });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>A carousel that stops after 4.5 s, beside another script writing in the same parent</title>
+<style>
+  .stories { width: 600px; min-height: 120px; background: #eef3f8; }
+  .stories p { display: none; margin: 0; padding: 40px 16px; font: 20px sans-serif; }
+  .stories p.on { display: block; }
+</style></head>
+<body><main>
+<h1>City news</h1>
+<!-- The carousel changes every 1.5 s and stops by itself at 4.5 s. Another script keeps writing in the
+     same parent every half second (a hidden timestamp): not motion, and not the carousel. -->
+<div class="stories" id="stories">
+  <p class="on">Story 1: the pool opens on Monday.</p>
+  <p>Story 2: the library has new hours.</p>
+  <p>Story 3: the bridge closes for repairs.</p>
+  <time id="stamp" hidden>0</time>
+</div>
+<p>Other content next to the stories.</p>
+</main>
+<script>
+  (function () {
+    var s = document.querySelectorAll('#stories p'), i = 0, t0 = Date.now();
+    var timer = setInterval(function () { if (Date.now() - t0 >= 4500) { clearInterval(timer); window.__simDone = true; return; } s[i].classList.remove('on'); i = (i + 1) % s.length; s[i].classList.add('on'); }, 1500);
+    var stamp = document.getElementById('stamp');
+    (function write() { stamp.textContent = new Date().toISOString(); stamp.setAttribute('datetime', stamp.textContent); setTimeout(write, 500); })();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<audio id="music" src="tone.wav" loop></audio>
+<p>Click anywhere to hear the welcome music.</p>
+</main>
+<script>
+document.addEventListener('click', function () { document.getElementById('music').play(); }, { once: true });
+</script>
+</body>
+</html>

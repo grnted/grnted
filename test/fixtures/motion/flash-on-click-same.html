@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Lighthouse open day</title>
+<style>body { font: 18px sans-serif; margin: 0; padding: 16px; } .lamp { width: 720px; height: 240px; background: #fff; border: 1px solid #333; margin: 16px 0; } .lamp.on { animation: blink .25s steps(1, end) infinite; } @keyframes blink { 0% { background: #000; } 50% { background: #fff; } 100% { background: #fff; } } .note { display: none; } .note.open { display: block; }</style></head>
+<body><main>
+<h1>Lighthouse open day</h1>
+<p>The lighthouse on the point is open to visitors on the first Sunday of each month.</p>
+<!-- Six buttons with the same name and class, each shows a still note: more than the test presses, so two are reported as not pressed. -->
+<div class="card"><h2>Tour 0</h2><button type="button" class="more" data-for="n0">Show details</button><p class="note" id="n0">Tour 0 leaves from the gate.</p></div><div class="card"><h2>Tour 1</h2><button type="button" class="more" data-for="n1">Show details</button><p class="note" id="n1">Tour 1 leaves from the gate.</p></div><div class="card"><h2>Tour 2</h2><button type="button" class="more" data-for="n2">Show details</button><p class="note" id="n2">Tour 2 leaves from the gate.</p></div><div class="card"><h2>Tour 3</h2><button type="button" class="more" data-for="n3">Show details</button><p class="note" id="n3">Tour 3 leaves from the gate.</p></div><div class="card"><h2>Tour 4</h2><button type="button" class="more" data-for="n4">Show details</button><p class="note" id="n4">Tour 4 leaves from the gate.</p></div><div class="card"><h2>Tour 5</h2><button type="button" class="more" data-for="n5">Show details</button><p class="note" id="n5">Tour 5 leaves from the gate.</p></div><p>The climb is 112 steps. The keeper shows the lamp room at eleven and at two.</p>
+</main>
+<script>document.querySelectorAll('button[data-for]').forEach(function (b) { b.addEventListener('click', function () { document.getElementById(b.getAttribute('data-for')).classList.add('open'); }); });</script>
+</body>
+</html>

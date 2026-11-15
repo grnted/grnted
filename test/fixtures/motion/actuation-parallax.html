@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<div style="overflow: hidden; width: 600px; height: 200px"><div id="bg" style="width: 700px; height: 260px; background: linear-gradient(90deg, #036, #69c)"></div></div>
+<p>A background that moves a little as the phone tilts.</p>
+</main>
+<script>
+  window.addEventListener('deviceorientation', function (e) {
+    document.getElementById('bg').style.transform = 'translate(' + (-(e.gamma || 0) / 2) + 'px, ' + (-(e.beta || 0) / 4) + 'px)';
+  });
+</script>
+</body>
+</html>

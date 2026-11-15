@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A bound of the read (built from the address)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>A bound of the read (built from the address)</h1>
+<div id="stage"></div>
+<script>
+// ?k=<kind>&n=<count>: one case of a bounded read, built on load (round 4, S2). The element under test is #subject.
+var q = new URLSearchParams(location.search), k = q.get('k'), n = Number(q.get('n')), st = document.getElementById('stage');
+var big = '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"><rect width="400" height="200" fill="#2c6fbb"/></svg>';
+var noop = function () {};
+var rep = function (s, c) { var o = ''; for (var i = 0; i < c; i++) o += s; return o; };
+if (k === 'text') {
+  // A drawing wrapper with a pointer cursor of its own, and n texts outside the drawing kept off screen.
+  st.innerHTML = '<div id="subject" style="cursor:pointer;width:400px">' + big + '<div style="position:absolute;left:-10000px">' + rep('<span>t</span>', n) + '</div></div>';
+} else if (k === 'svgtext') {
+  // The same wrapper whose drawing holds n texts of its own (labels of the drawing).
+  st.innerHTML = '<div id="subject" style="cursor:pointer;width:400px"><svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"><rect width="400" height="200" fill="#2c6fbb"/>' + rep('<text x="5" y="15" font-size="10" fill="#ffffff">1</text>', n) + '</svg></div>';
+} else if (k === 'drawings') {
+  // n small drawings, then the one that fills the wrapper.
+  st.innerHTML = '<div id="subject" style="cursor:pointer;width:400px">' + rep('<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"></svg>', n) + big + '</div>';
+} else if (k === 'focusable') {
+  // A button role around n elements that take focus only by script, then a real button.
+  st.innerHTML = '<div id="subject" role="button">Show the hours ' + rep('<span tabindex="-1"></span>', n) + '<button type="button">Show</button></div>';
+} else if (k === 'elements') {
+  // A button role around n plain elements.
+  st.innerHTML = '<div id="subject" role="button">Show the hours<span hidden>' + rep('<i></i>', n - 1) + '</span></div>';
+} else if (k === 'scopes') {
+  // A button role around n blocks with an open shadow root each (no custom element).
+  st.innerHTML = '<div id="subject" role="button">Show the hours<span hidden>' + rep('<span class="host"></span>', n) + '</span></div>';
+  [].forEach.call(document.querySelectorAll('#subject .host'), function (b) { b.attachShadow({ mode: 'open' }).innerHTML = '<i></i>'; });
+} else if (k === 'slots') {
+  // A frame element whose box (a pointer cursor of its own, a listener) has n slots; the page's canvas goes in the last.
+  customElements.define('chart-slots', class extends HTMLElement {
+    connectedCallback() {
+      var r = this.attachShadow({ mode: 'open' }), s = '';
+      for (var i = 1; i <= n; i++) s += '<slot name="s' + i + '"></slot>';
+      r.innerHTML = '<div id="box" style="display:inline-block;cursor:pointer">' + s + '</div>';
+      r.getElementById('box').addEventListener('click', noop);
+    }
+  });
+  st.innerHTML = '<chart-slots id="frame"><canvas slot="s' + n + '" width="400" height="200"></canvas></chart-slots>';
+}
+// The case stands directly in the main content (no wrapper whose own read the case's size would bound).
+while (st.firstChild) st.parentNode.insertBefore(st.firstChild, st);
+st.remove();
+var sub = document.getElementById('subject');
+if (sub) sub.addEventListener('click', noop);
+</script>
+<p><a href="/index.html">All reports</a></p>
+</main>
+</body>
+</html>

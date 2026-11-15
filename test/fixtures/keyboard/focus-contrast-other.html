@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: focus indicators that are not rings</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; color: #222; background: #fff; }
+  p { margin: 16px 0; }
+  button { font: inherit; padding: 6px 12px; border: 0; background: #1a4fa0; color: #fff; }
+  a { color: #0645ad; }
+  /* Not measured (1.4.11): a colour change of the button itself, an outline drawn inside it, a drop
+     shadow for elevation (no spread: not a ring), and a pale ring that comes with a colour change and
+     an underline (the other change may be the indicator). */
+  button.shade:focus { outline: none; background: #0d2f66; }
+  button.inner:focus { outline: 2px solid #fff; outline-offset: -5px; }
+  button.lift:focus { outline: none; background: #2a63c0; box-shadow: 0 2px 4px rgba(0, 0, 0, .2); }
+  /* A drop shadow with a negative spread (as utility frameworks write elevation), and nothing else. */
+  button.raise:focus { outline: none; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -2px rgba(0, 0, 0, .1); }
+  a.combo { text-decoration: none; }
+  a.combo:focus { outline: 1px solid #e4e4e4; color: #002a80; text-decoration: underline; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Focus shown inside the control</h1>
+  <p><button class="shade" type="button">Darker on focus</button></p>
+  <p><button class="inner" type="button">Inner outline</button></p>
+  <p><button class="lift" type="button">Lifted on focus</button></p>
+  <p><button class="raise" type="button">Raised on focus</button></p>
+  <p><a class="combo" href="/combo.html">Underlined on focus</a></p>
+</main>
+</body>
+</html>

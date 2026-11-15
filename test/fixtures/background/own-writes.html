@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Background writes: writes the test's own actions cause</title>
+<style>body{font:16px/1.5 sans-serif;margin:20px} #tip{display:inline-block;padding:8px;border:1px solid #333}</style></head>
+<body><main>
+<h1>Account</h1>
+<p><button type="button" id="flood">Save and sync</button></p>
+<p><button type="button" id="frame-save">Save in the frame</button></p>
+<p><span id="tip" tabindex="-1">Opening hours</span></p>
+<p><label for="field">Name</label> <input id="field" type="text"></p>
+<p><button type="button" id="deferred">Save settings</button></p>
+<iframe id="kid" src="/blank.html" title="Sync frame" width="200" height="60"></iframe>
+</main>
+<script>
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    // The page saves its settings once on load (the address is then one it has POSTed to by itself).
+    fetch('/api/settings', { method: 'POST', body: 'load=1' }).catch(function () {});
+    // A save, then a flood of beacons too large to send, one of them to the same address.
+    $('flood').addEventListener('click', function () {
+      fetch('/api/save', { method: 'POST', body: '1' }).catch(function () {});
+      var huge = new Array(70 * 1024).join('x');
+      for (var i = 0; i < 299; i++) { try { navigator.sendBeacon('/pad/' + i, huge); } catch (e) {} }
+      try { navigator.sendBeacon('/api/save', huge); } catch (e) {}
+    });
+    // A save made through a same-origin frame's fetch.
+    $('frame-save').addEventListener('click', function () { $('kid').contentWindow.fetch('/api/frame-save', { method: 'POST', body: '1' }).catch(function () {}); });
+    // Hover and focus that POST from a timer.
+    $('tip').addEventListener('mouseenter', function () { setTimeout(function () { fetch('/api/tooltip', { method: 'POST', body: '{}' }).catch(function () {}); }, 0); });
+    $('field').addEventListener('focus', function () { setTimeout(function () { fetch('/api/focus', { method: 'POST', body: '{}' }).catch(function () {}); }, 0); });
+    // A click that saves a moment later, to the address the page already POSTed to on load.
+    $('deferred').addEventListener('click', function () { setTimeout(function () { fetch('/api/settings', { method: 'POST', body: 'b=2' }).catch(function () {}); }, 300); });
+  })();
+</script>
+</body>
+</html>

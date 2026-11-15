@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<site-player></site-player>
+</main>
+<script>
+customElements.define('site-player', class extends HTMLElement { constructor() { super(); var r = this.attachShadow({ mode: 'open' }); r.innerHTML = '<audio src="tone.wav" autoplay loop></audio><button type="button">Mute</button>'; var a = r.querySelector('audio'); r.querySelector('button').addEventListener('click', function () { a.muted = !a.muted; }); } });
+</script>
+</body>
+</html>

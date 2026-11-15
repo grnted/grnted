@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Poll</title></head>
+<body><p><button type="button" class="vote-yes">Yes</button></p><p id="r">No answer</p>
+<script>document.addEventListener('mousedown', function (e) { if (e.target.closest('.vote-yes')) document.getElementById('r').textContent = 'Yes'; });</script>
+</body>
+</html>

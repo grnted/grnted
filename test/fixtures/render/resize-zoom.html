@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: resize text failures in pixels</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.4 sans-serif; color: #1a1a1a; background: #fff; overflow-x: hidden; }
+  main { padding: 16px; }
+  /* Text in pixels in a box of fixed height: at 200% zoom the box is half as wide, the text wraps and is cut off. */
+  #alert-bar { height: 24px; line-height: 22px; overflow: hidden; border: 1px solid #767676; padding: 0 8px; margin: 0 0 16px; }
+  /* A search field sized in rem in a box of fixed width: with text at 200% the field no longer fits. */
+  #search-box { width: 300px; overflow: hidden; }
+  #search-box input { width: 16rem; font: inherit; font-size: 1rem; }
+  /* A navigation that becomes a closed off-canvas menu below 800 px, with a button to open it: not a failure. */
+  #menu-btn { display: none; }
+  @media (max-width: 800px) {
+    #site-nav { position: fixed; top: 0; right: 0; width: 280px; height: 100%; background: #f4f4f4; transform: translateX(100%); }
+    #menu-btn { display: inline-block; }
+  }
+  #site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 16px; justify-content: flex-end; }
+  #site-nav a { color: #0645ad; }
+</style>
+</head>
+<body>
+<header>
+  <button type="button" id="menu-btn" aria-expanded="false">Menu</button>
+  <nav id="site-nav" aria-label="Main"><ul><li><a href="#a">Academics</a></li><li><a href="#b">Athletics</a></li><li><a href="#c">Community</a></li></ul></nav>
+</header>
+<main>
+  <p id="alert-bar">Weather notice: all schools open two hours late on Tuesday and morning kindergarten is cancelled.</p>
+  <div id="search-box"><label>Search <input type="search" name="q"></label></div>
+  <p>Text after the search box.</p>
+</main>
+</body>
+</html>

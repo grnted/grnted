@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Book a room</title>
+<style>
+  body { font: 16px/1.5 Arial, sans-serif; color: #222; margin: 24px; }
+  .tile, .card, .pointer { cursor: pointer; }
+  .tile { display: inline-block; padding: 10px 16px; background: #135; color: #fff; }
+  .card { border: 1px solid #999; padding: 12px; max-width: 320px; }
+  .backdrop { position: fixed; inset: 0; cursor: pointer; opacity: 0.01; pointer-events: none; }
+</style>
+</head>
+<body>
+<main>
+<h1>Book a room</h1>
+<p id="tracked">Choose a room and a day. We will confirm by email within one working day.</p>
+
+<!-- Real controls, and plain elements that are given a role. -->
+<button id="real" class="tile" type="button">Check availability</button>
+<a id="link" class="tile" href="/rooms">See all rooms</a>
+<div id="with-role" class="tile" role="button" tabindex="0">Choose room B</div>
+<div id="with-tab-role" role="tablist"><span id="tab" class="pointer" role="tab" tabindex="0">Today</span></div>
+
+<!-- A card that is clickable as a whole and holds its own link: the link is the control. -->
+<div id="card" class="card"><h2>Room A</h2><p>Seats twelve, with a screen.</p><a href="/rooms/a">Book room A</a></div>
+
+<!-- A click listener with no pointer cursor (analytics, "click outside to close"): no control is shown. -->
+<div id="plain">This paragraph is watched for clicks by the analytics script and looks like text.</div>
+
+<!-- A label, and text inside a real button. -->
+<label id="label" class="pointer" for="name">Your name</label> <input id="name" autocomplete="name">
+<button type="button"><span id="inside" class="pointer">Send request</span></button>
+
+<!-- Hidden from assistive technology, and not shown. -->
+<div id="hidden" class="tile" aria-hidden="true">Decorative copy</div>
+<div id="not-shown" class="tile" style="display:none">Later</div>
+
+<!-- A long passage that expands on click is no button-sized control. -->
+<div id="long" class="pointer">The meeting rooms on the second floor are free for community groups on weekday evenings, and can be reserved up to six weeks ahead by anyone with a library card in good standing.</div>
+
+<div id="backdrop" class="backdrop"></div>
+<p id="out" role="status"></p>
+</main>
+<script>
+  var say = function (t) { return function () { document.getElementById('out').textContent = t; }; };
+  ['tracked', 'plain', 'with-role', 'tab', 'card', 'label', 'inside', 'hidden', 'not-shown', 'long', 'backdrop'].forEach(function (id) { document.getElementById(id).addEventListener('click', say(id)); });
+  document.getElementById('real').addEventListener('click', say('real'));
+</script>
+</body>
+</html>

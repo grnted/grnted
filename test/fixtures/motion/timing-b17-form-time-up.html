@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Shelter booking</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Shelter booking</h1>
+<p>Tell us about your gathering.</p>
+<form id="f" action="static.html" method="get"><label>What is the gathering for? <input name="what"></label> <button>Book</button></form>
+</main>
+<script>
+  // After ten minutes the page sends the form as it is, into this window.
+  setTimeout(function () { document.getElementById('f').submit(); }, 10 * 60 * 1000);
+</script>
+</body>
+</html>

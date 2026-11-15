@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: clean page</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 0; color: #222; background: #fff; }
+  .skip { position: absolute; left: -9999px; top: 0; }
+  .skip:focus { left: 8px; top: 8px; background: #fff; padding: 4px 8px; z-index: 10; }
+  header, main, footer { padding: 16px 24px; }
+  nav a { margin-right: 16px; }
+  a { color: #0645ad; }
+  .check { position: relative; display: inline-block; margin: 8px 0; }
+  .check input { position: absolute; opacity: 0; }
+  .check span::before { content: ''; display: inline-block; width: 14px; height: 14px; border: 1px solid #333; margin-right: 6px; vertical-align: -2px; }
+  .check input:focus-visible + span::before { outline: 3px solid #005fcc; outline-offset: 1px; }
+  .card { border: 1px solid #ccc; padding: 8px 12px; margin: 12px 0; cursor: pointer; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header>
+  <nav aria-label="Site">
+    <a href="/clean.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/news.html">News</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+<main id="main" tabindex="-1">
+  <h1>Welcome</h1>
+  <p>Some text with <a href="/more.html">a link to more</a>.</p>
+  <form action="/search" method="get" onsubmit="return false">
+    <label for="q">Search</label>
+    <input id="q" name="q" type="search">
+    <button type="button">Go</button>
+  </form>
+  <label class="check"><input type="checkbox" id="updates"><span>Show updates</span></label>
+  <div class="card" id="card">
+    <h2><a href="/story.html">Story title</a></h2>
+    <p>The whole card is clickable; its link does the same.</p>
+  </div>
+  <button type="button" id="menu-button" aria-expanded="false">Menu</button>
+</main>
+<footer>
+  <a href="/privacy.html">Privacy</a>
+</footer>
+<script>
+  document.getElementById('card').addEventListener('click', function () { location.href = '/story.html'; });
+  document.getElementById('menu-button').addEventListener('click', function () {
+    this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+  });
+</script>
+</body>
+</html>

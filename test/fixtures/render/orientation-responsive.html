@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Render fixture: a different layout per orientation</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  .wrap { display: flex; gap: 1rem; padding: 1rem; }
+  aside { flex: 0 0 12rem; }
+  @media (orientation: portrait) { .wrap { display: block; } aside { display: none; } }
+  .hint { font-size: 0.875rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <main>
+    <h1>Enrollment</h1>
+    <p class="hint">Tip: best viewed in landscape on small phones.</p>
+    <p>New families can enroll online or at the district office. Bring proof of address, the child's birth certificate and immunization records.</p>
+    <p>Enrollment for kindergarten opens in March. Children who turn five by September first can start kindergarten this fall.</p>
+  </main>
+  <aside><h2>Related</h2><p>Transportation, meal programs and before and after school care.</p></aside>
+</div>
+</body>
+</html>

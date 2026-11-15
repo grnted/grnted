@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Tram stop</title>
+<style>#board { font: 24px sans-serif; padding: .5rem; border: 1px solid #333; width: 420px; }</style></head>
+<body><main>
+<h1>Tram stop</h1>
+<p>Trams toward the depot leave from the far side.</p>
+<!-- Not a pass (2.2.2): the "Manual only" setting stops the updates, but the page starts them again by itself
+     3 s later. WCAG's "paused": stopped by user request and not resumed until requested by user. -->
+<div id="board">Depot line: 4 min</div>
+<p><label>Update frequency<select id="how"><option value="4000">Every 4 seconds</option><option value="20000">Every 20 seconds</option><option value="0">Manual only</option></select></label></p>
+</main>
+<script>
+  (function () {
+    var n = 0, timer = null, board = document.getElementById('board');
+    function tick() { n++; board.textContent = 'Depot line: ' + (4 + n % 5) + ' min'; }
+    function set(ms) { clearInterval(timer); timer = ms > 0 ? setInterval(tick, ms) : null; }
+    set(4000);
+    document.getElementById('how').addEventListener('change', function (e) {
+      set(Number(e.target.value));
+      // "Manual only" does not last: the board goes back to updating by itself.
+      if (Number(e.target.value) === 0) setTimeout(function () { set(4000); }, 3000);
+    });
+  })();
+</script>
+</body>
+</html>

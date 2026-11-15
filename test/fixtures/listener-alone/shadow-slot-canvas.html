@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Seats sold (a frame element around a canvas)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Seats sold (a frame element around a canvas)</h1>
+<p>Seats sold in row A for the 7 pm show.</p>
+<chart-frame id="frame"><canvas id="sold" width="600" height="180" role="img" aria-label="Seats sold in row A: 5 of 7"></canvas></chart-frame>
+<p>Five of the seven seats in row A are sold.</p>
+<script>
+var c = document.getElementById('sold'), g = c.getContext('2d');
+g.fillStyle = '#ffffff'; g.fillRect(0, 0, 600, 180);
+for (var i = 0; i < 7; i++) { g.fillStyle = i < 5 ? '#595959' : '#0b4fb3'; g.fillRect(20 + i * 80, 50, 64, 80); }
+customElements.define('chart-frame', class extends HTMLElement {
+  connectedCallback() {
+    var root = this.attachShadow({ mode: 'open' });
+    root.innerHTML = '<div id="box" style="display:inline-block;cursor:pointer"><slot></slot></div>';
+    root.getElementById('box').addEventListener('click', function () {});
+  }
+});
+</script>
+<p><a href="/index.html">All reports</a></p>
+</main>
+</body>
+</html>

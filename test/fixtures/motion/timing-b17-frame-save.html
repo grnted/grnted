@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Comment on the plan</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Comment on the plan</h1>
+<form id="f" action="/draft" method="get" target="saver"><label>Your comment <textarea name="c" rows="4" cols="40"></textarea></label> <button formtarget="_self" formaction="/comment">Send comment</button></form>
+<iframe name="saver" title="" hidden></iframe>
+</main>
+<script>
+  // An old way to save a draft: the form is sent into a hidden frame every two minutes, and the page stays as it is.
+  setInterval(function () { document.getElementById('f').submit(); }, 2 * 60 * 1000);
+</script>
+</body>
+</html>

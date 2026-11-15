@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Dashboard</title></head>
+<body><main>
+<h1>Dashboard</h1>
+<div id="app"><p>Loading…</p></div>
+</main>
+<script>
+  // A 500 ms timer bridges the mount timer and the time limit (timers under 1 s are not listed).
+  setTimeout(() => {
+    setTimeout(() => {
+      setTimeout(() => location.reload(), 60000);
+    }, 500);
+  }, 4000);
+</script>
+</body>
+</html>

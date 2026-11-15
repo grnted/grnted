@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account</title></head>
+<body><main id="main">
+<h1>Account</h1>
+<p>Your account summary.</p>
+</main>
+<script>
+  // Not shown to anyone: a timer adds a "Your session has expired" paragraph that stays fully transparent.
+  setTimeout(function () {
+    var p = document.createElement('p');
+    p.style.opacity = '0';
+    p.textContent = 'Your session has expired. Sign in again to continue.';
+    document.getElementById('main').appendChild(p);
+  }, 15000);
+</script>
+</body>
+</html>

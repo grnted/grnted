@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: focus order</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+  header, main, footer { padding: 12px 24px; }
+  /* Planted failure (2.4.3): an off-canvas menu whose links still take focus while it is closed. */
+  #drawer { position: fixed; top: 0; left: 0; width: 260px; height: 100vh; background: #fff; transform: translateX(-100%); }
+  #drawer a { display: block; padding: 8px; }
+  /* Planted failure (2.4.3): the footer comes before the main content in the source, after it on screen. */
+  main { order: 2; flex: 1; }
+  footer { order: 3; border-top: 1px solid #333; }
+  header { order: 1; }
+</style>
+</head>
+<body>
+<header><a href="/order.html">Site name</a></header>
+<nav id="drawer" aria-label="Menu">
+  <a href="/m1.html">Menu one</a>
+  <a href="/m2.html">Menu two</a>
+  <a href="/m3.html">Menu three</a>
+</nav>
+<footer><a href="/privacy.html">Privacy</a> <a href="/terms.html">Terms</a></footer>
+<main>
+  <h1>Main content</h1>
+  <p><a href="/story.html">A story</a> and <a href="/other.html">another</a>.</p>
+</main>
+</body>
+</html>

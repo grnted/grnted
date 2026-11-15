@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News</title>
+<style>
+body { margin: 0; font: 16px/1.5 Arial, sans-serif; color: #222; background: #fff; }
+main { padding: 16px 24px; }
+label { display: block; margin: 8px 0; }
+#bg { position: fixed; inset: 0; background: #000; opacity: 0.7; z-index: 10; }
+#dlg { position: fixed; top: 80px; left: 50%; transform: translateX(-50%); width: 400px; background: #fff; padding: 16px; z-index: 11; }
+#dlg iframe { width: 100%; height: 120px; border: 0; }
+</style>
+</head>
+<body>
+<!-- Sol popup-r1, 5: a newsletter dialog holding a sign-up frame whose email field has no autocomplete; the page behind
+     is inert; closing the dialog removes the frame. The frame's 1.3.5 failure is found. -->
+<div id="page" inert aria-hidden="true">
+<main>
+  <h1>News</h1>
+  <p>Stories from the district, updated every week. Board meetings, school events and the lunch menu are all here.</p>
+  <form action="/search" method="get"><label>Search <input type="search" name="q"></label><button>Search</button></form>
+</main>
+</div>
+<div id="bg"></div>
+<div id="dlg" role="dialog" aria-modal="true" aria-label="Newsletter">
+  <iframe src="/signup.html" title="Newsletter sign-up"></iframe>
+  <button type="button" id="x">Close</button>
+</div>
+<script>
+document.getElementById('x').addEventListener('click', () => {
+  document.getElementById('dlg').remove();
+  document.getElementById('bg').remove();
+  document.getElementById('page').removeAttribute('inert');
+  document.getElementById('page').removeAttribute('aria-hidden');
+});
+</script>
+</body>
+</html>

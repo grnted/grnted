@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Event booking (labels)</title></head>
+<body>
+<main>
+<h1>Book a room</h1>
+<form action="/book" method="post">
+  <p><input name="fullname" placeholder="Full name" required></p>
+  <p><input name="email" type="email" aria-label="Email" required></p>
+  <p><label for="room">Room</label><br><select id="room" name="room" required><option value="">Choose</option><option value="a">Room A</option></select></p>
+  <p><label for="date">Date</label><br><input id="date" name="date" type="date" required></p>
+  <button type="submit">Book</button>
+</form>
+</main>
+</body>
+</html>

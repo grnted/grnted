@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Red flashing</title>
+<style>
+  body { margin: 0; font: 16px sans-serif; }
+  h1, p { margin: 1rem; }
+  .flash { position: absolute; left: 100px; top: 120px; width: 500px; height: 500px; background: #ff0000; animation: flash 0.2s steps(1, end) infinite; }
+  @keyframes flash { 0% { background: #ff0000; } 50% { background: #767676; } }
+</style></head>
+<body><main>
+<h1>Red flashing</h1>
+<p>Synthetic test pattern.</p>
+<div class="flash" role="img" aria-label="Test pattern"></div>
+</main></body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: focus opens a scripted dialog</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  #tip { position: fixed; inset: 20% 25%; padding: 20px; background: #fff; border: 2px solid #222; }
+  [hidden] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Stop finder</h1>
+  <a href="/before.html">All beds</a>
+  <label for="stop">Bed number</label> <input id="stop">
+  <div id="tip" role="dialog" aria-modal="true" aria-label="Where to find the stop number" hidden><p>The number is on the sign.</p><button type="button" id="ok">Close</button></div>
+  <p><a href="/after.html">Route maps</a></p>
+</main>
+<script>
+var tip = document.getElementById('tip');
+var shut = function () { tip.hidden = true; };
+document.getElementById('stop').addEventListener('focus', function () { if (tip.hidden && !tip.dataset.seen) { tip.dataset.seen = '1'; tip.hidden = false; document.getElementById('ok').focus(); } });
+document.getElementById('ok').addEventListener('click', shut);
+tip.addEventListener('keydown', function (e) { if (e.key === 'Escape') shut(); });
+</script>
+</body>
+</html>

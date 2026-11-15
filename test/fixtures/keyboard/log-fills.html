@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: the request log fills while the way out is tried</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<main>
+  <h1>Pick a date</h1>
+  <p><a href="/before.html">Before the widget</a></p>
+  <!-- Not testable (2.1.2), never failed: 495 stopped beacons on load, then each Shift+Tab changes the
+       address (logged), so the log is full by the time the Close button is pressed (its beacon is not logged). -->
+  <div id="widget" role="group" aria-label="Date picker"><button type="button">Next month</button> <button type="button" id="close">Close</button></div>
+  <p><a href="/after.html">After the widget</a></p>
+</main>
+<script>
+  for (var i = 0; i < 495; i++) navigator.sendBeacon('/flood', String(i));
+  var w = document.getElementById('widget');
+  var k = 0;
+  w.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    if (e.shiftKey) history.replaceState(null, '', '?k=' + (++k));
+    var b = Array.prototype.slice.call(w.querySelectorAll('button'));
+    b[(b.indexOf(document.activeElement) + 1) % b.length].focus();
+  });
+  document.getElementById('close').addEventListener('click', function () { navigator.sendBeacon('/closed', 'x'); });
+</script>
+</body>
+</html>

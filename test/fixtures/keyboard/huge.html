@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: a very long page</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } li a:focus { outline: 2px solid #005fcc; }</style>
+</head>
+<body>
+<!-- Clean control (all criteria): 1500 ordinary links; the core test covers the first 60 and the last 40 stops. -->
+<a href="#main">Skip to main content</a>
+<main id="main"><h1>Archive</h1><ul id="list"></ul></main>
+<script>
+  var ul = document.getElementById('list');
+  for (var i = 1; i <= 1500; i++) {
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = '/archive/' + i + '.html';
+    a.textContent = 'Archive entry ' + i;
+    li.appendChild(a);
+    ul.appendChild(li);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Synth</title></head>
+<body><main>
+<h1>Synth</h1>
+<p>A Web Audio tone that the page stops with a timer 3.5 s after it starts. The Pause button does nothing.</p>
+<p><button type="button" id="pause">Pause</button></p>
+</main>
+<script>
+  var ctx = new AudioContext(), osc = ctx.createOscillator(), gain = ctx.createGain();
+  gain.gain.value = 0.2; osc.connect(gain); gain.connect(ctx.destination);
+  osc.start();
+  ctx.addEventListener('statechange', function () { if (ctx.state === 'running' && !window.__armed) { window.__armed = true; setTimeout(function () { osc.stop(); }, 3500); } });
+  if (ctx.state === 'running') { window.__armed = true; setTimeout(function () { osc.stop(); }, 3500); }
+  document.getElementById('pause').addEventListener('click', function () { void 0; });
+
+</script>
+</body>
+</html>

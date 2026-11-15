@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Guard fixture</title></head>
+<body>
+<main id="main"><h1>Guard fixture</h1>
+<p>Each control below would send a request. Only plain page loads may reach the server while a probe runs.</p>
+<form method="post" action="/submit"><label>Query <input name="q" value="x"></label> <button id="post-submit">Send (POST form)</button></form>
+<form method="get" action="/search"><label>Search <input name="q" value="cats"></label> <button id="get-submit">Search (GET form)</button></form>
+<p>
+  <button type="button" id="put">PUT</button>
+  <button type="button" id="delete">DELETE</button>
+  <button type="button" id="beacon">Beacon</button>
+  <button type="button" id="logout-xhr">Log out (XHR)</button>
+  <button type="button" id="data">Load data</button>
+  <button type="button" id="img">Load an image</button>
+  <button type="button" id="popup">Open a popup</button>
+  <button type="button" id="popup-timer">Open a popup from a timer</button>
+  <button type="button" id="dialogs">Show dialogs</button>
+  <button type="button" id="ws">Open a WebSocket</button>
+</p>
+<p><a id="del" href="/items/delete?id=1">Delete item</a> · <a id="about" href="/about.html">About us</a> · <a id="skip" href="#end">Skip to the end</a></p>
+<p>New windows: <a id="blank" href="/pop/blank" target="_blank">New window</a> · <a id="named" href="/pop/named" target="promo">Named window</a> · <a id="plain" href="/pop/plain">Plain link (modifier clicks)</a></p>
+<form id="fget" method="get" action="/pop/form-get" target="_blank"><label>Q <input name="q" value="a"></label> <button id="fget-b">Go (GET, new window)</button></form>
+<form id="fpost" method="post" action="/pop/form-post" target="_blank"><label>Q <input name="q" value="a"></label> <button id="fpost-b">Go (POST, new window)</button></form>
+<p><iframe id="kid" src="/popups-frame.html" title="Frame that opens a window" width="300" height="60"></iframe></p>
+<p id="end">The end.</p>
+</main>
+<script>
+  var on = function (id, fn) { document.getElementById(id).addEventListener('click', fn); };
+  on('put', function () { fetch('/api/item', { method: 'PUT', body: 'x' }).catch(function () {}); });
+  on('delete', function () { fetch('/api/item/1', { method: 'DELETE' }).catch(function () {}); });
+  on('beacon', function () { navigator.sendBeacon('/beacon', 'data'); });
+  on('logout-xhr', function () { var x = new XMLHttpRequest(); x.open('GET', '/account/logout'); x.send(); });
+  on('data', function () { fetch('/data.json').catch(function () {}); });
+  on('img', function () { new Image().src = '/images/cart-icon.png'; });
+  on('popup', function () { window.__openResult = window.open('/popup.html'); });
+  on('popup-timer', function () { setTimeout(function () { window.open('/pop/timer'); }, 50); });
+  on('dialogs', function () { alert('Saved'); window.__confirmResult = confirm('Delete everything?'); });
+  on('ws', function () { try { var s = new WebSocket('ws://' + location.host + '/ws'); s.onopen = function () { s.send('hello'); }; } catch (e) {} });
+</script>
+</body>
+</html>

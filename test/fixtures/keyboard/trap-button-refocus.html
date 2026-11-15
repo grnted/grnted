@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a button outside any form that takes focus back</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<main>
+<h1>Opening hours</h1>
+<p><a href="/hours.html">All hours</a></p>
+<!-- Planted failure (2.1.2): a plain button (no type attribute, no form, so pressing it submits nothing)
+     takes focus back whenever it loses it. Its only "way out" is itself: nothing to follow or submit. -->
+<p><button id="trap">Show holiday hours</button></p>
+<p><a href="/next.html">Library</a> <a href="/other.html">Pool</a></p>
+</main>
+<script>
+document.getElementById('trap').addEventListener('blur', function (e) { var t = e.target; setTimeout(function () { t.focus(); }, 20); });
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Permit application</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Permit application</h1>
+<p>Fill in the form below. You can take as long as you need.</p>
+<form action="/apply" method="get"><label>Project address <input name="address"></label> <button>Continue</button></form>
+<form id="ping" action="/ping" method="get" target="pinger" hidden><input type="hidden" name="k" value="1"></form>
+<iframe name="pinger" title="" hidden></iframe>
+</main>
+<script>
+  // Keeps the visit alive: a hidden form sent into a hidden frame every five minutes. Nothing a visitor sees changes.
+  setInterval(function () { document.getElementById('ping').submit(); }, 5 * 60 * 1000);
+</script>
+</body>
+</html>

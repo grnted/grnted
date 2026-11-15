@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Search | City of Stonebridge</title>
+<meta name="description" content="Search">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:1rem;line-height:1.55;background:#ffffff;color:#1f2933}
+button,input,select,textarea{font:inherit}
+img,svg{max-width:100%}
+.site-header{background:#ffffff;color:#4a1d6b;border-bottom:4px solid #4a1d6b}
+.site-header .inner,.site-footer .inner{max-width:68rem;margin:0 auto;padding:1rem 1.25rem}
+.site-header .inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:inline-flex;align-items:center;gap:.6rem;color:#4a1d6b;text-decoration:none;font-weight:700;font-size:1.2rem}
+.brand svg{flex:none}
+.site-nav ul{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;list-style:none;margin:0;padding:0}
+.site-nav a{color:#4a1d6b;text-decoration:none;font-weight:600;padding:.25rem .1rem}
+.site-nav a:hover{text-decoration:underline}
+main{display:block;max-width:68rem;margin:0 auto;padding:2rem 1.25rem 3rem}
+main:focus{outline:none}
+h1{font-size:2rem;line-height:1.2;margin:.25rem 0 1rem}
+h2{font-size:1.35rem;line-height:1.3;margin:2rem 0 .75rem}
+h3{font-size:1.1rem;margin:1.25rem 0 .5rem}
+a{color:#5b2b86}
+.lead{font-size:1.15rem;max-width:44rem}
+.notice{background:rgba(0,0,0,.035);border-left:4px solid #55606e;padding:.85rem 1rem;margin:1.25rem 0;max-width:46rem}
+.news{list-style:none;margin:0;padding:0;max-width:46rem}
+.news li{padding:.65rem 0;border-bottom:1px solid rgba(0,0,0,.12)}
+.news .meta{display:block;font-size:.875rem;opacity:.85}
+.link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.5rem 1.5rem;list-style:none;margin:0;padding:0}
+.link-grid li{padding:.35rem 0}
+.site-footer{background:#f6f3f9;color:#2b1840;margin-top:2rem;border-top:1px solid #ddd3e7}
+.site-footer a{color:#2b1840}
+.footer-links{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;list-style:none;margin:.75rem 0;padding:0}
+.small{font-size:.875rem}
+/* site-wide keyboard focus style */
+:where(a[href],button,input,select,textarea,summary):focus-visible{outline:3px solid #1a1a1a;outline-offset:2px}
+:where(.on-dark) :where(a[href],button,input,select):focus-visible{outline-color:#ffffff}
+/* page components */
+.wp-block-search__label{display:block;font-weight:700;margin-bottom:.4rem}
+.wp-block-search__inside-wrapper{display:flex;gap:.5rem;max-width:32rem}
+.wp-block-search__input{flex:1;padding:.6rem .75rem;border:1px solid #949494;border-radius:0;background:#ffffff}
+.wp-block-search__input:focus{outline:2px solid #dcdcde;outline-offset:0}
+.wp-block-search__button{background:#4a1d6b;color:#ffffff;border:0;padding:.6rem 1.1rem;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body class="search wp-theme-stonebridge">
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="#"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><rect x="4" y="14" width="8" height="18" fill="currentColor"/><rect x="14" y="5" width="8" height="27" fill="currentColor"/><rect x="24" y="10" width="8" height="22" fill="currentColor"/></svg><span>City of Stonebridge</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="#council">Council</a></li>
+        <li><a href="#agendas">Agendas</a></li>
+        <li><a href="#departments">Departments</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+<h1 class="wp-block-heading">Search the city website</h1>
+<form role="search" method="get" action="#" class="wp-block-search__button-outside wp-block-search__text-button wp-block-search" onsubmit="return false">
+  <label class="wp-block-search__label" for="wp-block-search__input-1">Search</label>
+  <div class="wp-block-search__inside-wrapper">
+    <input class="wp-block-search__input" id="wp-block-search__input-1" placeholder="" value="" type="search" name="s">
+    <button aria-label="Search" class="wp-block-search__button wp-element-button" type="submit">Search</button>
+  </div>
+</form>
+<section aria-labelledby="news-h">
+  <h2 id="news-h">City news</h2>
+  <ul class="news">
+    <li><a href="#leaf">Leaf collection routes posted for November and December</a><span class="meta">November 9, 2026</span></li>
+    <li><a href="#streets">Council adopts the 2027 street maintenance plan</a><span class="meta">November 4, 2026</span></li>
+    <li><a href="#grants">Apply for a Neighborhood Grant by December 15</a><span class="meta">October 30, 2026</span></li>
+  </ul>
+</section>
+<section aria-labelledby="svc-h">
+  <h2 id="svc-h">Popular services</h2>
+  <ul class="link-grid">
+    <li><a href="#parking">Pay a parking ticket</a></li>
+    <li><a href="#pothole">Report a pothole</a></li>
+    <li><a href="#permits-b">Building permits</a></li>
+    <li><a href="#garbage">Garbage and recycling</a></li>
+  </ul>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p><strong>City of Stonebridge</strong><br>61 Front Street<br>Phone: 555-0163</p>
+    <ul class="footer-links">
+      <li><a href="#contact">Contact us</a></li>
+      <li><a href="#accessibility">Accessibility</a></li>
+      <li><a href="#records-request">Public records requests</a></li>
+      <li><a href="#privacy">Privacy policy</a></li>
+    </ul>
+    <p class="small">&copy; 2026 City of Stonebridge</p>
+  </div>
+</footer>
+</body>
+</html>

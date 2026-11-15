@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Seats (a chart overlay after many icons)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Seats (a chart overlay after many icons)</h1>
+<div id="chart" style="position:relative;width:400px;height:200px">
+<span id="icons"></span>
+<canvas id="plan" width="400" height="200" style="position:absolute;left:0;top:0"></canvas>
+<div id="overlay" style="position:absolute;left:10px;top:10px;width:120px;height:40px;cursor:pointer"></div>
+</div>
+<p>Five of the seven seats in row A are sold.</p>
+<script>
+var icons = '';
+for (var i = 0; i < 40; i++) icons += '<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"></svg>';
+document.getElementById('icons').innerHTML = icons;
+var g = document.getElementById('plan').getContext('2d'); g.fillStyle = '#dbe8f7'; g.fillRect(0, 0, 400, 200);
+document.getElementById('overlay').addEventListener('click', function () {});
+</script>
+<p><a href="/index.html">All reports</a></p>
+</main>
+</body>
+</html>

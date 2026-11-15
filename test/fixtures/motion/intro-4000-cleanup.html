@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A short intro slide of 4 seconds, then its animation is removed</title>
+<style>
+@keyframes slide { from { transform: translateX(0); } to { transform: translateX(200px); } }
+#banner { width: 300px; height: 60px; background: #0b4fb3; color: #fff; padding: 8px; animation: slide 4s linear 1 forwards; }
+</style></head>
+<body><main><h1>News</h1><p id="banner">Spring show on May 9.</p><p>No controls on this page. The 4 s intro is removed when it ends.</p></main>
+<script>document.getElementById("banner").addEventListener("animationend", function (e) { e.target.style.animation = "none"; });</script></body>
+</html>

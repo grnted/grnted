@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Path conditions | Alder Parks</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; }
+  a.quiet:focus { outline: none; }
+</style>
+</head>
+<body>
+<!-- An app shell: the page's content is put in 1.5 s after it loads. One of its links has no focus indicator. -->
+<main id="app" aria-busy="true"><p>Loading…</p></main>
+<script>
+  setTimeout(() => {
+    const app = document.getElementById('app');
+    app.innerHTML = '<h1>Path conditions</h1><p><a href="/paths/north.html">North path</a> is open. <a class="quiet" href="/paths/south.html">South path</a> is closed for repairs.</p>';
+    app.removeAttribute('aria-busy');
+  }, 1500);
+</script>
+</body>
+</html>

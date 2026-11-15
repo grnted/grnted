@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<audio id="music" src="tone.wav" autoplay loop></audio>
+<p>Our sounds of the season.</p>
+<button type="button" id="snd">♫ Music: on</button>
+</main>
+<script>
+document.getElementById('snd').addEventListener('click', function () { var a = document.getElementById('music'); a.pause(); this.textContent = '♫ Music: off'; });
+</script>
+</body>
+</html>

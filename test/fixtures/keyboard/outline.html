@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: focus indicators</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; color: #222; background: #fff; }
+  p { margin: 12px 0; }
+  a { color: #0645ad; }
+  /* Planted failure (2.4.7): the outline is removed and nothing replaces it. */
+  a.bare:focus { outline: none; }
+  /* Clean controls: a box-shadow ring, a background highlight, the browser's own outline. */
+  .ring:focus { outline: none; box-shadow: 0 0 0 3px #005fcc; }
+  .highlight:focus { outline: none; background: #ffdd00; }
+  /* Planted failure (2.4.7): an outline the parent's overflow cuts off entirely. */
+  .clip { overflow: hidden; width: 240px; }
+  .clip a { display: block; width: 240px; }
+  .clip a:focus { outline: 3px solid #005fcc; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Focus indicators</h1>
+  <p><a class="bare" id="bare" href="/no-indicator.html">No focus indicator</a></p>
+  <p><button class="ring" type="button">Ring on focus</button></p>
+  <p><a class="highlight" href="/highlight.html">Highlighted on focus</a></p>
+  <p><a href="/default.html">Browser outline</a></p>
+  <div class="clip"><a id="clipped" href="/clipped.html">Outline cut off</a></div>
+</main>
+</body>
+</html>

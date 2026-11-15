@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: 80 links inside a shadow root</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<!-- Clean control with coverage: 80 links in a shadow root, so the core test (60 + 40 stops) does not
+     reach all of them by Tab alone, and the deep test must still run. -->
+<main><h1>Directory</h1><dir-list></dir-list></main>
+<script>
+  customElements.define('dir-list', class extends HTMLElement {
+    constructor() { super(); this.attachShadow({ mode: 'open' }).innerHTML = "<p><a href='/s/1.html'>Shadow 1</a> <a href='/s/2.html'>Shadow 2</a> <a href='/s/3.html'>Shadow 3</a> <a href='/s/4.html'>Shadow 4</a> <a href='/s/5.html'>Shadow 5</a> <a href='/s/6.html'>Shadow 6</a> <a href='/s/7.html'>Shadow 7</a> <a href='/s/8.html'>Shadow 8</a> <a href='/s/9.html'>Shadow 9</a> <a href='/s/10.html'>Shadow 10</a> <a href='/s/11.html'>Shadow 11</a> <a href='/s/12.html'>Shadow 12</a> <a href='/s/13.html'>Shadow 13</a> <a href='/s/14.html'>Shadow 14</a> <a href='/s/15.html'>Shadow 15</a> <a href='/s/16.html'>Shadow 16</a> <a href='/s/17.html'>Shadow 17</a> <a href='/s/18.html'>Shadow 18</a> <a href='/s/19.html'>Shadow 19</a> <a href='/s/20.html'>Shadow 20</a> <a href='/s/21.html'>Shadow 21</a> <a href='/s/22.html'>Shadow 22</a> <a href='/s/23.html'>Shadow 23</a> <a href='/s/24.html'>Shadow 24</a> <a href='/s/25.html'>Shadow 25</a> <a href='/s/26.html'>Shadow 26</a> <a href='/s/27.html'>Shadow 27</a> <a href='/s/28.html'>Shadow 28</a> <a href='/s/29.html'>Shadow 29</a> <a href='/s/30.html'>Shadow 30</a> <a href='/s/31.html'>Shadow 31</a> <a href='/s/32.html'>Shadow 32</a> <a href='/s/33.html'>Shadow 33</a> <a href='/s/34.html'>Shadow 34</a> <a href='/s/35.html'>Shadow 35</a> <a href='/s/36.html'>Shadow 36</a> <a href='/s/37.html'>Shadow 37</a> <a href='/s/38.html'>Shadow 38</a> <a href='/s/39.html'>Shadow 39</a> <a href='/s/40.html'>Shadow 40</a> <a href='/s/41.html'>Shadow 41</a> <a href='/s/42.html'>Shadow 42</a> <a href='/s/43.html'>Shadow 43</a> <a href='/s/44.html'>Shadow 44</a> <a href='/s/45.html'>Shadow 45</a> <a href='/s/46.html'>Shadow 46</a> <a href='/s/47.html'>Shadow 47</a> <a href='/s/48.html'>Shadow 48</a> <a href='/s/49.html'>Shadow 49</a> <a href='/s/50.html'>Shadow 50</a> <a href='/s/51.html'>Shadow 51</a> <a href='/s/52.html'>Shadow 52</a> <a href='/s/53.html'>Shadow 53</a> <a href='/s/54.html'>Shadow 54</a> <a href='/s/55.html'>Shadow 55</a> <a href='/s/56.html'>Shadow 56</a> <a href='/s/57.html'>Shadow 57</a> <a href='/s/58.html'>Shadow 58</a> <a href='/s/59.html'>Shadow 59</a> <a href='/s/60.html'>Shadow 60</a> <a href='/s/61.html'>Shadow 61</a> <a href='/s/62.html'>Shadow 62</a> <a href='/s/63.html'>Shadow 63</a> <a href='/s/64.html'>Shadow 64</a> <a href='/s/65.html'>Shadow 65</a> <a href='/s/66.html'>Shadow 66</a> <a href='/s/67.html'>Shadow 67</a> <a href='/s/68.html'>Shadow 68</a> <a href='/s/69.html'>Shadow 69</a> <a href='/s/70.html'>Shadow 70</a> <a href='/s/71.html'>Shadow 71</a> <a href='/s/72.html'>Shadow 72</a> <a href='/s/73.html'>Shadow 73</a> <a href='/s/74.html'>Shadow 74</a> <a href='/s/75.html'>Shadow 75</a> <a href='/s/76.html'>Shadow 76</a> <a href='/s/77.html'>Shadow 77</a> <a href='/s/78.html'>Shadow 78</a> <a href='/s/79.html'>Shadow 79</a> <a href='/s/80.html'>Shadow 80</a> </p>"; }
+  });
+</script>
+</body>
+</html>

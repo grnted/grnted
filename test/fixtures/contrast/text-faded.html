@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Text on slides faded out</title>
+<style>
+  body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+  main { padding: 16px 24px; }
+  .box { padding: 12px 16px; margin: 0 0 12px; background: linear-gradient(90deg, #ffffff, #eeeeee); }
+  p { margin: 0; }
+  .banner { padding: 24px; background: linear-gradient(90deg, #112233, #223344); }
+  .banner p { color: #ffffff; font-size: 18px; }
+  /* A fading carousel between slides: each slide is fully transparent and lets clicks through. */
+  .stage { position: relative; width: 600px; height: 120px; background: #f4f4f4; }
+  .slide { position: absolute; inset: 0; padding: 24px; opacity: 0; pointer-events: none; background: linear-gradient(90deg, #eeeeee, #dddddd); }
+  .slide p { color: #ffffff; font-size: 18px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>News</h1>
+  <div class="box"><p id="t-ok-1">Dark text on a light gradient, easy to read.</p></div>
+  <div class="box"><p id="t-ok-2">More dark text on the same light gradient.</p></div>
+  <div class="banner"><p id="t-ok-3">White text on deep blue.</p></div>
+  <div class="stage">
+    <div class="slide"><p id="t-faded-1">A slide faded out: white text on a pale background.</p></div>
+    <div class="slide"><p id="t-faded-2">A slide faded out: white text on a pale background.</p></div>
+    <div class="slide"><p id="t-faded-3">A slide faded out: white text on a pale background.</p></div>
+    <div class="slide"><p id="t-faded-4">A slide faded out: white text on a pale background.</p></div>
+    <div class="slide"><p id="t-faded-5">A slide faded out: white text on a pale background.</p></div>
+    <div class="slide"><p id="t-faded-6">A slide faded out: white text on a pale background.</p></div>
+  </div>
+</main>
+</body>
+</html>

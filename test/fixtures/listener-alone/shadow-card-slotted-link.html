@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>News (a card element around its link)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>News (a card element around its link)</h1>
+<news-card id="card" style="display:block;max-width:32rem"><h2>Library hours change in March</h2><p>The main library opens at 9 am from March 2.</p><a href="/index.html">Read the notice</a></news-card>
+<script>
+customElements.define('news-card', class extends HTMLElement {
+  connectedCallback() {
+    var root = this.attachShadow({ mode: 'open' });
+    root.innerHTML = '<div id="frame" style="cursor:pointer;border:1px solid #595959;padding:8px 12px"><slot></slot></div>';
+    var link = this.querySelector('a');
+    root.getElementById('frame').addEventListener('click', function (e) { if (e.target !== link) link.click(); });
+  }
+});
+</script>
+<p><a href="/index.html">All reports</a></p>
+</main>
+</body>
+</html>

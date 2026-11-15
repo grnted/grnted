@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Trip options (widget roles without focus)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+[role] { padding: 2px 6px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Trip options (widget roles without focus)</h1>
+<section><h2>Fare</h2><div role="radiogroup" aria-label="Fare type"><div id="fare-adult" role="radio" aria-checked="true">Adult</div><div id="fare-youth" role=" RADIO " aria-checked="false">Youth</div></div></section>
+<section><h2>Show on the map</h2><div role="menu" aria-label="Map layers"><div id="layer-stops" role="menuitemcheckbox" aria-checked="true">Stops</div><div id="layer-lines" role="menuitemradio" aria-checked="false">Lines only</div></div></section>
+<section><h2>Routes</h2><div role="tree" aria-label="Routes by area"><div id="area-north" role="treeitem" aria-expanded="false">North area</div></div></section>
+<section><h2>Alerts</h2><div id="alerts-on" role="switch" aria-checked="false">Service alerts</div></section>
+<section><h2>Stop</h2><div id="stop-box" role="combobox" aria-expanded="false" aria-label="Stop">Main Station</div></section>
+<section><h2>Timetable</h2><div role="grid" aria-label="Departures"><div role="row"><div id="dep-1" role="gridcell">7:05</div></div></div></section>
+<p id="picked" role="status"></p>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+['fare-adult', 'fare-youth', 'layer-stops', 'layer-lines', 'area-north', 'alerts-on', 'stop-box', 'dep-1'].forEach(function (id) {
+  document.getElementById(id).addEventListener('click', function () { document.getElementById('picked').textContent = 'Chosen: ' + this.textContent + '.'; });
+});
+</script>
+</body>
+</html>

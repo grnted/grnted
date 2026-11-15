@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grok round 1: a POST form whose field name holds "search"</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style></head>
+<body>
+<!-- 3.3.2 failure: "research_interest" holds "search", but nothing labels the field (the button says Send). -->
+<form method="post" action="/contact"><input name="research_interest" placeholder="Topic"><button>Send</button></form>
+</body>
+</html>

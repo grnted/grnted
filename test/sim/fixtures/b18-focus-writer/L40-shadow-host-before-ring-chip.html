@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Routes | Bridgewater Transit Authority</title>
+<meta name="description" content="Routes">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:1rem;line-height:1.55;background:#ffffff;color:#1f2933}
+button,input,select,textarea{font:inherit}
+img,svg{max-width:100%}
+.site-header{background:#004d40;color:#ffffff;}
+.site-header .inner,.site-footer .inner{max-width:68rem;margin:0 auto;padding:1rem 1.25rem}
+.site-header .inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:inline-flex;align-items:center;gap:.6rem;color:#ffffff;text-decoration:none;font-weight:700;font-size:1.2rem}
+.brand svg{flex:none}
+.site-nav ul{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;list-style:none;margin:0;padding:0}
+.site-nav a{color:#ffffff;text-decoration:none;font-weight:600;padding:.25rem .1rem}
+.site-nav a:hover{text-decoration:underline}
+main{display:block;max-width:68rem;margin:0 auto;padding:2rem 1.25rem 3rem}
+main:focus{outline:none}
+h1{font-size:2rem;line-height:1.2;margin:.25rem 0 1rem}
+h2{font-size:1.35rem;line-height:1.3;margin:2rem 0 .75rem}
+h3{font-size:1.1rem;margin:1.25rem 0 .5rem}
+a{color:#00695c}
+.lead{font-size:1.15rem;max-width:44rem}
+.notice{background:rgba(0,0,0,.035);border-left:4px solid #55606e;padding:.85rem 1rem;margin:1.25rem 0;max-width:46rem}
+.news{list-style:none;margin:0;padding:0;max-width:46rem}
+.news li{padding:.65rem 0;border-bottom:1px solid rgba(0,0,0,.12)}
+.news .meta{display:block;font-size:.875rem;opacity:.85}
+.link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.5rem 1.5rem;list-style:none;margin:0;padding:0}
+.link-grid li{padding:.35rem 0}
+.site-footer{background:#e8f3f1;color:#00332b;margin-top:2rem;border-top:1px solid #bcd9d3}
+.site-footer a{color:#00332b}
+.footer-links{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;list-style:none;margin:.75rem 0;padding:0}
+.small{font-size:.875rem}
+/* site-wide keyboard focus style */
+:where(a[href],button,input,select,textarea,summary):focus-visible{outline:3px solid #1a1a1a;outline-offset:2px}
+:where(.site-header) :where(a[href],button,input,select):focus-visible{outline-color:#ffffff}
+:where(.on-dark) :where(a[href],button,input,select):focus-visible{outline-color:#ffffff}
+/* page components */
+route-chip:not(:defined){display:inline-block;padding:.5rem 1rem;margin:.35rem;background:#f2f4f7;border-radius:999px}
+.chips{margin:1rem 0}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="#"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><rect x="7" y="4" width="22" height="23" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><rect x="10" y="8" width="16" height="8" fill="currentColor"/><circle cx="12" cy="31" r="2.5" fill="currentColor"/><circle cx="24" cy="31" r="2.5" fill="currentColor"/></svg><span>Bridgewater Transit Authority</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="#schedules">Schedules</a></li>
+        <li><a href="#fares">Fares</a></li>
+        <li><a href="#rider-alerts">Rider Alerts</a></li>
+        <li><a href="#trip-planner">Trip Planner</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+<h1>Routes and schedules</h1>
+<p class="lead">Choose a route to see its map, timetable and stops.</p>
+<div class="chips">
+  <route-chip tabindex="0" role="link" id="route-12" data-href="#route-12-detail">Route 12 &middot; Bayshore</route-chip>
+  <route-chip tabindex="0" role="link" id="route-20" data-href="#route-20-detail">Route 20 &middot; College</route-chip>
+  <route-chip tabindex="0" role="link" id="route-31" data-href="#route-31-detail">Route 31 &middot; Airport</route-chip>
+</div>
+<section aria-labelledby="alerts-h">
+  <h2 id="alerts-h">Rider alerts</h2>
+  <ul class="news">
+    <li><a href="#detour-4">Route 4 detour on Grant Street through November 20</a><span class="meta">Posted November 11, 2026</span></li>
+    <li><a href="#holiday-svc">Thanksgiving Day: Sunday service</a><span class="meta">Posted November 6, 2026</span></li>
+  </ul>
+</section>
+<section aria-labelledby="fares-h">
+  <h2 id="fares-h">Fares</h2>
+  <p>Adult fare is $1.75. Youth 18 and under ride free. <a href="#reduced">Apply for a reduced fare card</a>.</p>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p><strong>Bridgewater Transit Authority</strong><br>900 Library Plaza<br>Phone: 555-0113</p>
+    <ul class="footer-links">
+      <li><a href="#contact">Contact us</a></li>
+      <li><a href="#accessibility">Accessibility</a></li>
+      <li><a href="#records-request">Public records requests</a></li>
+      <li><a href="#privacy">Privacy policy</a></li>
+    </ul>
+    <p class="small">&copy; 2026 Bridgewater Transit Authority</p>
+  </div>
+</footer>
+<script>
+class RouteChip extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' }).innerHTML = `<style>
+      :host{position:relative;display:inline-block;padding:.5rem 1rem;margin:.35rem;background:#f2f4f7;color:#1a1a1a;border-radius:999px;font:700 .95rem/1.2 Arial,Helvetica,sans-serif;cursor:pointer}
+      :host::before{content:"";position:absolute;inset:-5px;border:3px solid transparent;border-radius:999px;pointer-events:none}
+      :host(:focus){outline:none}
+      :host(:focus)::before{border-color:#6a1b9a}
+    </style><slot></slot>`;
+  }
+  connectedCallback() {
+    const go = () => { location.hash = this.dataset.href.slice(1); };
+    this.addEventListener('click', go);
+    this.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); go(); } });
+  }
+}
+customElements.define('route-chip', RouteChip);
+</script>
+</body>
+</html>

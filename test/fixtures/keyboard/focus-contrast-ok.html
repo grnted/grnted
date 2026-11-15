@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: focus indicators with enough contrast</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; color: #222; background: #fafafa; }
+  p { margin: 16px 0; }
+  a { color: #0645ad; }
+  button { font: inherit; padding: 4px 10px; border: 1px solid #555; background: #fff; color: #111; }
+  /* Clean controls (1.4.11): rings of 3:1 or more, a highlight inside the element (not a ring), the
+     browser's own ring. */
+  a.thin:focus { outline: 1px solid #767676; }
+  button.shadow:focus { outline: none; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #1a4fa0; }
+  a.highlight:focus { outline: none; background: #ffdd00; }
+  .gradient { padding: 12px; background: linear-gradient(90deg, #fff, #dde8ff); }
+  .gradient a:focus { outline: 3px solid #b00020; outline-offset: 1px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Strong focus indicators</h1>
+  <p><a class="thin" href="/thin.html">Thin grey ring</a></p>
+  <p><button class="shadow" type="button">Double ring</button></p>
+  <p><a class="highlight" href="/highlight.html">Highlighted on focus</a></p>
+  <p><a href="/default.html">Browser ring</a></p>
+  <div class="gradient"><a href="/gradient.html">Ring on a gradient</a></div>
+</main>
+</body>
+</html>

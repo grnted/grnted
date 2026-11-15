@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Contact us</title></head>
+<body>
+<main>
+<h1>Contact us</h1>
+<p>Questions about your bill? <a href="/contact-help.html">Help with this form</a></p>
+<form id="ask" method="get" action="/process">
+<label>Email <input name="email" value="resident@example.org"></label>
+<label>Message <textarea name="message">Please call me back</textarea></label>
+<button>Send</button>
+</form>
+</main>
+<!-- A page script that submits a GET form 200 ms after load (/process creates a ticket): never sent by the scanner. -->
+<script>addEventListener('load', function () { setTimeout(function () { document.getElementById('ask').submit(); }, 200); });</script>
+</body>
+</html>

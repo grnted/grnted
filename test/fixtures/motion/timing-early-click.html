@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Library</title></head>
+<body><main id="main">
+<h1>Library</h1>
+<p>Opening hours and events.</p>
+<button type="button" id="help">Help</button>
+</main>
+<script>
+  // Not a time limit: a harmless 25 s timer (a notice), and a Help button that goes to the help page when
+  // a user clicks it. The test runs the timer early itself (the motion test stops at 20 s) and clicks
+  // the button in the same moment, well within 250 ms.
+  setTimeout(function () {
+    var p = document.createElement('p');
+    p.setAttribute('role', 'status');
+    p.textContent = 'New: the library is open until 8 pm on Thursdays.';
+    document.getElementById('main').appendChild(p);
+  }, 25000);
+  document.getElementById('help').addEventListener('click', function () { location.href = 'help.html'; });
+</script>
+</body>
+</html>

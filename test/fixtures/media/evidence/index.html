@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Media library</title>
+<link rel="alternate" type="application/rss+xml" href="/evidence/podcast.xml" title="District podcast">
+</head>
+<body>
+<main>
+<h1>Media library</h1>
+<section id="welcome">
+  <h2>Welcome video</h2>
+  <video id="v1" controls src="/clip-tone.webm"><track kind="captions" src="/no-cues.vtt" srclang="en" label="English"></video>
+  <p>The welcome message from the director.</p>
+  <div role="tabpanel" id="panel-2" hidden>Full text of the welcome message, in other words.</div>
+</section>
+<h2>Podcast</h2>
+<figure>
+  <audio id="a1" controls src="/tone.wav" aria-describedby="t1"></audio>
+  <figcaption>Episode 12: the bond measure</figcaption>
+</figure>
+<details><summary>What was said</summary><p id="t1">The board meets on November 19 at 6 pm in room 4.</p></details>
+<p><a href="/evidence/ep12-notes.pdf">Episode 12 notes (PDF)</a> <a href="/tone.wav">Listen (WAV)</a></p>
+<h2>Events</h2>
+<iframe title="Fall open house tour" width="320" height="180" src="https://www.youtube.com/embed/abcdEFGhijk"></iframe>
+<iframe title="Board meeting" width="320" height="180" src="/evidence/player.html"></iframe>
+<lite-youtube videoid="zYxWvUtSrQ0" playlabel="Play: Spring concert"></lite-youtube>
+<p><a href="https://youtu.be/zYxWvUtSrQ0">Watch the concert on YouTube</a></p>
+<object data="/tone.wav" type="audio/wav" width="300" height="40"></object>
+<h2>District videos</h2>
+<figure class="wp-block-embed"><div class="wp-block-embed__wrapper"><h3>Reporting an absence</h3><video id="absence" muted src="/clip-tone.webm"></video><p>It only takes a minute!</p></div></figure>
+<figure class="wp-block-embed"><div class="wp-block-embed__wrapper"><video id="mov-0042" controls src="/clip-tone.webm"></video><p class="wp-element-caption">MOV_0042.mp4</p></div></figure>
+<media-box></media-box>
+</main>
+<script>
+customElements.define('media-box', class extends HTMLElement {
+  constructor() { super(); this.attachShadow({ mode: 'open' }).innerHTML = '<video src="/clip-tone.webm" muted autoplay loop playsinline aria-hidden="true" width="160" height="90"></video>'; }
+});
+fetch('/evidence/live.m3u8').catch(function () {});
+</script>
+</body>
+</html>

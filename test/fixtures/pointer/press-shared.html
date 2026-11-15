@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: one handler for look-alike buttons</title></head>
+<body><main><h1>Topics</h1><p>
+<button type="button" class="chip">Topic 1</button>
+<button type="button" class="chip">Topic 2</button>
+<button type="button" class="chip">Topic 3</button>
+<button type="button" class="chip">Topic 4</button>
+<button type="button" class="chip">Topic 5</button>
+<button type="button" class="chip">Topic 6</button>
+<button type="button" class="chip">Topic 7</button>
+</p><p id="out">Nothing chosen.</p></main>
+<script>
+  // One handler shared by every button; it acts only for the seventh.
+  var fb = function () { if (this.textContent === 'Topic 7') document.getElementById('out').textContent = 'Topic 7 chosen.'; else this.style.outline = '1px solid'; };
+  document.querySelectorAll('.chip').forEach(function (b) { b.addEventListener('mousedown', fb); });
+</script>
+</body>
+</html>

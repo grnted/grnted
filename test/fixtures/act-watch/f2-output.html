@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Fee estimate</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .bad { border: 2px solid #b00020; } .err { color: #a00000; } .toast { position: fixed; right: 12px; bottom: 12px; background: #223; color: #fff; padding: 8px 12px; } .hidden { display: none; }</style></head>
+<body>
+<main><h1>Fee estimate</h1>
+<form id="est"><label for="w">Width in feet</label><input id="w" type="number" required>
+<label for="l">Length in feet</label><input id="l" type="number" required>
+<p><button type="submit">Estimate</button></p><output id="out"></output></form>
+</main>
+
+<script>
+
+document.getElementById('est').addEventListener('submit', (e) => { e.preventDefault();
+  document.getElementById('out').textContent = 'Your permit fee is estimated at 40 dollars.'; });
+</script>
+</body></html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Floating button over a fixed link</title>
+<style>
+body { margin: 0; font: 16px/1.5 sans-serif; color: #111; background: #fff; }
+main { padding: 8px; }
+p { margin: 0 0 12px; }
+#help { position: fixed; left: 8px; top: 8px; width: 150px; height: 44px; background: #036; color: #fff; border: 0; font: inherit; z-index: 5; }
+#buy { position: fixed; left: 16px; top: 16px; z-index: 1; }
+</style>
+</head>
+<body>
+<!-- Fails 1.4.10: the "Buy a day ticket" link is fixed in place under the floating button, so no scroll
+     position brings it clear: what it does is lost at this width. -->
+<button id="help" type="button">Ask the ferry office</button>
+<a id="buy" href="/buy">Buy a day ticket</a>
+<main style="padding-top: 64px"><h1>Tickets</h1>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+<p>The ferry office sells day tickets, season passes and car spaces for every sailing. Timetables change on the first Monday of May and of October.</p>
+</main>
+</body>
+</html>

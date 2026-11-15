@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: trap with the only other control in a shadow root after many light elements</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .skip { display: none; }</style>
+</head>
+<body>
+<main>
+  <h1>Pick a date</h1>
+  <!-- Planted failure (2.1.2): Tab cycles between the two buttons. 450 light-DOM elements with
+       tabindex="-1" come first; the only other focusable control is in a shadow root after them. -->
+  <div id="widget" role="group" aria-label="Date picker"><button type="button">Previous month</button> <button type="button">Next month</button></div>
+  <div id="filler"></div>
+  <site-links></site-links>
+</main>
+<script>
+  var filler = document.getElementById('filler');
+  for (var i = 0; i < 450; i++) { var s = document.createElement('span'); s.tabIndex = -1; s.textContent = '.'; filler.appendChild(s); }
+  customElements.define('site-links', class extends HTMLElement {
+    constructor() { super(); this.attachShadow({ mode: 'open' }).innerHTML = '<p><a href="/a.html">The only other link</a></p>'; }
+  });
+  var w = document.getElementById('widget');
+  w.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    var b = Array.prototype.slice.call(w.querySelectorAll('button'));
+    b[(b.indexOf(document.activeElement) + 1) % b.length].focus();
+  });
+</script>
+</body>
+</html>

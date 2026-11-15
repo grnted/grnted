@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Lighthouse open day</title>
+<style>body { font: 18px sans-serif; margin: 0; padding: 16px; } .lamp { width: 720px; height: 240px; background: #fff; border: 1px solid #333; margin: 16px 0; } .lamp.on { animation: blink .25s steps(1, end) infinite; } @keyframes blink { 0% { background: #000; } 50% { background: #fff; } 100% { background: #fff; } } .note { display: none; } .note.open { display: block; } .lamp.open { animation: blink .25s steps(1, end) 8 both; }</style></head>
+<body><main>
+<h1>Lighthouse open day</h1>
+<p>The lighthouse on the point is open to visitors on the first Sunday of each month.</p>
+<!-- Six different buttons that show something; the first five show a still note, the sixth starts the lamp blinking. More kinds than the test presses. -->
+<button type="button" data-for="n0">Show the lamp room</button> <button type="button" data-for="n1">Show the stair plan</button> <button type="button" data-for="n2">View the keeper’s log</button> <button type="button" data-for="n3">Open the tide table</button> <button type="button" data-for="n4">Play the fog signal</button> <button type="button" data-for="n5">Start the lamp demo</button> <p class="note" id="n0">Note 0: ask at the gate.</p><p class="note" id="n1">Note 1: ask at the gate.</p><p class="note" id="n2">Note 2: ask at the gate.</p><p class="note" id="n3">Note 3: ask at the gate.</p><p class="note" id="n4">Note 4: ask at the gate.</p><div id="n5" class="lamp note"></div><p>The climb is 112 steps. The keeper shows the lamp room at eleven and at two.</p>
+</main>
+<script>document.querySelectorAll('button[data-for]').forEach(function (b) { b.addEventListener('click', function () { document.getElementById(b.getAttribute('data-for')).classList.add('open'); }); });</script>
+</body>
+</html>

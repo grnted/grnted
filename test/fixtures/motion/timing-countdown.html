@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Page moved</title></head>
+<body><main>
+<h1>Page moved</h1>
+<p>This page has moved. Redirecting in <span id="n">6</span> seconds.</p>
+</main>
+<script>
+  // A countdown made of short timers (under 1 s): only the deep watch sees it.
+  var n = 12;
+  (function tick() { n--; document.getElementById('n').textContent = String(Math.ceil(n / 2)); if (n <= 0) location.href = 'static.html'; else setTimeout(tick, 500); })();
+</script>
+</body>
+</html>

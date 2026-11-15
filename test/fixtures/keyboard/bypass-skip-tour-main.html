@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: a "Skip tour" button on a page with a main landmark</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } nav a { margin-right: 12px; }</style></head>
+<body>
+<!-- No failure (2.4.1), and the button is never pressed: the main landmark and heading bypass the navigation. -->
+<button type="button" id="tour" onclick="new Image().src = '/clicked-skip-tour.png'">Skip tour</button>
+<nav aria-label="Main"><a href="/a.html">A</a><a href="/b.html">B</a><a href="/c.html">C</a></nav>
+<main><h1>Welcome</h1><p>The guided tour shows where to find permits, parks and payments on this site.</p></main>
+</body>
+</html>

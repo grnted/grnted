@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: dialog with controls the test must not press</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } #dialog { position: fixed; top: 24px; right: 24px; width: 360px; background: #fff; padding: 16px; border: 2px solid #333; }</style>
+</head>
+<body>
+<main><h1>Welcome</h1><p><a href="/one.html">First link</a></p></main>
+<!-- Not testable (2.1.2), and none of these is pressed (each would request /pressed): a reset button named
+     Cancel, a link with role=button named Close, an image button, a submit button named Close, an area
+     with role=button, and a button named OK (not a dismissive name). -->
+<div id="dialog" role="dialog" aria-modal="true" aria-label="Settings">
+  <form action="/settings" method="get" onreset="ping('reset')" onsubmit="ping('submit'); return false">
+    <input id="name" name="name" aria-label="Name">
+    <button type="reset">Cancel</button>
+    <button type="submit" onclick="ping('submit-button')">Close</button>
+    <input type="image" alt="Close" src="/close.png" onclick="ping('image')">
+  </form>
+  <a role="button" href="/pressed?link" onclick="ping('link')">Close</a>
+  <img src="/map.png" usemap="#m" alt="Map" width="40" height="20"><map name="m"><area role="button" href="/pressed?area" alt="Close" shape="rect" coords="0,0,40,20" onclick="ping('area')"></map>
+  <button type="button" onclick="ping('ok')">OK</button>
+</div>
+<script>
+  // Focus stays in the dialog while it is open, wherever focus was.
+  var d = document.getElementById('dialog');
+  var ping = function (x) { new Image().src = '/pressed?' + x; };
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab' || !d.isConnected) return;
+    e.preventDefault();
+    var f = Array.prototype.slice.call(d.querySelectorAll('a[href], area[href], button, input, textarea'));
+    var i = f.indexOf(document.activeElement);
+    f[i < 0 ? 0 : (i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus();
+  });
+</script>
+</body>
+</html>

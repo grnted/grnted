@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Account</title></head>
+<body><main id="main">
+<h1>Account</h1>
+<p>Your account summary.</p>
+<div id="live" aria-live="polite" style="opacity: 0"></div>
+</main>
+<script>
+  // A 15 s time limit (round 2, Sol 3): the expiry message goes into a live region at opacity 0, which
+  // screen readers announce.
+  setTimeout(function () { document.getElementById('live').textContent = 'Your session has expired. Sign in again to continue.'; }, 15000);
+</script>
+</body>
+</html>

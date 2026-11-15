@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Notes</title></head>
+<body><main>
+<h1>Notes</h1>
+<section aria-label="Note" id="box">
+  <p id="note" style="font: 20px sans-serif; padding: 1rem; border: 1px solid #333; width: 500px">Meeting moved to Thursday at 6 pm.</p>
+  <p><button type="button" id="undo">Undo</button></p>
+  <p><input type="checkbox" id="t1"> <label for="t1">Show shake tips</label></p>
+  <p><input type="checkbox" id="t2"> <label for="t2">Shake animation preview</label></p>
+  <p><input type="checkbox" id="t3"> <label for="t3">Shake sounds</label></p>
+  <p><button type="button" id="off">Turn shake off</button></p>
+</section>
+</main>
+<script>
+  var undo = function () { document.getElementById('note').textContent = 'Meeting on Wednesday at 6 pm.'; };
+  document.getElementById('undo').addEventListener('click', undo);
+  // Grok review round 2: three toggles that only mention shaking come before the real off button.
+  var last = 0;
+  var onShake = function (e) {
+    var a = e.accelerationIncludingGravity || e.acceleration || {};
+    if (Math.abs(a.x || 0) + Math.abs(a.y || 0) > 15 && Date.now() - last > 300) { last = Date.now(); undo(); }
+  };
+  addEventListener('devicemotion', onShake);
+  document.getElementById('off').addEventListener('click', function () { removeEventListener('devicemotion', onShake); });
+</script>
+</body>
+</html>

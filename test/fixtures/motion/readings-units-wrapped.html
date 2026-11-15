@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Greenhouse readings</title>
+<style>#reading { font: 22px sans-serif; padding: .5rem; border: 1px solid #333; width: 400px; }</style></head>
+<body><main>
+<h1>Greenhouse readings</h1>
+<p>Temperature in the seedling house, read from the sensor by the door.</p>
+<!-- Planted failure (2.2.2), the look-alike: the same reading and the same kind of select inside its label, but
+     the select only sets the unit shown. Nothing pauses, stops, hides or slows the updates. -->
+<div id="reading">18.2 °C</div>
+<p><label>Units<select id="units"><option value="c">Celsius, every reading</option><option value="f">Fahrenheit, every reading</option></select></label></p>
+</main>
+<script>
+  (function () {
+    var n = 0;
+    setInterval(function () { n++; document.getElementById('reading').textContent = (18 + (n % 5) / 10).toFixed(1) + ' °C'; }, 2000);
+  })();
+</script>
+</body>
+</html>

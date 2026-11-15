@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Plan your visit</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button{font:inherit;padding:6px 12px}.mark{margin-left:.6rem;font-weight:bold}</style></head><body><main><h1>Plan your visit</h1><p>Build a checklist of the pages you want to bring to the service counter. The list is kept in this browser only.</p>
+<!-- Look-alike: the same hidden mark beside a toggle that keeps its state: aria-pressed follows every press. -->
+<div class="row"><button id="ok" type="button" aria-pressed="false">Include this page in my visit checklist</button><span id="ok-mark" class="mark" aria-hidden="true"></span></div>
+
+<!-- Look-alike: a hidden flourish that a press shows and a timer takes away again (no state: the next press shows it again). -->
+<div class="row"><button id="flash" type="button" aria-pressed="false">Copy the counter address</button><span id="flash-mark" class="mark" aria-hidden="true"></span></div>
+
+<!-- Look-alike: a hidden label beside a toggle that stays off shows and goes by itself (a blinking "Live"): no state. -->
+<div class="row"><button id="blink" type="button" aria-pressed="false">Mute the live notices</button><span id="blink-mark" class="mark" aria-hidden="true"></span></div>
+
+<!-- Look-alike: a button whose own words say the state; the hidden mark repeats it for sighted people. -->
+<div class="row"><button id="words" type="button">Add the parking map to my checklist</button><span id="words-mark" class="mark" aria-hidden="true"></span></div>
+</main>
+<script>
+  document.getElementById('ok').addEventListener('click', function () { var on = this.getAttribute('aria-pressed') !== 'true'; this.setAttribute('aria-pressed', String(on)); document.getElementById('ok-mark').textContent = on ? '✓ Included' : ''; });
+  document.getElementById('flash').addEventListener('click', function () { var m = document.getElementById('flash-mark'); m.textContent = '✓ Copied'; setTimeout(function () { m.textContent = ''; }, 120); });
+  setInterval(function () { var m = document.getElementById('blink-mark'); m.textContent = m.textContent ? '' : 'Live'; }, 180);
+  document.getElementById('words').addEventListener('click', function () { var m = document.getElementById('words-mark'); var on = !m.textContent; m.textContent = on ? '✓ Included' : ''; this.textContent = on ? 'Remove the parking map from my checklist' : 'Add the parking map to my checklist'; });
+</script>
+</body></html>

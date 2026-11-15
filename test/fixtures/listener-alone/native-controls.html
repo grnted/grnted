@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Budget facts (controls by their element)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Budget facts (controls by their element)</h1>
+<p>The district budget for 2026 is 41 million dollars. <a id="more-link">Show how it is spent</a></p>
+<p id="more" hidden>Of that, 62 percent pays for teaching.</p>
+<section><h2>Budget by year</h2><p id="year">2026</p><button type="button" id="next" tabindex="-1">Next year</button></section>
+<p><a href="/index.html">All reports</a></p>
+</main>
+<script>
+document.getElementById('more-link').addEventListener('click', function () { document.getElementById('more').hidden = false; });
+document.getElementById('next').addEventListener('click', function () { document.getElementById('year').textContent = '2027'; });
+</script>
+</body>
+</html>

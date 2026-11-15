@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: mouse-only controls</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  section { margin: 16px 0; }
+  .tile, .thumb, .tab, .deco { cursor: pointer; }
+  .tile { display: inline-block; padding: 12px; background: #eef; }
+  .thumb { width: 120px; height: 60px; background: #ccd; }
+  .tabs { list-style: none; padding: 0; display: flex; gap: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Things to click</h1>
+  <p>Links: <a href="/one.html">one</a>, <a href="/two.html">two</a>, <a href="/three.html">three</a>, <a href="/four.html">four</a>.</p>
+  <!-- Planted failure (2.1.1): a clickable div that cannot be focused. -->
+  <section><h2>Gallery</h2><div class="tile" id="tile">Open the gallery</div></section>
+  <!-- Clean control: a card whose image is clickable and whose link does the same. -->
+  <section><div class="card2"><div class="thumb" id="thumb"></div><a href="/story-two.html">Story two</a></div></section>
+  <!-- Clean control: a role=button div with tabindex and key handling. -->
+  <section><div role="button" tabindex="0" id="ok">Accessible button</div></section>
+  <!-- Planted failure (2.1.1): a link with a click handler but no href (not focusable). -->
+  <section><p><a id="nohref" onclick="document.getElementById('more').hidden = false">Show more</a></p><p id="more" hidden>More text.</p></section>
+  <!-- Planted failure (2.1.1): tabs whose clicks are handled by the list (delegation). -->
+  <section><ul class="tabs" id="tabs"><li class="tab">One</li><li class="tab">Two</li><li class="tab">Three</li></ul></section>
+  <!-- Clean control: a pointer cursor with no handler anywhere. -->
+  <section><span class="deco">Decorative</span></section>
+</main>
+<script>
+  document.getElementById('tile').addEventListener('click', function () { this.textContent = 'Gallery opened'; });
+  document.getElementById('thumb').addEventListener('click', function () { location.href = '/story-two.html'; });
+  var ok = document.getElementById('ok');
+  ok.addEventListener('click', function () { this.textContent = 'Pressed'; });
+  ok.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') this.click(); });
+  document.getElementById('tabs').addEventListener('click', function (e) {
+    var t = e.target.closest('.tab');
+    if (t) t.style.fontWeight = 'bold';
+  });
+</script>
+</body>
+</html>

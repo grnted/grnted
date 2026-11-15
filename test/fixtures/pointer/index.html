@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer fixture: clean controls</title>
+<style>
+body{font:16px/1.5 sans-serif;margin:20px}
+.ripple{display:inline-block;width:6px;height:6px;background:#036;border-radius:50%}
+#menu-list{position:absolute;background:#fff;border:1px solid #333;margin:0;padding:4px;list-style:none}
+#preview{border:1px solid #333;padding:4px}
+.car{position:relative;width:600px;height:200px;overflow:hidden;border:1px solid #333}
+.track{display:flex;width:1800px;height:200px;transition:none}
+.slide{width:600px;height:200px;flex:none;display:flex;align-items:center;justify-content:center;font-size:28px}
+.s1{background:#fde}.s2{background:#dfe}.s3{background:#def}
+.map{position:relative;width:600px;height:300px;overflow:hidden;border:1px solid #333;touch-action:none}
+.map-inner{position:absolute;left:0;top:0;width:1200px;height:600px;transform-origin:0 0;background:repeating-linear-gradient(45deg,#cde 0 20px,#9ab 20px 40px)}
+.pin{position:absolute;width:30px;height:30px;background:#c00;border-radius:50%}
+.sortlist{list-style:none;padding:0;width:400px}
+.sortlist li{border:1px solid #333;margin:4px 0;padding:8px;background:#f8f8f8}
+.slider{position:relative;width:300px;height:12px;background:#ccc;margin:20px 0}
+.thumb{position:absolute;top:-6px;width:24px;height:24px;background:#036;border-radius:50%}
+</style>
+</head>
+<body>
+<main>
+<h1>Clean pointer controls</h1>
+<p><button id="ripple-btn" type="button">Read the newsletter</button></p>
+<div id="newsletter" hidden>Newsletter text.</div>
+<p><button id="menu-btn" type="button" aria-haspopup="listbox" aria-expanded="false">Choose a grade</button></p>
+<ul id="menu-list" role="listbox" hidden><li role="option">Grade 1</li><li role="option">Grade 2</li></ul>
+<p><span id="hold-preview" role="button" tabindex="0">Hold to preview the lunch menu</span></p>
+<div id="preview" hidden>Monday: pasta. Tuesday: tacos.</div>
+<p><label>Volume (native) <input id="native-range" type="range" min="0" max="10" value="3"></label></p>
+
+<h2>Photo carousel</h2>
+<div class="car" id="car" aria-roledescription="carousel" aria-label="School photos">
+  <div class="track" id="car-track"><div class="slide s1">First photo</div><div class="slide s2">Second photo</div><div class="slide s3">Third photo</div></div>
+</div>
+<p><button type="button" id="car-prev">Previous</button> <button type="button" id="car-next">Next</button></p>
+
+<h2>Campus map</h2>
+<div id="map-box"><div class="map" id="map"><div class="map-inner" id="map-inner"><div class="pin" style="left:280px;top:130px"></div><div class="pin" style="left:500px;top:200px"></div></div></div>
+<p><button type="button" id="pan-left">Pan left</button> <button type="button" id="pan-right">Pan right</button> <button type="button" id="zoom-in">Zoom in</button> <button type="button" id="zoom-out">Zoom out</button></p></div>
+
+<h2>Reading list</h2>
+<ul class="sortlist" id="sort">
+  <li draggable="true">Charlotte's Web <button type="button" class="up">Move up</button> <button type="button" class="down">Move down</button></li>
+  <li draggable="true">Hatchet <button type="button" class="up">Move up</button> <button type="button" class="down">Move down</button></li>
+  <li draggable="true">Holes <button type="button" class="up">Move up</button> <button type="button" class="down">Move down</button></li>
+</ul>
+
+<h2>Text size</h2>
+<div class="slider" id="size-track"><div class="thumb" id="size-thumb" role="slider" tabindex="0" aria-label="Text size" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" style="left:48px"></div></div>
+</main>
+<script>
+  var $ = function (id) { return document.getElementById(id); };
+  // A ripple on press; the action on click.
+  $('ripple-btn').addEventListener('pointerdown', function () { var r = document.createElement('span'); r.className = 'ripple'; this.appendChild(r); });
+  $('ripple-btn').addEventListener('click', function () { $('newsletter').hidden = false; });
+  // A list of choices opens on press (like a native select); the choice is made on release.
+  $('menu-btn').addEventListener('mousedown', function () { $('menu-list').hidden = false; this.setAttribute('aria-expanded', 'true'); });
+  // Press and hold shows a preview; releasing or moving away hides it again.
+  var hide = function () { $('preview').hidden = true; };
+  $('hold-preview').addEventListener('pointerdown', function () { $('preview').hidden = false; });
+  $('hold-preview').addEventListener('pointerup', hide);
+  $('hold-preview').addEventListener('pointerleave', hide);
+  // The list of choices closes with Escape.
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { $('menu-list').hidden = true; $('menu-btn').setAttribute('aria-expanded', 'false'); } });
+
+  // Carousel: swipe with pointer events, and previous/next buttons.
+  var slide = 0, show = function (n) { slide = Math.max(0, Math.min(2, n)); $('car-track').style.transform = 'translateX(' + (-600 * slide) + 'px)'; };
+  var sx = null;
+  $('car').addEventListener('pointerdown', function (e) { sx = e.clientX; });
+  document.addEventListener('pointermove', function (e) { if (sx !== null) $('car-track').style.transform = 'translateX(' + (-600 * slide + (e.clientX - sx)) + 'px)'; });
+  document.addEventListener('pointerup', function (e) { if (sx === null) return; var dx = e.clientX - sx; sx = null; show(dx < -50 ? slide + 1 : dx > 50 ? slide - 1 : slide); });
+  $('car-prev').addEventListener('click', function () { show(slide - 1); });
+  $('car-next').addEventListener('click', function () { show(slide + 1); });
+
+  // Map: pan by dragging (pointer), zoom by pinching (touch), and buttons for both.
+  var mx = 0, my = 0, zoom = 1, drag = null, pinch = null;
+  var draw = function () { $('map-inner').style.transform = 'translate(' + mx + 'px,' + my + 'px) scale(' + zoom + ')'; };
+  $('map').addEventListener('pointerdown', function (e) { drag = { x: e.clientX - mx, y: e.clientY - my, id: e.pointerId }; });
+  $('map').addEventListener('pointermove', function (e) { if (drag && e.pointerId === drag.id) { mx = e.clientX - drag.x; my = e.clientY - drag.y; draw(); } });
+  $('map').addEventListener('pointerup', function () { drag = null; });
+  var dist = function (t) { return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); };
+  $('map').addEventListener('touchstart', function (e) { if (e.touches.length === 2) pinch = { d: dist(e.touches), z: zoom }; });
+  $('map').addEventListener('touchmove', function (e) { if (pinch && e.touches.length === 2) { zoom = pinch.z * dist(e.touches) / pinch.d; draw(); } });
+  $('map').addEventListener('touchend', function () { pinch = null; });
+  $('pan-left').addEventListener('click', function () { mx += 50; draw(); });
+  $('pan-right').addEventListener('click', function () { mx -= 50; draw(); });
+  $('zoom-in').addEventListener('click', function () { zoom *= 1.25; draw(); });
+  $('zoom-out').addEventListener('click', function () { zoom /= 1.25; draw(); });
+
+  // Sortable list: drag and drop, and move up/down buttons.
+  var dragged = null;
+  $('sort').addEventListener('dragstart', function (e) { dragged = e.target.closest('li'); });
+  $('sort').addEventListener('dragover', function (e) { e.preventDefault(); });
+  $('sort').addEventListener('drop', function (e) { e.preventDefault(); var li = e.target.closest('li'); if (dragged && li && li !== dragged) li.after(dragged); dragged = null; });
+  $('sort').addEventListener('click', function (e) {
+    var li = e.target.closest('li'); if (!li) return;
+    if (e.target.classList.contains('up') && li.previousElementSibling) li.previousElementSibling.before(li);
+    if (e.target.classList.contains('down') && li.nextElementSibling) li.nextElementSibling.after(li);
+  });
+
+  // Slider: drag the thumb, or press on the track to move it there.
+  var setX = function (x) { var r = $('size-track').getBoundingClientRect(); var v = Math.max(0, Math.min(100, Math.round((x - r.left) / r.width * 100))); $('size-thumb').style.left = (v * 2.76) + 'px'; $('size-thumb').setAttribute('aria-valuenow', v); };
+  var sliding = false;
+  $('size-thumb').addEventListener('pointerdown', function (e) { sliding = true; e.stopPropagation(); });
+  document.addEventListener('pointermove', function (e) { if (sliding) setX(e.clientX); });
+  document.addEventListener('pointerup', function () { sliding = false; });
+  $('size-track').addEventListener('pointerdown', function (e) { setX(e.clientX); });
+</script>
+</body>
+</html>

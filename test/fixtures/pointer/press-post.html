@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pointer cancellation: a press that posts</title></head>
+<body><main><h1>Likes</h1>
+<p><button id="like" type="button">Like this story</button> <span id="count">3 likes</span></p>
+</main>
+<script>
+  // Posts to the server on the down event (the request guard stops it) and updates the count.
+  document.getElementById('like').addEventListener('mousedown', function () {
+    fetch('/api/like', { method: 'POST', body: 'story=1' }).catch(function () {});
+    document.getElementById('count').textContent = '4 likes';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Step-free trip options (arrivals describe a field)</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } label { display: block; margin-top: 10px; } .layout { display: flex; gap: 32px; } aside { border: 1px solid #555; padding: 8px 16px; }</style></head>
+<body>
+<header><nav aria-label="Main"><a href="/">Home</a> <a href="/plan">Plan a trip</a></nav></header>
+<main>
+<h1>Step-free trip options (arrivals describe a field)</h1>
+<div class="layout">
+<article>
+<form id="prefs" class="local">
+  <fieldset><legend>Path preferences</legend>
+  <label><input type="checkbox" name="stairs" checked> Avoid stairs</label>
+  <label><input type="checkbox" name="time" checked> Allow ten minutes for transfers</label>
+  <label>Maximum walking distance <select name="walk" aria-describedby="eta-note"><option>One quarter mile</option><option>One half mile</option></select></label>
+  </fieldset>
+  <p id="eta-note">Next bus from your stop: <b id="eta">6 min</b></p>
+  <button type="submit">Update trip options</button>
+</form>
+</article>
+
+</div>
+</main>
+<footer><p>Regional transit, 1 Station Square</p></footer>
+<script>
+var eta = 6; setInterval(function () { eta = eta === 6 ? 7 : 6; document.getElementById('eta').textContent = eta + ' min'; }, 1000);
+document.getElementById('prefs').addEventListener('submit', function (e) { e.preventDefault(); });
+</script>
+</body></html>

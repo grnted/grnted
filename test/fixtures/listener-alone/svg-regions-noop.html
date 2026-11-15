@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wards (regions that only count clicks)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 60rem; color: #1a1a1a; background: #ffffff; }
+a { color: #0b4fb3; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #595959; padding: 4px 10px; text-align: left; }
+.chart { width: 640px; max-width: 100%; }
+
+</style>
+</head>
+<body>
+<main>
+<h1>Wards (regions that only count clicks)</h1>
+<p>The four wards of the district.</p>
+<svg id="wards" xmlns="http://www.w3.org/2000/svg" width="600" height="220" viewBox="0 0 600 220" aria-label="Map of the four wards" style="max-width:100%"><path id="ward-1" class="ward" d="M20,20 h135 v180 h-135 z" fill="#9ecae1"><title>Ward 1</title></path><path id="ward-2" class="ward" d="M165,20 h135 v180 h-135 z" fill="#6baed6"><title>Ward 2</title></path><path id="ward-3" class="ward" d="M310,20 h135 v180 h-135 z" fill="#4292c6"><title>Ward 3</title></path><path id="ward-4" class="ward" d="M455,20 h135 v180 h-135 z" fill="#2171b5"><title>Ward 4</title></path></svg>
+<style>.ward { cursor: pointer; }</style>
+<script>
+window.dataLayer = []; document.getElementById('wards').addEventListener('click', function () { window.dataLayer.push({ event: 'ward_click' }); });
+</script>
+<p><a href="/index.html">All reports</a></p>
+</main>
+</body>
+</html>

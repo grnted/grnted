@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Background writes: a tooltip loaded from the site by POST</title>
+<style>
+  body { margin: 0; font: 1rem/1.4 sans-serif; color: #1a1a1a; background: #fff; }
+  main { padding: 1rem; }
+  #tip { position: absolute; background: #1a1a1a; color: #fff; padding: 0.5rem; }
+  #tip[hidden] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <p><a href="/">Home</a></p>
+  <h1>Staff directory</h1>
+  <p><button type="button" id="who">Who to call</button></p>
+  <div id="tip" hidden></div>
+  <p>The tooltip text comes from the server with a POST request, which the test never sends.</p>
+  <table><caption>Front office</caption><thead><tr><th scope="col">Name</th><th scope="col">Role</th></tr></thead><tbody><tr><td>Ana Lee</td><td>Principal</td></tr><tr><td>Sam Ortiz</td><td>Secretary</td></tr></tbody></table>
+  <form role="search" action="/search"><label for="q">Search staff</label> <input id="q" name="q" type="search"></form>
+</main>
+<script>
+  (function () {
+    var btn = document.getElementById('who');
+    var tip = document.getElementById('tip');
+    btn.addEventListener('mouseenter', function () {
+      fetch('/tooltip', { method: 'POST', body: 'id=who' }).then(function (r) { return r.text(); }).then(function (t) { tip.textContent = t; tip.hidden = false; }).catch(function () {});
+    });
+    btn.addEventListener('mouseleave', function () { tip.hidden = true; });
+  })();
+</script>
+</body>
+</html>

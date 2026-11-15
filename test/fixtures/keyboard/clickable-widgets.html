@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Keyboard fixture: carousels, clones and custom elements (2026-11-07 audit)</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; } .slide { width: 300px; height: 120px; background: #dde; } .track { display: flex; gap: 8px; overflow: hidden; width: 640px; } #hours { cursor: pointer; padding: 8px; background: #eee; width: 200px; }</style></head>
+<body>
+<main>
+<h1>Widgets</h1>
+<!-- No failure: a slideshow's slides listen for clicks (pause, swipe); they are no function of their own. -->
+<div class="camera_wrap" id="camera"><div class="camera_target"><div class="cameraSlide" id="s1">Drone view of the city</div></div></div>
+<!-- No failure: a carousel's loop clone (aria-hidden added late by the library) and its real slide, with working Previous and Next buttons. -->
+<div class="splide"><div class="track">
+  <div class="slide splide__slide splide__slide--clone" id="splide01-clone01">14 of 14</div>
+  <div class="slide splide__slide" id="splide01-slide01">1 of 14</div>
+</div><button type="button" id="prev">Previous</button> <button type="button" id="next">Next</button></div>
+<!-- No failure: a custom element whose own shadow root holds the button. -->
+<cookie-button id="essential"></cookie-button>
+<!-- Planted failure (2.1.1): a click-only control. -->
+<div id="hours">Show office hours</div>
+<p id="out"></p>
+</main>
+<script>
+  customElements.define('cookie-button', class extends HTMLElement {
+    constructor() { super(); this.attachShadow({ mode: 'open' }).innerHTML = '<button type="button">Only Essential Cookies</button>'; }
+  });
+  const say = (t) => { document.getElementById('out').textContent = t; };
+  for (const id of ['s1', 'splide01-clone01', 'splide01-slide01']) document.getElementById(id).addEventListener('click', () => {});
+  document.getElementById('camera').addEventListener('click', () => {});
+  document.getElementById('essential').addEventListener('click', () => say('saved'));
+  document.getElementById('hours').addEventListener('click', () => say('Open 8 to 4'));
+  for (const id of ['prev', 'next']) document.getElementById(id).addEventListener('click', () => say(id));
+</script>
+</body>
+</html>

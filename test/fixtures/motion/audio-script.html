@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome</title></head>
+<body><main>
+<h1>Welcome</h1>
+<p>Music started by a script, with no player on the page.</p>
+</main>
+<script>
+  var music = new Audio('tone.wav'); music.loop = true; music.play().catch(function () {});
+</script>
+</body>
+</html>

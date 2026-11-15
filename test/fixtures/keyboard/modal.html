@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: dialog that keeps focus and closes with Esc</title>
+<style>
+  body { font: 16px/1.5 sans-serif; margin: 24px; }
+  main { max-width: 500px; }
+  #backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); }
+  #dialog { position: fixed; top: 24px; right: 24px; width: 320px; background: #fff; padding: 16px; border: 2px solid #333; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Newsletter</h1>
+  <p><a href="/one.html">First link</a></p>
+  <p><a href="/two.html">Second link</a></p>
+</main>
+<!-- Clean control (2.1.2): focus stays in the open dialog, as it should, and Esc closes it. -->
+<div id="backdrop"></div>
+<div id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+  <h2 id="dialog-title">Stay informed</h2>
+  <label for="email">Email</label> <input id="email" type="email">
+  <button type="button" id="signup">Sign up</button>
+</div>
+<script>
+  var d = document.getElementById('dialog');
+  document.addEventListener('keydown', function (e) {
+    if (!d.isConnected) return;
+    if (e.key === 'Escape') {
+      d.remove();
+      document.getElementById('backdrop').remove();
+      return;
+    }
+    if (e.key !== 'Tab' || !d.contains(document.activeElement)) return;
+    e.preventDefault();
+    var f = Array.prototype.slice.call(d.querySelectorAll('input, button'));
+    var i = f.indexOf(document.activeElement);
+    f[(i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus();
+  });
+  document.getElementById('email').focus();
+</script>
+</body>
+</html>

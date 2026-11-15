@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: skip link that also sends a request</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<!-- Not testable (2.4.1): the skip link works, but activating it also sends a beacon the guard stops. -->
+<a id="skip" href="#main">Skip to main content</a>
+<nav aria-label="Site"><a href="/a.html">A</a> <a href="/b.html">B</a></nav>
+<main id="main" tabindex="-1"><h1>Article</h1><p>Text with <a href="/d.html">a link</a>.</p></main>
+<script>
+  document.getElementById('skip').addEventListener('click', function () { navigator.sendBeacon('/skipped', 'x'); });
+</script>
+</body>
+</html>

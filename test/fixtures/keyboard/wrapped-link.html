@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keyboard fixture: an inline link that wraps across two lines</title>
+<style>
+  body { margin: 16px; color: #222; background: #fff; }
+  /* 36 characters a line in a monospace font: "to" ends line 1 and "it" starts line 2, so the link's
+     two fragments sit at the far right of line 1 and the far left of line 2. Its union box covers
+     both lines at full width, and a 5x5 grid over that box lands only on the text around it. */
+  p { font: 14px/1.5 monospace; width: 36ch; margin: 0 0 16px; }
+  a { color: #0645ad; }
+  a:focus-visible { outline: 3px solid #b3006b; outline-offset: 1px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Wrapped link</h1>
+  <p>aaaa bbbb cccc dddd eeee ffff gg <a id="wrapped" href="/story.html">to it</a> hhhh iiii jjjj kkkk llll mmmm nnnn oooo pppp.</p>
+  <p><a id="plain" href="/other.html">Another story</a></p>
+</main>
+</body>
+</html>

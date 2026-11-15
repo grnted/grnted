@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Live results</title></head>
+<body><main>
+<h1>Live results</h1>
+<p id="score">Home 2, Away 1</p>
+<button type="button" id="off">Turn off auto refresh</button>
+</main>
+<script>
+  var t = setInterval(function () { location.reload(); }, 60000);
+  document.getElementById('off').addEventListener('click', function () { clearInterval(t); this.disabled = true; });
+</script>
+</body>
+</html>

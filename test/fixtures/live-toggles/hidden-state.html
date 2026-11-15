@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Plan your visit</title><style>body{font:16px/1.5 Arial,sans-serif;color:#222;margin:24px}button{font:inherit;padding:6px 12px}.mark{margin-left:.6rem;font-weight:bold}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}</style></head><body><main><h1>Plan your visit</h1><p>Build a checklist of the pages you want to bring to the service counter. The list is kept in this browser only.</p>
+<!-- The failure: the button says it is a toggle and "not pressed" throughout, while a check mark and a word beside
+     it, hidden from assistive technology, show sighted people that it is switched on. -->
+<div class="row"><button id="check" type="button" aria-pressed="false">Include this page in my visit checklist</button><span id="check-mark" class="mark" aria-hidden="true"></span></div>
+
+<!-- Look-alike: the same words beside the button, in text a screen reader can read (not hidden from it). Whether
+     that is the button's state or a note is undecided, as before. -->
+<div class="row"><button id="note" type="button" aria-pressed="false">Include the fee table in my visit checklist</button><span id="note-mark" class="mark"></span></div>
+
+<!-- Look-alike: the mark is hidden from assistive technology, and the same press writes the state beside it in text
+     for screen readers only. What is told changes with what is seen. -->
+<div class="row"><button id="sr" type="button" aria-pressed="false">Include the office hours in my visit checklist</button><span id="sr-mark" class="mark" aria-hidden="true"></span><span id="sr-text" class="sr"></span></div>
+
+<!-- Look-alike: the mark is hidden, and the press is announced in a status region that was there before. -->
+<div class="row"><button id="live" type="button" aria-pressed="false">Include the map in my visit checklist</button><span id="live-mark" class="mark" aria-hidden="true"></span></div>
+<p id="status" role="status"></p>
+</main>
+<script>
+  function mark(id, text) { var m = document.getElementById(id); m.textContent = m.textContent ? '' : text; return !!m.textContent; }
+  document.getElementById('check').addEventListener('click', function () { mark('check-mark', '✓ Included'); });
+  document.getElementById('note').addEventListener('click', function () { mark('note-mark', '✓ Included'); });
+  document.getElementById('sr').addEventListener('click', function () { var on = mark('sr-mark', '✓ Included'); document.getElementById('sr-text').textContent = on ? 'Included in your checklist' : ''; });
+  document.getElementById('live').addEventListener('click', function () { var on = mark('live-mark', '✓ Included'); document.getElementById('status').textContent = on ? 'The map is in your checklist.' : 'The map is no longer in your checklist.'; });
+</script>
+</body></html>

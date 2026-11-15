@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Keyboard fixture: skip link inside a shadow root that does nothing</title>
+<style>body { font: 16px/1.5 sans-serif; margin: 24px; }</style>
+</head>
+<body>
+<!-- Planted failure (2.4.1): the skip link lives in a shadow root and a script cancels it. -->
+<site-header></site-header>
+<main id="main"><h1>Article</h1><p>Text with <a href="/d.html">a link</a>.</p></main>
+<script>
+  customElements.define('site-header', class extends HTMLElement {
+    constructor() {
+      super();
+      const r = this.attachShadow({ mode: 'open' });
+      r.innerHTML = '<a id="skip" href="#main">Skip to main content</a> <nav><a href="/a.html">A</a> <a href="/b.html">B</a></nav>';
+      r.getElementById('skip').addEventListener('click', function (e) { e.preventDefault(); });
+    }
+  });
+</script>
+</body>
+</html>

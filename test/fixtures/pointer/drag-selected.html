@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dragging movements: move buttons that show once a stop is selected</title>
+<style>
+body{font:16px/1.5 sans-serif;margin:20px}
+.sortlist{list-style:none;padding:0;width:400px}
+.sortlist li{border:1px solid #333;margin:4px 0;padding:8px;background:#f8f8f8}
+.sortlist li[aria-selected="true"]{background:#cde}
+[role=toolbar] button{font:inherit;padding:6px 10px}
+</style>
+</head>
+<body>
+<!-- The single-pointer way is here, far from the list, and it is not shown until a stop is selected with a click. -->
+<div id="bar" hidden><button type="button" id="up">Move selected item up</button> <button type="button" id="down">Move selected item down</button></div>
+<main><h1>Plan your visit</h1>
+<p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p><p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p><p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p><p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p><p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p><p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p>
+<h2>Your stops</h2>
+<p>Drag the stops into the order you want, or select one and use the buttons that then show at the top of the page.</p>
+<ol class="sortlist" id="stops" role="listbox" aria-label="Stops, in order">
+  <li role="option" aria-selected="false" draggable="true">Welcome table</li><li role="option" aria-selected="false" draggable="true">Leaf printing</li><li role="option" aria-selected="false" draggable="true">Ranger talk</li>
+</ol>
+<p>Each stop takes about twenty minutes. The path between them is level and paved, with benches at every second stop and water at the visitor hut.</p>
+</main>
+<script>
+  var list = document.getElementById('stops');
+  var drag = null;
+  list.addEventListener('dragstart', function (e) { drag = e.target.closest('li'); });
+  list.addEventListener('dragover', function (e) { e.preventDefault(); });
+  list.addEventListener('drop', function (e) { e.preventDefault(); var t = e.target.closest('li'); if (drag && t && t !== drag) list.insertBefore(drag, t.nextElementSibling); drag = null; });
+  list.addEventListener('click', function (e) {
+    var li = e.target.closest('li'); if (!li) return;
+    for (var x of list.children) x.setAttribute('aria-selected', String(x === li));
+    document.getElementById('bar').hidden = false;
+  });
+  var picked = function () { return list.querySelector('[aria-selected="true"]'); };
+  document.getElementById('up').addEventListener('click', function () { var li = picked(); if (li && li.previousElementSibling) list.insertBefore(li, li.previousElementSibling); });
+  document.getElementById('down').addEventListener('click', function () { var li = picked(); if (li && li.nextElementSibling) list.insertBefore(li.nextElementSibling, li); });
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Departure board</title>
+<style>#board { display: block; font: 32px monospace; padding: 1rem; }</style></head>
+<body>
+<!-- Not applicable (2.2.2): the updating content is all the page shows, so it is not presented in parallel with other content. -->
+<div id="board">Next bus: 4 min</div>
+<script>
+  (function () {
+    var board = document.getElementById('board'), n = 0;
+    setInterval(function () { n++; board.textContent = 'Next bus: ' + (4 + (n % 5)) + ' min'; }, 1000);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Parks</title>
+<style>body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 44rem; } [hidden] { display: none; } .dlg { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #333; padding: 1.5rem; } </style></head>
+<body><main>
+<h1>Parks</h1>
+<div id="page"><p><label>Search <input id="q" name="q" type="search"></label></p><p>Find a park near you, book a shelter or report a problem.</p></div>
+<div id="promo" class="dlg" hidden><h2>Get park news</h2><p>Sign up for the monthly letter.</p><button type="button" id="close">No thanks</button></div>
+</main>
+<script>
+  // A sign-up box (no dialog role) opens 8 s after the load and makes the page behind it inert; closing it gives everything back.
+  var pg = document.getElementById('page');
+  setTimeout(function () { pg.inert = true; document.getElementById('promo').hidden = false; }, 8000);
+  document.getElementById('close').addEventListener('click', function () { pg.inert = false; document.getElementById('promo').hidden = true; });
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Picnic shelter request | Alder Parks</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; max-width: 40rem; }
+  label { display: block; margin-top: 1rem; }
+  textarea, input[type="text"], select { font: inherit; width: 100%; box-sizing: border-box; }
+  [hidden] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Picnic shelter request</h1>
+  <p id="tip">Tip: shelters seat forty people.</p>
+  <div id="opts"></div>
+  <p><button type="button" id="start">Start a request</button></p>
+  <form id="form" action="/send" method="post">
+    <label for="note">What is the gathering for?</label>
+    <textarea id="note" name="note" rows="4"></textarea>
+    <p id="count">0 characters</p>
+    <div id="warn" role="alert" hidden></div>
+    <p><button type="submit">Send request</button></p>
+  </form>
+  <p id="clock"></p>
+</main>
+<script>
+  // One page, many behaviours: ?m=<mode>. Each is a small, hand-written pattern.
+  const mode = new URLSearchParams(location.search).get('m') || 'none';
+  const note = document.getElementById('note');
+  const warn = document.getElementById('warn');
+  const opts = document.getElementById('opts');
+  const start = document.getElementById('start');
+  note.addEventListener('input', () => { document.getElementById('count').textContent = note.value.length + ' characters'; });
+  const expire = (lock) => { note.value = ''; if (lock) note.disabled = true; };
+  let limitMs = 40000;
+  let timer = 0;
+  const arm = (lock) => { clearTimeout(timer); timer = setTimeout(() => expire(lock), limitMs); };
+  const byPress = (fn) => { note.disabled = true; start.addEventListener('click', () => { note.disabled = false; fn(); }, { once: true }); };
+
+  if (mode === 'load-clear') setTimeout(() => expire(false), 30000);
+  if (mode === 'load-remove') setTimeout(() => document.getElementById('form').remove(), 45000);
+  if (mode === 'typing-lock') note.addEventListener('input', () => setTimeout(() => expire(true), 30000), { once: true });
+  if (mode === 'press-lock') byPress(() => arm(true));
+  if (mode === 'press-fetch') byPress(() => setTimeout(() => { fetch('/api/expire', { method: 'POST', body: note.value }).catch(() => {}); expire(true); }, 35000));
+  if (mode === 'press-countdown') byPress(() => {
+    let left = 40;
+    const id = setInterval(() => { left -= 1; if (left <= 0) { clearInterval(id); expire(true); } }, 1000);
+  });
+  const warned = (warnAt, text) => byPress(() => {
+    const go = () => {
+      warn.hidden = true;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        warn.innerHTML = '<p>' + text + '</p><button type="button" id="more">Extend</button>';
+        warn.hidden = false;
+        document.getElementById('more').addEventListener('click', go);
+        timer = setTimeout(() => expire(true), 40000 - warnAt);
+      }, warnAt);
+    };
+    go();
+  });
+  if (mode === 'warn-short') warned(30000, 'Your request expires in 10 seconds.');
+  if (mode === 'warn-long') warned(15000, 'Your request expires in 25 seconds.');
+  if (mode === 'warn-beside') byPress(() => {
+    setTimeout(() => { warn.innerHTML = '<p>Your time is running out.</p><button type="button">Stay signed in</button>'; warn.hidden = false; }, 32000);
+    setTimeout(() => expire(true), 40000);
+  });
+  if (mode === 'off-switch') {
+    opts.innerHTML = '<label><input type="checkbox" id="nolimit"> No time limit</label>';
+    byPress(() => { if (!document.getElementById('nolimit').checked) arm(true); });
+  }
+  const chooser = (secs) => {
+    opts.innerHTML = '<label for="len">Time limit</label><select id="len">' + secs.map((s, i) => '<option value="' + s + '"' + (i === 0 ? ' selected' : '') + '>' + (s >= 120 ? s / 60 + ' minutes' : s + ' seconds') + '</option>').join('') + '</select>';
+    byPress(() => { limitMs = Number(document.getElementById('len').value) * 1000; arm(true); });
+  };
+  if (mode === 'adjust-short') chooser([40, 120, 360]);
+  if (mode === 'adjust-wide') chooser([40, 400]);
+  // A countdown that reads the clock: the limit ends at a time, each tick only looks at how long is left.
+  const clocked = (warnAt) => byPress(() => {
+    let end = Date.now() + 40000;
+    const id = setInterval(() => {
+      const left = Math.ceil((end - Date.now()) / 1000);
+      document.getElementById('clock').textContent = 'Time remaining: ' + Math.max(0, left) + ' seconds';
+      if (warnAt && left <= warnAt && warn.hidden) {
+        warn.innerHTML = '<p>Your request is about to expire.</p><button type="button" id="more">Extend</button>';
+        warn.hidden = false;
+        document.getElementById('more').addEventListener('click', () => { end = Date.now() + 40000; warn.hidden = true; });
+      }
+      if (left <= 0) { clearInterval(id); warn.hidden = true; expire(true); }
+    }, 1000);
+  });
+  if (mode === 'press-clock') clocked(0);
+  if (mode === 'clock-warn-short') clocked(10);
+  if (mode === 'clock-warn-long') clocked(25);
+  if (mode === 'number') {
+    note.outerHTML = '<input type="number" id="note" name="note">';
+    const n = document.getElementById('note');
+    setTimeout(() => { n.value = ''; n.disabled = true; }, 30000);
+  }
+  // Ticks under 1 s that start with the page: a 200 ms tick that reads the clock, and a 500 ms timeout that re-arms itself.
+  if (mode === 'load-clock' || mode === 'load-clock-extend') {
+    let end = Date.now() + 40000;
+    const id = setInterval(() => {
+      const left = end - Date.now();
+      if (mode === 'load-clock-extend' && left <= 25000 && warn.hidden) {
+        warn.innerHTML = '<p>Your request is about to expire.</p><button type="button" id="more">Extend</button>';
+        warn.hidden = false;
+        document.getElementById('more').addEventListener('click', () => { end = Date.now() + 40000; warn.hidden = true; });
+      }
+      if (left <= 0) { clearInterval(id); expire(true); }
+    }, 200);
+  }
+  if (mode === 'load-chain') {
+    const end = performance.now() + 40000;
+    (function tick() { if (performance.now() >= end) { expire(true); return; } setTimeout(tick, 500); })();
+  }
+  // Review r1, finding 3: a 60 s countdown that counts one tick a second from the page's load, with "Extend"
+  // on offer for its last 20 seconds (the criterion's own number).
+  if (mode === 'load-ticks-extend') {
+    let left = 60;
+    const id = setInterval(() => {
+      left -= 1;
+      if (left <= 20 && left > 0 && warn.hidden) {
+        warn.innerHTML = '<p>Your request is about to expire.</p><button type="button" id="more">Extend</button>';
+        warn.hidden = false;
+        document.getElementById('more').addEventListener('click', () => { left = 60; warn.hidden = true; });
+      }
+      if (left <= 0) { clearInterval(id); warn.hidden = true; expire(true); }
+    }, 1000);
+  }
+  // Finding 4: limits that may be real-time or essential (2.2.1's exceptions). The page says what it is.
+  if (mode === 'auction') {
+    document.querySelector('h1').textContent = 'Live auction: lot 14, garden bench';
+    document.querySelector('label[for="note"]').textContent = 'Your bid for lot 14';
+    document.getElementById('tip').textContent = 'Bidding closes when the clock runs out.';
+    setTimeout(() => { note.readOnly = true; }, 120000);
+  }
+  if (mode === 'typing-test') {
+    document.querySelector('h1').textContent = 'Typing speed test';
+    document.querySelector('label[for="note"]').textContent = 'Type the sentence shown above';
+    note.addEventListener('input', () => setTimeout(() => { note.disabled = true; }, 60000), { once: true });
+  }
+  // Finding 5: the page swaps the field for a new one after 10 s. "keep" carries the text, the focus and the
+  // caret over; "empty" does not carry the text.
+  if (mode === 'replace-keep' || mode === 'replace-empty') setTimeout(() => {
+    const old = document.getElementById('note');
+    const fresh = document.createElement('textarea');
+    fresh.id = 'note'; fresh.name = 'note'; fresh.rows = 4;
+    const had = document.activeElement === old;
+    const at = old.selectionStart;
+    if (mode === 'replace-keep') fresh.value = old.value;
+    old.replaceWith(fresh);
+    if (had) { fresh.focus(); if (mode === 'replace-keep') fresh.setSelectionRange(at, at); }
+  }, 10000);
+  // Review r2, finding 3: the sign of a real-time limit is in a paragraph outside the field's form, and the
+  // page takes it away when the limit runs out.
+  if (mode === 'auction-apart') {
+    document.title = 'Place an offer';
+    document.querySelector('h1').textContent = 'Place an offer';
+    document.getElementById('tip').textContent = 'Live auction — bids close in two minutes';
+    document.querySelector('label[for="note"]').textContent = 'Amount';
+    setTimeout(() => { note.readOnly = true; document.getElementById('tip').textContent = 'This lot is closed.'; }, 120000);
+  }
+  // Review r2, finding 4: a field with no id and no name, swapped after 10 s for a new one somewhere else on the
+  // page that keeps the text, the focus and the caret. "aria": both are named by aria-label; "unnamed": neither
+  // has any name.
+  if (mode === 'replace-aria' || mode === 'replace-unnamed') {
+    document.querySelector('label[for="note"]').remove();
+    note.removeAttribute('id'); note.removeAttribute('name');
+    if (mode === 'replace-aria') note.setAttribute('aria-label', 'Message');
+    setTimeout(() => {
+      const fresh = document.createElement('textarea');
+      fresh.rows = 4;
+      if (mode === 'replace-aria') fresh.setAttribute('aria-label', 'Message');
+      const had = document.activeElement === note;
+      const at = note.selectionStart;
+      fresh.value = note.value;
+      document.getElementById('clock').after(fresh);
+      note.remove();
+      if (had) { fresh.focus(); fresh.setSelectionRange(at, at); }
+    }, 10000);
+  }
+  // Finding 13: typing starts a tick every 4 ms and, nineteen hours on, a timer that clears the field: more
+  // timer runs (17 million) than the test makes.
+  if (mode === 'flood') note.addEventListener('input', () => {
+    let n = 0;
+    setInterval(() => { n += 1; }, 4);
+    setTimeout(() => expire(true), 19 * 3600 * 1000);
+  }, { once: true });
+  // A plain button beside the field that saves what was typed as a file (a link it makes and clicks itself).
+  if (mode === 'export') start.addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([note.value], { type: 'text/plain' }));
+    a.download = 'request.txt';
+    a.click();
+  });
+  // Look-alikes: timers that never take what was typed.
+  if (mode === 'busy') {
+    setTimeout(() => { document.getElementById('tip').textContent = 'Tip: bring your own charcoal.'; }, 10000);
+    setInterval(() => { document.getElementById('clock').textContent = new Date().toLocaleTimeString(); }, 1000);
+    note.addEventListener('input', () => setTimeout(() => { document.getElementById('count').textContent += ' (saved)'; }, 6000), { once: true });
+  }
+  // A refresh that rebuilds the form every 30 s (the typed text goes on the first tick), and a start-up script that resets it after 2 s.
+  if (mode === 'refresh') setInterval(() => { note.value = ''; }, 30000);
+  if (mode === 'startup') setTimeout(() => { note.value = ''; }, 2000);
+  // Hidden, not cleared: a panel that folds away keeps what was typed.
+  if (mode === 'fold') setTimeout(() => { document.getElementById('form').hidden = true; }, 20000);
+</script>
+</body>
+</html>

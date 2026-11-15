@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Noise page</title>
+<style>body{margin:0}canvas{display:block}</style></head>
+<body><main><h1>Noise</h1><canvas id="c" width="1280" height="900"></canvas></main>
+<script>
+const g = document.getElementById('c').getContext('2d');
+const d = g.createImageData(1280, 900);
+let s = 1;
+for (let i = 0; i < d.data.length; i++) { s = (s * 1103515245 + 12345) >>> 0; d.data[i] = i % 4 === 3 ? 255 : s >>> 24; }
+g.putImageData(d, 0, 0);
+</script>
+</body>
+</html>
