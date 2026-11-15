@@ -193,7 +193,7 @@ batch 19's precision work; the development builds above are the closest measured
 ## 4. Every release
 
 <!-- evidence:release -->
-- **Release gate.** 13 test suites passed on 2026-11-14 (release commit 2419f6eee, engine 8408cb4f): notices, build, typecheck, engine, report, deliverables-report-mac, deliverables-delivery-mac, worker, worker-node, web, gold, hostedai, hostedgold.
+- **Release gate.** 13 test suites passed on 2026-11-14 (release commit 6e3ae0989, engine 8408cb4f): notices, build, typecheck, engine, report, deliverables-report-mac, deliverables-delivery-mac, worker, worker-node, web, gold, hostedai, hostedgold.
 - **Simulation labs.** 86 labs with 18,350 known-answer cases. 1,451 cases (7.9%) are still wrong and recorded as known misses. 0 regressions against each lab's saved record. 2 labs not run (code unchanged since 0.2.1); 16 labs have no saved record yet.
 - **Identity check.** Every item of training sites 01-08 compared with the live 0.2.1: 3,674 items, 493 changed, all 493 explained one by one. Among them: 357 missed failures now caught, 2 false alarms removed, 0 new false alarms, 9 deliberate moves to Needs review.
 - **Gold standard.** 377 reference scans re-run (batch 19): exact: only recorded changes.
@@ -201,23 +201,31 @@ batch 19's precision work; the development builds above are the closest measured
 
 ## 5. W3C ACT rules
 
-The W3C's Accessibility Conformance Testing (ACT) rules come with test cases and their expected outcomes. We run the
-checkers on the pinned test cases and judge, rule by rule, whether each one's results agree, the way the W3C's
-implementation reports do. This is our own run, not yet submitted to the W3C. Lighthouse and the HTML_CodeSniffer
-runner were not part of it.
+The W3C's Accessibility Conformance Testing (ACT) rules come with test cases and their expected outcomes. A checker
+is run on the test cases and its results are published as an EARL report. The W3C maps each report to the rules with
+its own tool and lists, rule by rule, whether the checker is **consistent** (every test case has the expected
+outcome, and every success criterion the rule needs is reported; "cannot tell" is allowed on some cases) or
+**partially consistent** (some of that, and no false alarm). One false alarm on a rule and the checker is not listed
+for it. Approved and proposed rules are counted apart; the W3C's page shows the consistent ones.
+
+Granted's row is **our own run** of Granted through the W3C's own mapper (the version of the W3C's tool that the W3C
+runs, run here on our report); it becomes the W3C's listing once the report is submitted. The other rows are the
+**W3C's published listings**, at the versions and dates the W3C lists; we run the same mapper on their published
+reports and get the W3C's result for every rule.
 
 <!-- evidence:act -->
-58 ACT rules, 865 pinned test cases. Granted engine of 2026-11-11; the other checkers at the versions below.
+The W3C lists implementations against 87 ACT rules: 37 approved and 50 proposed. Granted was run on all 876 test cases of the 58 rules that map to a WCAG 2.2 Level A or AA criterion (the W3C has 1,211 test cases in all; Granted 0.3.0, engine of 2026-11-15; report [`act/granted-earl.json`](act/granted-earl.json)). 13 of them have no outcome: 11 are SVG or XML documents, which Granted does not check (it checks HTML pages), and 2 are pages Granted could not check. The other checkers' listings are as the W3C published them on 2026-11-15, at the versions and dates the W3C lists.
 
-| Checker | Consistent | Partially consistent | Blocked by a false alarm | Not detected |
+| Checker | Consistent | Consistent, approved rules | Consistent, proposed rules | Partially consistent |
 | --- | --- | --- | --- | --- |
-| Granted (core tests, engine 7dfaebac) | 33 | 5 | 6 | 14 |
-| Granted (full tests, engine 7dfaebac) | 33 | 5 | 7 | 13 |
-| axe-core | 23 | 2 | 5 | 28 |
-| Siteimprove Alfa | 20 | 1 | 12 | 25 |
-| QualWeb | 19 | 2 | 15 | 22 |
-| IBM Equal Access | 9 | 0 | 22 | 27 |
-| Pa11y (axe runner) | 19 | 1 | 11 | 27 |
+| Granted 0.3.0, core tests (our run through the W3C mapper; not yet submitted) | 25 | 16 | 9 | 15 |
+| axe-core 4.14.0 (W3C listing, 31 October 2026) | 35 | 30 | 5 | 9 |
+| Siteimprove Alfa 0.118.0, fully automated (W3C listing, 13 July 2026) | 30 | 27 | 3 | 9 |
+| QualWeb 3.0.0 (W3C listing, 14 July 2026) | 32 | 23 | 9 | 19 |
+| IBM Equal Access 3.1.42-rc.0 (W3C listing, 20 July 2026) | 23 | 21 | 2 | 4 |
+
+- Granted: 16 approved and 9 proposed rules consistent; 10 approved and 5 proposed partially consistent; 18 rules not listed (a false alarm, or no failed example found); the other 29 rules map to no WCAG 2.2 Level A or AA criterion, so Granted has no procedure for them.
+- Not listed by the W3C, so not in this table: Pa11y (axe runner), Lighthouse, Pa11y (HTML_CodeSniffer runner).
 <!-- /evidence:act -->
 
 ## How we count

@@ -1,7 +1,7 @@
 {
   "name": "grnted",
   "license": "AGPL-3.0-only",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Website accessibility checker: a 0-100 score from axe-core's WCAG 2.2 Level A and AA rules and core automated tests, plus a result from automated tests for every WCAG 2.2 A and AA criterion.",
   "type": "module",
   "bin": {

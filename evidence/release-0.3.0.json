@@ -2,7 +2,7 @@
  "about": "The 0.3.0 release gate and the checks behind it.",
  "version": "0.3.0",
  "gate": {
-  "commit": "2419f6eee",
+  "commit": "6e3ae0989",
   "engine": "8408cb4f",
   "date": "2026-11-14",
   "suitesPassed": 13,
