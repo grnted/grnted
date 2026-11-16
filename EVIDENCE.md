@@ -199,6 +199,22 @@ batch 19's precision work; the development builds above are the closest measured
 - **Gold standard.** 377 reference scans re-run (batch 19): exact: only recorded changes.
 <!-- /evidence:release -->
 
+### What Granted is built against
+
+Every release is built and checked against test pages whose answers are known before Granted runs: our own test
+sites, the simulation labs, the W3C's ACT test cases and the gold standard. These are where Granted is developed, so
+they are not a blind test; the blind test in section 1 is.
+
+<!-- evidence:corpus -->
+Before the blind test, Granted was built against about 21,000 test pages with known answers (20,994), holding more than 7,500 planted failures (7,598):
+
+- **Our test sites.** 27 realistic sites, 1,779 keyed pages: 1,783 planted failures and 1,629 planted passes (8 debatable entries left out). The held-out and blind sites are not among them.
+- **Simulation labs.** 18,350 known-answer cases in 86 labs, each a page that tests one thing (the 0.3.0 release gate). 69 of the 86 labs have a saved record, and theirs hold 5,543 planted failures: a floor, since a lab with no saved record adds none.
+- **W3C ACT test cases.** 865 HTML test cases of the 58 rules that map to a WCAG 2.2 Level A or AA criterion; 272 are expected to fail.
+
+On top of these, the **gold standard**: a test site that scores 100, broken 188 ways one known problem at a time, plus 144 look-alikes that are not problems (scoring v14). Granted must find every problem and leave every look-alike alone.
+<!-- /evidence:corpus -->
+
 ## 5. W3C ACT rules
 
 The W3C's Accessibility Conformance Testing (ACT) rules come with test cases and their expected outcomes. A checker
