@@ -1,4 +1,12 @@
-# grnted
+<p align="center"><a href="https://grnted.co"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/grnted/grnted/main/brand/logo-dark.svg"><img alt="Granted" src="https://raw.githubusercontent.com/grnted/grnted/main/brand/logo-light.svg" width="280"></picture></a></p>
+
+<p align="center">Granted scans your site in a real browser and gives every WCAG 2.2 A and AA criterion a result, so you know what stops people and what to fix first.</p>
+
+<p align="center"><a href="https://www.npmjs.com/package/grnted"><img alt="npm version" src="https://img.shields.io/npm/v/grnted?color=0b4fb3"></a> <a href="https://github.com/grnted/grnted/blob/main/LICENSE"><img alt="License: AGPL-3.0-only" src="https://img.shields.io/badge/license-AGPL--3.0--only-0b4fb3"></a> <a href="https://github.com/w3c/wcag-act-rules/issues/479"><img alt="W3C ACT: submitted" src="https://img.shields.io/badge/W3C%20ACT-submitted-0b4fb3"></a></p>
+
+<!-- evidence:readme-claim -->
+<p align="center">Found nearly twice as many planted WCAG failures as any other open-source checker, in a <a href="https://github.com/grnted/grnted-benchmark">blind test you can rerun</a>.</p>
+<!-- /evidence:readme-claim -->
 
 Scores any website's accessibility from 0 to 100 with axe-core's WCAG 2.2 Level A and AA rules and Granted's core automated tests, and gives a result from automated tests for every WCAG 2.2 A and AA criterion.
 
@@ -12,6 +20,32 @@ A bare domain is taken as `https://`. The first line of the summary is the verdi
 90 or more and no failure of a criterion that blocks it (1.4.2 Audio control, 2.1.2 No keyboard trap, 2.2.2 Pause,
 stop, hide, 2.3.1 Three flashes); anything else is Access Denied. It is the verdict of this check on how accessible the
 site is, not the site blocking the scanner.
+
+## How we know it works
+
+<!-- evidence:readme-built -->
+Before the blind test, we built Granted against about 21,000 test pages with known answers: 27 realistic test sites, 18,350 lab pages that each test one thing, and the W3C's 865 official test cases. Together they hold more than 7,500 planted failures, and Granted has to find them without flagging the look-alikes.
+<!-- /evidence:readme-built -->
+
+<!-- evidence:readme-blind -->
+Then came the blind test: two brand-new sites we had never trained on, 474 planted failures, and seven other open-source checkers on the same pages under one rule. Granted found the most: 337. The best of the others found 178.
+<!-- /evidence:readme-blind -->
+
+<!-- evidence:readme-chart -->
+<p><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/grnted/grnted/main/brand/blind-test-dark.svg"><img alt="Blind test: share of the 474 planted failures each checker found. Two brand-new sites we had never trained on, 59 pages, the same pages and one rule for every checker. Granted 71.1% (337 of 474), QualWeb 37.6% (178 of 474), IBM Equal Access 36.7% (174 of 474), Lighthouse 34.8% (165 of 474), Siteimprove Alfa 30.6% (145 of 474), axe-core 30.4% (144 of 474), Pa11y (axe runner) 20.3% (96 of 474), Pa11y (HTML_CodeSniffer runner) 18.4% (87 of 474)." src="https://raw.githubusercontent.com/grnted/grnted/main/brand/blind-test-light.svg" width="448"></picture></p>
+<!-- /evidence:readme-chart -->
+
+<!-- evidence:readme-precision -->
+Precision 94.7%: axe-core, Lighthouse and Siteimprove Alfa made no false alarms; we made 19.
+<!-- /evidence:readme-precision -->
+
+<!-- evidence:readme-act -->
+On the W3C's ACT rules, Granted is consistent on 25 rules in our run through the W3C's own mapper. The W3C lists axe-core at 35, QualWeb at 32, Siteimprove Alfa at 30 and IBM Equal Access at 23.
+<!-- /evidence:readme-act -->
+
+[Every number, and how we count →](https://github.com/grnted/grnted/blob/main/EVIDENCE.md) · [The test sites and their answer keys, to rerun it →](https://github.com/grnted/grnted-benchmark)
+
+## Usage
 
 Granted crawls up to 25 pages (sitemap first, a page from every section of the site first), runs axe-core's WCAG 2.0, 2.1 and 2.2 Level A and
 AA rules at desktop and mobile widths, and grades the site A–F. How the score is calculated: every failing check costs
@@ -245,4 +279,5 @@ renders and re-scores such a report exactly as it was scored, and never scores a
 Issues are welcome; pull requests are closed for now (CONTRIBUTING.md). Email security reports to
 hello@grnted.co, not to a public issue. For a commercial license, email hello@grnted.co.
 
-© 2026 Tyrannosaurx LLC. Built and maintained by Aegisaur. License: see LICENSE; third-party software: THIRD_PARTY_NOTICES.md.
+© 2026 Tyrannosaurx LLC. Built and maintained by Aegisaur. License: GNU AGPL v3 only (LICENSE; our notice: NOTICE);
+third-party software: THIRD_PARTY_NOTICES.md.

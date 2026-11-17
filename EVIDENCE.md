@@ -225,16 +225,17 @@ outcome, and every success criterion the rule needs is reported; "cannot tell" i
 for it. Approved and proposed rules are counted apart; the W3C's page shows the consistent ones.
 
 Granted's row is **our own run** of Granted through the W3C's own mapper (the version of the W3C's tool that the W3C
-runs, run here on our report); it becomes the W3C's listing once the report is submitted. The other rows are the
-**W3C's published listings**, at the versions and dates the W3C lists; we run the same mapper on their published
-reports and get the W3C's result for every rule.
+runs, run here on our report). The report was submitted to the W3C on 2026-11-15
+([w3c/wcag-act-rules#479](https://github.com/w3c/wcag-act-rules/issues/479)) and becomes the W3C's listing once the
+W3C publishes it. The other rows are the **W3C's published listings**, at the versions and dates the W3C lists; we run
+the same mapper on their published reports and get the W3C's result for every rule.
 
 <!-- evidence:act -->
 The W3C lists implementations against 87 ACT rules: 37 approved and 50 proposed. Granted was run on all 876 test cases of the 58 rules that map to a WCAG 2.2 Level A or AA criterion (the W3C has 1,211 test cases in all; Granted 0.3.0, engine of 2026-11-15; report [`act/granted-earl.json`](act/granted-earl.json)). 13 of them have no outcome: 11 are SVG or XML documents, which Granted does not check (it checks HTML pages), and 2 are pages Granted could not check. The other checkers' listings are as the W3C published them on 2026-11-15, at the versions and dates the W3C lists.
 
 | Checker | Consistent | Consistent, approved rules | Consistent, proposed rules | Partially consistent |
 | --- | --- | --- | --- | --- |
-| Granted 0.3.0, core tests (our run through the W3C mapper; not yet submitted) | 25 | 16 | 9 | 15 |
+| Granted 0.3.0, core tests (our run through the W3C mapper), submitted 2026-11-15 (w3c/wcag-act-rules#479) | 25 | 16 | 9 | 15 |
 | axe-core 4.14.0 (W3C listing, 31 October 2026) | 35 | 30 | 5 | 9 |
 | Siteimprove Alfa 0.118.0, fully automated (W3C listing, 13 July 2026) | 30 | 27 | 3 | 9 |
 | QualWeb 3.0.0 (W3C listing, 14 July 2026) | 32 | 23 | 9 | 19 |

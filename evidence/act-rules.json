@@ -1,5 +1,5 @@
 {
- "about": "W3C Accessibility Conformance Testing (ACT) rules, counted the W3C's way: the W3C's own implementation mapper decides, rule by rule, whether a checker is consistent or partially consistent; approved and proposed rules are counted apart. Granted's row is our own run through the W3C's mapper and becomes the W3C's listing once submitted; the other rows are the W3C's published listings.",
+ "about": "W3C Accessibility Conformance Testing (ACT) rules, counted the W3C's way: the W3C's own implementation mapper decides, rule by rule, whether a checker is consistent or partially consistent; approved and proposed rules are counted apart. Granted's row is our own run through the W3C's mapper; the report was submitted to the W3C on 2026-11-15 (w3c/wcag-act-rules#479) and becomes the W3C's listing once the W3C publishes it; the other rows are the W3C's published listings.",
  "method": "w3c-mapper",
  "rules": 87,
  "rulesApproved": 37,
@@ -23,10 +23,10 @@
  "report": "act/granted-earl.json",
  "rows": [
   {
-   "tool": "Granted 0.3.0, core tests (our run through the W3C mapper; not yet submitted)",
+   "tool": "Granted 0.3.0, core tests (our run through the W3C mapper), submitted 2026-11-15 (w3c/wcag-act-rules#479)",
    "name": "Granted",
    "version": "0.3.0",
-   "source": "own run through the W3C mapper, not yet submitted",
+   "source": "own run through the W3C mapper, submitted 2026-11-15 (w3c/wcag-act-rules#479)",
    "w3cName": null,
    "lastModified": null,
    "consistent": 25,
@@ -123,5 +123,5 @@
   "Lighthouse",
   "Pa11y (HTML_CodeSniffer runner)"
  ],
- "generated": "2026-11-15"
+ "generated": "2026-11-16"
 }

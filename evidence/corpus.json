@@ -1,0 +1,34 @@
+{
+ "about": "What Granted was built against before the blind test: our test sites (every one but the held-out and blind sites), the simulation labs, the W3C's ACT test cases and the gold standard. Totals only: no site, page or item is named.",
+ "testSites": {
+  "about": "Realistic test sites with answer keys, built to stress Granted. Pages are the keyed pages.",
+  "sites": 27,
+  "pages": 1779,
+  "plantedFailures": 1783,
+  "plantedPasses": 1629,
+  "debatable": 8
+ },
+ "labs": {
+  "about": "Generated pages that each test one thing, with a known answer. Labs and cases as the 0.3.0 release gate ran them; planted failures from each lab's saved record.",
+  "release": "0.3.0",
+  "labs": 86,
+  "cases": 18350,
+  "withSavedRecord": 69,
+  "withoutSavedRecord": 17,
+  "plantedFailures": 5543,
+  "plantedFailuresIsFloor": true
+ },
+ "act": {
+  "about": "The W3C ACT rules' HTML test cases for the rules that map to WCAG 2.2 Level A or AA, with their expected outcomes.",
+  "testCases": 865,
+  "expectedToFail": 272,
+  "rules": 58
+ },
+ "gold": {
+  "about": "A test site that scores 100, broken one known problem at a time, plus look-alikes that are not problems.",
+  "scoring": "v14",
+  "problems": 188,
+  "lookAlikes": 144
+ },
+ "generated": "2026-11-16"
+}

@@ -1,8 +1,21 @@
 {
   "name": "grnted",
   "license": "AGPL-3.0-only",
-  "version": "0.3.2",
-  "description": "Website accessibility checker: a 0-100 score from axe-core's WCAG 2.2 Level A and AA rules and core automated tests, plus a result from automated tests for every WCAG 2.2 A and AA criterion.",
+  "version": "0.3.4",
+  "description": "Open-source website accessibility checker for WCAG 2.2 A and AA: a 0-100 score and a result for every criterion. Found the most planted failures of eight open-source checkers in a blind test.",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "wcag22",
+    "axe-core",
+    "cli",
+    "accessibility-testing",
+    "accessibility-checker",
+    "wcag2",
+    "a11y-testing",
+    "playwright"
+  ],
   "type": "module",
   "bin": {
     "grnted": "dist/cli.js"
@@ -25,6 +38,7 @@
     "dist",
     "assets",
     "LICENSE",
+    "NOTICE",
     "THIRD_PARTY_NOTICES.md"
   ],
   "engines": {
@@ -58,13 +72,5 @@
   },
   "bugs": {
     "url": "https://github.com/grnted/grnted/issues"
-  },
-  "keywords": [
-    "accessibility",
-    "a11y",
-    "wcag",
-    "wcag22",
-    "axe-core",
-    "cli"
-  ]
+  }
 }

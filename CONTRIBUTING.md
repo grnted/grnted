@@ -11,5 +11,5 @@ Email security reports to hello@grnted.co, not to a public issue.
 
 ## Commercial license
 
-The engine is licensed under the GNU Affero General Public License, version 3 only (LICENSE). For a commercial
-license, email hello@grnted.co.
+The engine is licensed under the GNU Affero General Public License, version 3 only (LICENSE; the copyright notice is in
+NOTICE). For a commercial license, email hello@grnted.co.

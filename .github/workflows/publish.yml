@@ -1,0 +1,251 @@
+# Publishes the grnted package to npm when a release tag vX.Y.Z is pushed to this repository.
+#
+# npm Trusted Publishing (OpenID Connect): npm trusts this workflow file, in this repository, run in the "npm"
+# environment, and gives the run a short-lived token that can publish grnted and nothing else. No npm token is stored
+# anywhere. From a public repository npm also records a provenance attestation that ties the published tarball to this
+# run and the tagged commit; --provenance asks for it explicitly, so a publish without one fails instead of going out.
+#
+# PUBLISH_MODE: "publish" makes the version public at once. "stage" puts it on npm unpublished (npm stage publish): it
+# becomes public only when a maintainer approves it with two-factor authentication (npm stage list grnted, then
+# npm stage approve <id>, or on npmjs.com). Either way the job builds from the lockfile with install scripts off, and
+# a tag whose version npm already has publishes nothing.
+name: publish
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+permissions: {}
+
+# One run per tag at a time; a run is never cancelled for another.
+concurrency:
+  group: npm-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  # publish or stage (see above).
+  PUBLISH_MODE: publish
+  PACKAGE: grnted
+  # Node 24.22.3 ships npm 11.19.1 (the job checks both). Trusted publishing needs npm 11.5.1 or later, staged
+  # publishing npm 11.15.0 and Node 22.14.0 or later.
+  NODE_VERSION: 24.22.3
+  NPM_VERSION: 11.19.1
+
+jobs:
+  publish:
+    if: github.repository == 'grnted/grnted'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out the tagged commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up Node.js (no registry login, no cache)
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          package-manager-cache: false
+
+      - name: Check the toolchain and the publish mode
+        id: toolchain
+        run: |
+          set -euo pipefail
+          if [[ "$(node --version)" != "v$NODE_VERSION" ]]; then echo "::error::node is $(node --version), expected v$NODE_VERSION"; exit 1; fi
+          if [[ "$(npm --version)" != "$NPM_VERSION" ]]; then echo "::error::npm is $(npm --version), expected $NPM_VERSION"; exit 1; fi
+          case "$PUBLISH_MODE" in
+            publish|stage) ;;
+            *) echo "::error::PUBLISH_MODE is '$PUBLISH_MODE': it must be publish or stage"; exit 1 ;;
+          esac
+
+      - name: Check the tag, the version and main
+        id: release
+        run: |
+          set -euo pipefail
+          tag="$GITHUB_REF_NAME"
+          if [[ "$GITHUB_REF" != "refs/tags/$tag" || ! "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::$GITHUB_REF is not a release tag vX.Y.Z"; exit 1
+          fi
+          name="$(node -p 'JSON.parse(require("node:fs").readFileSync("package.json", "utf8")).name')"
+          version="$(node -p 'JSON.parse(require("node:fs").readFileSync("package.json", "utf8")).version')"
+          if [[ "$name" != "$PACKAGE" ]]; then echo "::error::package.json names $name, not $PACKAGE"; exit 1; fi
+          if [[ "$tag" != "v$version" ]]; then echo "::error::the tag $tag is not v + the package.json version ($version)"; exit 1; fi
+          commit="$(git rev-parse HEAD)"
+          tagged="$(git rev-parse "refs/tags/$tag^{commit}")"
+          pushed="$(git rev-parse "$GITHUB_SHA^{commit}")"
+          if ! [[ "$commit" == "$tagged" && "$commit" == "$pushed" ]]; then
+            echo "::error::the checked-out commit $commit is not the commit $tag points at ($tagged, pushed $pushed)"; exit 1
+          fi
+          if ! git merge-base --is-ancestor "$commit" refs/remotes/origin/main; then
+            echo "::error::$tag ($commit) is not on main"; exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "commit=$commit" >> "$GITHUB_OUTPUT"
+
+      - name: Check whether npm already has this version
+        id: registry
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          set -euo pipefail
+          code="$(curl -sS --retry 3 -o /dev/null -w '%{http_code}' "https://registry.npmjs.org/$PACKAGE/$VERSION")"
+          case "$code" in
+            200) echo "published=true" >> "$GITHUB_OUTPUT"; echo "::notice::$PACKAGE@$VERSION is already on the registry: nothing to publish" ;;
+            404) echo "published=false" >> "$GITHUB_OUTPUT" ;;
+            *) echo "::error::the registry answered $code for $PACKAGE@$VERSION"; exit 1 ;;
+          esac
+
+      - name: Install the build's dependencies (the lockfile, no install scripts)
+        id: install
+        if: steps.registry.outputs.published == 'false'
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Build
+        id: build
+        if: steps.registry.outputs.published == 'false'
+        run: npm run build
+
+      - name: Pack and check the tarball
+        id: pack
+        if: steps.registry.outputs.published == 'false'
+        run: |
+          set -euo pipefail
+          npm pack --json --ignore-scripts --pack-destination "$RUNNER_TEMP" > "$RUNNER_TEMP/pack.json"
+          node --input-type=module - "$RUNNER_TEMP/pack.json" <<'EOF'
+          import { appendFileSync, readFileSync } from 'node:fs';
+          const [pack] = JSON.parse(readFileSync(process.argv[2], 'utf8'));
+          const paths = pack.files.map((f) => f.path);
+          const required = ['package.json', 'README.md', 'LICENSE', 'NOTICE', 'THIRD_PARTY_NOTICES.md', 'dist/cli.js', 'dist/index.js'];
+          const missing = required.filter((p) => !paths.includes(p));
+          const stray = paths.filter((p) => !required.includes(p) && !/^(dist|assets)\//.test(p));
+          if (missing.length || stray.length) {
+            console.log(`::error::the tarball is wrong: missing ${missing.join(', ') || 'nothing'}; unexpected ${stray.join(', ') || 'nothing'}`);
+            process.exit(1);
+          }
+          appendFileSync(process.env.GITHUB_OUTPUT, `integrity=${pack.integrity}\nfiles=${pack.entryCount}\n`);
+          console.log(`${pack.filename}: ${pack.entryCount} files, ${pack.size} bytes, ${pack.integrity}`);
+          EOF
+
+      - name: Publish to npm
+        id: publish
+        if: steps.registry.outputs.published == 'false'
+        run: |
+          set -euo pipefail
+          if [[ "$PUBLISH_MODE" == "stage" ]]; then
+            npm stage publish --access public --provenance --ignore-scripts
+          else
+            npm publish --access public --provenance --ignore-scripts
+          fi
+
+      - name: Summary
+        id: summary
+        if: ${{ !cancelled() && steps.registry.outcome == 'success' }}
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
+          COMMIT: ${{ steps.release.outputs.commit }}
+          ALREADY: ${{ steps.registry.outputs.published }}
+          PACKED: ${{ steps.pack.outputs.integrity }}
+          OUTCOME: ${{ steps.publish.outcome }}
+        run: |
+          set -euo pipefail
+          node --input-type=module - <<'EOF'
+          import { appendFileSync } from 'node:fs';
+          // The run's own report. A version on npm without the GitHub trusted publisher's SLSA v1 provenance for this repository,
+          // workflow, tag and commit fails the run, also when it was there before; a registry that is slow to answer only warns
+          // (the release's own npm check, release.mjs npm, reads it again).
+          const { PACKAGE: name, VERSION: version, COMMIT: commit, ALREADY: already, PACKED: packed, OUTCOME: outcome, PUBLISH_MODE: mode, GITHUB_REPOSITORY: repo } = process.env;
+          const REGISTRY = 'https://registry.npmjs.org';
+          const SLSA = 'https://slsa.dev/provenance/v1';
+          const out = [`## ${name}@${version}`, ''];
+          const problems = [];
+          const warnings = [];
+          const cell = (v) => String(v ?? '?').replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/[\r\n]+/g, ' ');
+          const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+          async function get(url) {
+            try {
+              const r = await fetch(url, { signal: AbortSignal.timeout(20_000) });
+              return { status: r.status, body: r.status === 200 ? await r.json() : null };
+            } catch (e) {
+              return { status: 0, error: e.message };
+            }
+          }
+          async function fromRegistry() {
+            let last = null;
+            for (let i = 0; i < 12; i++) {
+              last = await get(`${REGISTRY}/${name}/${version}`);
+              if (last.status === 200) return last.body;
+              if (i < 11) await sleep(10_000);
+            }
+            warnings.push(`the registry did not show ${name}@${version} within 2 minutes (last answer: ${last.status || last.error})`);
+            return null;
+          }
+          async function provenance(doc) {
+            const rows = [];
+            const tp = doc._npmUser?.trustedPublisher;
+            rows.push(['Published by', tp ? `trusted publisher (${tp.id})` : doc._npmUser?.name], ['Integrity', `\`${doc.dist?.integrity}\``]);
+            if (tp?.id !== 'github') problems.push('it was not published by the GitHub trusted publisher');
+            if (already !== 'true' && packed && doc.dist?.integrity !== packed) problems.push(`the registry's integrity is not the tarball this run built (${packed})`);
+            const att = doc.dist?.attestations;
+            if (att?.provenance?.predicateType !== SLSA) {
+              problems.push('it has no SLSA v1 provenance attestation');
+              return rows;
+            }
+            let url = null;
+            try { url = new URL(att.url); } catch { url = null; }
+            if (url?.origin !== REGISTRY) {
+              problems.push(`its attestations are not on the registry (${att.url})`);
+              return rows;
+            }
+            const a = await get(url.href);
+            if (a.status !== 200) {
+              warnings.push(`the attestations could not be read (${a.status || a.error})`);
+              return rows;
+            }
+            const slsa = (a.body?.attestations ?? []).find((x) => x.predicateType === SLSA);
+            let st = null;
+            try { st = JSON.parse(Buffer.from(slsa.bundle.dsseEnvelope.payload, 'base64').toString('utf8')); } catch { st = null; }
+            if (!st) {
+              problems.push('its attestations hold no readable SLSA v1 provenance');
+              return rows;
+            }
+            const wf = st.predicate?.buildDefinition?.externalParameters?.workflow ?? {};
+            const built = st.predicate?.buildDefinition?.resolvedDependencies?.[0]?.digest?.gitCommit;
+            const logIndex = slsa.bundle.verificationMaterial?.tlogEntries?.[0]?.logIndex;
+            rows.push(['Provenance', SLSA], ['Built by', `${wf.repository} ${wf.path} at ${wf.ref}`], ['From commit', `\`${built}\``]);
+            if (logIndex) rows.push(['Transparency log', `https://search.sigstore.dev/?logIndex=${logIndex}`]);
+            const integrity = String(doc.dist?.integrity ?? '').match(/^sha512-([A-Za-z0-9+/]+={0,2})$/);
+            if (!integrity) problems.push(`its integrity is not a sha512 (${doc.dist?.integrity})`);
+            const digest = integrity ? Buffer.from(integrity[1], 'base64').toString('hex') : null;
+            if (st.predicate?.runDetails?.builder?.id !== 'https://github.com/actions/runner/github-hosted') problems.push(`it was built on ${st.predicate?.runDetails?.builder?.id}, not a GitHub-hosted runner`);
+            if (st._type !== 'https://in-toto.io/Statement/v1' || st.predicateType !== SLSA) problems.push('its provenance is not an in-toto v1 statement of SLSA v1 provenance');
+            if (st.subject?.[0]?.name !== `pkg:npm/${name}@${version}` || !digest || st.subject?.[0]?.digest?.sha512 !== digest) problems.push('its provenance is not for this tarball');
+            if (wf.repository !== `https://github.com/${repo}` || wf.path !== '.github/workflows/publish.yml' || wf.ref !== `refs/tags/v${version}` || built !== commit) problems.push('its provenance does not name this repository, workflow, tag and commit');
+            return rows;
+          }
+          if (already !== 'true' && outcome !== 'success') {
+            out.push(`Nothing went out: the publish step ended with "${outcome}".`);
+          } else if (already !== 'true' && mode === 'stage') {
+            out.push('Staged on npm, not public yet. A maintainer approves it with two-factor authentication: `npm stage list grnted`, then `npm stage approve <id>` (or on npmjs.com).', '', `Before approving, check the staged tarball's integrity is \`${packed}\` (the tarball this run built).`);
+          } else {
+            const doc = await fromRegistry();
+            if (doc) {
+              const rows = await provenance(doc);
+              rows.push(['Package', `https://www.npmjs.com/package/${name}/v/${version}`]);
+              out.push(already === 'true' ? 'Already on npm before this run: nothing was published.' : 'Published.', '', '| | |', '|---|---|', ...rows.map(([k, v]) => `| ${cell(k)} | ${cell(v)} |`));
+            }
+          }
+          for (const w of warnings) { out.push('', `Warning: ${w}; release.mjs npm checks it again.`); console.log(`::warning::${w}`); }
+          for (const p of problems) { out.push('', `**${name}@${version}: ${p}.**`); console.log(`::error::${name}@${version}: ${p}`); }
+          appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${out.join('\n')}\n`);
+          if (problems.length) process.exit(1);
+          EOF
