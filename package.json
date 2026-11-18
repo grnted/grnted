@@ -1,7 +1,7 @@
 {
   "name": "grnted",
   "license": "AGPL-3.0-only",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Open-source website accessibility checker for WCAG 2.2 A and AA: a 0-100 score and a result for every criterion. Found the most planted failures of eight open-source checkers in a blind test.",
   "keywords": [
     "accessibility",

@@ -85,6 +85,37 @@ Failures visible in the page as loaded, and failures that only show when someone
 | QualWeb | 61.3% (157/256) | 18.6% (16/86) | 9.6% (21/218) | 2.1% (2/96) |
 <!-- /evidence:blind-split -->
 
+### Reach: what Granted found that the others did not
+
+The same run, pages and rule as the head-to-head, counted per planted failure across checkers:
+
+<!-- evidence:blind-reach -->
+- Granted found 337 of the 474 planted failures. The seven other checkers together found 211, counting a failure once if any of them found it.
+- 154 planted failures were found by Granted and by none of the other seven; 136 of them only show when someone uses the page. 28 were found by at least one other checker and missed by Granted.
+- The criteria with the most failures only Granted found: 2.4.7 (50), 2.4.11 (33), 2.2.2 (18) and 2.1.4 (18). The JSON lists all 18.
+- On the 218 failures that only show when someone uses the page, Granted found 145; the other seven found between 0 and 21 each.
+- On the 256 failures visible in the page as loaded, Granted found 192; the best of the others, IBM Equal Access, found 173.
+<!-- /evidence:blind-reach -->
+
+<!-- evidence:blind-reach-tools -->
+| Checker | Needs interaction: found | Visible as loaded: found | All planted failures: found |
+| --- | --- | --- | --- |
+| **Granted** | 145 of 218 | 192 of 256 | 337 of 474 |
+| axe-core | 0 of 218 | 144 of 256 | 144 of 474 |
+| Pa11y (axe runner) | 5 of 218 | 91 of 256 | 96 of 474 |
+| Lighthouse | 0 of 218 | 165 of 256 | 165 of 474 |
+| Pa11y (HTML_CodeSniffer runner) | 0 of 218 | 87 of 256 | 87 of 474 |
+| IBM Equal Access | 1 of 218 | 173 of 256 | 174 of 474 |
+| Siteimprove Alfa | 0 of 218 | 145 of 256 | 145 of 474 |
+| QualWeb | 21 of 218 | 157 of 256 | 178 of 474 |
+<!-- /evidence:blind-reach-tools -->
+
+How these were counted: a planted failure is found by a checker when that checker detected it, under the rule in
+[How we count](#how-we-count). The others' total is the union of the other checkers: a failure counts once if any of
+them found it, however many did. "Only show when someone uses the page" is the answer key's `needsInteraction` flag,
+the same split as the table above; every other planted failure is visible in the page as loaded. The per-criterion
+counts are in [`evidence/blind-71-72.json`](evidence/blind-71-72.json) (`reach`).
+
 ### Granted's normal scan on the blind sites, AI off and AI on
 
 Granted normally scans a whole site, and a paid scan adds an AI review. No other checker here scans a whole site, so

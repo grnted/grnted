@@ -5,7 +5,7 @@
 <p align="center"><a href="https://www.npmjs.com/package/grnted"><img alt="npm version" src="https://img.shields.io/npm/v/grnted?color=0b4fb3"></a> <a href="https://github.com/grnted/grnted/blob/main/LICENSE"><img alt="License: AGPL-3.0-only" src="https://img.shields.io/badge/license-AGPL--3.0--only-0b4fb3"></a> <a href="https://github.com/w3c/wcag-act-rules/issues/479"><img alt="W3C ACT: submitted" src="https://img.shields.io/badge/W3C%20ACT-submitted-0b4fb3"></a></p>
 
 <!-- evidence:readme-claim -->
-<p align="center">Found nearly twice as many planted WCAG failures as any other open-source checker, in a <a href="https://github.com/grnted/grnted-benchmark">blind test you can rerun</a>.</p>
+<p align="center">Found nearly twice as many planted WCAG failures as any other open-source checker, in a <a href="https://github.com/grnted/grnted-benchmark">blind test you can rerun</a>. It also found more than the seven other checkers combined (337 to 211): most of the difference is problems that only show up when someone uses the page.</p>
 <!-- /evidence:readme-claim -->
 
 Scores any website's accessibility from 0 to 100 with axe-core's WCAG 2.2 Level A and AA rules and Granted's core automated tests, and gives a result from automated tests for every WCAG 2.2 A and AA criterion.

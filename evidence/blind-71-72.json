@@ -724,6 +724,133 @@
    }
   ]
  },
+ "reach": {
+  "about": "What Granted found that the other 7 checkers did not: the same run, pages and rule as headToHead. A planted failure is found by a checker when that checker detected it. othersUnion counts a failure once if any of the 7 other checkers found it. Interaction-only is the answer key's needsInteraction flag; static is every other planted failure. Totals only.",
+  "failItems": 474,
+  "grantedFound": 337,
+  "othersUnion": 211,
+  "grantedOnly": 154,
+  "grantedOnlyInteraction": 136,
+  "othersFoundGrantedMissed": 28,
+  "interactionItems": 218,
+  "staticItems": 256,
+  "byTool": [
+   {
+    "tool": "granted",
+    "interaction": 145,
+    "static": 192
+   },
+   {
+    "tool": "axe",
+    "interaction": 0,
+    "static": 144
+   },
+   {
+    "tool": "pa11y-axe",
+    "interaction": 5,
+    "static": 91
+   },
+   {
+    "tool": "lighthouse",
+    "interaction": 0,
+    "static": 165
+   },
+   {
+    "tool": "pa11y-htmlcs",
+    "interaction": 0,
+    "static": 87
+   },
+   {
+    "tool": "ibm",
+    "interaction": 1,
+    "static": 173
+   },
+   {
+    "tool": "alfa",
+    "interaction": 0,
+    "static": 145
+   },
+   {
+    "tool": "qualweb",
+    "interaction": 21,
+    "static": 157
+   }
+  ],
+  "grantedOnlyByCriterion": [
+   {
+    "criterion": "2.4.7",
+    "items": 50
+   },
+   {
+    "criterion": "2.4.11",
+    "items": 33
+   },
+   {
+    "criterion": "2.2.2",
+    "items": 18
+   },
+   {
+    "criterion": "2.1.4",
+    "items": 18
+   },
+   {
+    "criterion": "1.1.1",
+    "items": 6
+   },
+   {
+    "criterion": "2.1.1",
+    "items": 5
+   },
+   {
+    "criterion": "1.4.11",
+    "items": 5
+   },
+   {
+    "criterion": "1.4.10",
+    "items": 4
+   },
+   {
+    "criterion": "3.1.2",
+    "items": 2
+   },
+   {
+    "criterion": "1.4.12",
+    "items": 2
+   },
+   {
+    "criterion": "1.4.1",
+    "items": 2
+   },
+   {
+    "criterion": "3.3.1",
+    "items": 2
+   },
+   {
+    "criterion": "3.3.8",
+    "items": 2
+   },
+   {
+    "criterion": "2.4.4",
+    "items": 1
+   },
+   {
+    "criterion": "2.2.1",
+    "items": 1
+   },
+   {
+    "criterion": "4.1.2",
+    "items": 1
+   },
+   {
+    "criterion": "1.3.2",
+    "items": 1
+   },
+   {
+    "criterion": "4.1.3",
+    "items": 1
+   }
+  ]
+ },
  "grantedWholeSite": {
   "rule": "the head-to-head's per-item rule (every keyed item counted per page); not part of the like-for-like comparison, since no other tool scans a whole site",
   "rows": [
