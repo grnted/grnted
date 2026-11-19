@@ -185,8 +185,7 @@ instead of counting as a failed page.
 PDF checks (pdf.js through `unpdf`, which also runs in Cloudflare Workers; no AI): tagged (a structure
 tree), document language, title (and whether readers are told to show it), no text layer (a scanned
 image), figures without alt text, form fields without a tooltip, XFA forms, and security settings that
-stop screen readers from reading the text. Limits: 10 PDFs per scan (the hosted checker reads as many
-as the plan has pages), 10 MB and the first 20 pages of each, 5 s per PDF, one PDF at a time, each
+stop screen readers from reading the text. Limits: 10 PDFs per scan (on grnted.co, linked PDFs and documents are checked free and never counted as pages), 10 MB and the first 20 pages of each, 5 s per PDF, one PDF at a time, each
 download keeping the site's Crawl-delay like a page. A PDF whose streams would decompress to more than
 64 MB is not read (a quick early check, not a sandbox: pdf.js reads in the caller's thread, so a host
 that reads untrusted PDFs passes `readPdf` to read them elsewhere, as the hosted checker does with its
